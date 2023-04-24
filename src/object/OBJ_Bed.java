@@ -11,10 +11,11 @@ public class OBJ_Bed extends SuperObject{
     GamePanel gamePanel;
 
     public OBJ_Bed(GamePanel gamePanel){
+        super(gamePanel);
         this.gamePanel = gamePanel;
         this.height = 3;
         this.width = 1;
-        name = "bed";
+        setName("Bed");
         
         try {
             image = ImageIO.read(new File("././res/object/bed.png"));
