@@ -15,7 +15,9 @@ import main.UtilityTool;
 
 public class Player extends Entity{
     //player attributes
-    public int mood = 100;
+    private String name, job, state;
+    private int mood, health, hunger, money ;
+
 
 
     //player game system
@@ -24,7 +26,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
-    public Player(GamePanel gamePanel, KeyHandler keyHandler){
+    public Player(GamePanel gamePanel, KeyHandler keyHandler, String name){
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         
@@ -43,6 +45,15 @@ public class Player extends Entity{
         solidArea.height = 8;
     
         getPlayerImage();
+
+        //set atribut
+        this.name = name;
+        this.job = "Student";
+        this.state = "Idle";
+        this.mood = 80;
+        this.health = 80;
+        this.hunger = 80;
+        this.money = 100;
        
 
     }
@@ -178,4 +189,58 @@ public class Player extends Entity{
         }
         g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
     }
+
+    // method untuk mengatur dan memengirim nilai atribut
+    public String getName(){
+        return name;
+    }
+
+    public void setJob(String job){
+        this.job = job;
+    }
+
+    public String getJob(){
+        return job;
+    }
+
+    public void setState(String state){
+        this.state = state;
+    }
+
+    public String getState(){
+        return state;
+    }
+
+    public void setMood(int mood){
+        this.mood = mood;
+    }
+
+    public int getMood(){
+        return mood;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setHunger(int hunger){
+        this.hunger = hunger;
+    }
+
+    public int getHunger(){
+        return hunger;
+    }
+
+    public void setMoney(int money){
+        this.money = money;
+    }
+
+    public int getMoney(){
+        return money;
+    }
+
 }

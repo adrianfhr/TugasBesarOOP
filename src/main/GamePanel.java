@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.time.Clock;
 
 import javax.swing.JPanel;
 import entity.Player;
@@ -37,9 +38,10 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public int clock;
     
     //entity and object
-    public Player player = new Player(this, keyHandler);
+    public Player player = new Player(this, keyHandler, "joko");
     public SuperObject obj[] = new SuperObject[10];
    
     //GAME SETTINGS
@@ -62,8 +64,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000.0 / fps;
+        double drawInterval = 1000000000.0 / fps; // fps 60
         double delta = 0;
+        double deltaClock = 0;
         long lastTime = System.nanoTime();
         long currentTime;
         long timer = 0;
@@ -73,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
+            deltaClock += (currentTime - lastTime) / (drawInterval*30);
             timer += currentTime - lastTime;
             lastTime = currentTime;
 
@@ -83,8 +87,11 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
+            if(deltaClock >= 1){
+                clock++;
+                deltaClock--;
+            }
         }
-    
     }
 
     public void update(){
