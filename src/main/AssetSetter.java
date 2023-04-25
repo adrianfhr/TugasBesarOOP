@@ -1,6 +1,6 @@
 package main;
 
-import object.OBJ_Bed;
+import object.OBJ_SingleBed;
 
 public class AssetSetter {
     GamePanel gamePanel;
@@ -11,7 +11,7 @@ public class AssetSetter {
 
     public void setObject(){
 
-        gamePanel.obj[0] = new OBJ_Bed(gamePanel);
+        gamePanel.obj[0] = new OBJ_SingleBed(gamePanel);
         gamePanel.obj[0].worldX = 10 * gamePanel.tileSize;
         gamePanel.obj[0].worldY = 10 * gamePanel.tileSize;
 
