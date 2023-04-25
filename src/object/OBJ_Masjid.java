@@ -1,10 +1,12 @@
 package object;
 
+import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Player;
 import main.GamePanel;
 
 public class OBJ_Masjid extends SuperObject{
@@ -13,8 +15,8 @@ public class OBJ_Masjid extends SuperObject{
     public OBJ_Masjid(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 1;
-        this.width = 1;
+        this.height = 2;
+        this.width = 2;
         setName("Masjid");
         
         try {
@@ -31,8 +33,29 @@ public class OBJ_Masjid extends SuperObject{
     public void setsolidArea(){
         solidArea.x = worldX;
         solidArea.y = worldY;
-        solidArea.width = gamePanel.tileSize * width;
-        solidArea.height = gamePanel.tileSize * height;
+        solidArea.width = gamePanel.tileSize * width *2;
+        solidArea.height = gamePanel.tileSize * height*2;
+    }
+
+    public void interact(Player player){
+        System.out.println("Memasuki Masjid...");
+    }
+
+    public void draw(Graphics2D g2d, GamePanel gamePanel){
+
+        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;; 
+        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+            
+        // cut processing hanya menggambar saat dibutuhkan
+        if(worldX + gamePanel.tileSize > gamePanel.player.worldX - gamePanel.player.screenX && 
+                        worldX - gamePanel.tileSize < gamePanel.player.worldX + gamePanel.player.screenX && 
+                        worldY + gamePanel.tileSize > gamePanel.player.worldY - gamePanel.player.screenY &&
+                        worldY - gamePanel.tileSize < gamePanel.player.worldY + gamePanel.player.screenY){
+                
+                //g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+                g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width * 2, gamePanel.tileSize * height * 2, null);
+            }
+        
     }
 
 }

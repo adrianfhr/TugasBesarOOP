@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Player;
 import main.GamePanel;
 
 public class OBJ_Pengemis extends SuperObject{
@@ -35,4 +36,7 @@ public class OBJ_Pengemis extends SuperObject{
         solidArea.height = gamePanel.tileSize * height;
     }
 
+    public void interact(Player player){
+        System.out.println("Bersedekah...");
+    }
 }
