@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Player;
 import main.GamePanel;
 
 public class OBJ_Rumah extends SuperObject{
@@ -33,6 +34,10 @@ public class OBJ_Rumah extends SuperObject{
         solidArea.y = worldY;
         solidArea.width = gamePanel.tileSize * width;
         solidArea.height = gamePanel.tileSize * height;
+    }
+
+    public void interact(Player player ){
+        gamePanel.player.teleport(50, 50, 1);
     }
 
 }

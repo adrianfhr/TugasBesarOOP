@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Entity;
+import entity.Player;
 import main.GamePanel;
 
 public class OBJ_SingleBed extends SuperObject{
@@ -24,7 +26,7 @@ public class OBJ_SingleBed extends SuperObject{
             e.printStackTrace();
         }
 
-        this.collision = true;
+        this.collision = false;
         setsolidArea();
     }
 
@@ -33,6 +35,10 @@ public class OBJ_SingleBed extends SuperObject{
         solidArea.y = worldY;
         solidArea.width = gamePanel.tileSize * width;
         solidArea.height = gamePanel.tileSize * height;
+    }
+
+    public void interact(Player player ){
+        gamePanel.player.teleport(36, 24, 0);
     }
 
 }

@@ -78,56 +78,60 @@ public class CollisionChecker {
     public void checkObject(Entity entity, boolean player){ // objek
 
 
-        for(int i = 0; i < gamePanel.obj.length; i++){
-            if(gamePanel.obj[i] != null){
+        for(int i = 0; i < gamePanel.obj[gamePanel.currentMap].length; i++){
+            if(gamePanel.obj[gamePanel.currentMap][i] != null){
 
                 //get entity solid area position
                 entity.solidArea.x = entity.worldX + entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.worldY + entity.solidAreaDefaultY;
                 //get object solid area position
-                gamePanel.obj[i].solidArea.x = gamePanel.obj[i].worldX + gamePanel.obj[i].solidAreaDefaultX; 
-                gamePanel.obj[i].solidArea.y = gamePanel.obj[i].worldY + gamePanel.obj[i].solidAreaDefaultY;
+                gamePanel.obj[gamePanel.currentMap][i].solidArea.x = gamePanel.obj[gamePanel.currentMap][i].worldX + gamePanel.obj[gamePanel.currentMap][i].solidAreaDefaultX; 
+                gamePanel.obj[gamePanel.currentMap][i].solidArea.y = gamePanel.obj[gamePanel.currentMap][i].worldY + gamePanel.obj[gamePanel.currentMap][i].solidAreaDefaultY;
                 
                 //sd
 
                 switch(entity.direction){
                     case "up":
                         entity.solidArea.y -= entity.speed;
-                        if(entity.solidArea.intersects(gamePanel.obj[i].solidArea)){ //ngecek apakah bersentuhan
-                            if(gamePanel.obj[i].collision == true){
+                        if(entity.solidArea.intersects(gamePanel.obj[gamePanel.currentMap][i].solidArea)){ //ngecek apakah bersentuhan
+                            if(gamePanel.obj[gamePanel.currentMap][i].collision == true){
                                 entity.collisionOn = true;
-                                entity.isInteracting = true;
+                                
                             }
+                            entity.targetIndex = i;
+                            entity.isInteracting = true;
                          ;
                         }
                         break;
                     case "down":
                         entity.solidArea.y += entity.speed;
-                        if(entity.solidArea.intersects(gamePanel.obj[i].solidArea)){
-                            if(gamePanel.obj[i].collision == true){
+                        if(entity.solidArea.intersects(gamePanel.obj[gamePanel.currentMap][i].solidArea)){
+                            if(gamePanel.obj[gamePanel.currentMap][i].collision == true){
                                 entity.collisionOn = true;
-                                entity.isInteracting = true;
                             }
-                            
+                            entity.targetIndex = i;
+                            entity.isInteracting = true;
                         }
                         break;
                     case "left":
                         entity.solidArea.x -= entity.speed;
-                        if(entity.solidArea.intersects(gamePanel.obj[i].solidArea)){
-                            if(gamePanel.obj[i].collision == true){
+                        if(entity.solidArea.intersects(gamePanel.obj[gamePanel.currentMap][i].solidArea)){
+                            if(gamePanel.obj[gamePanel.currentMap][i].collision == true){
                                 entity.collisionOn = true;
-                                entity.isInteracting = true;
+                                
                             }
-                            
+                            entity.targetIndex = i;
+                            entity.isInteracting = true;
                         }
                         break;
                     case "right":
                         entity.solidArea.x += entity.speed;
-                        if(entity.solidArea.intersects(gamePanel.obj[i].solidArea)){
-                            if(gamePanel.obj[i].collision == true){
+                        if(entity.solidArea.intersects(gamePanel.obj[gamePanel.currentMap][i].solidArea)){
+                            if(gamePanel.obj[gamePanel.currentMap][i].collision == true){
                                 entity.collisionOn = true;
-                                entity.isInteracting = true;
                             }
+                            entity.targetIndex = i;
+                            entity.isInteracting = true;
                         }
                         break;
                     default:
@@ -136,12 +140,11 @@ public class CollisionChecker {
                 
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
-                gamePanel.obj[i].solidArea.x = gamePanel.obj[i].solidAreaDefaultX;
-                gamePanel.obj[i].solidArea.y = gamePanel.obj[i].solidAreaDefaultY;
+                gamePanel.obj[gamePanel.currentMap][i].solidArea.x = gamePanel.obj[gamePanel.currentMap][i].solidAreaDefaultX;
+                gamePanel.obj[gamePanel.currentMap][i].solidArea.y = gamePanel.obj[gamePanel.currentMap][i].solidAreaDefaultY;
             }
 
         }
-
 
     }
     

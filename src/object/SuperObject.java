@@ -3,7 +3,11 @@ package object;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Method;
 
+import javax.swing.table.AbstractTableModel;
+
+import entity.Player;
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -70,6 +74,8 @@ public abstract class SuperObject {
     }
 
     abstract public void setsolidArea();
+
+    abstract public void interact(Player player);
 
     
 }

@@ -14,4 +14,5 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public boolean isInteracting = false;
+    public int targetIndex; //variable bantu untuk cek index interaksi
 }

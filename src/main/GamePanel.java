@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.time.Clock;
 
 import javax.swing.JPanel;
 import entity.Player;
@@ -31,11 +30,11 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = maxWorldCol * tileSize;
     public final int worldHeight = maxWorldRow * tileSize;
     public final int maxMap = 10;
-    public int currentMap = 1;
+    public int currentMap = 0;
 
     //SYSTEM SETTINGS
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
+    KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
@@ -44,7 +43,13 @@ public class GamePanel extends JPanel implements Runnable {
     
     //entity and object
     public Player player = new Player(this, keyHandler, "joko");
-    public SuperObject obj[] = new SuperObject[10];
+    public SuperObject obj[][] = new SuperObject[maxMap][10];
+
+    //state
+    public int gameState;
+    public final int playState = 1;
+    public final int interactObjState = 2;
+
    
     //GAME SETTINGS
     public GamePanel (){
@@ -98,7 +103,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(){
         //update game logic
-        player.update();
+            player.update();
+        
         
     }
 
@@ -110,9 +116,9 @@ public class GamePanel extends JPanel implements Runnable {
         tileManager.draw(g2d);
 
         //objek (rumah, pohon, dll)
-        for (int i = 0; i < obj.length; i++) {
-             if(obj[i] != null){
-                 obj[i].draw(g2d, this);
+        for (int i = 0; i < obj[this.currentMap].length; i++) {
+             if(obj[this.currentMap][i] != null){
+                 obj[this.currentMap][i].draw(g2d, this);
              }
          }
 

@@ -19,7 +19,6 @@ public class Player extends Entity{
     private int mood, health, hunger, money ;
 
 
-
     //player game system
     GamePanel gamePanel;
     KeyHandler keyHandler;
@@ -60,8 +59,8 @@ public class Player extends Entity{
 
    
     public void setDefaultvalues(){ //position player in x and y
-        worldX = gamePanel.tileSize * 50;
-        worldY = gamePanel.tileSize * 50;
+        worldX = gamePanel.tileSize * 34;
+        worldY = gamePanel.tileSize * 35;
         speed = 4;
         direction = "down";
     }
@@ -109,6 +108,16 @@ public class Player extends Entity{
             
             }
         }
+
+        if(keyHandler.ePressed){
+            gamePanel.gameState = gamePanel.interactObjState; 
+        }else{
+            gamePanel.gameState = gamePanel.playState;
+        }
+
+
+
+
         
         //check tile collision
         collisionOn = false;
@@ -149,6 +158,9 @@ public class Player extends Entity{
             }
             spriteCounter = 0;
           }
+
+          //fungsi
+          interactOBJ();
 
     }
 
@@ -243,5 +255,18 @@ public class Player extends Entity{
     public int getMoney(){
         return money;
     }
+
+    //
+    public void interactOBJ(){
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting){
+            gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
+        }
+    }
+
+    public void teleport(int x, int y, int map) {
+		gamePanel.currentMap = map;
+        worldX = x * gamePanel.tileSize;
+		worldY = y* gamePanel.tileSize;
+	}
 
 }

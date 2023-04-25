@@ -1,5 +1,6 @@
 package main;
 
+import object.OBJ_Rumah;
 import object.OBJ_SingleBed;
 
 public class AssetSetter {
@@ -11,9 +12,15 @@ public class AssetSetter {
 
     public void setObject(){
 
-        gamePanel.obj[0] = new OBJ_SingleBed(gamePanel);
-        gamePanel.obj[0].worldX = 10 * gamePanel.tileSize;
-        gamePanel.obj[0].worldY = 10 * gamePanel.tileSize;
+        gamePanel.obj[1][0] = new OBJ_SingleBed(gamePanel);
+        gamePanel.obj[1][0].worldX = 51 * gamePanel.tileSize;
+        gamePanel.obj[1][0].worldY = 50 * gamePanel.tileSize;
+
+
+        gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel);
+        gamePanel.obj[0][0].worldX = 37 * gamePanel.tileSize;
+        gamePanel.obj[0][0].worldY = 24 * gamePanel.tileSize;
+
 
     }
 }

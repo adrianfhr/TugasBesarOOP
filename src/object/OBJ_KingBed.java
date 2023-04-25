@@ -35,4 +35,6 @@ public class OBJ_KingBed extends SuperObject{
         solidArea.height = gamePanel.tileSize * height;
     }
 
+    public
+
 }

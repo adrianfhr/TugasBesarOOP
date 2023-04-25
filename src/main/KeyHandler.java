@@ -1,13 +1,17 @@
 package main;
 
 
+import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    GamePanel gamePanel;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed;
      
+    public KeyHandler(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+    }
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
@@ -23,6 +27,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_D){
             rightPressed = true;
+        }
+        if(code == KeyEvent.VK_E){
+            ePressed = true;
         }
 
     }
@@ -42,6 +49,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_D){
             rightPressed = false;
+        }
+        if(code == KeyEvent.VK_E){
+            ePressed = false;
         }
 
         
