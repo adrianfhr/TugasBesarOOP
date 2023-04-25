@@ -60,8 +60,8 @@ public class Player extends Entity{
 
    
     public void setDefaultvalues(){ //position player in x and y
-        worldX = gamePanel.tileSize * 1;
-        worldY = gamePanel.tileSize * 1;
+        worldX = gamePanel.tileSize * 50;
+        worldY = gamePanel.tileSize * 50;
         speed = 4;
         direction = "down";
     }
@@ -151,6 +151,7 @@ public class Player extends Entity{
           }
 
     }
+
 
     public void draw(Graphics2D g2d){
         BufferedImage image =  down1;
