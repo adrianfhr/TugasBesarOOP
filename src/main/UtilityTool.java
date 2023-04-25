@@ -14,4 +14,9 @@ public class UtilityTool {
         return scaledImage;
     }
 
+    public static int getXForAlightToRightOfText(String text, int tailX, GamePanel gamePanel, Graphics2D graphics2D) {
+        int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
+        return tailX - length;
+    }
+
 }
