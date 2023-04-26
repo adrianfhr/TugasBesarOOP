@@ -70,10 +70,10 @@ public class UI {
     }
 
     private void drawPlayerActiveState(){
-        int frameX = 40 * gamePanel.tileSize;
-        int frameY = (-9) * gamePanel.tileSize;
-        int frameWidth = 7 * gamePanel.tileSize;
-        int frameHeight = 7 * gamePanel.tileSize; 
+        int frameX = 40 * gamePanel.tileSize / 3;
+        int frameY = (-9) * gamePanel.tileSize / 3;
+        int frameWidth = 7 * gamePanel.tileSize / 3;
+        int frameHeight = 7 * gamePanel.tileSize / 3; 
 
         drawSubWindowStat((frameX), frameY, frameWidth, frameHeight);
 
@@ -106,7 +106,7 @@ public class UI {
 
         String text = "Sim-Plicity";
         int x = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        int y = gamePanel.tileSize * 20;
+        int y = gamePanel.tileSize / 3 * 20;
 
         // Shadow
         g2.setColor(Color.GRAY);
@@ -117,19 +117,19 @@ public class UI {
         g2.drawString(text, x, y);
 
         // GAME IMAGE
-        x = gamePanel.screenWidth / 2 - (gamePanel.tileSize * 2) / 2;
-        y += gamePanel.tileSize * 2;
-        g2.drawImage(gamePanel.player.down1, x, y, gamePanel.tileSize * 2, gamePanel.tileSize * 2, null);
+        x = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 3 * 2) / 2;
+        y += gamePanel.tileSize / 3 * 2;
+        g2.drawImage(gamePanel.player.down1, x, y, gamePanel.tileSize / 3 * 2, gamePanel.tileSize / 3 * 2, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
 
         text = "NEW GAME";
         x = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        y += gamePanel.tileSize * 5;
+        y += gamePanel.tileSize / 3 * 5;
         g2.drawString(text, x, y);
         if (commandNumber == 0) {
-            g2.drawString(">", x - gamePanel.tileSize, y);
+            g2.drawString(">", x - gamePanel.tileSize / 3, y);
             if (gamePanel.keyHandler.isEnterPressed()) {
                 titleScreenState = 1;
                 commandNumber = 0;
@@ -138,10 +138,10 @@ public class UI {
 
         text = "LOAD GAME";
         x = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        y += gamePanel.tileSize;
+        y += gamePanel.tileSize / 3;
         g2.drawString(text, x, y + 35);
         if (commandNumber == 1) {
-            g2.drawString(">", x - gamePanel.tileSize, y + 35);
+            g2.drawString(">", x - gamePanel.tileSize / 3, y + 35);
             if (gamePanel.keyHandler.isEnterPressed()) {
                 // Later
             }
@@ -149,10 +149,10 @@ public class UI {
 
         text = "QUIT";
         x = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        y += gamePanel.tileSize;
+        y += gamePanel.tileSize / 3;
         g2.drawString(text, x, y+70);
         if (commandNumber == 2) {
-            g2.drawString(">", x - gamePanel.tileSize, y + 70);
+            g2.drawString(">", x - gamePanel.tileSize / 3, y + 70);
             if (gamePanel.keyHandler.isEnterPressed()) {
                 System.exit(0);
             }
@@ -170,10 +170,10 @@ public class UI {
     }
 
     public void gameStatScreen(){
-        int frameX = 40 * gamePanel.tileSize;
-        int frameY = (-9) * gamePanel.tileSize;
-        int frameWidth = 7 * gamePanel.tileSize;
-        int frameHeight = 7 * gamePanel.tileSize; 
+        int frameX = 40 * gamePanel.tileSize / 3;
+        int frameY = (-9) * gamePanel.tileSize / 3;
+        int frameWidth = 7 * gamePanel.tileSize / 3;
+        int frameHeight = 7 * gamePanel.tileSize / 3; 
 
         drawSubWindowStat((frameX), frameY, frameWidth, frameHeight);
 
@@ -201,8 +201,8 @@ public class UI {
     public void drawActiveStateScreen(){
         int frameX = 31;
         int frameY = 2*16;
-        int frameWidth = 10 * gamePanel.tileSize;
-        int frameHeight = 5 * gamePanel.tileSize; 
+        int frameWidth = 10 * gamePanel.tileSize / 3;
+        int frameHeight = 5 * gamePanel.tileSize / 3; 
 
         drawSubWindowActiveAction(frameX, frameY, frameWidth, frameHeight);
 
@@ -222,9 +222,9 @@ public class UI {
         int slotRow = 0;
 
         if (entity == gamePanel.player){
-            frameY = gamePanel.tileSize;
-            frameWidth = gamePanel.tileSize * 17;
-            frameHeight = gamePanel.tileSize * 15;
+            frameY = gamePanel.tileSize / 3;
+            frameWidth = gamePanel.tileSize / 3 * 17;
+            frameHeight = gamePanel.tileSize / 3 * 15;
             slotCol = playerSlotCol;
             slotRow = playerSlotRow;
         }
@@ -234,7 +234,7 @@ public class UI {
         final int slotYStart = frameY + 10;
         int slotX = slotXStart;
         int slotY = slotYStart;
-        int slotSize = gamePanel.tileSize * 3;
+        int slotSize = gamePanel.tileSize / 3 * 3;
         
         // // // Isi Inventory
         List<Asset> inventory = entity.getInventory();
@@ -247,7 +247,7 @@ public class UI {
             int descriptionFrameX = frameX;
             int descriptionFrameY = frameY + frameHeight;
             int descriptionFrameWidth = frameWidth;
-            int descriptionFrameHeight = gamePanel.tileSize * 10;
+            int descriptionFrameHeight = gamePanel.tileSize / 3 * 10;
 
             drawItemDescriptionText(inventory, descriptionFrameX, descriptionFrameY, descriptionFrameWidth, descriptionFrameHeight, slotCol, slotRow);
         }
@@ -299,10 +299,10 @@ public class UI {
     }
 
     private void drawCharacterScreen() {
-        int frameX = gamePanel.tileSize * 2;
-        int frameY = gamePanel.tileSize;
-        int frameWidth = gamePanel.tileSize * 10;
-        int frameHeight = (int) (gamePanel.tileSize * 10.5);
+        int frameX = gamePanel.tileSize / 3 * 2;
+        int frameY = gamePanel.tileSize / 3;
+        int frameWidth = gamePanel.tileSize / 3 * 10;
+        int frameHeight = (int) (gamePanel.tileSize / 3 * 10.5);
 
         drawSubWindowPlayerStat(frameX, frameY, frameWidth, frameHeight);
 
@@ -310,7 +310,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
 
         int textX = frameX + 20;
-        int textY = frameY + 20 + gamePanel.tileSize;
+        int textY = frameY + 20 + gamePanel.tileSize / 3;
         int lineHeight = 20;
 
         drawText(textX, textY, lineHeight);
@@ -377,7 +377,7 @@ public class UI {
             // EQUIPPED BOX COLOR
             if (object == gamePanel.player.getCurrentBahanMakanan()) {
                 g2.setColor(new Color(240, 190, 90));
-                g2.fillRoundRect(slotX + 20, slotY + 180, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
+                g2.fillRoundRect(slotX + 20, slotY + 180, gamePanel.tileSize / 3, gamePanel.tileSize / 3, 10, 10);
             }
 
             g2.drawImage(object.getImage1(), slotX + 20, slotY + 180, null);
@@ -395,8 +395,8 @@ public class UI {
         // CURSOR selection box
         int cursorX = slotXStart + (slotSize * slotCol);
         int cursorY = slotYStart + (slotSize * slotRow);
-        int cursorWidth = gamePanel.tileSize;
-        int cursorHeight = gamePanel.tileSize;
+        int cursorWidth = gamePanel.tileSize / 3;
+        int cursorHeight = gamePanel.tileSize / 3;
 
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(3));
@@ -406,7 +406,7 @@ public class UI {
     private void drawItemDescriptionText(List<Asset> inventory, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
         // DRAW DESCRIPTION TEXT
         int textX = descriptionFrameX + 50;
-        int textY = descriptionFrameY + gamePanel.tileSize;
+        int textY = descriptionFrameY + gamePanel.tileSize / 3;
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
 
@@ -439,10 +439,10 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(32F));
 
         // SUB WINDOW
-        int frameX = gamePanel.tileSize * 12;
-        int frameY = gamePanel.tileSize * 9;
-        int frameWidth = gamePanel.tileSize * 25;
-        int frameHeight = gamePanel.tileSize * 20;
+        int frameX = gamePanel.tileSize / 3 * 12;
+        int frameY = gamePanel.tileSize / 3 * 9;
+        int frameWidth = gamePanel.tileSize / 3 * 25;
+        int frameHeight = gamePanel.tileSize / 3 * 20;
 
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
@@ -464,8 +464,8 @@ public class UI {
     }
 
     private void optionsEndGameConfirmation(int frameX, int frameY) {
-        int textX = frameX + gamePanel.tileSize;
-        int textY = frameY + gamePanel.tileSize * 3;
+        int textX = frameX + gamePanel.tileSize / 3;
+        int textY = frameY + gamePanel.tileSize / 3 * 3;
 
         currentDialogue = "Quit the game and \nreturn to the title Screen?";
 
@@ -474,7 +474,7 @@ public class UI {
         // YES
         String text = "Yes";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        textY += gamePanel.tileSize * 3;
+        textY += gamePanel.tileSize / 3 * 3;
         g2.drawString(text, textX, textY + 105);
         if (commandNumber == 0) {
             g2.drawString(">", textX - 25, textY + 105);
@@ -490,7 +490,7 @@ public class UI {
         // NO
         text = "No";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawString(text, textX, textY + 125);
         if (commandNumber == 1) {
             g2.drawString(">", textX - 25, textY +125);
@@ -508,27 +508,27 @@ public class UI {
         // TITLE
         String text = "Controls";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        textY = frameY + gamePanel.tileSize;
+        textY = frameY + gamePanel.tileSize / 3;
         g2.drawString(text, textX, textY + 30);
 
-        textX = frameX + gamePanel.tileSize;
-        textY += gamePanel.tileSize;
-        g2.drawString("Move", textX + gamePanel.tileSize * 2, textY + 60);
-        g2.drawString("WASD", textX + gamePanel.tileSize * 16, textY + 60);
-        textY += gamePanel.tileSize;
-        g2.drawString("Confirm/Interact", textX + gamePanel.tileSize * 2, textY + 75);
-        g2.drawString("E", textX + gamePanel.tileSize * 18, textY + 75);
-        textY += gamePanel.tileSize;
-        g2.drawString("Inventory", textX + gamePanel.tileSize * 2, textY + 90);
-        g2.drawString("I", textX + gamePanel.tileSize * 18, textY + 90);
-        textY += gamePanel.tileSize;
-        g2.drawString("Pause", textX + gamePanel.tileSize * 2, textY + 105);
-        g2.drawString("P", textX + gamePanel.tileSize * 18, textY + 105);
+        textX = frameX + gamePanel.tileSize / 3;
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Move", textX + gamePanel.tileSize / 3 * 2, textY + 60);
+        g2.drawString("WASD", textX + gamePanel.tileSize / 3 * 16, textY + 60);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Confirm/Interact", textX + gamePanel.tileSize / 3 * 2, textY + 75);
+        g2.drawString("E", textX + gamePanel.tileSize / 3 * 18, textY + 75);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Inventory", textX + gamePanel.tileSize / 3 * 2, textY + 90);
+        g2.drawString("I", textX + gamePanel.tileSize / 3 * 18, textY + 90);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Pause", textX + gamePanel.tileSize / 3 * 2, textY + 105);
+        g2.drawString("P", textX + gamePanel.tileSize / 3 * 18, textY + 105);
 
         // BACK
-        textX = frameX + gamePanel.tileSize;
-        textY = frameY + gamePanel.tileSize * 9;
-        g2.drawString("Back", textX + gamePanel.tileSize * 2, textY + 120);
+        textX = frameX + gamePanel.tileSize / 3;
+        textY = frameY + gamePanel.tileSize / 3 * 9;
+        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 120);
         g2.drawString(">", textX + 10, textY + 120);
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             subState = 0;
@@ -537,15 +537,15 @@ public class UI {
     }
 
     public void optionsFullScreenNotification(int frameX, int frameY) {
-        int textX = frameX + gamePanel.tileSize;
-        int textY = frameY + gamePanel.tileSize * 3;
+        int textX = frameX + gamePanel.tileSize / 3;
+        int textY = frameY + gamePanel.tileSize / 3 * 3;
 
         currentDialogue = "The change will take \neffect after restarting \nthe game.";
 
         splitAndDrawDialogue(textX, textY);
 
         // BACK
-        textY = frameY + gamePanel.tileSize * 9;
+        textY = frameY + gamePanel.tileSize / 3 * 9;
         g2.drawString("Back", textX, textY);
         g2.drawString(">", textX - 25, textY);
         if (gamePanel.getKeyHandler().isEnterPressed()) {
@@ -572,12 +572,12 @@ public class UI {
         // TITLE
         String text = "Options";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
-        textY = frameY + gamePanel.tileSize + 35;
+        textY = frameY + gamePanel.tileSize / 3 + 35;
         g2.drawString(text, textX + 10, textY);
 
         // FULLSCREEN ON/OFF
-        textX = frameX + gamePanel.tileSize;
-        textY += gamePanel.tileSize;
+        textX = frameX + gamePanel.tileSize / 3;
+        textY += gamePanel.tileSize / 3;
         g2.drawString("Full Screen", textX + 30, textY + 30);
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
@@ -589,21 +589,21 @@ public class UI {
         }
 
         // MUSIC
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawString("Music", textX + 30, textY + 45);
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
         }
 
         // SOUND EFFECT
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawString("Sound Effects", textX + 30, textY + 60);
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
         }
 
         // CONTROLS
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawString("Controls", textX + 30, textY + 75);
         if (commandNumber == 3) {
             g2.drawString(">", textX + 10, textY + 75);
@@ -614,7 +614,7 @@ public class UI {
         }
 
         // END GAME
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawString("End Game", textX + 30, textY + 90);
         if (commandNumber == 4) {
             g2.drawString(">", textX + 10, textY + 90);
@@ -625,7 +625,7 @@ public class UI {
         }
 
         // BACK
-        textY += gamePanel.tileSize * 2;
+        textY += gamePanel.tileSize / 3 * 2;
         g2.drawString("Back", textX + 30, textY + 105);
         if (commandNumber == 5) {
             g2.drawString(">", textX + 10, textY + 105);
@@ -636,8 +636,8 @@ public class UI {
         }
 
         // FULLSCREEN CHECK BOX
-        textX = frameX + (int) (gamePanel.tileSize * 15);
-        textY = frameY + gamePanel.tileSize * 2 + 45;
+        textX = frameX + (int) (gamePanel.tileSize / 3 * 15);
+        textY = frameY + gamePanel.tileSize / 3 * 2 + 45;
         g2.setStroke(new BasicStroke(3));
         g2.drawRect(textX, textY, 24, 24);
         if (gamePanel.isFullScreenOn()) {
@@ -645,14 +645,14 @@ public class UI {
         }
 
         // MUSIC VOLUME
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawRect(textX, textY + 15, 120, 24); // 120 / 5 = 24
 
         int volumeWidth = 24 * gamePanel.getMusic().getVolumeScale();
         g2.fillRect(textX, textY + 15, volumeWidth, 24);
 
         // SOUND EFFECT VOLUME
-        textY += gamePanel.tileSize;
+        textY += gamePanel.tileSize / 3;
         g2.drawRect(textX, textY + 30, 120, 24);
 
         volumeWidth = 24 * gamePanel.getSoundEffect().getVolumeScale();
