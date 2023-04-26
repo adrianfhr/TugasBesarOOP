@@ -19,4 +19,9 @@ public class UtilityTool {
         return tailX - length;
     }
 
+    public static int getXForCenterOfText(String text, GamePanel gamePanel, Graphics2D graphics2D) {
+        int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
+        return gamePanel.screenWidth / 2 - length / 2;
+    }
+
 }

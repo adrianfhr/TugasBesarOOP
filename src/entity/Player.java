@@ -8,18 +8,21 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.sql.rowset.spi.SyncResolver;
 
+import object.*;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.Asset;
+import object.BahanMakanan;
+import object.OBJ_Jam;
+import object.OBJ_Nasi;
 
 public class Player extends Entity{
     //player attributes
     private String name, job;
     private static String state;
     private int mood, health, hunger, money ;
-
 
     //tidur, kerja, makan
     public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung;
@@ -50,16 +53,17 @@ public class Player extends Entity{
         solidArea.height = 8;
     
         getPlayerImage();
+        setItems();
 
         //set atribut
         this.name = name;
         this.job = "Student";
-        this.state = "idle";
-        this.mood = 80;
+        this.state = "Idle";
+        setMood(80);
         this.health = 80;
         this.hunger = 80;
         this.money = 100;
-       
+
         //set jam kerja default
         jamKerja = 30*2;
         jamOlahraga = 20*2;
@@ -123,29 +127,28 @@ public class Player extends Entity{
             
             }
         }
-
-
-            if(keyHandler.ePressed || gamePanel.isActiveAction){
-                gamePanel.gameState = gamePanel.interactObjState;
-                if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
-                    gamePanel.isActiveAction = true;
-                    Player.state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();   
-                }
-            } else{
-                gamePanel.gameState = gamePanel.playState;
+        if(keyHandler.ePressed || gamePanel.isActiveAction){
+            gamePanel.gameState = gamePanel.interactObjState;
+            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
+                gamePanel.isActiveAction = true;
+                state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
             }
-        
-
-            if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){                
-                interactOBJ();
-                keyHandler.ePressed = false;
-            }
+        } else{
+            gamePanel.gameState = gamePanel.playState;
             
+        }
+    
+
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){                
+            interactOBJ();
+            keyHandler.ePressed = false;   
+        }
         
 
+
+
+
         
-
-
         //check tile collision
         collisionOn = false;
         gamePanel.collisionChecker.checkTile(this);
@@ -186,9 +189,8 @@ public class Player extends Entity{
             spriteCounter = 0;
           }
 
-        
-        
-        
+          //fungsi
+        interactOBJ();
 
     }
 
@@ -285,9 +287,10 @@ public class Player extends Entity{
     }
 
     //
-    public synchronized void interactOBJ(){
-        gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        gamePanel.gameState = gamePanel.playState;
+    public void interactOBJ(){
+        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting) && (gamePanel.getKeyHandler().ePressed)){
+            gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
+        }
     }
 
     public void teleport(int x, int y, int map) {
@@ -296,4 +299,33 @@ public class Player extends Entity{
 		worldY = y* gamePanel.tileSize;
 	}
 
+    public void setItems(){
+        getInventory().clear();
+        setDefaultBahanMakanan();
+        getInventory().add(getCurrentBahanMakanan());
+        getInventory().add(new OBJ_Jam(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
+    }
+
+    private void setDefaultBahanMakanan() {
+        setCurrentBahanMakanan(new OBJ_Nasi(gamePanel));
+    }
+
+    public void selectItem() {
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+
+        if (itemIndex < getInventory().size()) {
+            Asset selectedItem = getInventory().get(itemIndex);
+
+            if (selectedItem instanceof BahanMakanan) {
+                setCurrentBahanMakanan((BahanMakanan) selectedItem);
+                setKekenyangan(getKekenyangan());
+            }
+        }
+    }
 }

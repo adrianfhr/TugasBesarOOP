@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import entity.Player;
 import object.SuperObject;
+import sound.SoundManager;
 import tile.TileManager;
+import main.Config;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -24,6 +26,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     final int fps = 60; // 60 frames per second
 
+    //SOUND
+    private final SoundManager music = new SoundManager();
+    private final SoundManager soundEffect = new SoundManager();
+
     //WORLD SETTINGS
     public final int maxWorldCol = 66;
     public final int maxWorldRow = 66;
@@ -34,12 +40,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     //SYSTEM SETTINGS
     TileManager tileManager = new TileManager(this);
-    public KeyHandler keyHandler = new KeyHandler(this);
+    KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public int clock;
+    private final Config config = new Config(this);
     
     //entity and object
     public Player player = new Player(this, keyHandler, "joko");
@@ -47,12 +54,21 @@ public class GamePanel extends JPanel implements Runnable {
 
     //state
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int interactObjState = 2;
+    public final int pauseState = 3;
+    public final int dialogueState = 4;
+    public final int characterState = 5;
+    public final int optionState = 6;
+    public final int transitionState = 7;
+    public final int gameOverState = 8;
+
 
     //state non-aktif
     public boolean isActiveAction = false;
     public boolean isPassiveAction = false;
+    private boolean fullScreenOn;
     
 
    
@@ -67,6 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame(){
          assetSetter.setObject();
+         gameState = titleState;
      }
 
     public void startGameThread(){
@@ -102,14 +119,12 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if(deltaClock >= 1 && isActiveAction){ //jamm jalan
+            if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
                 if(player.getState().equals("Tidur")){
                     System.out.println("MASOOKK");
-                    //player.jamTidur
                 }
-
                 
             }
         }
@@ -117,10 +132,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(){
         //update game logic
+        if (gameState == playState){
             player.update();
-            // if(player.jamTidur == 0){
-                
-            
+        } else if (gameState == interactObjState){
+            player.update();
+        }
         
         
     }
@@ -140,12 +156,59 @@ public class GamePanel extends JPanel implements Runnable {
          }
 
         //player
-        if(!isActiveAction){
-            player.draw(g2d);
-        }
-
+        player.draw(g2d);
         ui.draw(g2d);
         g2d.dispose();
         //draw game graphics
     }
+
+    public void playMusic(int index) {
+        music.setFile(index);
+        music.play();
+        music.loop();
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public GamePanel setGameState(int gameState) {
+        this.gameState = gameState;
+        return this;
+    }
+
+    public void playSoundEffect(int index) {
+        soundEffect.setFile(index);
+        soundEffect.play();
+    }
+
+    public SoundManager getSoundEffect() {
+        return soundEffect;
+    }
+
+    public SoundManager getMusic() {
+        return music;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public boolean isFullScreenOn() {
+        return fullScreenOn;
+    }
+
+    public GamePanel setFullScreenOn(boolean fullScreenOn) {
+        this.fullScreenOn = fullScreenOn;
+        return this;
+    }
+
+    public void stopMusic() {
+        music.stop();
+    }
+
 }

@@ -17,8 +17,8 @@ public class OBJ_Nasi extends BahanMakanan {
         setKekenyanganValue(5);
 
         try {
-            image = ImageIO.read(new File("././res/object/nasi.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            image = ImageIO.read(new File("././res/object/NASI.png"));
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2, gamePanel.tileSize * 2));
         } catch (IOException e) {
             e.printStackTrace();
         }

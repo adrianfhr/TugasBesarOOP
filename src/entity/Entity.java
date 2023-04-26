@@ -3,6 +3,12 @@ package entity;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import object.Asset;
+import object.BahanMakanan;
+
 public class Entity {
     public int worldX, worldY;
     public int speed;
@@ -15,4 +21,38 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean isInteracting = false;
     public int targetIndex; //variable bantu untuk cek index interaksi
+    private final int maxInventorySize = 20;
+    private List<Asset> inventory = new ArrayList<>();
+    private BahanMakanan currentBahanMakanan;
+    private int Kekenyangan;
+
+    public List<Asset> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Asset> inventory) {
+        this.inventory = inventory;
+    }
+
+    public int getMaxInventorySize() {
+        return maxInventorySize;
+    }
+
+    public BahanMakanan getCurrentBahanMakanan() {
+        return currentBahanMakanan;
+    }
+
+    public Entity setCurrentBahanMakanan(BahanMakanan currentBahanMakanan) {
+        this.currentBahanMakanan = currentBahanMakanan;
+        return this;
+    }
+
+    public int getKekenyangan() {
+        return Kekenyangan;
+    }
+
+    public Entity setKekenyangan(int Kekenyangan) {
+        this.Kekenyangan = Kekenyangan;
+        return this;
+    }
 }

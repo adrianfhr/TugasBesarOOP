@@ -11,7 +11,7 @@ import entity.Player;
 import main.GamePanel;
 import main.UtilityTool;
 
-public abstract class SuperObject {
+public abstract class SuperObject implements Asset{
 
     public BufferedImage image;
     public String name;
@@ -24,6 +24,7 @@ public abstract class SuperObject {
     public UtilityTool utilityTool = new UtilityTool();
     private final GamePanel gamePanel;
     private int value;
+    protected BufferedImage image1;
     
     public SuperObject(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -71,6 +72,15 @@ public abstract class SuperObject {
 
     public Object setValue(int value) {
         this.value = value;
+        return this;
+    }
+
+    public BufferedImage getImage1() {
+        return image1;
+    }
+
+    public Object setImage1(BufferedImage image1) {
+        this.image1 = image1;
         return this;
     }
 
