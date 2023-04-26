@@ -129,9 +129,7 @@ public class Player extends Entity{
                 gamePanel.gameState = gamePanel.interactObjState;
                 if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
                     gamePanel.isActiveAction = true;
-                    Player.state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
-                    
-
+                    Player.state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();   
                 }
             } else{
                 gamePanel.gameState = gamePanel.playState;

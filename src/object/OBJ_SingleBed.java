@@ -38,8 +38,8 @@ public class OBJ_SingleBed extends SuperObject{
         solidArea.height = gamePanel.tileSize * height;
     }
 
-    public synchronized void interact(Player player ){
-        
+    public void interact(Player player ){
+        player.setMood(player.getMood() + 30);
     }
 
 }

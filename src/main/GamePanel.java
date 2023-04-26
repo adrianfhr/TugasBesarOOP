@@ -102,12 +102,14 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if(deltaClock >= 1 && isActiveAction){
+            if(deltaClock >= 1 && isActiveAction){ //jamm jalan
                 clock++;
                 deltaClock--;
                 if(player.getState().equals("Tidur")){
                     System.out.println("MASOOKK");
+                    //player.jamTidur
                 }
+
                 
             }
         }
@@ -116,6 +118,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
         //update game logic
             player.update();
+            // if(player.jamTidur == 0){
+                
+            
         
         
     }
