@@ -39,6 +39,7 @@ public class OBJ_Rumah extends SuperObject{
 
     public void interact(Player player ){
         gamePanel.player.teleport(50, 50, 1);
+        gamePanel.playSoundEffect(2);
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

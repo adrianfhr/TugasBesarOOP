@@ -4,6 +4,9 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+
+import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SoundManager {
@@ -15,19 +18,25 @@ public class SoundManager {
     private float volume;
 
     public SoundManager() {
-        soundUrl[0] = getClass().getResource("/sounds/BlueBoyAdventure.wav");
-        soundUrl[1] = getClass().getResource("/sounds/coin.wav");
-        soundUrl[2] = getClass().getResource("/sounds/powerup.wav");
-        soundUrl[3] = getClass().getResource("/sounds/unlock.wav");
-        soundUrl[4] = getClass().getResource("/sounds/fanfare.wav");
-        soundUrl[5] = getClass().getResource("/sounds/hitmonster.wav");
-        soundUrl[6] = getClass().getResource("/sounds/receivedamage.wav");
-        soundUrl[7] = getClass().getResource("/sounds/cuttree.wav");
-        soundUrl[8] = getClass().getResource("/sounds/levelup.wav");
-        soundUrl[9] = getClass().getResource("/sounds/cursor.wav");
-        soundUrl[10] = getClass().getResource("/sounds/burning.wav");
-        soundUrl[11] = getClass().getResource("/sounds/gameover.wav");
-        soundUrl[12] = getClass().getResource("/sounds/stairs.wav");
+        try {
+            soundUrl[0] = new File("././res/sounds/BlueBoyAdventure.wav").toURI().toURL();
+            soundUrl[1] = new File("././res/sounds/powerup.wav").toURI().toURL();
+            soundUrl[2] = new File("././res/sounds/unlock.wav").toURI().toURL();
+            soundUrl[3] = new File("././res/sounds/fanfare.wav").toURI().toURL();
+            soundUrl[4] = new File("././res/sounds/hitmonster.wav").toURI().toURL();
+            soundUrl[5] = new File("././res/sounds/receivedamage.wav").toURI().toURL();
+            soundUrl[6] = new File("././res/sounds/cuttree.wav").toURI().toURL();
+            soundUrl[7] = new File("././res/sounds/levelup.wav").toURI().toURL();
+            soundUrl[8] = new File("././res/sounds/cursor.wav").toURI().toURL();
+            soundUrl[9] = new File("././res/sounds/burning.wav").toURI().toURL();
+            soundUrl[10] = new File("././res/sounds/gameover.wav").toURI().toURL();
+            soundUrl[11] = new File("././res/sounds/stairs.wav").toURI().toURL();
+            soundUrl[12] = new File("././res/sounds/coin.wav").toURI().toURL();
+            
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void setFile(int index) {
@@ -37,8 +46,7 @@ public class SoundManager {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            checkVolume();
-            clip.start();
+            //checkVolume();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,6 +54,7 @@ public class SoundManager {
 
     public void play() {
         clip.start();
+        System.out.println("PLAYY");
     }
 
     public void loop() {
