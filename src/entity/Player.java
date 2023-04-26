@@ -21,7 +21,7 @@ import object.OBJ_Nasi;
 public class Player extends Entity{
     //player attributes
     private String name, job;
-    private static String state;
+    private String state;
     private int mood, health, hunger, money ;
 
     //tidur, kerja, makan
@@ -135,6 +135,7 @@ public class Player extends Entity{
             }
         } else{
             gamePanel.gameState = gamePanel.playState;
+            this.state = "idle";
             
         }
     
@@ -190,7 +191,7 @@ public class Player extends Entity{
           }
 
           //fungsi
-        interactOBJ();
+        //interactOBJ();
 
     }
 

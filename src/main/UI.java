@@ -42,7 +42,8 @@ public class UI {
         }
         else if (gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState){
             drawCharacterScreen();
-            gameMenuScreen();
+            //gameStatScreen();
+            drawPlayerActiveState();
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
             }
@@ -66,6 +67,20 @@ public class UI {
         graphics2D.setFont(maruMonica);
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics2D.setColor(Color.WHITE);
+    }
+
+    private void drawPlayerActiveState(){
+        int frameX = 40 * gamePanel.tileSize;
+        int frameY = (-9) * gamePanel.tileSize;
+        int frameWidth = 7 * gamePanel.tileSize;
+        int frameHeight = 7 * gamePanel.tileSize; 
+
+        drawSubWindowStat((frameX), frameY, frameWidth, frameHeight);
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+        
+        g2.drawString(gamePanel.player.getState() + " : " + gamePanel.player.jamTidur,frameX + 32 ,48);
     }
 
 
@@ -150,7 +165,7 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    public void gameMenuScreen(){
+    public void gameStatScreen(){
         int frameX = 40 * gamePanel.tileSize;
         int frameY = (-9) * gamePanel.tileSize;
         int frameWidth = 7 * gamePanel.tileSize;
@@ -180,13 +195,17 @@ public class UI {
     }
 
     public void drawActiveStateScreen(){
-        
-        int frameX = 20 * gamePanel.tileSize;
-        int frameY = (10) * gamePanel.tileSize;
-        int frameWidth = 7 * gamePanel.tileSize;
-        int frameHeight = 10 * gamePanel.tileSize; 
+        int frameX = 31;
+        int frameY = 2*16;
+        int frameWidth = 10 * gamePanel.tileSize;
+        int frameHeight = 5 * gamePanel.tileSize; 
 
-        drawSubWindowActiveAction((frameX), frameY, frameWidth, frameHeight);
+        drawSubWindowActiveAction(frameX, frameY, frameWidth, frameHeight);
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+
+        g2.drawString("Player sedang " + gamePanel.player.getState() + "...",frameX+18 ,frameY + 200);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){

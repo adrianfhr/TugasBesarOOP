@@ -122,8 +122,9 @@ public class GamePanel extends JPanel implements Runnable {
             if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
-                if(player.getState().equals("Tidur")){
-                    System.out.println("MASOOKK");
+                if(player.getState().equals("tidur")){
+                    player.jamTidur--;
+                    System.out.println("MASOOOKKK");
                 }
                 
             }
