@@ -89,8 +89,12 @@ public class UI {
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
         switch (titleScreenState) {
-            case 0 -> drawStartScreen();
-            case 1 -> gamePanel.gameState = gamePanel.playState;
+            case 0 : 
+                drawStartScreen();
+                break;
+            case 1 :
+                gamePanel.gameState = gamePanel.playState; gamePanel.playMusic(0);
+                break;
         }
         gamePanel.keyHandler.setEnterPressed(false);
     }

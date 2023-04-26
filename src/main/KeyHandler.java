@@ -171,18 +171,20 @@ public class KeyHandler implements KeyListener {
     private void checkMainTitleScreenKeyPressed(int code) {
         if (code == KeyEvent.VK_W) {
             gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
-            // gamePanel.playSoundEffect(9);
+            gamePanel.playSoundEffect(8);
             if (gamePanel.ui.getCommandNumber() < 0) {
                 gamePanel.ui.setCommandNumber(2);
             }
+            
         }
 
         if (code == KeyEvent.VK_S) {
             gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
-            // gamePanel.playSoundEffect(9);
+            gamePanel.playSoundEffect(8);
             if (gamePanel.ui.getCommandNumber() > 2) {
                 gamePanel.ui.setCommandNumber(0);
             }
+
         }
 
         if (code == KeyEvent.VK_ENTER) {

@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame(){
          assetSetter.setObject();
          gameState = titleState;
-         playMusic(0);
+         
      }
 
     public void startGameThread(){
@@ -125,7 +125,6 @@ public class GamePanel extends JPanel implements Runnable {
                 deltaClock--;
                 if(player.getState().equals("tidur")){
                     player.jamTidur--;
-                    System.out.println("MASOOOKKK");
                 }
                 
             }
