@@ -54,7 +54,6 @@ public class SoundManager {
 
     public void play() {
         clip.start();
-        System.out.println("PLAYY");
     }
 
     public void loop() {
