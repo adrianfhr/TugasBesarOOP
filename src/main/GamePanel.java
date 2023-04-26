@@ -50,6 +50,11 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int interactObjState = 2;
 
+    //state non-aktif
+    public boolean isActiveAction = false;
+    public boolean isPassiveAction = false;
+    
+
    
     //GAME SETTINGS
     public GamePanel (){
@@ -83,7 +88,10 @@ public class GamePanel extends JPanel implements Runnable {
 
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
-            deltaClock += (currentTime - lastTime) / (drawInterval*30);
+            if(isActiveAction){
+                deltaClock += (currentTime - lastTime) / (drawInterval*30);
+            }
+            
             timer += currentTime - lastTime;
             lastTime = currentTime;
 
@@ -94,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if(deltaClock >= 1){
+            if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
             }

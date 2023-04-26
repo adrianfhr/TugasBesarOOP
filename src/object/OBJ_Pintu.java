@@ -9,18 +9,18 @@ import entity.Entity;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_SingleBed extends SuperObject{
+public class OBJ_Pintu extends SuperObject{
     GamePanel gamePanel;
 
-    public OBJ_SingleBed(GamePanel gamePanel){
+    public OBJ_Pintu(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 4;
+        this.height = 1;
         this.width = 1;
-        setName(" Single Bed");
+        setName("Pintu");
         
         try {
-            image = ImageIO.read(new File("././res/object/single_bed.png"));
+            image = ImageIO.read(new File("././res/object/door.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class OBJ_SingleBed extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.isActiveAction = true;
+        gamePanel.player.teleport(36, 24, 0);
     }
 
 }

@@ -26,33 +26,57 @@ public class UI {
         this.g2 = g2d;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        statistic();
+        //statistic();
         drawCharacterScreen();
         drawInventoryScreen(gamePanel.player, false);
-    }
-
-    public void statistic(){
-        String waktu = String.format("%02d:%02d", (gamePanel.clock/60), (gamePanel.clock%60));
-        g2.drawString(waktu, 15*16*3, 10);
-        g2.drawString("DAY-" + gamePanel.clock/(60*24),  15*16*3, 10 + 16);
-        g2.drawString("FPS: " + gamePanel.fps, 5, 15*16*3 + 16);
-        g2.drawString("X: " + (gamePanel.player.worldX/16) + " Y: " + (gamePanel.player.worldY/16 ), 5, 15*16*3 + 16*2);
-        
-
-        
+        gameMenuScreen();
+        if(gamePanel.isActiveAction){
+            drawActiveStateScreen();
+        }
         
         if(gamePanel.player.isInteracting){
             g2.drawString("Push 'E' for interact", gamePanel.player.screenX - 48, gamePanel.player.screenY - 16 );
         }
     }
 
-    public void drawPlayerAttribute(){
-        g2.drawString("Name: " + gamePanel.player.getName(), 5, 1*16*3 );
-        g2.drawString("Job: " + gamePanel.player.getJob(), 5, 1*16*3 + 16);
-        g2.drawString("Mood: " + gamePanel.player.getMood(), 5, 1*16*3 + 32);
-        g2.drawString("Health: " + gamePanel.player.getHealth(), 5, 1*16*3 + 48);
-        g2.drawString("Hunger: " + gamePanel.player.getHunger(), 5, 1*16*3 + 64);
-        g2.drawString("Money: " + gamePanel.player.getMoney(), 5, 1*16*3 + 80);
+
+    public void gameMenuScreen(){
+        int frameX = 40 * gamePanel.tileSize;
+        int frameY = (-9) * gamePanel.tileSize;
+        int frameWidth = 7 * gamePanel.tileSize;
+        int frameHeight = 7 * gamePanel.tileSize; 
+
+        drawSubWindowStat((frameX), frameY, frameWidth, frameHeight);
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+
+        int textX = frameX + 20;
+        int textY = 46;
+        int lineHeight = 20;
+
+        drawTextStat(textX, textY, lineHeight);
+
+
+    }
+
+    public void drawTextStat(int x, int y, int lineHeight){
+        String waktu = String.format("%02d:%02d", (gamePanel.clock/60)%24, (gamePanel.clock%60));
+        g2.drawString(waktu, x, y);
+        g2.drawString("DAY - " + gamePanel.clock/(60*24),  x, y + lineHeight);
+        g2.drawString("FPS: " + gamePanel.fps, x , (y + lineHeight * 2));
+        g2.drawString("X: " + (gamePanel.player.worldX/16) + " Y: " + (gamePanel.player.worldY/16 ), x, y + lineHeight * 3);
+
+    }
+
+    public void drawActiveStateScreen(){
+        
+        int frameX = 20 * gamePanel.tileSize;
+        int frameY = (10) * gamePanel.tileSize;
+        int frameWidth = 7 * gamePanel.tileSize;
+        int frameHeight = 10 * gamePanel.tileSize; 
+
+        drawSubWindowActiveAction((frameX), frameY, frameWidth, frameHeight);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){
@@ -86,6 +110,29 @@ public class UI {
         // }
 
     }
+
+    public void drawSubWindowActiveAction(int x, int y, int width, int height) {
+        Color color = new Color(0, 0, 0, 210);
+        g2.setColor(color);
+        g2.fillRoundRect(x, y+160, width, height, 35, 35);
+
+        color = new Color(255, 255, 255);
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 165, width - 10, height - 10, 25, 25);
+    }
+
+    public void drawSubWindowStat(int x, int y, int width, int height) {
+        Color color = new Color(0, 0, 0, 210);
+        g2.setColor(color);
+        g2.fillRoundRect(x, y+160, width, height, 35, 35);
+
+        color = new Color(255, 255, 255);
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 165, width - 10, height - 10, 25, 25);
+    }
+
 
     public void drawSubWindowInventory(int x, int y, int width, int height) {
         Color color = new Color(0, 0, 0, 210);

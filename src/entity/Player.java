@@ -109,9 +109,14 @@ public class Player extends Entity{
             }
         }
 
-        if(keyHandler.ePressed){
+        if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState; 
         }else{
+            gamePanel.gameState = gamePanel.playState;
+        }
+
+        if(keyHandler.ePressed && gamePanel.isActiveAction){
+            gamePanel.isActiveAction = false;
             gamePanel.gameState = gamePanel.playState;
         }
 
@@ -129,7 +134,7 @@ public class Player extends Entity{
 
 
         //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
-        if ((collisionOn == false)  && (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed)){
+        if ((!gamePanel.isActiveAction)&& (collisionOn == false)  && (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed)){
             switch (direction) {
                 case "up":
                     worldY -= speed;
@@ -160,7 +165,7 @@ public class Player extends Entity{
           }
 
           //fungsi
-          interactOBJ();
+        interactOBJ();
 
     }
 
