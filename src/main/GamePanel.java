@@ -105,6 +105,10 @@ public class GamePanel extends JPanel implements Runnable {
             if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
+                if(player.getState().equals("Tidur")){
+                    System.out.println("MASOOKK");
+                }
+                
             }
         }
     }
@@ -131,7 +135,10 @@ public class GamePanel extends JPanel implements Runnable {
          }
 
         //player
-        player.draw(g2d);
+        if(!isActiveAction){
+            player.draw(g2d);
+        }
+
         ui.draw(g2d);
         g2d.dispose();
         //draw game graphics

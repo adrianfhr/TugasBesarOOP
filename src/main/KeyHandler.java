@@ -35,7 +35,7 @@ public class KeyHandler implements KeyListener {
                     limit = 0;
                 }
             }else if(gamePanel.gameState == gamePanel.interactObjState){
-                if(gamePanel.isActiveAction){
+                if(code == KeyEvent.VK_E ){
                     ePressed = false;
                     gamePanel.isActiveAction = false;
                 }
@@ -59,7 +59,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_D){
             rightPressed = false;
         }
-        if(code == KeyEvent.VK_E){
+        if(code == KeyEvent.VK_E ){
             ePressed = false;
             limit = 1;
         }

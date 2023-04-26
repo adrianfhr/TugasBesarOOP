@@ -34,7 +34,7 @@ public class UI {
             drawActiveStateScreen();
         }
         
-        if(gamePanel.player.isInteracting){
+        if(gamePanel.player.isInteracting && !gamePanel.isActiveAction){
             g2.drawString("Push 'E' for interact", gamePanel.player.screenX - 48, gamePanel.player.screenY - 16 );
         }
     }
@@ -71,12 +71,18 @@ public class UI {
 
     public void drawActiveStateScreen(){
         
-        int frameX = 20 * gamePanel.tileSize;
-        int frameY = (10) * gamePanel.tileSize;
-        int frameWidth = 7 * gamePanel.tileSize;
-        int frameHeight = 10 * gamePanel.tileSize; 
+        int frameX = 31;
+        int frameY = 16*17;
+        int frameWidth = 10 * gamePanel.tileSize;
+        int frameHeight = 5 * gamePanel.tileSize; 
 
-        drawSubWindowActiveAction((frameX), frameY, frameWidth, frameHeight);
+        drawSubWindowActiveAction(frameX, frameY, frameWidth, frameHeight);
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+
+        g2.drawString("Player sedang " + gamePanel.player.getState() + "...",frameX+18 ,frameY + 200);
+        
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){
@@ -112,7 +118,7 @@ public class UI {
     }
 
     public void drawSubWindowActiveAction(int x, int y, int width, int height) {
-        Color color = new Color(0, 0, 0, 210);
+        Color color = new Color(0, 0, 0);
         g2.setColor(color);
         g2.fillRoundRect(x, y+160, width, height, 35, 35);
 

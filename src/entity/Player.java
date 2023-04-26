@@ -16,8 +16,13 @@ import main.UtilityTool;
 
 public class Player extends Entity{
     //player attributes
-    private String name, job, state;
+    private String name, job;
+    private static String state;
     private int mood, health, hunger, money ;
+
+
+    //tidur, kerja, makan
+    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung;
 
 
     //player game system
@@ -49,13 +54,22 @@ public class Player extends Entity{
         //set atribut
         this.name = name;
         this.job = "Student";
-        this.state = "Idle";
+        this.state = "idle";
         this.mood = 80;
         this.health = 80;
         this.hunger = 80;
         this.money = 100;
        
-
+        //set jam kerja default
+        jamKerja = 30*2;
+        jamOlahraga = 20*2;
+        jamTidur = 4 * 60 * 2;
+        jamTidakTidur = 10 * 60 * 2;
+        jamMakan = 30 * 2;
+        jamMemasak = 0;  //karena berubah-ubah tergantung masakannya
+        jamBerkunjung = 30 * 2;
+        jamMules = 10 * 2;
+        jamTidakMules = 4 * 60 * 2;
     }
 
    
@@ -113,12 +127,18 @@ public class Player extends Entity{
 
             if(keyHandler.ePressed || gamePanel.isActiveAction){
                 gamePanel.gameState = gamePanel.interactObjState;
+                if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
+                    gamePanel.isActiveAction = true;
+                    Player.state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
+                    
+
+                }
             } else{
                 gamePanel.gameState = gamePanel.playState;
             }
         
 
-            if(gamePanel.gameState == gamePanel.interactObjState && isInteracting){                
+            if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){                
                 interactOBJ();
                 keyHandler.ePressed = false;
             }

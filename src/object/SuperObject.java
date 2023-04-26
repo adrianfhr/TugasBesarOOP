@@ -27,6 +27,7 @@ public abstract class SuperObject {
     
     public SuperObject(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        setDescription("idle");
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

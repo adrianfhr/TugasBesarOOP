@@ -17,6 +17,7 @@ public class OBJ_SingleBed extends SuperObject{
         this.gamePanel = gamePanel;
         this.height = 4;
         this.width = 1;
+        setDescription("Tidur");
         setName(" Single Bed");
         
         try {
@@ -38,7 +39,7 @@ public class OBJ_SingleBed extends SuperObject{
     }
 
     public synchronized void interact(Player player ){
-        gamePanel.isActiveAction = true;
+        
     }
 
 }
