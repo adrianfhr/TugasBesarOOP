@@ -137,7 +137,7 @@ public class Player extends Entity{
                     jamTidur = 10;
                 }
 
-                if(jam)
+                
 
             }
         } else{
