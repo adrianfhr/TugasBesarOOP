@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //SYSTEM SETTINGS
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler(this);
+    public KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
@@ -91,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
             if(isActiveAction){
                 deltaClock += (currentTime - lastTime) / (drawInterval*30);
             }
-            
+
             timer += currentTime - lastTime;
             lastTime = currentTime;
 

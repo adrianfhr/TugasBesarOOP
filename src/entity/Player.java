@@ -109,21 +109,14 @@ public class Player extends Entity{
             }
         }
 
+        //inteksi dengan objek
         if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState; 
         }else{
             gamePanel.gameState = gamePanel.playState;
         }
 
-        if(keyHandler.ePressed && gamePanel.isActiveAction){
-            gamePanel.isActiveAction = false;
-            gamePanel.gameState = gamePanel.playState;
-        }
 
-
-
-
-        
         //check tile collision
         collisionOn = false;
         gamePanel.collisionChecker.checkTile(this);

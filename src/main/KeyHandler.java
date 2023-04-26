@@ -16,20 +16,27 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
         int code = e.getKeyCode();
-        if(code == KeyEvent.VK_W){
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_S){
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_A){
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_D){
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_E){
-            ePressed = true;
+        if(gamePanel.gameState == gamePanel.playState){
+            if(code == KeyEvent.VK_W){
+                upPressed = true;
+            }
+            if(code == KeyEvent.VK_S){
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_A){
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_D){
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_E){
+                ePressed = true;
+            }
+        }else if(gamePanel.gameState == gamePanel.interactObjState){
+            if(gamePanel.isActiveAction){
+                ePressed = false;
+                gamePanel.isActiveAction = false;
+            }
         }
 
     }
