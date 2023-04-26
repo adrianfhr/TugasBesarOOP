@@ -19,7 +19,7 @@ public class OBJ_Jam extends SuperObject{
         
         try {
             image = ImageIO.read(new File("././res/object/jam.png"));
-            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2, gamePanel.tileSize * 2));
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize/3 * 2, gamePanel.tileSize/3 * 2));
         } catch (IOException e) {
             e.printStackTrace();
         }

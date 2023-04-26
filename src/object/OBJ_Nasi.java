@@ -18,7 +18,7 @@ public class OBJ_Nasi extends BahanMakanan {
 
         try {
             image = ImageIO.read(new File("././res/object/NASI.png"));
-            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2, gamePanel.tileSize * 2));
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }
