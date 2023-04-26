@@ -27,8 +27,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int fps = 60; // 60 frames per second
 
     //SOUND
-    private final SoundManager music = new SoundManager();
-    private final SoundManager soundEffect = new SoundManager();
+    SoundManager music = new SoundManager();
+    SoundManager soundEffect = new SoundManager();
 
     //WORLD SETTINGS
     public final int maxWorldCol = 66;
@@ -210,5 +210,4 @@ public class GamePanel extends JPanel implements Runnable {
     public void stopMusic() {
         music.stop();
     }
-
 }

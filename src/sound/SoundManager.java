@@ -15,19 +15,19 @@ public class SoundManager {
     private float volume;
 
     public SoundManager() {
-        soundUrl[0] = getClass().getResource("././res/sounds/BlueBoyAdventure.wav");
-        soundUrl[1] = getClass().getResource("././res/sounds/coin.wav");
-        soundUrl[2] = getClass().getResource("././res/sounds/powerup.wav");
-        soundUrl[3] = getClass().getResource("././res/sounds/unlock.wav");
-        soundUrl[4] = getClass().getResource("././res/sounds/fanfare.wav");
-        soundUrl[5] = getClass().getResource("././res/sounds/hitmonster.wav");
-        soundUrl[6] = getClass().getResource("././res/sounds/receivedamage.wav");
-        soundUrl[7] = getClass().getResource("././res/sounds/cuttree.wav");
-        soundUrl[8] = getClass().getResource("././res/sounds/levelup.wav");
-        soundUrl[9] = getClass().getResource("././res/sounds/cursor.wav");
-        soundUrl[10] = getClass().getResource("././res/sounds/burning.wav");
-        soundUrl[11] = getClass().getResource("././res/sounds/gameover.wav");
-        soundUrl[12] = getClass().getResource("././res/sounds/stairs.wav");
+        soundUrl[0] = getClass().getResource("/sounds/BlueBoyAdventure.wav");
+        soundUrl[1] = getClass().getResource("/sounds/coin.wav");
+        soundUrl[2] = getClass().getResource("/sounds/powerup.wav");
+        soundUrl[3] = getClass().getResource("/sounds/unlock.wav");
+        soundUrl[4] = getClass().getResource("/sounds/fanfare.wav");
+        soundUrl[5] = getClass().getResource("/sounds/hitmonster.wav");
+        soundUrl[6] = getClass().getResource("/sounds/receivedamage.wav");
+        soundUrl[7] = getClass().getResource("/sounds/cuttree.wav");
+        soundUrl[8] = getClass().getResource("/sounds/levelup.wav");
+        soundUrl[9] = getClass().getResource("/sounds/cursor.wav");
+        soundUrl[10] = getClass().getResource("/sounds/burning.wav");
+        soundUrl[11] = getClass().getResource("/sounds/gameover.wav");
+        soundUrl[12] = getClass().getResource("/sounds/stairs.wav");
     }
 
     public void setFile(int index) {
@@ -38,6 +38,7 @@ public class SoundManager {
             clip.open(audioInputStream);
             floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             checkVolume();
+            clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }

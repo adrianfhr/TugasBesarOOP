@@ -243,7 +243,7 @@ public class KeyHandler implements KeyListener {
         switch (gamePanel.ui.getSubState()) {
             case 0 -> maxCommandNumber = 5;
             case 3 -> maxCommandNumber = 1;
-            default -> maxCommandNumber = 0;
+            default -> maxCommandNumber = 5;
         }
 
         if (code == KeyEvent.VK_W) {
