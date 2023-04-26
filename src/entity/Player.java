@@ -49,8 +49,8 @@ public class Player extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        solidArea.width = 8; // 16 sebelumnya
-        solidArea.height = 8;
+        solidArea.width = 42 ; // 16 sebelumnya
+        solidArea.height = 42 ;
     
         getPlayerImage();
         setItems();
@@ -132,6 +132,13 @@ public class Player extends Entity{
             if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
                 gamePanel.isActiveAction = true;
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
+                if(jamTidur == 0){
+                    interactOBJ();
+                    jamTidur = 10;
+                }
+
+                if(jam)
+
             }
         } else{
             gamePanel.gameState = gamePanel.playState;
@@ -145,7 +152,7 @@ public class Player extends Entity{
             keyHandler.ePressed = false;   
         }
         
-
+        
 
 
 
@@ -289,7 +296,7 @@ public class Player extends Entity{
 
     //
     public void interactOBJ(){
-        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting) && (gamePanel.getKeyHandler().ePressed)){
+        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
         }
     }

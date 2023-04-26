@@ -39,7 +39,8 @@ public class OBJ_SingleBed extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.isActiveAction = true;
+        gamePanel.player.setHealth(gamePanel.player.getHealth() + 30);
+    
     }
 
 }
