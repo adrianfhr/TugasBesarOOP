@@ -37,7 +37,7 @@ public class OBJ_SingleBed extends SuperObject{
         solidArea.height = gamePanel.tileSize * height;
     }
 
-    public void interact(Player player ){
+    public synchronized void interact(Player player ){
         gamePanel.isActiveAction = true;
     }
 

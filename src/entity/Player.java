@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.sql.rowset.spi.SyncResolver;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -109,12 +110,22 @@ public class Player extends Entity{
             }
         }
 
-        //inteksi dengan objek
-        if(keyHandler.ePressed || gamePanel.isActiveAction){
-            gamePanel.gameState = gamePanel.interactObjState; 
-        }else{
-            gamePanel.gameState = gamePanel.playState;
-        }
+
+            if(keyHandler.ePressed || gamePanel.isActiveAction){
+                gamePanel.gameState = gamePanel.interactObjState;
+            } else{
+                gamePanel.gameState = gamePanel.playState;
+            }
+        
+
+            if(gamePanel.gameState == gamePanel.interactObjState && isInteracting){                
+                interactOBJ();
+                keyHandler.ePressed = false;
+            }
+            
+        
+
+        
 
 
         //check tile collision
@@ -157,8 +168,9 @@ public class Player extends Entity{
             spriteCounter = 0;
           }
 
-          //fungsi
-        interactOBJ();
+        
+        
+        
 
     }
 
@@ -255,10 +267,9 @@ public class Player extends Entity{
     }
 
     //
-    public void interactOBJ(){
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting){
-            gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        }
+    public synchronized void interactOBJ(){
+        gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
+        gamePanel.gameState = gamePanel.playState;
     }
 
     public void teleport(int x, int y, int map) {
