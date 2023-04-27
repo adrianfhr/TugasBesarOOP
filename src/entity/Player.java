@@ -127,16 +127,66 @@ public class Player extends Entity{
             
             }
         }
+        //jika dia melakukan aksi
         if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState;
             if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
                 gamePanel.isActiveAction = true;
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
-                if(jamTidur == 0){
+
+                if(jamTidur == 0 ){
                     interactOBJ();
-                    jamTidur = 10;
+                    jamTidur = 4 * 60 * 2;
                 }
 
+                if(jamTidakTidur == 0){
+                    setHealth(getHealth() - 5);
+                    setMood(getMood() - 5);
+                    jamTidakTidur = 10 * 60 * 2;
+                }
+
+                if(jamKerja == 0){
+                    interactOBJ();
+                    jamKerja = 30 * 2;
+                }
+
+                if(jamMules == 0){
+                    interactOBJ();
+                    jamMules = 10 * 2;
+                }
+
+                if(jamTidakMules == 0){ //RIBEETTTTT TANDAINN
+                    setHealth(getHealth() - 5);
+                    setMood(getMood() - 5);
+                    jamTidakMules = 4 * 60 * 2;     
+                }
+
+                if(jamOlahraga == 0){
+                    //+5 ksehatan, -5 kekenyangan, +10 mood
+                    setHealth(getHealth() + 5);
+                    setMood(getMood() + 10);
+                    setHunger(getHunger() - 5);
+                    jamOlahraga = 20 * 2;
+                }
+
+                //jMASIH BINGUNG ISINYA
+                if(jamMakan == 0){
+                    //BELUM TAU ISINYA GMNA
+                }
+
+                if(jamMemasak == 0){
+                    //belum tau isinya
+                    setMood(getMood() + 10);
+                }
+
+                if(jamBerkunjung == 0){
+                    setMood(getMood() + 10);
+                    setHunger(getHunger() - 10);
+                }
+
+                if(jamBerkunjung == 0){
+                    //MASIH BINGUNG
+                }
                 
 
             }

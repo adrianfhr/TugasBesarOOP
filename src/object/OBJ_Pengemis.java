@@ -37,6 +37,8 @@ public class OBJ_Pengemis extends SuperObject{
     }
 
     public void interact(Player player){
-        System.out.println("Bersedekah...");
+        gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
+        gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+        gamePanel.playSoundEffect(12);
     }
 }

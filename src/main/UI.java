@@ -42,10 +42,12 @@ public class UI {
         }
         else if (gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState){
             drawCharacterScreen();
-            //gameStatScreen();
-            drawPlayerActiveState();
+            
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
+                drawPlayerActiveState();
+            }else{
+                gameStatScreen();
             }
             
             if(gamePanel.player.isInteracting && gamePanel.getGameState() == gamePanel.playState){
@@ -93,7 +95,8 @@ public class UI {
                 drawStartScreen();
                 break;
             case 1 :
-                gamePanel.gameState = gamePanel.playState; gamePanel.playMusic(0);
+                gamePanel.gameState = gamePanel.playState; 
+                gamePanel.playMusic(0);
                 break;
         }
         gamePanel.keyHandler.setEnterPressed(false);

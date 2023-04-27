@@ -157,7 +157,7 @@ public class GamePanel extends JPanel implements Runnable {
          }
 
         //player
-        if(!isActiveAction){
+        if(! isActiveAction){
             player.draw(g2d);
         }
 
