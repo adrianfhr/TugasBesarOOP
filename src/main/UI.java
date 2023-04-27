@@ -202,17 +202,17 @@ public class UI {
     }
 
     public void drawActiveStateScreen(){
-        int frameX = 31;
-        int frameY = 2*16;
-        int frameWidth = 10 * gamePanel.tileSize / 3;
-        int frameHeight = 5 * gamePanel.tileSize / 3; 
+        int frameX = 27;
+        int frameY = 2;
+        int frameWidth = 20 * gamePanel.tileSize / 3;
+        int frameHeight = 6 * gamePanel.tileSize / 3; 
 
-        drawSubWindowActiveAction(frameX, frameY, frameWidth, frameHeight);
+        drawSubWindowActiveAction(frameX * 9, frameY - 110, frameWidth, frameHeight);
 
         g2.setColor(Color.WHITE);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
 
-        g2.drawString("Player sedang " + gamePanel.player.getState() + "...",frameX+18 ,frameY + 200);
+        g2.drawString("Player sedang " + gamePanel.player.getState() + "...",frameX*10+18 ,frameY + 100);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){

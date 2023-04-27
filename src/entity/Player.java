@@ -361,7 +361,6 @@ public class Player extends Entity{
         getInventory().clear();
         setDefaultBahanMakanan();
         getInventory().add(getCurrentBahanMakanan());
-        getInventory().add(new OBJ_Jam(gamePanel));
         getInventory().add(new OBJ_Nasi(gamePanel));
         getInventory().add(new OBJ_Nasi(gamePanel));
         getInventory().add(new OBJ_Nasi(gamePanel));

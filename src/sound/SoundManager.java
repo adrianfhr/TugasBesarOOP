@@ -19,7 +19,7 @@ public class SoundManager {
 
     public SoundManager() {
         try {
-            soundUrl[0] = new File("././res/sounds/BlueBoyAdventure.wav").toURI().toURL();
+            soundUrl[0] = new File("././res/sounds/BGM.wav").toURI().toURL();
             soundUrl[1] = new File("././res/sounds/powerup.wav").toURI().toURL();
             soundUrl[2] = new File("././res/sounds/unlock.wav").toURI().toURL();
             soundUrl[3] = new File("././res/sounds/fanfare.wav").toURI().toURL();

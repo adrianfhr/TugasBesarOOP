@@ -135,28 +135,28 @@ public class KeyHandler implements KeyListener {
     private void playerInventoryMovement(int code) {
         if (code == KeyEvent.VK_W) {
             if (gamePanel.ui.getPlayerSlotRow() != 0) {
-                // gamePanel.playSoundEffect(9);
+                gamePanel.playSoundEffect(8);
                 gamePanel.ui.setPlayerSlotRow(gamePanel.ui.getPlayerSlotRow() - 1);
             }
         }
 
         if (code == KeyEvent.VK_A) {
             if (gamePanel.ui.getPlayerSlotCol() != 0) {
-                // gamePanel.playSoundEffect(9);
+                gamePanel.playSoundEffect(8);
                 gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() - 1);
             }
         }
 
         if (code == KeyEvent.VK_S) {
             if (gamePanel.ui.getPlayerSlotRow() != 3) {
-                // gamePanel.playSoundEffect(9);
+                gamePanel.playSoundEffect(8);
                 gamePanel.ui.setPlayerSlotRow(gamePanel.ui.getPlayerSlotRow() + 1);
             }
         }
 
         if (code == KeyEvent.VK_D) {
             if (gamePanel.ui.getPlayerSlotCol() != 4) {
-                // gamePanel.playSoundEffect(9);
+                gamePanel.playSoundEffect(8);
                 gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() + 1);
             }
         }
