@@ -545,12 +545,12 @@ public class UI {
 
         currentDialogue = "The change will take \neffect after restarting \nthe game.";
 
-        splitAndDrawDialogue(textX, textY);
+        splitAndDrawDialogue(textX, textY-20);
 
         // BACK
         textY = frameY + gamePanel.tileSize / 3 * 9;
-        g2.drawString("Back", textX, textY);
-        g2.drawString(">", textX - 25, textY);
+        g2.drawString("Back", textX+50, textY + 100);
+        g2.drawString(">", textX+25, textY+100);
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             subState = 0;
             commandNumber = 0;

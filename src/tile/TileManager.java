@@ -50,7 +50,8 @@ public class TileManager {
         setup(19, "019_jalan4", false);
         setup(20, "020_jalan5", false);
         setup(21, "021_lantairumah", false);
-        
+        setup(22, "wall", true);    
+        setup(23, "bush2", false);       
             
     }
 

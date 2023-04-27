@@ -13,10 +13,6 @@ import object.*;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
-import object.Asset;
-import object.BahanMakanan;
-import object.OBJ_Jam;
-import object.OBJ_Nasi;
 
 public class Player extends Entity{
     //player attributes
@@ -367,11 +363,12 @@ public class Player extends Entity{
         setDefaultBahanMakanan();
         getInventory().add(getCurrentBahanMakanan());
         getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Bayam(gamePanel));
+        getInventory().add(new OBJ_Wortel(gamePanel));
+        getInventory().add(new OBJ_Susu(gamePanel));
+        getInventory().add(new OBJ_Kentang(gamePanel));
+        getInventory().add(new OBJ_Kentang(gamePanel));
+        getInventory().add(new OBJ_Beef(gamePanel));
     }
 
     private void setDefaultBahanMakanan() {

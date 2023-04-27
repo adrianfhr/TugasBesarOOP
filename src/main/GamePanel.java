@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 import entity.Player;
@@ -23,6 +26,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     public final int screenWidth = maxScreenCol * 3 * 16; //tileSize; // 3.072 x 3.072
     public final int screenHeight = maxScreenRow * 3 * 16;//tileSize;
+
+    // Full screen mode
+    private int fullScreenWidth = screenWidth;
+    private int fullScreenHeight = screenHeight;
+    private BufferedImage tempScreen;
+    private Graphics2D gps2d;
 
     final int fps = 60; // 60 frames per second
 
@@ -86,8 +95,31 @@ public class GamePanel extends JPanel implements Runnable {
          assetSetter.setObject();
          gameState = titleState;
          makePlayer("Joko");
-         
+         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+         gps2d = (Graphics2D) tempScreen.getGraphics();
+        if (fullScreenOn) {
+            setFullScreen();
+        }
      }
+
+     public void setFullScreen() {
+
+        // GET LOCAL SCREEN DEVICE
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice graphicsDevice = graphicsEnvironment.getDefaultScreenDevice();
+
+        graphicsDevice.setFullScreenWindow(Main.window);
+
+        // GET FULLSCREEN WIDTH & HEIGHT
+        fullScreenWidth = Main.window.getWidth();
+        fullScreenHeight = Main.window.getHeight();
+    }
+
+    public void drawToScreen() {
+        Graphics graphics = getGraphics();
+        graphics.drawImage(tempScreen, 0, 0, fullScreenWidth, fullScreenHeight, null);
+        graphics.dispose();
+    }
 
     public void startGameThread(){
         gameThread = new Thread(this);

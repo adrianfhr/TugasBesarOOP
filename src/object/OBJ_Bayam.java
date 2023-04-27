@@ -20,7 +20,7 @@ public class OBJ_Bayam extends BahanMakanan{
 
         try {
             image = ImageIO.read(new File("././res/object/bayam.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }
