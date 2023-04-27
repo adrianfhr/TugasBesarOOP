@@ -174,10 +174,10 @@ public class Player extends Entity{
                     //BELUM TAU ISINYA GMNA
                 }
 
-                if(jamMemasak == 0){
-                    //belum tau isinya
-                    setMood(getMood() + 10);
-                }
+                // if(jamMemasak == 0){
+                //     //belum tau isinya
+                //     setMood(getMood() + 10);
+                // }
 
                 if(jamBerkunjung == 0){
                     setMood(getMood() + 10);
