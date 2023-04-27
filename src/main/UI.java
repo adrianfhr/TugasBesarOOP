@@ -50,12 +50,12 @@ public class UI {
                 gameStatScreen();
             }
             
-            if(gamePanel.player.isInteracting && gamePanel.getGameState() == gamePanel.playState){
-                g2.drawString("Push 'E' for interact", gamePanel.player.screenX - 48, gamePanel.player.screenY - 16 );
+            if(gamePanel.player[gamePanel.currentPlayer].isInteracting && gamePanel.getGameState() == gamePanel.playState){
+                g2.drawString("Push 'E' for interact", gamePanel.player[gamePanel.currentPlayer].screenX - 48, gamePanel.player[gamePanel.currentPlayer].screenY - 16 );
             }
         }
         else if (gamePanel.getGameState() == gamePanel.characterState){
-            drawInventoryScreen(gamePanel.player, true);
+            drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
         }
         else if (gamePanel.getGameState() == gamePanel.pauseState){
             drawPauseScreen();
@@ -82,7 +82,7 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
         
-        g2.drawString(gamePanel.player.getState() + " : " + gamePanel.player.jamTidur,frameX + 32 ,48);
+        g2.drawString(gamePanel.player[gamePanel.currentPlayer].getState() + " : " + gamePanel.player[gamePanel.currentPlayer].jamTidur,frameX + 32 ,48);
     }
 
 
@@ -122,7 +122,7 @@ public class UI {
         // GAME IMAGE
         x = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 3 * 2) / 2;
         y += gamePanel.tileSize / 3 * 2;
-        g2.drawImage(gamePanel.player.down1, x, y, gamePanel.tileSize / 3 * 2, gamePanel.tileSize / 3 * 2, null);
+        g2.drawImage(gamePanel.player[gamePanel.currentPlayer].down1, x, y, gamePanel.tileSize / 3 * 2, gamePanel.tileSize / 3 * 2, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
@@ -197,7 +197,7 @@ public class UI {
         g2.drawString(waktu, x, y);
         g2.drawString("DAY - " + gamePanel.clock/(60*24),  x, y + lineHeight);
         g2.drawString("FPS: " + gamePanel.fps, x , (y + lineHeight * 2));
-        g2.drawString("X: " + (gamePanel.player.worldX/16) + " Y: " + (gamePanel.player.worldY/16 ), x, y + lineHeight * 3);
+        g2.drawString("X: " + (gamePanel.player[gamePanel.currentPlayer].worldX/16) + " Y: " + (gamePanel.player[gamePanel.currentPlayer].worldY/16 ), x, y + lineHeight * 3);
 
     }
 
@@ -212,7 +212,7 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
 
-        g2.drawString("Player sedang " + gamePanel.player.getState() + "...",frameX*10+18 ,frameY + 100);
+        g2.drawString("Player sedang " + gamePanel.player[gamePanel.currentPlayer].getState() + "...",frameX*10+18 ,frameY + 100);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){
@@ -224,7 +224,7 @@ public class UI {
         int slotCol = 0;
         int slotRow = 0;
 
-        if (entity == gamePanel.player){
+        if (entity == gamePanel.player[gamePanel.currentPlayer]){
             frameY = gamePanel.tileSize / 3;
             frameWidth = gamePanel.tileSize / 3 * 17;
             frameHeight = gamePanel.tileSize / 3 * 15;
@@ -342,32 +342,32 @@ public class UI {
         int textX;
         String value;
 
-        value = String.valueOf(gamePanel.player.getName());
+        value = String.valueOf(gamePanel.player[gamePanel.currentPlayer].getName());
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gamePanel.player.getJob());
+        value = String.valueOf(gamePanel.player[gamePanel.currentPlayer].getJob());
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = gamePanel.player.getMood() + "/" + 100;
+        value = gamePanel.player[gamePanel.currentPlayer].getMood() + "/" + 100;
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = gamePanel.player.getHealth() + "/" + 100;
+        value = gamePanel.player[gamePanel.currentPlayer].getHealth() + "/" + 100;
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = gamePanel.player.getHunger() + "/" + 100;
+        value = gamePanel.player[gamePanel.currentPlayer].getHunger() + "/" + 100;
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gamePanel.player.getMoney());
+        value = String.valueOf(gamePanel.player[gamePanel.currentPlayer].getMoney());
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -378,7 +378,7 @@ public class UI {
             Asset object = inventory.get(i);
 
             // EQUIPPED BOX COLOR
-            if (object == gamePanel.player.getCurrentBahanMakanan()) {
+            if (object == gamePanel.player[gamePanel.currentPlayer].getCurrentBahanMakanan()) {
                 g2.setColor(new Color(240, 190, 90));
                 g2.fillRoundRect(slotX + 20, slotY + 180, gamePanel.tileSize / 3, gamePanel.tileSize / 3, 10, 10);
             }

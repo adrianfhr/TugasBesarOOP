@@ -25,8 +25,8 @@ public class OBJ_Susu extends BahanMakanan {
     }
 
     public void use(){
-        gamePanel.player.setHunger(gamePanel.player.getHunger() + getKekenyanganValue());
-        gamePanel.player.getInventory().remove(this);
+        gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue());
+        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
         gamePanel.playSoundEffect(12);
     }
 }

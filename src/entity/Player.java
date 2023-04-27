@@ -22,7 +22,7 @@ public class Player extends Entity{
     //player attributes
     private String name, job;
     private String state;
-    private int mood, health, hunger, money ;
+    private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
     public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung;
@@ -34,10 +34,11 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
-    public Player(GamePanel gamePanel, KeyHandler keyHandler, String name){
+    public Player(GamePanel gamePanel, KeyHandler keyHandler, String name, int id){
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
-        
+        this.id = id;
+
         setDefaultvalues();
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2);
         screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
@@ -342,6 +343,10 @@ public class Player extends Entity{
 
     public int getMoney(){
         return money;
+    }
+
+    public int getId(){
+        return id;
     }
 
     //

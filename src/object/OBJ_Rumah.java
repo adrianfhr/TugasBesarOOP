@@ -38,25 +38,9 @@ public class OBJ_Rumah extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.player.teleport(50, 50, 1);
+        gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, 1);
         gamePanel.playSoundEffect(2);
     }
 
-    public void draw(Graphics2D g2d, GamePanel gamePanel){
-
-        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;; 
-        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
-            
-        // cut processing hanya menggambar saat dibutuhkan
-        if(worldX + gamePanel.tileSize > gamePanel.player.worldX - gamePanel.player.screenX && 
-                        worldX - gamePanel.tileSize < gamePanel.player.worldX + gamePanel.player.screenX && 
-                        worldY + gamePanel.tileSize > gamePanel.player.worldY - gamePanel.player.screenY &&
-                        worldY - gamePanel.tileSize < gamePanel.player.worldY + gamePanel.player.screenY){
-                
-                //g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-                g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width , gamePanel.tileSize * height , null);
-            }
-        
-    }
 
 }

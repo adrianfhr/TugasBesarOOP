@@ -38,7 +38,7 @@ public class OBJ_Pintu extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.player.teleport(36, 24, 0);
+        gamePanel.player[gamePanel.currentPlayer].teleport(36, 24, 0);
         gamePanel.playSoundEffect(2);
     }
 

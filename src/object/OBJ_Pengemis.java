@@ -37,16 +37,16 @@ public class OBJ_Pengemis extends SuperObject{
     }
 
     public void interact(Player player){
-        if (gamePanel.player.getMoney() >= 2 && gamePanel.player.getMood() <= 90) {
-            gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
-            gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+        if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 2 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
+            gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 2);
+            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
             gamePanel.playSoundEffect(12);
-        } else if (gamePanel.player.getMoney() >= 2 && gamePanel.player.getMood() < 90) {
-            gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
-            gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+        } else if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 2 && gamePanel.player[gamePanel.currentPlayer].getMood() < 90) {
+            gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 2);
+            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
             gamePanel.playSoundEffect(12);
         } else {
-            gamePanel.player.setMood(gamePanel.player.getMood() + 0);
+            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 0);
         }
     }
 }

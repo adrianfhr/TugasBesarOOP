@@ -33,14 +33,14 @@ public abstract class SuperObject implements Asset{
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){
 
-        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;; 
-        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+        int screenX = worldX - gamePanel.player[gamePanel.currentPlayer].worldX + gamePanel.player[gamePanel.currentPlayer].screenX;; 
+        int screenY = worldY - gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY;
             
         // cut processing hanya menggambar saat dibutuhkan
-        if(worldX + gamePanel.tileSize > gamePanel.player.worldX - gamePanel.player.screenX && 
-                        worldX - gamePanel.tileSize < gamePanel.player.worldX + gamePanel.player.screenX && 
-                        worldY + gamePanel.tileSize > gamePanel.player.worldY - gamePanel.player.screenY &&
-                        worldY - gamePanel.tileSize < gamePanel.player.worldY + gamePanel.player.screenY){
+        if(worldX + gamePanel.tileSize > gamePanel.player[gamePanel.currentPlayer].worldX - gamePanel.player[gamePanel.currentPlayer].screenX && 
+                        worldX - gamePanel.tileSize < gamePanel.player[gamePanel.currentPlayer].worldX + gamePanel.player[gamePanel.currentPlayer].screenX && 
+                        worldY + gamePanel.tileSize > gamePanel.player[gamePanel.currentPlayer].worldY - gamePanel.player[gamePanel.currentPlayer].screenY &&
+                        worldY - gamePanel.tileSize < gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY){
                 
                 //g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
                 g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width, gamePanel.tileSize * height, null);

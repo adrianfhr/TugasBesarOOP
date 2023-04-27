@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = maxWorldRow * tileSize;
     public final int maxMap = 10;
     public int currentMap = 0;
+    public int currentPlayer = 0;
 
     //SYSTEM SETTINGS
     TileManager tileManager = new TileManager(this);
@@ -49,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final Config config = new Config(this);
     
     //entity and object
-    public Player player = new Player(this, keyHandler, "joko");
+    public Player player[] = new Player[10];
     public SuperObject obj[][] = new SuperObject[maxMap][10];
 
     //state
@@ -84,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame(){
          assetSetter.setObject();
          gameState = titleState;
+         makePlayer("Joko");
          
      }
 
@@ -123,8 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
             if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
-                if(player.getState().equals("tidur")){
-                    player.jamTidur--;
+                if(player[currentPlayer].getState().equals("tidur")){
+                    player[currentPlayer].jamTidur--;
                 }
                 
             }
@@ -134,9 +136,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
         //update game logic
         if (gameState == playState){
-            player.update();
+            player[currentPlayer].update();
         } else if (gameState == interactObjState){
-            player.update();
+            player[currentPlayer].update();
         }
         
         
@@ -147,19 +149,24 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
 
         //gambar tile
-        tileManager.draw(g2d);
+        if(gameState != titleState){
+            tileManager.draw(g2d);
+            //objek (rumah, pohon, dll)
+            for (int i = 0; i < obj[this.currentMap].length; i++) {
+                if(obj[this.currentMap][i] != null){
+                    obj[this.currentMap][i].draw(g2d, this);
+                }
+            }
+            
+            if(! isActiveAction){
+                player[currentPlayer].draw(g2d);
+            }
+        }
 
-        //objek (rumah, pohon, dll)
-        for (int i = 0; i < obj[this.currentMap].length; i++) {
-             if(obj[this.currentMap][i] != null){
-                 obj[this.currentMap][i].draw(g2d, this);
-             }
-         }
+        
 
         //player
-        if(! isActiveAction){
-            player.draw(g2d);
-        }
+        
 
         ui.draw(g2d);
         g2d.dispose();
@@ -213,5 +220,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void stopMusic() {
         music.stop();
+    }
+
+    public void makePlayer(String name){
+        int index = 0;
+        while (player[index] != null) {
+            index++;
+            if (index == player.length) {
+                System.out.println("Array penuh, tidak bisa menambahkan pemain baru!");
+                return;
+            }
+        }
+        player[index] = new Player(this, keyHandler, name, index);
+
     }
 }
