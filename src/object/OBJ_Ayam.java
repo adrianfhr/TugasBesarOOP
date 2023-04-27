@@ -24,4 +24,10 @@ public class OBJ_Ayam extends BahanMakanan{
             e.printStackTrace();
         }
     }
+
+    public void use(){
+        gamePanel.player.setHunger(gamePanel.player.getHunger() + getKekenyanganValue());
+        gamePanel.player.getInventory().remove(this);
+        gamePanel.playSoundEffect(12);
+    }
 }

@@ -381,8 +381,7 @@ public class Player extends Entity{
             Asset selectedItem = getInventory().get(itemIndex);
 
             if (selectedItem instanceof BahanMakanan) {
-                setCurrentBahanMakanan((BahanMakanan) selectedItem);
-                setKekenyangan(getKekenyangan());
+                selectedItem.use();
             }
         }
     }
