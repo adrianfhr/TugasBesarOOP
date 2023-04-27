@@ -37,8 +37,16 @@ public class OBJ_Pengemis extends SuperObject{
     }
 
     public void interact(Player player){
-        gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
-        gamePanel.player.setMood(gamePanel.player.getMood() + 10);
-        gamePanel.playSoundEffect(12);
+        if (gamePanel.player.getMoney() >= 2 && gamePanel.player.getMood() <= 90) {
+            gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
+            gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+            gamePanel.playSoundEffect(12);
+        } else if (gamePanel.player.getMoney() >= 2 && gamePanel.player.getMood() < 90) {
+            gamePanel.player.setMoney(gamePanel.player.getMoney() - 2);
+            gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+            gamePanel.playSoundEffect(12);
+        } else {
+            gamePanel.player.setMood(gamePanel.player.getMood() + 0);
+        }
     }
 }

@@ -250,7 +250,7 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
-            gamePanel.playSoundEffect(9);
+            gamePanel.playSoundEffect(8);
             if (gamePanel.ui.getCommandNumber() < 0) {
                 gamePanel.ui.setCommandNumber(maxCommandNumber);
             }
@@ -258,7 +258,7 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_S) {
             gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
-            gamePanel.playSoundEffect(9);
+            gamePanel.playSoundEffect(8);
             if (gamePanel.ui.getCommandNumber() > maxCommandNumber) {
                 gamePanel.ui.setCommandNumber(0);
             }
@@ -269,12 +269,12 @@ public class KeyHandler implements KeyListener {
                 if (gamePanel.ui.getCommandNumber() == 1 && gamePanel.getMusic().getVolumeScale() > 0) {
                     gamePanel.getMusic().setVolumeScale(gamePanel.getMusic().getVolumeScale() - 1);
                     gamePanel.getMusic().checkVolume();
-                    gamePanel.playSoundEffect(9);
+                    gamePanel.playSoundEffect(8);
                 }
 
                 if (gamePanel.ui.getCommandNumber() == 2 && gamePanel.getSoundEffect().getVolumeScale() > 0) {
                     gamePanel.getSoundEffect().setVolumeScale(gamePanel.getSoundEffect().getVolumeScale() - 1);
-                    gamePanel.playSoundEffect(9);
+                    gamePanel.playSoundEffect(8);
                 }
             }
         }
@@ -284,12 +284,12 @@ public class KeyHandler implements KeyListener {
                 if (gamePanel.ui.getCommandNumber() == 1 && gamePanel.getMusic().getVolumeScale() < 5) {
                     gamePanel.getMusic().setVolumeScale(gamePanel.getMusic().getVolumeScale() + 1);
                     gamePanel.getMusic().checkVolume();
-                    gamePanel.playSoundEffect(9);
+                    gamePanel.playSoundEffect(8);
                 }
 
                 if (gamePanel.ui.getCommandNumber() == 2 && gamePanel.getSoundEffect().getVolumeScale() < 5) {
                     gamePanel.getSoundEffect().setVolumeScale(gamePanel.getSoundEffect().getVolumeScale() + 1);
-                    gamePanel.playSoundEffect(9);
+                    gamePanel.playSoundEffect(8);
                 }
             }
         }

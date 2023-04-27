@@ -59,7 +59,7 @@ public class Player extends Entity{
         this.name = name;
         this.job = "Student";
         this.state = "Idle";
-        setMood(80);
+        this.mood = 80;
         this.health = 80;
         this.hunger = 80;
         this.money = 100;
@@ -174,10 +174,10 @@ public class Player extends Entity{
                     //BELUM TAU ISINYA GMNA
                 }
 
-                if(jamMemasak == 0){
-                    //belum tau isinya
-                    setMood(getMood() + 10);
-                }
+                // if(jamMemasak == 0){
+                //     //belum tau isinya
+                //     setMood(getMood() + 10);
+                // }
 
                 if(jamBerkunjung == 0){
                     setMood(getMood() + 10);

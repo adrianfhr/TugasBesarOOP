@@ -39,8 +39,23 @@ public class OBJ_SingleBed extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.player.setHealth(gamePanel.player.getHealth() + 30);
-    
+        if (gamePanel.player.jamTidur == 0 && gamePanel.player.getHealth() <= 80) {
+            gamePanel.player.setHealth(gamePanel.player.getHealth() + 20);
+        } else if (gamePanel.player.jamTidur == 0 && gamePanel.player.getHealth() <= 90){
+            gamePanel.player.setHealth(gamePanel.player.getHealth() + 10);
+        } else {
+            gamePanel.player.setHealth(gamePanel.player.getHealth() + 0);
+        }
+        if (gamePanel.player.jamTidur == 0 && gamePanel.player.getMood() <= 70) {
+            gamePanel.player.setMood(gamePanel.player.getMood() + 30);
+        } else if (gamePanel.player.jamTidur == 0 && gamePanel.player.getMood() <= 80) {
+            gamePanel.player.setMood(gamePanel.player.getMood() + 20);
+        } else if (gamePanel.player.jamTidur == 0 && gamePanel.player.getMood() <= 90) {
+            gamePanel.player.setMood(gamePanel.player.getMood() + 10);
+        } else {
+            gamePanel.player.setMood(gamePanel.player.getMood() + 0);
+        }
+        
     }
 
 }
