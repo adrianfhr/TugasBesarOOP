@@ -67,7 +67,7 @@ public class Player extends Entity{
         jamTidur = 4 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
-        jamMemasak = 30 * 2;  //karena berubah-ubah tergantung masakannya
+        jamMemasak = 30;  //karena berubah-ubah tergantung masakannya
         jamBerkunjung = 30 * 2;
         jamMules = 10 * 2;
         jamTidakMules = 4 * 60 * 2;
@@ -75,8 +75,8 @@ public class Player extends Entity{
 
    
     public void setDefaultvalues(){ //position player in x and y
-        worldX = gamePanel.tileSize * 18;
-        worldY = gamePanel.tileSize * 36;
+        worldX = gamePanel.tileSize * 34;
+        worldY = gamePanel.tileSize * 23;
         speed = 4;
         direction = "down";
     }
@@ -127,64 +127,12 @@ public class Player extends Entity{
         //jika dia melakukan aksi
         if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState;
+
+
             if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
-                gamePanel.isActiveAction = true;
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
-
-                if(jamTidur == 0 ){
-                    interactOBJ();
-                    jamTidur = 4 * 60 * 2;
-                }
-
-                if(jamTidakTidur == 0){
-                    setHealth(getHealth() - 5);
-                    setMood(getMood() - 5);
-                    jamTidakTidur = 10 * 60 * 2;
-                }
-
-                if(jamKerja == 0){
-                    interactOBJ();
-                    jamKerja = 30 * 2;
-                }
-
-                if(jamMules == 0){
-                    interactOBJ();
-                    jamMules = 10 * 2;
-                }
-
-                if(jamTidakMules == 0){ //RIBEETTTTT TANDAINN
-                    setHealth(getHealth() - 5);
-                    setMood(getMood() - 5);
-                    jamTidakMules = 4 * 60 * 2;     
-                }
-
-                if(jamOlahraga == 0){
-                    //+5 ksehatan, -5 kekenyangan, +10 mood
-                    setHealth(getHealth() + 5);
-                    setMood(getMood() + 10);
-                    setHunger(getHunger() - 5);
-                    jamOlahraga = 20 * 2;
-                }
-
-                //jMASIH BINGUNG ISINYA
-                if(jamMakan == 0){
-                    //BELUM TAU ISINYA GMNA
-                }
-
-                if(jamMemasak == 0){
-                //     //belum tau isinya
-                    interactOBJ();
-                    setMood(getMood() + 10);
-                }
-
-                if(jamBerkunjung == 0){
-                    setMood(getMood() + 10);
-                    setHunger(getHunger() - 10);
-                }
-
-                if(jamBerkunjung == 0){
-                    //MASIH BINGUNG
-                }
+                if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
+                if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 
 
             }
@@ -200,10 +148,6 @@ public class Player extends Entity{
             keyHandler.ePressed = false;   
         }
         
-        
-
-
-
         
         //check tile collision
         collisionOn = false;
@@ -393,40 +337,44 @@ public class Player extends Entity{
     }
 
     public void selectMenu() {
+        boolean hasAyam, hasNasi, hasKacang, hasKentang, hasSusu, hasBayam, hasWortel, hasBeef;
+        hasAyam = hasNasi = hasKacang = hasKentang = hasSusu = hasBayam = hasWortel = hasBeef = false;
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getKomporSlotCol(), gamePanel.ui.getKomporSlotRow());
 
         if (itemIndex < gamePanel.obj[1][2].getMenu().size()) {
             Asset selectedItem = gamePanel.obj[1][2].getMenu().get(itemIndex);
-
                 for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                    if (selectedItem == new OBJ_NasiAyam(gamePanel) && recipe.equals(new OBJ_Ayam(gamePanel)) && recipe.equals(new OBJ_Nasi(gamePanel))){
+                    if(recipe instanceof OBJ_Ayam) hasAyam = true;
+                    if(recipe instanceof OBJ_Nasi) hasNasi = true;
+                    if(recipe instanceof OBJ_Kacang) hasKacang = true;
+                    if(recipe instanceof OBJ_Kentang) hasKentang = true;
+                    if(recipe instanceof OBJ_Susu) hasSusu = true;
+                    if(recipe instanceof OBJ_Bayam) hasBayam = true;
+                    if(recipe instanceof OBJ_Wortel) hasWortel = true;
+                    if(recipe instanceof OBJ_Beef) hasBeef = true;
+                }
+
+            String namaMakanan = selectedItem.getName();
+
+            switch (namaMakanan) {
+                case "Nasi Ayam":
+                    if(hasAyam && hasNasi){
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Ayam(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
-                    
-                    } else if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Wortel(gamePanel)) &&
-                    recipe.equals(new OBJ_Beef(gamePanel)) && recipe.equals(new OBJ_Kentang(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
-                    } else if (recipe.equals(new OBJ_Wortel(gamePanel)) && recipe.equals(new OBJ_Bayam(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
-                    } else if (recipe.equals(new OBJ_Kentang(gamePanel)) && recipe.equals(new OBJ_Beef(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
-                    } else if (recipe.equals(new OBJ_Susu(gamePanel)) && recipe.equals(new OBJ_Kacang(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
-                    } else {
-                        gamePanel.setGameState(gamePanel.playState);
+                        break;
                     }
-                }
+                case "Bistik":
+                    if(hasBeef && hasKentang){
+                        gamePanel.isActiveAction = true;
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Beef(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kentang(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
+                        break;
+                    }
+                default:
+                    break;
+            }
                 
                 if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() == gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()) {
                     gamePanel.setGameState(gamePanel.playState);

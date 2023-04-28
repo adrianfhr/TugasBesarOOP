@@ -83,7 +83,13 @@ public class UI {
         else if (gamePanel.getGameState() == gamePanel.optionState) {
             drawOptionScreen();
         } else if (gamePanel.getGameState() == gamePanel.masakState){
-            masak();
+
+            if(gamePanel.isActiveAction){
+                drawActiveStateScreen();
+                drawPlayerActiveState();
+            }else{
+                masak();
+            }
         }
     }
 
@@ -103,8 +109,26 @@ public class UI {
 
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+        int jam = 0;
+        if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Tidur")){
+            jam = (4*60*2) - gamePanel.player[gamePanel.currentPlayer].jamTidur ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Memasak")){
+             jam = (30) - gamePanel.player[gamePanel.currentPlayer].jamMemasak ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Makan")){
+             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamMakan ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Olahraga")){
+             jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Kerja")){
+             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Buang Air")){
+             jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
+             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamBerkunjung ;
+        }
         
-        g2.drawString(gamePanel.player[gamePanel.currentPlayer].getState() + " : " + gamePanel.player[gamePanel.currentPlayer].jamTidur,frameX + 32 ,48);
+         
+        
+        g2.drawString(gamePanel.player[gamePanel.currentPlayer].getState() + " : " + jam,frameX + 28 ,48);
     }
 
 

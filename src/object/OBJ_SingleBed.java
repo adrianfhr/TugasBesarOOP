@@ -17,7 +17,7 @@ public class OBJ_SingleBed extends SuperObject{
         this.gamePanel = gamePanel;
         this.height = 4;
         this.width = 1;
-        setDescription("tidur");
+        setDescription("Tidur");
         setName("Single Bed");
         
         try {

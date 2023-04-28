@@ -161,8 +161,11 @@ public class GamePanel extends JPanel implements Runnable {
             if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
-                if(player[currentPlayer].getState().equals("tidur")){
+                player[currentPlayer].jamTidakTidur--;
+                if(player[currentPlayer].getState().equals("Tidur")){
                     player[currentPlayer].jamTidur--;
+                }else if(gameState == masakState ){
+                    player[currentPlayer].jamMemasak--;
                 }
                 
             }
@@ -175,9 +178,10 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].update();
         } else if (gameState == interactObjState){
             player[currentPlayer].update();
-        }
-        
-        
+        } //else if(gameState == masakState) player[currentPlayer].update();
+
+        playerTime();
+
     }
 
     public void paintComponent(Graphics g){
@@ -292,6 +296,65 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         
+
+    }
+    public void playerTime(){
+        if(player[currentPlayer].jamTidur == 0 ){
+            player[currentPlayer].interactOBJ();
+            player[currentPlayer].jamTidur = 4 * 60 * 2;
+        }
+
+        if(player[currentPlayer].jamTidakTidur == 0){
+            player[currentPlayer].setHealth(player[currentPlayer].getHealth() - 5);
+            player[currentPlayer].setMood(player[currentPlayer].getMood() - 5);
+            player[currentPlayer].jamTidakTidur = 10 * 60 * 2;
+        }
+
+        if(player[currentPlayer].jamKerja == 0){
+            player[currentPlayer].jamKerja = 30 * 2;
+        }
+
+        if(player[currentPlayer].jamMules == 0){
+            player[currentPlayer].interactOBJ();
+            player[currentPlayer].jamMules = 10 * 2;
+        }
+
+        if(player[currentPlayer].jamTidakMules == 0){ //RIBEETTTTT TANDAINN
+            player[currentPlayer].setHealth(player[currentPlayer].getHealth() - 5);
+            player[currentPlayer].setMood(player[currentPlayer].getMood() - 5);
+            player[currentPlayer].jamTidakMules = 4 * 60 * 2;     
+        }
+
+        if(player[currentPlayer].jamOlahraga == 0){
+            //+5 ksehatan, -5 kekenyangan, +10 mood
+            player[currentPlayer].setHealth(player[currentPlayer].getHealth() + 5);
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
+            player[currentPlayer]. setHunger(player[currentPlayer].getHunger() - 5);
+            player[currentPlayer].jamOlahraga = 20 * 2;
+        }
+
+        //jMASIH BINGUNG ISINYA
+        if(player[currentPlayer].jamMakan == 0){
+            //BELUM TAU ISINYA GMNA
+        }
+
+        if(player[currentPlayer].jamMemasak == 0){
+        //     //belum tau isinya
+        player[currentPlayer].interactOBJ();
+        //player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
+        isActiveAction = false;
+        player[currentPlayer].jamMemasak = 30;
+        gameState = playState;
+        }
+
+        if(player[currentPlayer].jamBerkunjung == 0){
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
+            player[currentPlayer].setHunger(player[currentPlayer].getHunger() - 10);
+        }
+
+        if(player[currentPlayer].jamBerkunjung == 0){
+            //MASIH BINGUNG
+        }
 
     }
 }
