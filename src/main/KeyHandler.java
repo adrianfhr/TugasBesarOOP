@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, mPressed;
     public int limit = 1;
      
     public KeyHandler(GamePanel gamePanel){
@@ -60,15 +60,11 @@ public class KeyHandler implements KeyListener {
             if(code == KeyEvent.VK_E ){
                 ePressed = false;
                 gamePanel.isActiveAction = false;
+                if (gamePanel.getGameState() == gamePanel.masakState){
+                    checkMasakStateKeys(code);
+                }
             }
-        } else if (gamePanel.getGameState() == gamePanel.interactObjState && gamePanel.getGameState() == gamePanel.masakState){
-            if(code == KeyEvent.VK_E ){
-                ePressed = false;
-                gamePanel.isActiveAction = false;
-                checkMasakStateKeys(code);
-            }
-        } 
-        
+        }        
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
 
@@ -106,9 +102,28 @@ public class KeyHandler implements KeyListener {
             ePressed = true;
             gamePanel.isActiveAction = false;
         }
-        playerInventoryMovement(code);
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+            gamePanel.player[gamePanel.currentPlayer].selectItem();
+        }
+        masakMovement(code);
         if (code == KeyEvent.VK_ESCAPE){
             gamePanel.setGameState(gamePanel.playState);
+        }
+    }
+
+    private void masakMovement(int code){
+        if (code == KeyEvent.VK_A){
+            if (gamePanel.ui.getPlayerSlotCol() != 0) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() - 1);
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gamePanel.ui.getPlayerSlotCol() != 4) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() + 1);
+            }
         }
     }
 
