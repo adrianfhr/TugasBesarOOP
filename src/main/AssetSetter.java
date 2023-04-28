@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Wife;
 import object.OBJ_KomporGas;
 import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
@@ -52,6 +53,12 @@ public class AssetSetter {
         gamePanel.obj[0][2] = new OBJ_Pengemis(gamePanel);
         gamePanel.obj[0][2].worldX = 33 * gamePanel.tileSize;
         gamePanel.obj[0][2].worldY = 33 * gamePanel.tileSize;
+    }
+
+    public void setNPC() {
+        gamePanel.npc[0] = new NPC_Wife(gamePanel);
+        gamePanel.npc[0]. worldX = gamePanel.tileSize*30;
+        gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
     }
 
 }

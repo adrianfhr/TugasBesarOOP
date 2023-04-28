@@ -213,6 +213,9 @@ public class Player extends Entity{
         isInteracting = false;
         gamePanel.collisionChecker.checkObject(this, true);
 
+        //check npc collision
+        int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+
 
         //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
         if ((!gamePanel.isActiveAction)&& (collisionOn == false)  && (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed)){
