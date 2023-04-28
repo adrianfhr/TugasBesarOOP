@@ -24,6 +24,7 @@ public class Entity {
     public int targetIndex; //variable bantu untuk cek index interaksi
     private final int maxInventorySize = 20;
     private List<Asset> inventory = new ArrayList<>();
+    private List<Asset> dagangan = new ArrayList<>();
     private BahanMakanan currentBahanMakanan;
     private int Kekenyangan;
 
@@ -56,5 +57,9 @@ public class Entity {
     public Entity setKekenyangan(int Kekenyangan) {
         this.Kekenyangan = Kekenyangan;
         return this;
+    }
+
+    public List<Asset> getDagangan() {
+        return dagangan;
     }
 }

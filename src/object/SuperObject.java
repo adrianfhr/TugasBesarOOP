@@ -88,20 +88,6 @@ public abstract class SuperObject implements Asset{
         return menu;
     }
 
-    public void setDagangan(){
-        getDagangan().add(new OBJ_Nasi(gamePanel));
-        getDagangan().add(new OBJ_Bayam(gamePanel));
-        getDagangan().add(new OBJ_Wortel(gamePanel));
-        getDagangan().add(new OBJ_Susu(gamePanel));
-        getDagangan().add(new OBJ_Kentang(gamePanel));
-        getDagangan().add(new OBJ_Kentang(gamePanel));
-        getDagangan().add(new OBJ_Beef(gamePanel));
-    }
-
-    public List<Asset> getDagangan() {
-        return dagangan;
-    }
-
     abstract public void setsolidArea();
 
     abstract public void interact(Player player);

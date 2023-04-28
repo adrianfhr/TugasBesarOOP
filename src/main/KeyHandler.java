@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed;
     public int limit = 1;
+    private boolean zPressed;
      
     public KeyHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -57,6 +58,14 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
+        if(code == KeyEvent.VK_Z){
+            gamePanel.makePlayer();
+            zPressed = true;
+        }
+
+        if(code == KeyEvent.VK_X){
+            gamePanel.changePlayer();
+        }
     }
 
     private void checkGameStateKeys(int code) {
@@ -170,11 +179,42 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    private void daganganInventoryMovement(int code) {
+        if (code == KeyEvent.VK_W) {
+            if (gamePanel.ui.getDaganganSlotRow() != 0) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setDaganganSlotRow(gamePanel.ui.getDaganganSlotRow() - 1);
+            }
+        }
+
+        if (code == KeyEvent.VK_A) {
+            if (gamePanel.ui.getDaganganSlotCol() != 0) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setDanganganSlotCol(gamePanel.ui.getDaganganSlotCol() - 1);
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            if (gamePanel.ui.getDaganganSlotRow() != 3) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setDaganganSlotRow(gamePanel.ui.getDaganganSlotRow() + 1);
+            }
+        }
+
+        if (code == KeyEvent.VK_D) {
+            if (gamePanel.ui.getDaganganSlotCol() != 4) {
+                gamePanel.playSoundEffect(8);
+                gamePanel.ui.setDanganganSlotCol(gamePanel.ui.getDaganganSlotCol() + 1);
+            }
+        }
+    }
+
     private void checkTitleStateKeyPressed(int code) {
         if (gamePanel.ui.getTitleScreenState() == 0) {
             checkMainTitleScreenKeyPressed(code);
         }
     }
+
 
     private void checkMainTitleScreenKeyPressed(int code) {
         if (code == KeyEvent.VK_W) {
@@ -312,6 +352,13 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
         }
 
+        if (gamePanel.ui.getSubState() == 1) {
+            daganganInventoryMovement(code);
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.ui.setSubState(0);
+            }
+        }
+
         int maxCommandNumber;
 
         switch (gamePanel.ui.getSubState()) {
@@ -348,6 +395,15 @@ public class KeyHandler implements KeyListener {
 
     public KeyHandler setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
+        return this;
+    }
+
+    public boolean isZPressed() {
+        return zPressed;
+    }
+
+    public KeyHandler setZPressed(boolean zPressed) {
+        this.zPressed = zPressed;
         return this;
     }
 }

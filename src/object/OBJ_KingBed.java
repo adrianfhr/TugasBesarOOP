@@ -19,7 +19,7 @@ public class OBJ_KingBed extends SuperObject{
         
         try {
             image = ImageIO.read(new File("././res/object/king_bed.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }

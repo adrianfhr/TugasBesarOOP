@@ -46,6 +46,8 @@ public class UI {
     private int subState;
     private int komporSlotCol;
     private int komporSlotRow;
+    private int daganganSlotCol;
+    private int daganganSlotRow;
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -313,6 +315,66 @@ public class UI {
         }
     }
 
+    public void drawDaganganScreen(Entity entity, boolean cursor){
+        // Inventroy Box
+        int frameX = 190;
+        int frameY = 0;
+        int frameWidth = 0;
+        int frameHeight = 0;
+        int slotCol = 0;
+        int slotRow = 0;
+
+        if (entity == gamePanel.player[gamePanel.currentPlayer]){
+            frameY = gamePanel.tileSize / 3;
+            frameWidth = gamePanel.tileSize / 3 * 17;
+            frameHeight = gamePanel.tileSize / 3 * 15;
+            slotCol = daganganSlotCol;
+            slotRow = daganganSlotRow;
+        }
+
+        final int slotXStart = frameX + 31;
+        final int slotYStart = frameY + 10;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+        int slotSize = gamePanel.tileSize / 2 * 3;
+        
+        // // // Isi Inventory
+        List<Asset> dagangan = entity.getDagangan();
+        drawItemsInInventory(entity, slotXStart, slotX, slotY, slotSize, dagangan);
+
+        // DRAW HINT WINDOW
+        int x = gamePanel.tileSize;
+        int y = gamePanel.tileSize * 9;
+
+        // DRAW PLAYER COIN WINDOW
+        x = gamePanel.tileSize * 10;
+        g2.drawString("Uang : " + gamePanel.player[gamePanel.currentPlayer].getMoney(), x, y + 60);
+
+        if (cursor) {
+            drawSelectionBox(slotXStart, slotYStart, slotSize, slotCol, slotRow);
+
+            // DESCRIPTION FRAME
+            int descriptionFrameX = frameX;
+            int descriptionFrameY = frameY + frameHeight;
+            int descriptionFrameWidth = frameWidth;
+            int descriptionFrameHeight = gamePanel.tileSize / 3 * 10;
+            
+
+            drawItemDescriptionText(dagangan, descriptionFrameX-45, descriptionFrameY + 70, descriptionFrameWidth, descriptionFrameHeight, slotCol, slotRow);
+        }
+    }
+
+    public void drawSubWindowDagangan(int x, int y, int width, int height) {
+        Color color = new Color(0, 0, 0, 210);
+        g2.setColor(color);
+        g2.fillRoundRect(x, y+160, width, height, 35, 35);
+
+        color = new Color(255, 255, 255);
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 165, width - 10, height - 10, 25, 25);
+    }
+
     public void drawSubWindowActiveAction(int x, int y, int width, int height) {
         Color color = new Color(0, 0, 0, 210);
         g2.setColor(color);
@@ -518,7 +580,8 @@ public class UI {
 
         switch (subState) {
             case 0 -> gameEventTop(frameX, frameY);
-            // case 1 -> beliBarang(frameX, frameY);
+            case 1 -> drawDaganganScreen(gamePanel.player[gamePanel.currentPlayer], true);
+            case 2 -> gamePanel.makePlayer(); // MASIH BUG NGELOOP GITU
         }
 
         gamePanel.getKeyHandler().setEnterPressed(false);
@@ -540,8 +603,9 @@ public class UI {
         g2.drawString("Beli Barang", textX + 30, textY + 30);
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
-            if(gamePanel.keyHandler.isEnterPressed()){
-
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 1;
+                commandNumber = 0;
             }
         }
 
@@ -1033,6 +1097,24 @@ public class UI {
 
     public UI setKomporSlotRow(int komporSlotRow) {
         this.komporSlotRow = komporSlotRow;
+        return this;
+    }
+
+    public int getDaganganSlotCol() {
+        return daganganSlotCol;
+    }
+
+    public UI setDanganganSlotCol(int daganganSlotCol) {
+        this.daganganSlotCol = daganganSlotCol;
+        return this;
+    }
+
+    public int getDaganganSlotRow() {
+        return daganganSlotRow;
+    }
+
+    public UI setDaganganSlotRow(int daganganSlotRow) {
+        this.daganganSlotRow = daganganSlotRow;
         return this;
     }
 }
