@@ -6,8 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import entity.Player;
 import object.SuperObject;
 import sound.SoundManager;
@@ -78,7 +79,9 @@ public class GamePanel extends JPanel implements Runnable {
     //state non-aktif
     public boolean isActiveAction = false;
     public boolean isPassiveAction = false;
+    public boolean isInputAction = false;
     private boolean fullScreenOn;
+    
     
 
    
@@ -181,7 +184,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
 
         //gambar tile
-        if(gameState != titleState){
+        if(gameState != titleState && !isInputAction){
             tileManager.draw(g2d);
             //objek (rumah, pohon, dll)
             for (int i = 0; i < obj[this.currentMap].length; i++) {
@@ -265,5 +268,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
         player[index] = new Player(this, keyHandler, name, index);
 
+    }
+
+    public String reqInput(){
+        String input = JOptionPane.showInputDialog(null, "Masukkan kata:");
+        return input;
     }
 }

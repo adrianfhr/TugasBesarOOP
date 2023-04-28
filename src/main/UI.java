@@ -40,7 +40,7 @@ public class UI {
         if (gamePanel.getGameState() == gamePanel.titleState){
             drawTitleScreen();
         }
-        else if (gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState){
+        else if ((gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState) && !gamePanel.isInputAction){
             drawCharacterScreen();
             
             if(gamePanel.isActiveAction){
@@ -95,8 +95,13 @@ public class UI {
                 drawStartScreen();
                 break;
             case 1 :
+                
                 gamePanel.gameState = gamePanel.playState; 
+                gamePanel.isInputAction = true;
                 gamePanel.playMusic(0);
+                String namaSim = gamePanel.reqInput();
+                gamePanel.player[gamePanel.currentPlayer].setName(namaSim);
+                gamePanel.isInputAction = false;
                 break;
         }
         gamePanel.keyHandler.setEnterPressed(false);

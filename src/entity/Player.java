@@ -345,6 +345,10 @@ public class Player extends Entity{
         return id;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     //
     public void interactOBJ(){
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting)){
