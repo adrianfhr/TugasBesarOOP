@@ -3,13 +3,11 @@ package object;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Method;
-
-import javax.swing.table.AbstractTableModel;
-
 import entity.Player;
 import main.GamePanel;
 import main.UtilityTool;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SuperObject implements Asset{
 
@@ -25,6 +23,7 @@ public abstract class SuperObject implements Asset{
     private final GamePanel gamePanel;
     private int value;
     protected BufferedImage image1;
+    private List<Asset> menu = new ArrayList<>();
     
     public SuperObject(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -46,6 +45,21 @@ public abstract class SuperObject implements Asset{
                 g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width, gamePanel.tileSize * height, null);
             }
         
+    }
+
+    public void selectMenu() {
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getMenuSlotCol(), gamePanel.ui.getMenuSlotRow());
+
+        if (itemIndex < getMenu().size()) {
+            Asset selectedItem = getMenu().get(itemIndex);
+
+            for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Ayam(gamePanel)) && selectedItem.equals(new OBJ_NasiAyam(gamePanel))){
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                }
+            }
+        }
     }
 
     public String getName() {
@@ -82,6 +96,10 @@ public abstract class SuperObject implements Asset{
     public Object setImage1(BufferedImage image1) {
         this.image1 = image1;
         return this;
+    }
+
+    public List<Asset> getMenu() {
+        return menu;
     }
 
     abstract public void setsolidArea();

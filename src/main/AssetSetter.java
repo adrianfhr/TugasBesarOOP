@@ -1,5 +1,6 @@
 package main;
 
+import object.OBJ_KomporGas;
 import object.OBJ_Masjid;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
@@ -22,6 +23,10 @@ public class AssetSetter {
         gamePanel.obj[1][1] = new OBJ_Pintu(gamePanel);
         gamePanel.obj[1][1].worldX = 53 * gamePanel.tileSize;
         gamePanel.obj[1][1].worldY = 53 * gamePanel.tileSize;
+
+        gamePanel.obj[1][2] = new OBJ_KomporGas(gamePanel);
+        gamePanel.obj[1][2].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[1][2].worldY = 48 * gamePanel.tileSize;
 
         gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel);
         gamePanel.obj[0][0].worldX = 33 * gamePanel.tileSize;

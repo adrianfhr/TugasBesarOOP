@@ -18,7 +18,7 @@ public class OBJ_SingleBed extends SuperObject{
         this.height = 4;
         this.width = 1;
         setDescription("tidur");
-        setName(" Single Bed");
+        setName("Single Bed");
         
         try {
             image = ImageIO.read(new File("././res/object/single_bed.png"));
