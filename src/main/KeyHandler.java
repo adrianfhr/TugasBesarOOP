@@ -106,13 +106,13 @@ public class KeyHandler implements KeyListener {
     private void checkMasakStateKeys(int code){
         masakMovement(code);
         if (code == KeyEvent.VK_E) {
-            ePressed = true;
+            gamePanel.setGameState(gamePanel.playState);
             gamePanel.isActiveAction = false;
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
             gamePanel.player[gamePanel.currentPlayer].selectMenu();
-            gamePanel.setGameState(gamePanel.playState);
+            gamePanel.playSoundEffect(12);
         }
     }
 

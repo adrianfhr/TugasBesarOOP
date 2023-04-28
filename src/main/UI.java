@@ -721,7 +721,7 @@ public class UI {
         int y = gamePanel.tileSize;
         int width = gamePanel.tileSize * 6;
         int height = gamePanel.tileSize * 2;
-        g2.drawString("[ESC] Back", x + 370, y + 350);
+        g2.drawString("[E] Back", x + 370, y + 350);
         g2.drawString("[ENTER] Select", x + 370, y + 375);
 
         // DRAW PRICE WINDOW

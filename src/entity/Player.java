@@ -393,36 +393,36 @@ public class Player extends Entity{
     }
 
     public void selectMenu() {
-        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getKomporSlotCol(), gamePanel.ui.getKomporSlotRow());
 
         if (itemIndex < gamePanel.obj[1][2].getMenu().size()) {
             Asset selectedItem = gamePanel.obj[1][2].getMenu().get(itemIndex);
 
-            if (gamePanel.getKeyHandler().isEnterPressed()) {
                 for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                    if (recipe.equals(new OBJ_Ayam(gamePanel)) && recipe.equals(new OBJ_Nasi(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                    if (selectedItem == new OBJ_NasiAyam(gamePanel) && recipe.equals(new OBJ_Ayam(gamePanel)) && recipe.equals(new OBJ_Nasi(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Ayam(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
+                    
                     } else if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Wortel(gamePanel)) &&
                     recipe.equals(new OBJ_Beef(gamePanel)) && recipe.equals(new OBJ_Kentang(gamePanel))){
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
                     } else if (recipe.equals(new OBJ_Wortel(gamePanel)) && recipe.equals(new OBJ_Bayam(gamePanel))){
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
                     } else if (recipe.equals(new OBJ_Kentang(gamePanel)) && recipe.equals(new OBJ_Beef(gamePanel))){
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
                     } else if (recipe.equals(new OBJ_Susu(gamePanel)) && recipe.equals(new OBJ_Kacang(gamePanel))){
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
                     } else {
                         gamePanel.setGameState(gamePanel.playState);
                     }
@@ -433,5 +433,4 @@ public class Player extends Entity{
                 }
             }
         }
-    }
 }
