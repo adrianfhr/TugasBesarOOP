@@ -22,7 +22,7 @@ public class OBJ_SingleBed extends SuperObject{
         
         try {
             image = ImageIO.read(new File("././res/object/single_bed.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }

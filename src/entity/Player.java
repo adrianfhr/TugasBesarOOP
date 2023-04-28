@@ -51,6 +51,7 @@ public class Player extends Entity{
     
         getPlayerImage();
         setItems();
+        setDagangan();
 
         //set atribut
         this.name = name;
@@ -315,6 +316,7 @@ public class Player extends Entity{
         setDefaultBahanMakanan();
         getInventory().add(getCurrentBahanMakanan());
         getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Ayam(gamePanel));
         getInventory().add(new OBJ_Bayam(gamePanel));
         getInventory().add(new OBJ_Wortel(gamePanel));
         getInventory().add(new OBJ_Susu(gamePanel));
@@ -431,5 +433,24 @@ public class Player extends Entity{
                     gamePanel.setGameState(gamePanel.playState);
                 }
             }
+        }
+
+        public void setDagangan(){
+            getDagangan().add(new OBJ_Nasi(gamePanel));
+            getDagangan().add(new OBJ_Ayam(gamePanel));
+            getDagangan().add(new OBJ_Bayam(gamePanel));
+            getDagangan().add(new OBJ_Wortel(gamePanel));
+            getDagangan().add(new OBJ_Susu(gamePanel));
+            getDagangan().add(new OBJ_Kentang(gamePanel));
+            getDagangan().add(new OBJ_Beef(gamePanel));
+            getDagangan().add(new OBJ_Kacang(gamePanel));
+            getDagangan().add(new OBJ_SingleBed(gamePanel));
+            getDagangan().add(new OBJ_QueenBed(gamePanel));
+            getDagangan().add(new OBJ_KingBed(gamePanel));
+            getDagangan().add(new OBJ_Toilet(gamePanel));
+            getDagangan().add(new OBJ_KomporGas(gamePanel));
+            getDagangan().add(new OBJ_KomporListrik(gamePanel));
+            getDagangan().add(new OBJ_MejaKursi(gamePanel));
+            getDagangan().add(new OBJ_Jam(gamePanel));
         }
 }

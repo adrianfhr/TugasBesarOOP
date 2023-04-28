@@ -79,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 8;
     public final int masakState = 9;
     public final int gameEventState = 10;
+    public final int tradeState = 11;
 
 
     //state non-aktif
