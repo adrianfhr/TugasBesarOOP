@@ -48,7 +48,10 @@ public class OBJ_KomporGas extends SuperObject {
     }
 
     public void interact(Player player){
+        gamePanel.setGameState(gamePanel.masakState);
         gamePanel.ui.masak();
         gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
     }
+
+    
 }

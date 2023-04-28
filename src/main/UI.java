@@ -735,44 +735,7 @@ public class UI {
 
 
             // BUY
-            if (gamePanel.getKeyHandler().isEnterPressed()) {
-                for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                    if (recipe.equals(new OBJ_Ayam(gamePanel)) && recipe.equals(new OBJ_Nasi(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
-                    } else if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Wortel(gamePanel)) &&
-                    recipe.equals(new OBJ_Beef(gamePanel)) && recipe.equals(new OBJ_Kentang(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
-                    } else if (recipe.equals(new OBJ_Wortel(gamePanel)) && recipe.equals(new OBJ_Bayam(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
-                    } else if (recipe.equals(new OBJ_Kentang(gamePanel)) && recipe.equals(new OBJ_Beef(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
-                    } else if (recipe.equals(new OBJ_Susu(gamePanel)) && recipe.equals(new OBJ_Kacang(gamePanel))){
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
-                    } else {
-                        subState = 0;
-                        gamePanel.setGameState(gamePanel.dialogueState);
-                        currentDialogue = "You don't have the recipe!";
-                    }
-                }
-                
-                if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() == gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()) {
-                    subState = 0;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "You cannot carry anymore!";
-                }
-            }
+            
         }
     }
 

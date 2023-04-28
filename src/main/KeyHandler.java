@@ -60,10 +60,9 @@ public class KeyHandler implements KeyListener {
             if(code == KeyEvent.VK_E ){
                 ePressed = false;
                 gamePanel.isActiveAction = false;
-                if (gamePanel.getGameState() == gamePanel.masakState){
-                    checkMasakStateKeys(code);
-                }
             }
+        } else if (gamePanel.getGameState() == gamePanel.masakState){
+            checkMasakStateKeys(code);
         }        
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
@@ -98,31 +97,29 @@ public class KeyHandler implements KeyListener {
     }
 
     private void checkMasakStateKeys(int code){
+        masakMovement(code);
         if (code == KeyEvent.VK_E) {
             ePressed = true;
             gamePanel.isActiveAction = false;
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
-            gamePanel.player[gamePanel.currentPlayer].selectItem();
-        }
-        masakMovement(code);
-        if (code == KeyEvent.VK_ESCAPE){
+            gamePanel.player[gamePanel.currentPlayer].selectMenu();
             gamePanel.setGameState(gamePanel.playState);
         }
     }
 
     private void masakMovement(int code){
         if (code == KeyEvent.VK_A){
-            if (gamePanel.ui.getPlayerSlotCol() != 0) {
+            if (gamePanel.ui.getKomporSlotCol() != 0) {
                 gamePanel.playSoundEffect(8);
-                gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() - 1);
+                gamePanel.ui.setKomporSlotCol(gamePanel.ui.getKomporSlotCol() - 1);
             }
         }
         if (code == KeyEvent.VK_D) {
-            if (gamePanel.ui.getPlayerSlotCol() != 4) {
+            if (gamePanel.ui.getKomporSlotCol() != 4) {
                 gamePanel.playSoundEffect(8);
-                gamePanel.ui.setPlayerSlotCol(gamePanel.ui.getPlayerSlotCol() + 1);
+                gamePanel.ui.setKomporSlotCol(gamePanel.ui.getKomporSlotCol() + 1);
             }
         }
     }

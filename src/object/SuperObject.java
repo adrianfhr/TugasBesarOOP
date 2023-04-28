@@ -91,5 +91,8 @@ public abstract class SuperObject implements Asset{
 
     abstract public void interact(Player player);
 
+    public void selectMenu() {
+    }
+
     
 }
