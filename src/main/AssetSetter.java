@@ -37,4 +37,11 @@ public class AssetSetter {
         gamePanel.obj[0][2].worldY = 33 * gamePanel.tileSize;
 
     }
+
+    public void makeOBJ(int currentMap, int currentPlayer){
+        gamePanel.obj[0][2] = new OBJ_Pengemis(gamePanel);
+        gamePanel.obj[0][2].worldX = 33 * gamePanel.tileSize;
+        gamePanel.obj[0][2].worldY = 33 * gamePanel.tileSize;
+    }
+
 }

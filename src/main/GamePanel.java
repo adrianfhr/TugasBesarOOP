@@ -184,7 +184,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
 
         //gambar tile
-        if(gameState != titleState && !isInputAction){
+        if(gameState != titleState ){
             tileManager.draw(g2d);
             //objek (rumah, pohon, dll)
             for (int i = 0; i < obj[this.currentMap].length; i++) {
