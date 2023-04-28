@@ -1,6 +1,8 @@
 package main;
 
 import entity.NPC_Wife;
+import javax.swing.JOptionPane;
+
 import object.OBJ_KomporGas;
 import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
@@ -49,10 +51,33 @@ public class AssetSetter {
 
     }
 
-    public void makeOBJ(int currentMap, int currentPlayer){
-        gamePanel.obj[0][2] = new OBJ_Pengemis(gamePanel);
-        gamePanel.obj[0][2].worldX = 33 * gamePanel.tileSize;
-        gamePanel.obj[0][2].worldY = 33 * gamePanel.tileSize;
+    public void makeOBJ(String objek){
+        int index = 0;
+        while (gamePanel.obj[gamePanel.currentMap][index] != null) {
+            index++;
+            if (index == gamePanel.obj[gamePanel.currentMap].length) {
+                System.out.println("Array penuh, tidak bisa menambahkan objek baru!");
+                return;
+            }
+        }
+
+        String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
+        String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
+        int worldX = Integer.parseInt(x);
+        int worldY = Integer.parseInt(y);
+
+
+        if(objek.equals("rumah")){
+            gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
+            gamePanel.obj[gamePanel.currentMap][index] = new OBJ_Rumah(gamePanel);
+            gamePanel.obj[gamePanel.currentMap][index].worldX = worldX * gamePanel.tileSize;
+            gamePanel.obj[gamePanel.currentMap][index].worldY = worldY * gamePanel.tileSize;
+            if(gamePanel.obj[gamePanel.currentMap][index] != null){
+                System.out.println("Rumah berhasil dibuat");
+            }else{
+                System.out.println("Rumah gagal dibuat");
+            }
+        }
     }
 
     public void setNPC() {

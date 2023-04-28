@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import entity.Player;
+import main.AssetSetter;
 import main.GamePanel;
 
 public class OBJ_Masjid extends SuperObject{

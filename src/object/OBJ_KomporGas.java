@@ -17,7 +17,7 @@ public class OBJ_KomporGas extends SuperObject {
         this.height = 1;
         this.width = 2;
         setName("Kompor Gas");
-        gamePanel.setGameState(gamePanel.masakState);
+        setDescription("Memasak");
         setMenu();
 
         try{
@@ -48,8 +48,6 @@ public class OBJ_KomporGas extends SuperObject {
     }
 
     public void interact(Player player){
-        gamePanel.setGameState(gamePanel.masakState);
-        gamePanel.ui.masak();
         gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
     }
 
