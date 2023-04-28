@@ -8,17 +8,17 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class OBJ_NasiAyam extends Makanan{
+public class OBJ_Bistik extends Makanan{
     GamePanel gamePanel;
-    public OBJ_NasiAyam(GamePanel gamePanel){
+    public OBJ_Bistik(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        setName("Nasi Ayam");
-        setDescription("[" + getName() + "]\nResep : Nasi dan Ayam");
-        setKekenyanganValue(16);
+        setName("Bistik");
+        setDescription("[" + getName() + "]\nResep : Kentang dan Sapi");
+        setKekenyanganValue(22);
 
         try{
-            image = ImageIO.read(new File("././res/object/nasi_ayam.png"));
+            image = ImageIO.read(new File("././res/object/bistik.png"));
             setImage1(utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize));
         }
         catch (IOException e){
