@@ -269,9 +269,4 @@ public class GamePanel extends JPanel implements Runnable {
         player[index] = new Player(this, keyHandler, name, index);
 
     }
-
-    public String reqInput(){
-        String input = JOptionPane.showInputDialog(null, "Masukkan kata:");
-        return input;
-    }
 }

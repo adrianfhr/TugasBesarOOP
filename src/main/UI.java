@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
+
+import javax.swing.JOptionPane;
+
 import entity.Entity;
 import object.Asset;
 
@@ -99,8 +102,8 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState; 
                 gamePanel.isInputAction = true;
                 gamePanel.playMusic(0);
-                String namaSim = gamePanel.reqInput();
-                gamePanel.player[gamePanel.currentPlayer].setName(namaSim);
+                String input = JOptionPane.showInputDialog(null, "Masukkan nama Sim:");
+                gamePanel.player[gamePanel.currentPlayer].setName(input);
                 gamePanel.isInputAction = false;
                 break;
         }
