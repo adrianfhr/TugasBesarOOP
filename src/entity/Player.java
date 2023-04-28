@@ -337,7 +337,9 @@ public class Player extends Entity{
 
             if (selectedItem instanceof BahanMakanan) {
                 selectedItem.use();
-            }
+            } else if (selectedItem instanceof Makanan) {
+                selectedItem.use();
+            } 
         }
     }
 
