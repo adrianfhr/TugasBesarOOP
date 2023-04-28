@@ -57,13 +57,6 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
-        if(code == KeyEvent.VK_Z){
-            gamePanel.makePlayer();
-        }
-
-        if(code == KeyEvent.VK_X){
-            gamePanel.changePlayer();
-        }
     }
 
     private void checkGameStateKeys(int code) {

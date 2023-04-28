@@ -540,6 +540,9 @@ public class UI {
         g2.drawString("Beli Barang", textX + 30, textY + 30);
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
+            if(gamePanel.keyHandler.isEnterPressed()){
+
+            }
         }
 
         // KERJA
@@ -564,6 +567,10 @@ public class UI {
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 subState = 2;
                 commandNumber = 0;
+                if(gamePanel.keyHandler.isEnterPressed()){
+                    gamePanel.gameState = gamePanel.playState;
+                    gamePanel.makePlayer();
+                }
             }
         }
 
@@ -575,6 +582,9 @@ public class UI {
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 subState = 3;
                 commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+                gamePanel.changePlayer();
+              
             }
         }
 

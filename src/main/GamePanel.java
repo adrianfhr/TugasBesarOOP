@@ -293,7 +293,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         player[index] = new Player(this, keyHandler, name, index + 1);
-        assetSetter.makeOBJ("rumah");
+        assetSetter.makeOBJ("rumah", 0);
+        assetSetter.makeOBJ("Pintu", player[index].getId());
         tileManager.loadMap("res/map/homeMap.txt", player[index].getId());
     }
 

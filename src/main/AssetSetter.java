@@ -51,31 +51,42 @@ public class AssetSetter {
 
     }
 
-    public void makeOBJ(String objek){
+    public void makeOBJ(String objek, int map){
         int index = 0;
-        while (gamePanel.obj[gamePanel.currentMap][index] != null) {
+        while (gamePanel.obj[map][index] != null) {
             index++;
-            if (index == gamePanel.obj[gamePanel.currentMap].length) {
+            if (index == gamePanel.obj[map].length) {
                 System.out.println("Array penuh, tidak bisa menambahkan objek baru!");
                 return;
             }
         }
 
-        String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
-        String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
-        int worldX = Integer.parseInt(x);
-        int worldY = Integer.parseInt(y);
+        
 
 
         if(objek.equals("rumah")){
+            String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
+            String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
+            int worldX = Integer.parseInt(x);
+            int worldY = Integer.parseInt(y);
             gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
-            gamePanel.obj[gamePanel.currentMap][index] = new OBJ_Rumah(gamePanel);
-            gamePanel.obj[gamePanel.currentMap][index].worldX = worldX * gamePanel.tileSize;
-            gamePanel.obj[gamePanel.currentMap][index].worldY = worldY * gamePanel.tileSize;
-            if(gamePanel.obj[gamePanel.currentMap][index] != null){
+            gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel);
+            gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+            gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+            if(gamePanel.obj[map][index] != null){
                 System.out.println("Rumah berhasil dibuat");
             }else{
                 System.out.println("Rumah gagal dibuat");
+            }
+        }if(objek.equals("Pintu")){
+            
+            gamePanel.obj[map][index] = new OBJ_Pintu(gamePanel);
+            gamePanel.obj[map][index].worldX = 53 * gamePanel.tileSize;
+            gamePanel.obj[map][index].worldY = 53 * gamePanel.tileSize;
+            if(gamePanel.obj[map][index] != null){
+                System.out.println("Pintu berhasil dibuat");
+            }else{
+                System.out.println("Pintu gagal dibuat");
             }
         }
     }
