@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import entity.Entity;
+import entity.NPC_Wife;
 import entity.Player;
 import object.SuperObject;
 import sound.SoundManager;
@@ -49,20 +51,21 @@ public class GamePanel extends JPanel implements Runnable {
     public int currentMap = 0;
     public int currentPlayer = 0;
 
-    //entity and object
-    public Player player[] = new Player[10];
-    public SuperObject obj[][] = new SuperObject[maxMap][10];
-
     //SYSTEM SETTINGS
+    TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
-    TileManager tileManager = new TileManager(this);
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public int clock;
     private final Config config = new Config(this);
     
+    //entity and object
+    public Player player[] = new Player[10];
+    public SuperObject obj[][] = new SuperObject[maxMap][10];
+    public NPC_Wife npc[] = new NPC_Wife[10];
+
     //state
     public int gameState = 0;
     public final int titleState = 0;
@@ -97,14 +100,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
-         player[0] = new Player(this, keyHandler, "Player 1", 1);
+        player[0] = new Player(this, keyHandler, "player1", 1);
          assetSetter.setObject();
+         assetSetter.setNPC();
          gameState = titleState;
          tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
          gps2d = (Graphics2D) tempScreen.getGraphics();
         if (fullScreenOn) {
             setFullScreen();
         }
+
      }
 
      public void setFullScreen() {
@@ -176,8 +181,19 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
         //update game logic
         if (gameState == playState){
+            //PLAYER
             player[currentPlayer].update();
-        } else if (gameState == interactObjState){
+
+            //NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
+            }
+
+        } 
+        
+        else if (gameState == interactObjState){
             player[currentPlayer].update();
         } //else if(gameState == masakState) player[currentPlayer].update();
 
@@ -204,11 +220,14 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        
+        //NPC
+        for(int i = 0; i< npc.length; i++) {
+            if(npc[i] != null) {
+                npc[i].draw(g2d);
+            }
+        }
 
         //player
-        
-
         ui.draw(g2d);
         g2d.dispose();
         //draw game graphics

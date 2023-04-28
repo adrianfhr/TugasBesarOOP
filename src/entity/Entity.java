@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.GamePanel;
 import object.Asset;
 import object.BahanMakanan;
 
@@ -25,6 +26,7 @@ public class Entity {
     private List<Asset> inventory = new ArrayList<>();
     private BahanMakanan currentBahanMakanan;
     private int Kekenyangan;
+
 
     public List<Asset> getInventory() {
         return inventory;

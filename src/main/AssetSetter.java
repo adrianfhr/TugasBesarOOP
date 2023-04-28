@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
 import object.OBJ_KomporGas;
@@ -77,6 +78,12 @@ public class AssetSetter {
                 System.out.println("Rumah gagal dibuat");
             }
         }
+    }
+
+    public void setNPC() {
+        gamePanel.npc[0] = new NPC_Wife(gamePanel);
+        gamePanel.npc[0]. worldX = gamePanel.tileSize*30;
+        gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
     }
 
 }

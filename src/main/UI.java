@@ -1025,5 +1025,4 @@ public class UI {
         this.komporSlotRow = komporSlotRow;
         return this;
     }
-
 }
