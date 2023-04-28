@@ -99,10 +99,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
+        player[0] = new Player(this, keyHandler, "player1", 1);
          assetSetter.setObject();
          assetSetter.setNPC();
          gameState = titleState;
-         makePlayer("Joko");
          tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
          gps2d = (Graphics2D) tempScreen.getGraphics();
         if (fullScreenOn) {

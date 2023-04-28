@@ -366,8 +366,13 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Ayam(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
-                        break;
+                    }else{
+                        gamePanel.isActiveAction = false;
+    
+
+                        
                     }
+                    break;
                 case "Bistik":
                     if(hasBeef && hasKentang){
                         gamePanel.isActiveAction = true;
@@ -375,7 +380,49 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kentang(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
                         break;
+                    }else{
+                        gamePanel.isActiveAction = false;
+                
                     }
+                    break;
+                case "Nasi Kari":
+                    if(hasNasi && hasKentang && hasWortel && hasBeef){
+                        gamePanel.isActiveAction = true;
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kentang(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Wortel(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Beef(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
+                        
+                    }else{
+                        gamePanel.isActiveAction = false;
+                
+                    }
+                    break;
+                case "Susu Kacang":
+                    if(hasSusu && hasKacang){
+                        gamePanel.isActiveAction = true;
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Susu(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kacang(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
+                        
+                    }else{
+                        gamePanel.isActiveAction = false;
+                
+                    }
+                    break;
+                case "Tumis Sayuran":
+                    if(hasBayam && hasWortel){
+                        gamePanel.isActiveAction = true;
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Bayam(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Wortel(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
+                        
+                    }else{
+                        gamePanel.isActiveAction = false;
+                
+                    }
+                    break;
                 default:
                     break;
             }
