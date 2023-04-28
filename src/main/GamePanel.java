@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject obj[][] = new SuperObject[maxMap][10];
 
     //state
-    public int gameState;
+    public int gameState = 0;
     public final int titleState = 0;
     public final int playState = 1;
     public final int interactObjState = 2;
