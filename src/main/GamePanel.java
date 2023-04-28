@@ -258,7 +258,8 @@ public class GamePanel extends JPanel implements Runnable {
         music.stop();
     }
 
-    public void makePlayer(String name){
+    public void makePlayer(){
+        String name = JOptionPane.showInputDialog("Masukkan nama pemain");
         int index = 0;
         while (player[index] != null) {
             index++;
@@ -267,7 +268,30 @@ public class GamePanel extends JPanel implements Runnable {
                 return;
             }
         }
-        player[index] = new Player(this, keyHandler, name, index);
+        player[index] = new Player(this, keyHandler, name, index + 1);
+        assetSetter.makeOBJ("rumah");
+        tileManager.loadMap("res/map/homeMap.txt", player[index].getId());
+    }
+
+    public void changePlayer(){
+        boolean sukses = false;
+        while(!sukses){
+            String name = JOptionPane.showInputDialog("Masukkan nama pemain : ");
+            int index = 0;
+            while (player[index] != null) {
+                if (player[index].getName().equals(name)) {
+                    currentPlayer = index;
+                    player[currentPlayer].teleport(50, 50, player[currentPlayer].getId());
+                    return;
+                }
+                index++;
+                if (index == player.length) {
+                    System.out.println("Pemain tidak ditemukan!");
+                    return;
+                }
+            }
+        }
+        
 
     }
 }

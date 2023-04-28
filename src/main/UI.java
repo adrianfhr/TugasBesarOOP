@@ -224,7 +224,7 @@ public class UI {
         g2.drawString(waktu, x, y);
         g2.drawString("DAY - " + gamePanel.clock/(60*24),  x, y + lineHeight);
         g2.drawString("FPS: " + gamePanel.fps, x , (y + lineHeight * 2));
-        g2.drawString("X: " + (gamePanel.player[gamePanel.currentPlayer].worldX/16) + " Y: " + (gamePanel.player[gamePanel.currentPlayer].worldY/16 ), x, y + lineHeight * 3);
+        g2.drawString("X: " + (gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize) + " Y: " + (gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize), x, y + lineHeight * 3);
 
     }
 
