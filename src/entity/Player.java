@@ -359,6 +359,7 @@ public class Player extends Entity{
             switch (namaMakanan) {
                 case "Nasi Ayam":
                     if(hasAyam && hasNasi){
+                        gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Ayam(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
