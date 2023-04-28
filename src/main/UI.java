@@ -15,6 +15,21 @@ import javax.swing.JOptionPane;
 
 import entity.Entity;
 import object.Asset;
+import object.OBJ_Ayam;
+import object.OBJ_Bayam;
+import object.OBJ_Beef;
+import object.OBJ_Bistik;
+import object.OBJ_Kacang;
+import object.OBJ_Kentang;
+import object.OBJ_KomporGas;
+import object.OBJ_Nasi;
+import object.OBJ_NasiAyam;
+import object.OBJ_NasiKari;
+import object.OBJ_Susu;
+import object.OBJ_SusuKacang;
+import object.OBJ_TumisSayur;
+import object.OBJ_Wortel;
+import object.SuperObject;
 
 public class UI {
     GamePanel gamePanel;
@@ -29,6 +44,8 @@ public class UI {
     public int slotRow = 0;
     private String currentDialogue;
     private int subState;
+    private int komporSlotCol;
+    private int komporSlotRow;
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -65,6 +82,8 @@ public class UI {
         }
         else if (gamePanel.getGameState() == gamePanel.optionState) {
             drawOptionScreen();
+        } else if (gamePanel.getGameState() == gamePanel.masakState){
+            masak();
         }
     }
 
@@ -238,6 +257,10 @@ public class UI {
             frameHeight = gamePanel.tileSize / 3 * 15;
             slotCol = playerSlotCol;
             slotRow = playerSlotRow;
+        } else{
+            frameX = gamePanel.tileSize * 2;
+            slotCol = komporSlotCol;
+            slotRow = komporSlotRow;
         }
         drawSubWindowInventory(frameX + 31, frameY + 10, frameWidth, frameHeight);
 
@@ -296,6 +319,17 @@ public class UI {
         g2.setColor(color);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 165, width - 10, height - 10, 25, 25);
+    }
+
+    public void drawSubWindowMenu(int x, int y, int width, int height) {
+        Color color = new Color(0, 0, 0, 210);
+        g2.setColor(color);
+        g2.fillRoundRect(x+355, y+140, width, height, 35, 35);
+
+        color = new Color(255, 255, 255);
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 360, y + 145, width - 10, height - 10, 25, 25);
     }
 
     public void drawSubWindowPlayerStat(int x, int y, int width, int height) {
@@ -673,6 +707,163 @@ public class UI {
         gamePanel.getConfig().saveConfig();
     }
 
+    public void masak() {
+
+        // DRAW PLAYER INVENTORY
+        drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], false);
+
+        SuperObject kompor = new OBJ_KomporGas(gamePanel);
+        // DRAW NPC INVENTORY
+        drawInventoryKompor(kompor, true);
+
+        // DRAW HINT WINDOW
+        int x = gamePanel.tileSize * 2;
+        int y = gamePanel.tileSize;
+        int width = gamePanel.tileSize * 6;
+        int height = gamePanel.tileSize * 2;
+        g2.drawString("[ESC] Back", x + 370, y + 350);
+        g2.drawString("[ENTER] Select", x + 370, y + 375);
+
+        // DRAW PRICE WINDOW
+        int itemIndex = getItemIndexFromSlot(komporSlotCol, komporSlotRow);
+
+        if (itemIndex < kompor.getMenu().size()) {
+            x = (int) (gamePanel.tileSize * 5.5);
+            y = (int) (gamePanel.tileSize * 5.5);
+            width = (int) (gamePanel.tileSize * 1.5);
+            height = gamePanel.tileSize;
+
+
+            // BUY
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                    if (recipe.equals(new OBJ_Ayam(gamePanel)) && recipe.equals(new OBJ_Nasi(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
+                    } else if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Wortel(gamePanel)) &&
+                    recipe.equals(new OBJ_Beef(gamePanel)) && recipe.equals(new OBJ_Kentang(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
+                    } else if (recipe.equals(new OBJ_Wortel(gamePanel)) && recipe.equals(new OBJ_Bayam(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
+                    } else if (recipe.equals(new OBJ_Kentang(gamePanel)) && recipe.equals(new OBJ_Beef(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
+                    } else if (recipe.equals(new OBJ_Susu(gamePanel)) && recipe.equals(new OBJ_Kacang(gamePanel))){
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
+                    } else {
+                        subState = 0;
+                        gamePanel.setGameState(gamePanel.dialogueState);
+                        currentDialogue = "You don't have the recipe!";
+                    }
+                }
+                
+                if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() == gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()) {
+                    subState = 0;
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "You cannot carry anymore!";
+                }
+            }
+        }
+    }
+
+    public void drawInventoryKompor(SuperObject kompor, boolean cursor){
+        // Inventroy Box
+        int frameX = 0;
+        int frameY = 0;
+        int frameWidth = 0;
+        int frameHeight = 0;
+        int slotCol = 0;
+        int slotRow = 0;
+
+        frameX = gamePanel.tileSize * 12;
+        slotCol = komporSlotCol;
+        slotRow = komporSlotRow;
+
+        frameY = gamePanel.tileSize * 1/2;
+        frameWidth = gamePanel.tileSize * 6;
+        frameHeight = gamePanel.tileSize * 5;
+
+        
+        final int slotXStart = frameX + 31;
+        final int slotYStart = frameY + 10;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+        int slotSize = gamePanel.tileSize / 3 * 3;
+        
+        // // // Isi Inventory
+        List<Asset> menu = kompor.getMenu();
+        drawItemsInMenu(kompor, slotXStart, slotX, slotY, slotSize, menu);
+        drawSubWindowMenu(frameX-100, frameY, frameWidth, frameHeight);
+
+        if (cursor) {
+
+            drawSelectionBoxMenu(slotXStart, slotYStart, slotSize, slotCol, slotRow);
+            // DESCRIPTION FRAME
+            int descriptionFrameX = frameX;
+            int descriptionFrameY = frameY + frameHeight;
+            int descriptionFrameWidth = frameWidth;
+            int descriptionFrameHeight = gamePanel.tileSize / 3 * 10;
+
+            drawMenuDescriptionText(menu, descriptionFrameX-159, descriptionFrameY-150, descriptionFrameWidth, descriptionFrameHeight, slotCol, slotRow);
+        }
+    }
+
+    private void drawSelectionBoxMenu(int slotXStart, int slotYStart, int slotSize, int slotCol, int slotRow) {
+        // CURSOR selection box
+        int cursorX = slotXStart + (slotSize * slotCol);
+        int cursorY = slotYStart + (slotSize * slotRow);
+        int cursorWidth = gamePanel.tileSize;
+        int cursorHeight = gamePanel.tileSize;
+
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX - 135, cursorY + 172, cursorWidth, cursorHeight, 10, 10);
+    }
+
+    private void drawItemsInMenu(SuperObject kompor, int slotXStart, int slotX, int slotY, int slotSize, List<Asset> menu) {
+        for (int i = 0; i < menu.size(); i++) {
+            Asset object = menu.get(i);
+            g2.drawImage(object.getImage1(), slotX - 130, slotY + 180, null);
+
+            slotX += slotSize;
+
+            if (i == 4 || i == 9 || i == 14) {
+                slotX = slotXStart;
+                slotY += slotSize;
+            }
+        }
+    } //
+
+    private void drawMenuDescriptionText(List<Asset> menu, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
+        // DRAW DESCRIPTION TEXT
+        int textX = descriptionFrameX + 50;
+        int textY = descriptionFrameY + gamePanel.tileSize / 3;
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
+
+        int itemIndex = getItemIndexFromSlot(slotCol, slotRow);
+
+        if (itemIndex < menu.size()) {
+
+            drawSubWindowDesc(descriptionFrameX +  31, descriptionFrameY - 30, descriptionFrameWidth, descriptionFrameHeight);
+
+            for (String line : menu.get(itemIndex).getDescription().split("\n")) {
+                g2.drawString(line, textX, textY + 210);
+                textY += 25;
+            }
+        }
+    }
+
     public int getItemIndexFromSlot(int slotCol, int slotRow) {
         int itemIndex = slotCol + (slotRow * 5);
         return itemIndex;
@@ -729,6 +920,24 @@ public class UI {
 
     public UI setSubState(int subState) {
         this.subState = subState;
+        return this;
+    }
+
+    public int getKomporSlotCol() {
+        return komporSlotCol;
+    }
+
+    public UI setKomporSlotCol(int komporSlotCol) {
+        this.komporSlotCol = komporSlotCol;
+        return this;
+    }
+
+    public int getKomporSlotRow() {
+        return komporSlotRow;
+    }
+
+    public UI setKomporSlotRow(int komporSlotRow) {
+        this.komporSlotRow = komporSlotRow;
         return this;
     }
 

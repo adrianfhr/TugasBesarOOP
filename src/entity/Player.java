@@ -67,7 +67,7 @@ public class Player extends Entity{
         jamTidur = 4 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
-        jamMemasak = 0;  //karena berubah-ubah tergantung masakannya
+        jamMemasak = 30 * 2;  //karena berubah-ubah tergantung masakannya
         jamBerkunjung = 30 * 2;
         jamMules = 10 * 2;
         jamTidakMules = 4 * 60 * 2;
@@ -171,10 +171,11 @@ public class Player extends Entity{
                     //BELUM TAU ISINYA GMNA
                 }
 
-                // if(jamMemasak == 0){
+                if(jamMemasak == 0){
                 //     //belum tau isinya
-                //     setMood(getMood() + 10);
-                // }
+                    interactOBJ();
+                    setMood(getMood() + 10);
+                }
 
                 if(jamBerkunjung == 0){
                     setMood(getMood() + 10);

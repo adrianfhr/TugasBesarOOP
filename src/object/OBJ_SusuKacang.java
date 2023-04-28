@@ -19,7 +19,7 @@ public class OBJ_SusuKacang extends Makanan{
 
         try{
             image = ImageIO.read(new File("././res/object/susu_kacang.png"));
-            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize));
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 3/4, gamePanel.tileSize * 3/4));
         }
         catch (IOException e){
             e.printStackTrace();

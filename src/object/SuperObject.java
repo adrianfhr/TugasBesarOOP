@@ -47,21 +47,6 @@ public abstract class SuperObject implements Asset{
         
     }
 
-    public void selectMenu() {
-        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getMenuSlotCol(), gamePanel.ui.getMenuSlotRow());
-
-        if (itemIndex < getMenu().size()) {
-            Asset selectedItem = getMenu().get(itemIndex);
-
-            for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                if (recipe.equals(new OBJ_Nasi(gamePanel)) && recipe.equals(new OBJ_Ayam(gamePanel)) && selectedItem.equals(new OBJ_NasiAyam(gamePanel))){
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(recipe);
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
-                }
-            }
-        }
-    }
-
     public String getName() {
         return name;
     }

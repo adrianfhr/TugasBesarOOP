@@ -74,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int optionState = 6;
     public final int transitionState = 7;
     public final int gameOverState = 8;
+    public final int masakState = 9;
 
 
     //state non-aktif

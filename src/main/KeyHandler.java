@@ -61,12 +61,13 @@ public class KeyHandler implements KeyListener {
                 ePressed = false;
                 gamePanel.isActiveAction = false;
             }
-        } else if (gamePanel.getGameState() == gamePanel.interactObjState){
+        } else if (gamePanel.getGameState() == gamePanel.interactObjState && gamePanel.getGameState() == gamePanel.masakState){
             if(code == KeyEvent.VK_E ){
                 ePressed = false;
                 gamePanel.isActiveAction = false;
+                checkMasakStateKeys(code);
             }
-        }
+        } 
         
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
@@ -97,6 +98,17 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_E) {
             gamePanel.setGameState(gamePanel.interactObjState);
             gamePanel.isActiveAction = false;
+        }
+    }
+
+    private void checkMasakStateKeys(int code){
+        if (code == KeyEvent.VK_E) {
+            ePressed = true;
+            gamePanel.isActiveAction = false;
+        }
+        playerInventoryMovement(code);
+        if (code == KeyEvent.VK_ESCAPE){
+            gamePanel.setGameState(gamePanel.playState);
         }
     }
 
