@@ -49,20 +49,20 @@ public class GamePanel extends JPanel implements Runnable {
     public int currentMap = 0;
     public int currentPlayer = 0;
 
+    //entity and object
+    public Player player[] = new Player[10];
+    public SuperObject obj[][] = new SuperObject[maxMap][10];
+
     //SYSTEM SETTINGS
-    TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
+    TileManager tileManager = new TileManager(this);
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public int clock;
     private final Config config = new Config(this);
     
-    //entity and object
-    public Player player[] = new Player[10];
-    public SuperObject obj[][] = new SuperObject[maxMap][10];
-
     //state
     public int gameState = 0;
     public final int titleState = 0;
@@ -96,9 +96,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
+         player[0] = new Player(this, keyHandler, "Player 1", 1);
          assetSetter.setObject();
          gameState = titleState;
-         makePlayer("Joko");
          tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
          gps2d = (Graphics2D) tempScreen.getGraphics();
         if (fullScreenOn) {
