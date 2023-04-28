@@ -7,33 +7,12 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, mPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed;
     public int limit = 1;
      
     public KeyHandler(GamePanel gamePanel){
         this.gamePanel = gamePanel;
     }
-    @Override
-    // public void keyPressed(KeyEvent e) {
-    //     // TODO Auto-generated method stub
-    //     int code = e.getKeyCode();
-    //     if(code == KeyEvent.VK_W){
-    //         upPressed = true;
-    //     }
-    //     if(code == KeyEvent.VK_S){
-    //         downPressed = true;
-    //     }
-    //     if(code == KeyEvent.VK_A){
-    //         leftPressed = true;
-    //     }
-    //     if(code == KeyEvent.VK_D){
-    //         rightPressed = true;
-    //     }
-    //     if(code == KeyEvent.VK_E){
-    //         ePressed = true;
-    //     }
-
-    // }
 
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -63,7 +42,9 @@ public class KeyHandler implements KeyListener {
             }
         } else if (gamePanel.getGameState() == gamePanel.masakState){
             checkMasakStateKeys(code);
-        }        
+        } else if (gamePanel.getGameState() == gamePanel.gameEventState){
+            checkGameEventStateKeys(code);
+        }
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
 
@@ -100,6 +81,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_E) {
             gamePanel.setGameState(gamePanel.interactObjState);
             gamePanel.isActiveAction = false;
+        }
+        if (code == KeyEvent.VK_SPACE){
+            gamePanel.setGameState(gamePanel.gameEventState);
         }
     }
 
@@ -322,6 +306,40 @@ public class KeyHandler implements KeyListener {
                     gamePanel.getSoundEffect().setVolumeScale(gamePanel.getSoundEffect().getVolumeScale() + 1);
                     gamePanel.playSoundEffect(8);
                 }
+            }
+        }
+    }
+
+    private void checkGameEventStateKeys(int code) {
+        if (code == KeyEvent.VK_SPACE) {
+            gamePanel.setGameState(gamePanel.playState);
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+
+        int maxCommandNumber;
+
+        switch (gamePanel.ui.getSubState()) {
+            case 0 -> maxCommandNumber = 6;
+            case 3 -> maxCommandNumber = 1;
+            default -> maxCommandNumber = 6;
+        }
+
+        if (code == KeyEvent.VK_W) {
+            gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
+            gamePanel.playSoundEffect(8);
+            if (gamePanel.ui.getCommandNumber() < 0) {
+                gamePanel.ui.setCommandNumber(maxCommandNumber);
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
+            gamePanel.playSoundEffect(8);
+            if (gamePanel.ui.getCommandNumber() > maxCommandNumber) {
+                gamePanel.ui.setCommandNumber(0);
             }
         }
     }

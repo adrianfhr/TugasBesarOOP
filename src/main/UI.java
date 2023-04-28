@@ -90,6 +90,8 @@ public class UI {
             }else{
                 masak();
             }
+        } else if (gamePanel.getGameState() == gamePanel.gameEventState){
+            drawGameEventScreen();
         }
     }
 
@@ -333,7 +335,6 @@ public class UI {
         g2.drawRoundRect(x + 5, y + 165, width - 10, height - 10, 25, 25);
     }
 
-
     public void drawSubWindowInventory(int x, int y, int width, int height) {
         Color color = new Color(0, 0, 0, 210);
         g2.setColor(color);
@@ -501,6 +502,103 @@ public class UI {
         g2.setColor(color);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 210, width - 10, height - 10, 25, 25);
+    }
+
+    private void drawGameEventScreen() {
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+
+        // SUB WINDOW
+        int frameX = gamePanel.tileSize / 3 * 11;
+        int frameY = gamePanel.tileSize / 3 * 9;
+        int frameWidth = gamePanel.tileSize / 3 * 25;
+        int frameHeight = gamePanel.tileSize / 3 * 20;
+
+        drawSubWindow(frameX, frameY, frameWidth + 50, frameHeight + 100);
+
+        switch (subState) {
+            case 0 -> gameEventTop(frameX, frameY);
+            // case 1 -> beliBarang(frameX, frameY);
+        }
+
+        gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    private void gameEventTop(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "Game Event";
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY = frameY + gamePanel.tileSize / 3 + 35;
+        g2.drawString(text, textX + 13, textY);
+
+        // BELI BARANG
+        textX = frameX + gamePanel.tileSize / 3;
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Beli Barang", textX + 30, textY + 30);
+        if (commandNumber == 0) {
+            g2.drawString(">", textX + 10, textY + 30);
+        }
+
+        // KERJA
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Kerja", textX + 30, textY + 45);
+        if (commandNumber == 1) {
+            g2.drawString(">", textX + 10, textY + 45);
+        }
+
+        // UPGRADE RUMAH
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Upgrade Rumah", textX + 30, textY + 60);
+        if (commandNumber == 2) {
+            g2.drawString(">", textX + 10, textY + 60);
+        }
+
+        // NEW PLAYER
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("New Player", textX + 30, textY + 75);
+        if (commandNumber == 3) {
+            g2.drawString(">", textX + 10, textY + 75);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 2;
+                commandNumber = 0;
+            }
+        }
+
+        // CHANGE PLAYER
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Change Player", textX + 30, textY + 90);
+        if (commandNumber == 4) {
+            g2.drawString(">", textX + 10, textY + 90);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 3;
+                commandNumber = 0;
+            }
+        }
+
+        // PUNYA ISTRI
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Punya Istri", textX + 30, textY + 105);
+        if (commandNumber == 5) {
+            g2.drawString(">", textX + 10, textY + 105);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 3;
+                commandNumber = 0;
+            }
+        }
+
+        // BACK
+        textY += gamePanel.tileSize / 3 * 2;
+        g2.drawString("Back", textX + 30, textY + 120);
+        if (commandNumber == 6) {
+            g2.drawString(">", textX + 10, textY + 120);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setGameState(gamePanel.playState);
+                commandNumber = 0;
+            }
+        }
     }
 
     private void drawOptionScreen() {
