@@ -18,6 +18,7 @@ public class OBJ_KomporGas extends SuperObject {
         this.width = 2;
         setName("Kompor Gas");
         setDescription("Memasak");
+        setPrice(100);
         setMenu();
 
         try{

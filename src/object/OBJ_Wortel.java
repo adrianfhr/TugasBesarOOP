@@ -13,7 +13,7 @@ public class OBJ_Wortel extends BahanMakanan {
         this.gamePanel = gamePanel;
         setName("Wortel");
         setDescription("[" + getName() + "]\nUntuk kesehatan MUATAMU \nlho mas.");
-        setHarga(3);
+        setPrice(3);
         setKekenyanganValue(2);
 
         try {

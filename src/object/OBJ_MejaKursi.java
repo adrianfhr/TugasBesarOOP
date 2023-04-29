@@ -16,6 +16,7 @@ public class OBJ_MejaKursi extends SuperObject {
         this.height = 3;
         this.width = 3;
         setName("Meja Kursi");
+        setPrice(50);
 
         try{
             image = ImageIO.read(new File("././res/object/mejakursi.png"));

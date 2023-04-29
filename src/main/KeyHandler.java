@@ -357,6 +357,11 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ESCAPE) {
                 gamePanel.ui.setSubState(0);
             }
+            if (code == KeyEvent.VK_ENTER) {
+                enterPressed = true;
+                gamePanel.player[gamePanel.currentPlayer].beliBarang();
+                gamePanel.playSoundEffect(12);
+            }
         }
 
         int maxCommandNumber;

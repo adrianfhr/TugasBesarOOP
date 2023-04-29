@@ -13,7 +13,7 @@ public class OBJ_Susu extends BahanMakanan {
         this.gamePanel = gamePanel;
         setName("Susu");
         setDescription("[" + getName() + "]\nDari sapi, bukan yang lain.");
-        setHarga(2);
+        setPrice(2);
         setKekenyanganValue(1);
 
         try {

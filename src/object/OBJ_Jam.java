@@ -16,6 +16,7 @@ public class OBJ_Jam extends SuperObject{
         this.height = 1;
         this.width = 1;
         setName("Jam");
+        setPrice(10);
         
         try {
             image = ImageIO.read(new File("././res/object/jam.png"));

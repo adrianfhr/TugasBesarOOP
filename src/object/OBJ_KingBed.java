@@ -16,6 +16,7 @@ public class OBJ_KingBed extends SuperObject{
         this.height = 5;
         this.width = 2;
         setName(" King Bed");
+        setPrice(150);
         
         try {
             image = ImageIO.read(new File("././res/object/king_bed.png"));

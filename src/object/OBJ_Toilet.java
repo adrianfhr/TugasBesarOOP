@@ -16,6 +16,7 @@ public class OBJ_Toilet extends SuperObject{
         this.height = 2;
         this.width = 2;
         setName("Toilet");
+        setPrice(50);
 
         try{
             image = ImageIO.read(new File("././res/object/toilet.png"));

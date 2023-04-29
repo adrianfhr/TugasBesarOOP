@@ -462,4 +462,22 @@ public class Player extends Entity{
             getDagangan().add(new OBJ_MejaKursi(gamePanel));
             getDagangan().add(new OBJ_Jam(gamePanel));
         }
+
+        public void beliBarang(){
+            int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getDaganganSlotCol(), gamePanel.ui.getDaganganSlotRow());
+
+        if (itemIndex < getDagangan().size()) {
+            Asset selectedItem = getDagangan().get(itemIndex);
+            if (selectedItem instanceof SuperObject){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
+                } else {
+                    gamePanel.ui.setSubState(0);
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Oopss!! Uang tidak cukup");
+                }
+            }
+        }
+        }
 }

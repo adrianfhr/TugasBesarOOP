@@ -25,6 +25,7 @@ public abstract class SuperObject implements Asset{
     protected BufferedImage image1;
     private List<Asset> menu = new ArrayList<>();
     private List<Asset> dagangan = new ArrayList<>();
+    private int price;
     
     public SuperObject(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -86,6 +87,15 @@ public abstract class SuperObject implements Asset{
 
     public List<Asset> getMenu() {
         return menu;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Object setPrice(int price) {
+        this.price = price;
+        return this;
     }
 
     abstract public void setsolidArea();

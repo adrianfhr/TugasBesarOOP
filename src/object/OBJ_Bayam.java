@@ -15,7 +15,7 @@ public class OBJ_Bayam extends BahanMakanan{
         this.gamePanel = gamePanel;
         setName("Bayam");
         setDescription("[" + getName() + "]\nKesukaan si Popeye.");
-        setHarga(3);
+        setPrice(3);
         setKekenyanganValue(2);
 
         try {

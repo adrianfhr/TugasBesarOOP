@@ -18,6 +18,7 @@ public class OBJ_KomporListrik extends SuperObject {
         setName("Kompor Listrik");
         setDescription("Memasak");
         setMenu();
+        setPrice(200);
 
         try{
             image = ImageIO.read(new File("././res/object/kompor_listrik.png"));
