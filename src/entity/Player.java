@@ -374,8 +374,8 @@ public class Player extends Entity{
                 case "Nasi Ayam":
                     if(hasAyam && hasNasi){
                         gamePanel.isActiveAction = true;
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Ayam(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Ayam");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
                     }else{
                         gamePanel.isActiveAction = false;
@@ -387,8 +387,8 @@ public class Player extends Entity{
                 case "Bistik":
                     if(hasBeef && hasKentang){
                         gamePanel.isActiveAction = true;
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Beef(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kentang(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
                         break;
                     }else{
@@ -399,10 +399,10 @@ public class Player extends Entity{
                 case "Nasi Kari":
                     if(hasNasi && hasKentang && hasWortel && hasBeef){
                         gamePanel.isActiveAction = true;
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Nasi(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kentang(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Wortel(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Beef(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
                         
                     }else{
@@ -413,8 +413,8 @@ public class Player extends Entity{
                 case "Susu Kacang":
                     if(hasSusu && hasKacang){
                         gamePanel.isActiveAction = true;
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Susu(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Kacang(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Susu");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Kacang");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
                         
                     }else{
@@ -425,8 +425,8 @@ public class Player extends Entity{
                 case "Tumis Sayuran":
                     if(hasBayam && hasWortel){
                         gamePanel.isActiveAction = true;
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Bayam(gamePanel));
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(new OBJ_Wortel(gamePanel));
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Bayam");
+                        gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");  
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
                         
                     }else{

@@ -9,6 +9,7 @@ import java.util.List;
 import main.GamePanel;
 import object.Asset;
 import object.BahanMakanan;
+import object.OBJ_Ayam;
 
 public class Entity {
     public int worldX, worldY;
@@ -81,4 +82,16 @@ public class Entity {
         this.dialogueIndex = dialogueIndex;
     }
 
+
+    public void useInventory(String name){
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getName().equals(name)) {
+                inventory.remove(i);
+            }
+        }
+    }
+
+
+
+    
 }
