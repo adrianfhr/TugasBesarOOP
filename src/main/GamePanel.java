@@ -87,6 +87,8 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isPassiveAction = false;
     public boolean isInputAction = false;
     private boolean fullScreenOn;
+
+    public boolean isNPC = false;
     
     
 

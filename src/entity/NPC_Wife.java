@@ -184,11 +184,10 @@ public class NPC_Wife extends Entity {
     }
 
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            setDialogueIndex(0);
+        if (getDialogues()[dialogueIndex] == null) {
+            dialogueIndex = 0;
         }
-
-        gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
-        dialogueIndex++;
+            gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
+            dialogueIndex++;
     }
 }

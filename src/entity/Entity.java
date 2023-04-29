@@ -77,9 +77,8 @@ public class Entity {
         return dialogueIndex;
     }
 
-    public Entity setDialogueIndex(int dialogueIndex) {
+    public void setDialogueIndex(int dialogueIndex) {
         this.dialogueIndex = dialogueIndex;
-        return this;
     }
 
 }
