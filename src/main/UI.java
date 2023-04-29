@@ -773,7 +773,7 @@ public class UI {
                 gamePanel.setGameState(gamePanel.titleState);
                 titleScreenState = 0;
                 commandNumber = 0;
-                // gamePanel.stopMusic();
+                gamePanel.stopMusic();
             }
         }
 
