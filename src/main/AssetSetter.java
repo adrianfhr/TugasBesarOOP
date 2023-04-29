@@ -36,7 +36,7 @@ public class AssetSetter {
         gamePanel.obj[1][3].worldX = 49 * gamePanel.tileSize;
         gamePanel.obj[1][3].worldY = 48 * gamePanel.tileSize;
 
-        gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel);
+        gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel, 1);
         gamePanel.obj[0][0].worldX = 33 * gamePanel.tileSize;
         gamePanel.obj[0][0].worldY = 20 * gamePanel.tileSize;
 
@@ -51,32 +51,32 @@ public class AssetSetter {
 
     }
 
-    public void makeOBJ(String objek){
+    public void makeOBJ(String objek, int map, int player){
         int index = 0;
-        while (gamePanel.obj[gamePanel.currentMap][index] != null) {
+        while (gamePanel.obj[map][index] != null) {
             index++;
-            if (index == gamePanel.obj[gamePanel.currentMap].length) {
+            if (index == gamePanel.obj[map].length) {
                 System.out.println("Array penuh, tidak bisa menambahkan objek baru!");
                 return;
             }
         }
 
-        String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
-        String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
-        int worldX = Integer.parseInt(x);
-        int worldY = Integer.parseInt(y);
-
-
         if(objek.equals("rumah")){
+            String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
+            String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
+            int worldX = Integer.parseInt(x);
+            int worldY = Integer.parseInt(y);
             gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
-            gamePanel.obj[gamePanel.currentMap][index] = new OBJ_Rumah(gamePanel);
-            gamePanel.obj[gamePanel.currentMap][index].worldX = worldX * gamePanel.tileSize;
-            gamePanel.obj[gamePanel.currentMap][index].worldY = worldY * gamePanel.tileSize;
-            if(gamePanel.obj[gamePanel.currentMap][index] != null){
-                System.out.println("Rumah berhasil dibuat");
-            }else{
-                System.out.println("Rumah gagal dibuat");
-            }
+            gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
+            gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+            gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+            
+        }if(objek.equals("Pintu")){
+            
+            gamePanel.obj[map][index] = new OBJ_Pintu(gamePanel);
+            gamePanel.obj[map][index].worldX = 53 * gamePanel.tileSize;
+            gamePanel.obj[map][index].worldY = 53 * gamePanel.tileSize;
+          
         }
     }
 

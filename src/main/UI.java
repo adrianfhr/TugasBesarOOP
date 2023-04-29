@@ -679,8 +679,11 @@ public class UI {
         if (commandNumber == 3) {
             g2.drawString(">", textX + 10, textY + 75);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                subState = 2;
+                subState = 0;
                 commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+                gamePanel.makePlayer();
+
             }
         }
 
@@ -690,8 +693,11 @@ public class UI {
         if (commandNumber == 4) {
             g2.drawString(">", textX + 10, textY + 90);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                subState = 3;
+                subState = 0;
                 commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+                gamePanel.changePlayer();
+              
             }
         }
 

@@ -11,13 +11,15 @@ import main.GamePanel;
 
 public class OBJ_Rumah extends SuperObject{
     GamePanel gamePanel;
+    int pemilik;
 
-    public OBJ_Rumah(GamePanel gamePanel){
+    public OBJ_Rumah(GamePanel gamePanel, int pemilik){
         super(gamePanel);
         this.gamePanel = gamePanel;
         this.height = 3;
         this.width = 3;
         setName("Rumah");
+        this.pemilik = pemilik;
         
         try {
             image = ImageIO.read(new File("././res/object/rumah.png"));
@@ -38,8 +40,12 @@ public class OBJ_Rumah extends SuperObject{
     }
 
     public void interact(Player player ){
-        gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, 1);
-        gamePanel.playSoundEffect(2);
+        if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
+            gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
+            gamePanel.playSoundEffect(2);
+        }else{ 
+            System.out.println("Berkunjung");
+        }
     }
 
 
