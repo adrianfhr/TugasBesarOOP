@@ -362,13 +362,24 @@ public class KeyHandler implements KeyListener {
                 gamePanel.player[gamePanel.currentPlayer].beliBarang();
                 gamePanel.playSoundEffect(12);
             }
+        
+        if (gamePanel.ui.getSubState() == 2){
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.ui.setSubState(0);
+            }
+            // if (code == KeyEvent.VK_ENTER) {
+            //     enterPressed = true;
+            //     gamePanel.player[gamePanel.currentPlayer].jualBarang();
+            //     gamePanel.playSoundEffect(12);
+            // }
+        }
         }
 
         int maxCommandNumber;
 
         switch (gamePanel.ui.getSubState()) {
             case 0 -> maxCommandNumber = 6;
-            case 3 -> maxCommandNumber = 1;
+            case 2 -> maxCommandNumber = 5;
             default -> maxCommandNumber = 6;
         }
 

@@ -10,6 +10,7 @@ import main.GamePanel;
 
 public class OBJ_KomporGas extends SuperObject {
     GamePanel gamePanel;
+    String stateObject;
 
     public OBJ_KomporGas(GamePanel gamePanel){
         super(gamePanel);
@@ -17,7 +18,8 @@ public class OBJ_KomporGas extends SuperObject {
         this.height = 1;
         this.width = 2;
         setName("Kompor Gas");
-        setDescription("Memasak");
+        stateObject = "Memasak";
+        setDescription("[" + getName() + "]\nUntuk memasak.");
         setPrice(100);
         setMenu();
 

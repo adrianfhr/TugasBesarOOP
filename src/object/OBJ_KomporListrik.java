@@ -9,14 +9,15 @@ import main.GamePanel;
 
 public class OBJ_KomporListrik extends SuperObject {
     GamePanel gamePanel;
-
+    String stateObject;
     public OBJ_KomporListrik(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
         this.height = 1;
         this.width = 2;
+        stateObject = "Memasak";
         setName("Kompor Listrik");
-        setDescription("Memasak");
+        setDescription("[" + getName() + "]\nSama aja kayak kompor gas,\ntapi pake listrik.\n(Orang mampu only)");
         setMenu();
         setPrice(200);
 
