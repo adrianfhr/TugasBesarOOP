@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
@@ -48,6 +49,8 @@ public class UI {
     private int komporSlotRow;
     private int daganganSlotCol;
     private int daganganSlotRow;
+    private List<String> messages = new ArrayList<>();
+    private List<Integer> messageCounter = new ArrayList<>();
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -64,6 +67,7 @@ public class UI {
         }
         else if ((gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState) && !gamePanel.isInputAction){
             drawCharacterScreen();
+            drawMessages();
             
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
@@ -94,6 +98,8 @@ public class UI {
             }
         } else if (gamePanel.getGameState() == gamePanel.gameEventState){
             drawGameEventScreen();
+        } else if (gamePanel.getGameState() == gamePanel.dialogueState) {
+            drawDialogueScreen();
         }
     }
 
@@ -267,7 +273,51 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
 
-        g2.drawString("Player sedang " + gamePanel.player[gamePanel.currentPlayer].getState() + "...",frameX*10+18 ,frameY + 100);
+        g2.drawString("Player sedang " + gamePanel.player[gamePanel.currentPlayer].getState() + "...",frameX*9 + 12 ,frameY + 100);
+    }
+
+    public void addMessage(String text) {
+        messages.add(text);
+        messageCounter.add(0);
+    }
+
+    private void drawMessages() {
+        int messageX = gamePanel.tileSize;
+        int messageY = gamePanel.tileSize * 7;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+
+        for (int i = 0; i < messages.size(); i++) {
+            if (messages.get(i) != null) {
+                g2.setColor(Color.BLACK);
+                g2.drawString(messages.get(i), messageX + 2, messageY + 2);
+                g2.setColor(Color.WHITE);
+                g2.drawString(messages.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);
+                messageY += 50;
+
+                if (messageCounter.get(i) > 180) {
+                    messages.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+    }
+
+    private void drawDialogueScreen() {
+        int x = gamePanel.tileSize * 3;
+        int y = gamePanel.tileSize / 2;
+        int width = gamePanel.screenWidth - (gamePanel.tileSize * 6);
+        int height = gamePanel.tileSize * 4;
+
+        drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gamePanel.tileSize;
+        y += gamePanel.tileSize;
+
+        splitAndDrawDialogue(x, y);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){
@@ -723,7 +773,7 @@ public class UI {
                 gamePanel.setGameState(gamePanel.titleState);
                 titleScreenState = 0;
                 commandNumber = 0;
-                // gamePanel.stopMusic();
+                gamePanel.stopMusic();
             }
         }
 

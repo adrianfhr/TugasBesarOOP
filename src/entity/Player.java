@@ -144,7 +144,8 @@ public class Player extends Entity{
         }
     
 
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){                
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){
+            System.out.println(gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription());                
             interactOBJ();
             keyHandler.ePressed = false;   
         }
@@ -300,9 +301,16 @@ public class Player extends Entity{
 
     //
     public void interactOBJ(){
-        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting)){
+        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
+        } else{
+            interactWithNPC(targetIndex);
         }
+    }
+
+    public void interactWithNPC(int index) {
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.npc[0].speak();
     }
 
     public void teleport(int x, int y, int map) {

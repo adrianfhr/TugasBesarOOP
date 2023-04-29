@@ -179,6 +179,7 @@ public class CollisionChecker {
                                 
                             entity.targetIndex = i;
                             entity.isInteracting = true;
+                            gamePanel.isNPC = true;
                          ;
                         }
                         break;
@@ -189,6 +190,7 @@ public class CollisionChecker {
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
+                            gamePanel.isNPC = true;
                         }
                         break;
                     case "left":
@@ -199,6 +201,7 @@ public class CollisionChecker {
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
+                            gamePanel.isNPC = true;
                         }
                         break;
                     case "right":
@@ -208,6 +211,7 @@ public class CollisionChecker {
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
+                            gamePanel.isNPC = true;
                         }
                         break;
                     default:

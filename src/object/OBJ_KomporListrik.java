@@ -16,6 +16,8 @@ public class OBJ_KomporListrik extends SuperObject {
         this.height = 1;
         this.width = 2;
         setName("Kompor Listrik");
+        setDescription("Memasak");
+        setMenu();
 
         try{
             image = ImageIO.read(new File("././res/object/kompor_listrik.png"));
@@ -27,6 +29,14 @@ public class OBJ_KomporListrik extends SuperObject {
         
         this.collision = true;
         setsolidArea();
+    }
+
+    public void setMenu(){
+        getMenu().add(new OBJ_Bistik(gamePanel));
+        getMenu().add(new OBJ_NasiKari(gamePanel));
+        getMenu().add(new OBJ_NasiAyam(gamePanel));
+        getMenu().add(new OBJ_SusuKacang(gamePanel));
+        getMenu().add(new OBJ_TumisSayur(gamePanel));
     }
 
     public void setsolidArea(){

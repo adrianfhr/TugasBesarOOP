@@ -14,6 +14,8 @@ import main.UtilityTool;
 
 public class NPC_Wife extends Entity {
     GamePanel gamePanel;
+    private String[] dialogues = new String[20];
+    private int dialogueIndex;
 
 
     public NPC_Wife(GamePanel gamePanel) {
@@ -31,8 +33,9 @@ public class NPC_Wife extends Entity {
 
         direction = "down";
         speed = 1;
-
+        gamePanel.setGameState(gamePanel.dialogueState);
         getNPCImage();
+        setDialogue();
     }
 
     public void getNPCImage(){
@@ -171,5 +174,20 @@ public class NPC_Wife extends Entity {
 
             spriteCounter = 0;
         }
+    }
+
+    public void setDialogue() {
+        getDialogues()[0] = "Hello, lad.";
+        getDialogues()[1] = "So you've come to this island to find \nthe treasure?";
+        getDialogues()[2] = "I used to be a great wizard, but now... \nI'm a bit too old for adventuring.";
+        getDialogues()[3] = "Well, good luck to you lad.";
+    }
+
+    public void speak() {
+        if (getDialogues()[dialogueIndex] == null) {
+            dialogueIndex = 0;
+        }
+            gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
+            dialogueIndex++;
     }
 }
