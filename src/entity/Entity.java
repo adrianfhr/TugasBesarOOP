@@ -27,7 +27,8 @@ public class Entity {
     private List<Asset> dagangan = new ArrayList<>();
     private BahanMakanan currentBahanMakanan;
     private int Kekenyangan;
-
+    private String[] dialogues = new String[20];
+    private int dialogueIndex;
 
     public List<Asset> getInventory() {
         return inventory;
@@ -62,4 +63,23 @@ public class Entity {
     public List<Asset> getDagangan() {
         return dagangan;
     }
+
+    public String[] getDialogues() {
+        return dialogues;
+    }
+
+    public Entity setDialogues(String[] dialogues) {
+        this.dialogues = dialogues;
+        return this;
+    }
+
+    public int getDialogueIndex() {
+        return dialogueIndex;
+    }
+
+    public Entity setDialogueIndex(int dialogueIndex) {
+        this.dialogueIndex = dialogueIndex;
+        return this;
+    }
+
 }

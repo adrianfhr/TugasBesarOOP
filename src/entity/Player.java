@@ -159,7 +159,8 @@ public class Player extends Entity{
         gamePanel.collisionChecker.checkObject(this, true);
 
         //check npc collision
-        int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+        checkNPCCollision();
+        
 
 
         //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
@@ -237,6 +238,11 @@ public class Player extends Entity{
         g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 
+    public void checkNPCCollision(){
+        int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+        interactWithNPC(npcIndex);
+    }
+
     // method untuk mengatur dan memengirim nilai atribut
     public String getName(){
         return name;
@@ -302,6 +308,15 @@ public class Player extends Entity{
     public void interactOBJ(){
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
+        }
+    }
+
+    private void interactWithNPC(int index) {
+        if (index != 999) {
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setGameState(gamePanel.dialogueState);
+                gamePanel.npc[0].speak();
+            }
         }
     }
 

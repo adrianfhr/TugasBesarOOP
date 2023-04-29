@@ -193,7 +193,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
         } 
-        
+
         else if (gameState == interactObjState){
             player[currentPlayer].update();
         } //else if(gameState == masakState) player[currentPlayer].update();
