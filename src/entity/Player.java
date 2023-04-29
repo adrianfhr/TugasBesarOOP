@@ -130,8 +130,8 @@ public class Player extends Entity{
             gamePanel.gameState = gamePanel.interactObjState;
 
 
-            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle") && isInteracting){
-                state = gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription();
+            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting){
+                state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 
@@ -144,7 +144,7 @@ public class Player extends Entity{
         }
     
 
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){          
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")){          
             interactOBJ();
             keyHandler.ePressed = false;   
         }

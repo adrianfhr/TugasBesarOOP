@@ -26,10 +26,13 @@ public abstract class SuperObject implements Asset{
     private List<Asset> menu = new ArrayList<>();
     private List<Asset> dagangan = new ArrayList<>();
     private int price;
+    private String stateOBJ;
     
     public SuperObject(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         setDescription("idle");
+        setStateOBJ("Idle");
+        
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){
@@ -96,6 +99,14 @@ public abstract class SuperObject implements Asset{
     public Object setPrice(int price) {
         this.price = price;
         return this;
+    }
+
+    public void setStateOBJ(String stateOBJ) {
+        this.stateOBJ = stateOBJ;
+    }
+
+    public String getState(){
+        return stateOBJ;
     }
 
     abstract public void setsolidArea();

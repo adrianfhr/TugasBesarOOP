@@ -18,6 +18,7 @@ public class OBJ_SingleBed extends SuperObject{
         this.height = 4;
         this.width = 1;
         setDescription("Tidur");
+        setStateOBJ("Tidur");
         setName("Single Bed");
         setPrice(50);
         

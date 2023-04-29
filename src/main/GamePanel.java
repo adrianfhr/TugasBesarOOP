@@ -378,7 +378,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if(player[currentPlayer].jamBerkunjung == 0){
             //MASIH BINGUNG
-            
+
         }
 
     }

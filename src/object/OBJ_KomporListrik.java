@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Player;
 import main.GamePanel;
 
 public class OBJ_KomporListrik extends SuperObject {
@@ -17,6 +18,7 @@ public class OBJ_KomporListrik extends SuperObject {
         this.width = 2;
         setName("Kompor Listrik");
         setDescription("Memasak");
+        setStateOBJ("Memasak");
         setMenu();
         setPrice(200);
 
@@ -45,5 +47,8 @@ public class OBJ_KomporListrik extends SuperObject {
         solidArea.y = worldY;
         solidArea.width = gamePanel.tileSize * width;
         solidArea.height = gamePanel.tileSize * height;
+    }
+    public void interact(Player player){
+        gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
     }
 }
