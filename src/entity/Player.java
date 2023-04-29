@@ -144,8 +144,7 @@ public class Player extends Entity{
         }
     
 
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){
-            System.out.println(gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription());                
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getDescription().equals("idle")){          
             interactOBJ();
             keyHandler.ePressed = false;   
         }

@@ -189,5 +189,12 @@ public class NPC_Wife extends Entity {
         }
             gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
             dialogueIndex++;
+
+            switch (gamePanel.player[gamePanel.currentPlayer].direction) {
+                case "up" -> direction = "down";
+                case "down" -> direction = "up";
+                case "left" -> direction = "right";
+                case "right" -> direction = "left";
+            }
     }
 }

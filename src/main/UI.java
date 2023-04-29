@@ -317,7 +317,7 @@ public class UI {
         x += gamePanel.tileSize;
         y += gamePanel.tileSize;
 
-        splitAndDrawDialogue(x, y);
+        splitAndDrawDialogue(x-55, y-30);
     }
 
     public void drawInventoryScreen(Entity entity, boolean cursor){
