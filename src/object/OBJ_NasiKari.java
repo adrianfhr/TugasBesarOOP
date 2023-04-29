@@ -30,5 +30,6 @@ public class OBJ_NasiKari extends Makanan{
         gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue());
         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
         gamePanel.playSoundEffect(12);
+        gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
     }
 }

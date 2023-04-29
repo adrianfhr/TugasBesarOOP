@@ -631,10 +631,104 @@ public class UI {
         switch (subState) {
             case 0 -> gameEventTop(frameX, frameY);
             case 1 -> drawDaganganScreen(gamePanel.player[gamePanel.currentPlayer], true);
-            case 2 -> gamePanel.makePlayer(); // MASIH BUG NGELOOP GITU
+            case 2 -> selectJobScreen(frameX, frameY);
         }
 
         gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    private void selectJobScreen(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "Select Your Job!";
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY = frameY + gamePanel.tileSize / 3 + 35;
+        g2.drawString(text, textX + 13, textY);
+
+        // BELI BARANG
+        textX = frameX + gamePanel.tileSize / 3;
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Badut Sulap", textX + 30, textY + 30);
+        if (commandNumber == 0) {
+            g2.drawString(">", textX + 10, textY + 30);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.isActiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Hari hari jadi badut :((";
+                splitAndDrawDialogue(textX, textY);
+            }
+        }
+
+        // KERJA
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Koki", textX + 30, textY + 45);
+        if (commandNumber == 1) {
+            g2.drawString(">", textX + 10, textY + 45);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.isActiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Hope Gordon Ramsay won't\nkill me this time...";
+                splitAndDrawDialogue(textX, textY);
+            }
+        }
+
+        // UPGRADE RUMAH
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Polisi", textX + 30, textY + 60);
+        if (commandNumber == 2) {
+            g2.drawString(">", textX + 10, textY + 60);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.isActiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Siap mengayomi dan melindungi\nmasyarakat!!";
+                splitAndDrawDialogue(textX, textY);
+            }
+        }
+
+        // NEW PLAYER
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Programmer", textX + 30, textY + 75);
+        if (commandNumber == 3) {
+            g2.drawString(">", textX + 10, textY + 75);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.isActiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Not sure if I am a good\nprogrammer or good at googling...";
+                splitAndDrawDialogue(textX, textY);
+            }
+        }
+
+        // NEW PLAYER
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Dokter", textX + 30, textY + 90);
+        if (commandNumber == 4) {
+            g2.drawString(">", textX + 10, textY + 90);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.isActiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Kami sudah berusaha semaksimal\nmungkin...";
+                splitAndDrawDialogue(textX, textY);
+            }
+        }
+
+        // BACK
+        textX = frameX + gamePanel.tileSize / 3;
+        textY = frameY + gamePanel.tileSize / 3 * 9;
+        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 200);
+        if (commandNumber == 5) {
+            g2.drawString(">", textX + 9, textY + 200);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                commandNumber = 0;
+            }
+        }
     }
 
     private void gameEventTop(int frameX, int frameY){
@@ -642,7 +736,7 @@ public class UI {
         int textY;
 
         // TITLE
-        String text = "Game Event";
+        String text = "Options";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
         textY = frameY + gamePanel.tileSize / 3 + 35;
         g2.drawString(text, textX + 13, textY);
@@ -664,6 +758,10 @@ public class UI {
         g2.drawString("Kerja", textX + 30, textY + 45);
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 2;
+                commandNumber = 0;
+            }
         }
 
         // UPGRADE RUMAH
