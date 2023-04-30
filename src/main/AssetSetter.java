@@ -4,12 +4,14 @@ import entity.NPC_Cat;
 import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
+import object.OBJ_Car;
 import object.OBJ_Jam;
 import object.OBJ_KingBed;
 import object.OBJ_KomporGas;
 import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
 import object.OBJ_MejaKursi;
+import object.OBJ_Mixue;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
 import object.OBJ_QueenBed;
@@ -52,17 +54,25 @@ public class AssetSetter {
         gamePanel.obj[1][5].worldY = 52 * gamePanel.tileSize;
 
         gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel, 1);
-        gamePanel.obj[0][0].worldX = 33 * gamePanel.tileSize;
-        gamePanel.obj[0][0].worldY = 20 * gamePanel.tileSize;
+        gamePanel.obj[0][0].worldX = 41 * gamePanel.tileSize;
+        gamePanel.obj[0][0].worldY = 19 * gamePanel.tileSize;
 
         gamePanel.obj[0][1] = new OBJ_Masjid(gamePanel);
-        gamePanel.obj[0][1].worldX = 17 * gamePanel.tileSize;
-        gamePanel.obj[0][1].worldY = 29 * gamePanel.tileSize;
+        gamePanel.obj[0][1].worldX = 30 * gamePanel.tileSize;
+        gamePanel.obj[0][1].worldY = 5 * gamePanel.tileSize;
 
         
         gamePanel.obj[0][2] = new OBJ_Pengemis(gamePanel);
         gamePanel.obj[0][2].worldX = 33 * gamePanel.tileSize;
         gamePanel.obj[0][2].worldY = 33 * gamePanel.tileSize;
+
+        gamePanel.obj[0][3] = new OBJ_Mixue(gamePanel);
+        gamePanel.obj[0][3].worldX = 51 * gamePanel.tileSize;
+        gamePanel.obj[0][3].worldY = 19 * gamePanel.tileSize;
+
+        gamePanel.obj[0][4] = new OBJ_Car(gamePanel);
+        gamePanel.obj[0][4].worldX = 42 * gamePanel.tileSize;
+        gamePanel.obj[0][4].worldY = 24 * gamePanel.tileSize;
 
     }
 
@@ -195,7 +205,7 @@ public class AssetSetter {
 
     public void setNPC() {
         gamePanel.npc[0] = new NPC_Wife(gamePanel);
-        gamePanel.npc[0]. worldX = gamePanel.tileSize*30;
+        gamePanel.npc[0]. worldX = gamePanel.tileSize*28;
         gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
 
         gamePanel.cat[1] = new NPC_Cat(gamePanel);
