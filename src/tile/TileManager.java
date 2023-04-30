@@ -70,8 +70,6 @@ public class TileManager {
         setup(39, "039_jalan21", false);
         setup(40, "040_jalan22", false);
         setup(41, "041_tanah", false);
-        
-
             
     }
 
