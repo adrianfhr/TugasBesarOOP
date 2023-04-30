@@ -28,24 +28,24 @@ public class TileManager {
 
     public void getTileImage(){
 
-        setup(0, "000", true);
+        setup(0, "000", false);
         setup(1, "001_rumput1", false);
         setup(2, "002_rumput2", false);
-        setup(3, "003_water01", true);
-        setup(4, "004_water02", true);
-        setup(5, "005_water03", true);
-        setup(6, "006_water04", true);
-        setup(7, "007_water05", true);
-        setup(8, "008_water06", true);
-        setup(9, "009_water07", true);
-        setup(10, "010_water08", true);
-        setup(11, "011_water09", true);
+        setup(3, "003_water1", true);
+        setup(4, "004_water2", true);
+        setup(5, "005_water3", true);
+        setup(6, "006_water4", true);
+        setup(7, "007_water5", true);
+        setup(8, "008_water6", true);
+        setup(9, "009_water7", true);
+        setup(10, "010_water8", true);
+        setup(11, "011_water9", true);
         setup(12, "012_water10", true);
         setup(13, "013_water11", true);
         setup(14, "014_water12", true);
         setup(15, "015_water13", true);
         setup(16, "016_jalan1", false);
-        setup(17, "017i_jalan2", false);
+        setup(17, "017_jalan2", false);
         setup(18, "018_jalan3", false);
         setup(19, "019_jalan4", false);
         setup(20, "020_jalan5", false);
@@ -66,7 +66,11 @@ public class TileManager {
         setup(35, "035_jalan17", false);
         setup(36, "036_jalan18", false);
         setup(37, "037_jalan19", false);
-        setup(38, "038_pohon.png", false); 
+        setup(38, "038_jalan20", false);
+        setup(39, "039_jalan21", false);
+        setup(40, "040_jalan22", false);
+        setup(41, "041_jalan23", false);
+        
            
             
     }
