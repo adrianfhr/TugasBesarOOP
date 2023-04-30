@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import object.*;
 import main.GamePanel;
@@ -142,7 +143,11 @@ public class Player extends Entity{
             this.state = "idle";
             
         }
-    
+        
+        //patut diwaspadai
+        if(gamePanel.gameState == gamePanel.playState){
+            gamePanel.isNPC = false;
+        }
 
         if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")){          
             interactOBJ();
@@ -196,6 +201,7 @@ public class Player extends Entity{
           //fungsi
         //interactOBJ();
 
+        
     }
 
 
@@ -298,11 +304,14 @@ public class Player extends Entity{
         this.name = name;
     }
 
+    //pembatas 
+    
     //
     public void interactOBJ(){
+        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC);
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        } else{
+        } else if(gamePanel.isNPC){
             interactWithNPC(targetIndex);
         }
     }
@@ -345,8 +354,11 @@ public class Player extends Entity{
             if (selectedItem instanceof BahanMakanan) {
                 selectedItem.use();
             } else if (selectedItem instanceof Makanan) {
-
                 selectedItem.use();
+            } else if (selectedItem instanceof Barang){
+                selectedItem.use();
+                gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer );
+
             }
         }
     }

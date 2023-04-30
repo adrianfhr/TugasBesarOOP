@@ -100,6 +100,7 @@ public class UI {
             drawGameEventScreen();
         } else if (gamePanel.getGameState() == gamePanel.dialogueState) {
             drawDialogueScreen();
+            
         }
     }
 
@@ -777,6 +778,7 @@ public class UI {
         if (commandNumber == 3) {
             g2.drawString(">", textX + 10, textY + 75);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
+                System.out.println("masok");
                 subState = 0;
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
