@@ -328,7 +328,23 @@ public class Player extends Entity{
 
     public void interactWithCat(int index) {
         gamePanel.setGameState(gamePanel.dialogueState);
-        gamePanel.cat[1].speak();
+        boolean hasWhiskas = false;
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+
+        if (itemIndex < getInventory().size()) {
+                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                    if(recipe instanceof OBJ_Whiskas) hasWhiskas = true;
+                }
+                if (hasWhiskas){
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
+                    gamePanel.player[gamePanel.currentPlayer].setMood(getMood() + 5);
+                    gamePanel.ui.addMessage("Mood + 5");
+                    gamePanel.cat[1].speak();
+                    gamePanel.playSoundEffect(13);
+                } else {
+                    gamePanel.ui.setCurrentDialogue("Kamu tidak punya Whiskas");
+                }
+            }
     }
 
     public void teleport(int x, int y, int map) {
@@ -484,6 +500,7 @@ public class Player extends Entity{
             getDagangan().add(new OBJ_KomporListrik(gamePanel));
             getDagangan().add(new OBJ_MejaKursi(gamePanel));
             getDagangan().add(new OBJ_Jam(gamePanel));
+            getDagangan().add(new OBJ_Whiskas(gamePanel));
         }
 
         public void beliBarang(){

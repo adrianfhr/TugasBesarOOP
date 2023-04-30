@@ -185,6 +185,8 @@ public class NPC_Cat extends Entity{
             }
 
             else if (spriteNum == 2) {
+                spriteNum = 3;
+            } else {
                 spriteNum = 1;
             }
 
