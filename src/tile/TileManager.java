@@ -15,6 +15,7 @@ public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
     public int mapTileNump[][][];
+    public boolean mapTileValidation[][][];
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -104,6 +105,7 @@ public class TileManager {
                     String number[] = line.split(" ");
                     int num = Integer.parseInt(number[col]);
                     mapTileNump[mapIndex][col][row] = num;
+                    mapTileValidation[mapIndex][col][row] = tile[num].collision;
                     col++;
                 }
 

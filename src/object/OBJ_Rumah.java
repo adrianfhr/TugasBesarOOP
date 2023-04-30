@@ -19,7 +19,7 @@ public class OBJ_Rumah extends SuperObject{
         this.width = 3;
         setName("Rumah");
         this.pemilik = pemilik;
-        
+
         try {
             image = ImageIO.read(new File("././res/object/rumah.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
@@ -28,7 +28,7 @@ public class OBJ_Rumah extends SuperObject{
         }
 
         this.collision = true;
-        setsolidArea();
+        setsolidArea();     
     }
 
     public void setsolidArea(){

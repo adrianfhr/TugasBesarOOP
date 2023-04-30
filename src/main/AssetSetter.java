@@ -74,6 +74,8 @@ public class AssetSetter {
                 gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
                 gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+    
+
             
                 break;
             case "Pintu":
@@ -111,4 +113,11 @@ public class AssetSetter {
         gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
     }
 
+    public void setValidMap(int x, int y, int length, int width, int map) {
+        for (int i = x; i < x + length; i++) {
+            for (int j = y; j < y + width; j++) {
+                gamePanel.tileManager.mapTileValidation[map][i][j] = true;
+            }
+        }
+    }
 }
