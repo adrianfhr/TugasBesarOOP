@@ -105,10 +105,8 @@ public class TileManager {
                     String number[] = line.split(" ");
                     int num = Integer.parseInt(number[col]);
                     mapTileNump[mapIndex][col][row] = num;
-                    System.out.println(num);
                     //mapTileValidation[mapIndex][col][row] = tile[num].collision;
                     col++;
-                    System.out.println("ini col : " + col);
                 }
 
                 if (col == gamePanel.maxWorldCol) {
