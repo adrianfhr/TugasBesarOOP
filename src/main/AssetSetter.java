@@ -15,6 +15,7 @@ import object.OBJ_Pintu;
 import object.OBJ_QueenBed;
 import object.OBJ_Rumah;
 import object.OBJ_SingleBed;
+import object.OBJ_TV;
 import object.OBJ_Toilet;
 
 public class AssetSetter {
@@ -41,6 +42,14 @@ public class AssetSetter {
         gamePanel.obj[1][3] = new OBJ_KomporListrik(gamePanel);
         gamePanel.obj[1][3].worldX = 49 * gamePanel.tileSize;
         gamePanel.obj[1][3].worldY = 48 * gamePanel.tileSize;
+
+        gamePanel.obj[1][4] = new OBJ_Toilet(gamePanel);
+        gamePanel.obj[1][4].worldX = 48 * gamePanel.tileSize;
+        gamePanel.obj[1][4].worldY = 52 * gamePanel.tileSize;
+
+        gamePanel.obj[1][5] = new OBJ_TV(gamePanel);
+        gamePanel.obj[1][5].worldX = 50 * gamePanel.tileSize;
+        gamePanel.obj[1][5].worldY = 52 * gamePanel.tileSize;
 
         gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel, 1);
         gamePanel.obj[0][0].worldX = 33 * gamePanel.tileSize;

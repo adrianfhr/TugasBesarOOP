@@ -135,6 +135,7 @@ public class Player extends Entity{
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
+                if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 
 
             }
