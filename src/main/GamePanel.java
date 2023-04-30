@@ -43,8 +43,8 @@ public class GamePanel extends JPanel implements Runnable {
     SoundManager soundEffect = new SoundManager();
 
     //WORLD SETTINGS
-    public final int maxWorldCol = 64;
-    public final int maxWorldRow = 64;
+    public final int maxWorldCol = 100;
+    public final int maxWorldRow = 100;
     public final int worldWidth = maxWorldCol * tileSize;
     public final int worldHeight = maxWorldRow * tileSize;
     public final int maxMap = 10;
