@@ -340,13 +340,14 @@ public class Player extends Entity{
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
 
         if (itemIndex < getInventory().size()) {
-            Asset selectedItem = getInventory().get(itemIndex);
+            SuperObject selectedItem = getInventory().get(itemIndex);
 
             if (selectedItem instanceof BahanMakanan) {
                 selectedItem.use();
             } else if (selectedItem instanceof Makanan) {
+
                 selectedItem.use();
-            } 
+            }
         }
     }
 
@@ -356,8 +357,8 @@ public class Player extends Entity{
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getKomporSlotCol(), gamePanel.ui.getKomporSlotRow());
 
         if (itemIndex < gamePanel.obj[1][2].getMenu().size()) {
-            Asset selectedItem = gamePanel.obj[1][2].getMenu().get(itemIndex);
-                for (Asset recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+            SuperObject selectedItem = gamePanel.obj[1][2].getMenu().get(itemIndex);
+                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
                     if(recipe instanceof OBJ_Ayam) hasAyam = true;
                     if(recipe instanceof OBJ_Nasi) hasNasi = true;
                     if(recipe instanceof OBJ_Kacang) hasKacang = true;
@@ -467,7 +468,7 @@ public class Player extends Entity{
             int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getDaganganSlotCol(), gamePanel.ui.getDaganganSlotRow());
 
         if (itemIndex < getDagangan().size()) {
-            Asset selectedItem = getDagangan().get(itemIndex);
+            SuperObject selectedItem = getDagangan().get(itemIndex);
             if (selectedItem instanceof SuperObject){
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);

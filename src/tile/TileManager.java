@@ -50,8 +50,24 @@ public class TileManager {
         setup(19, "019_jalan4", false);
         setup(20, "020_jalan5", false);
         setup(21, "021_lantairumah", false);
-        setup(22, "wall", true);    
-        setup(23, "bush2", false);       
+        setup(22, "022_wall", true);    
+        setup(23, "023_bush2", false);
+        setup(24, "024_jalan6", false);
+        setup(25, "025_jalan7", false);
+        setup(26, "026_jalan8", false);
+        setup(27, "027_jalan9", false);
+        setup(28, "028_jalan10", false);
+        setup(29, "029_jalan11", false);
+        setup(30, "030_jalan12", false);
+        setup(31, "031_jalan13", false);
+        setup(32, "032_jalan14", false);
+        setup(33, "033_jalan15", false);
+        setup(34, "034_jalan16", false);
+        setup(35, "035_jalan17", false);
+        setup(36, "036_jalan18", false);
+        setup(37, "037_jalan19", false);
+        setup(38, "038_pohon.png", false); 
+           
             
     }
 

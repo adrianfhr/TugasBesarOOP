@@ -9,7 +9,7 @@ import main.UtilityTool;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SuperObject implements Asset{
+public class SuperObject{
 
     public BufferedImage image;
     public String name;
@@ -20,11 +20,11 @@ public abstract class SuperObject implements Asset{
     public Rectangle solidArea = new Rectangle();
     public int solidAreaDefaultX = 0; public int solidAreaDefaultY = 0;
     public UtilityTool utilityTool = new UtilityTool();
-    private final GamePanel gamePanel;
+    protected GamePanel gamePanel;
     private int value;
     protected BufferedImage image1;
-    private List<Asset> menu = new ArrayList<>();
-    private List<Asset> dagangan = new ArrayList<>();
+    private List<SuperObject> menu = new ArrayList<>();
+    private List<SuperObject> dagangan = new ArrayList<>();
     private int price;
     private String stateOBJ;
     
@@ -32,7 +32,6 @@ public abstract class SuperObject implements Asset{
         this.gamePanel = gamePanel;
         setDescription("idle");
         setStateOBJ("Idle");
-        
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){
@@ -88,7 +87,7 @@ public abstract class SuperObject implements Asset{
         return this;
     }
 
-    public List<Asset> getMenu() {
+    public List<SuperObject> getMenu() {
         return menu;
     }
 
@@ -109,11 +108,15 @@ public abstract class SuperObject implements Asset{
         return stateOBJ;
     }
 
-    abstract public void setsolidArea();
-
-    abstract public void interact(Player player);
-
     public void selectMenu() {
+    }
+
+    public void interact(Player player){
+        
+    }
+
+    public void use(){
+        System.out.println("use");
     }
 
     

@@ -5,11 +5,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import entity.Entity;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_SingleBed extends SuperObject{
+public class OBJ_SingleBed extends Barang{
     GamePanel gamePanel;
 
     public OBJ_SingleBed(GamePanel gamePanel){

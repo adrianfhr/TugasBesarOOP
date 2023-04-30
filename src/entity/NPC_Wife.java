@@ -14,7 +14,7 @@ import main.UtilityTool;
 
 public class NPC_Wife extends Entity {
     GamePanel gamePanel;
-    private String[] dialogues = new String[20];
+    //private String[] dialogues = new String[20];
     private int dialogueIndex;
 
 

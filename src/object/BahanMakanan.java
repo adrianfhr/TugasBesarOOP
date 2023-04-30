@@ -1,9 +1,6 @@
 package object;
 
 import main.GamePanel;
-import object.SuperObject;
-
-import java.awt.*;
 
 public class BahanMakanan extends SuperObject{
     private int harga;
@@ -29,9 +26,15 @@ public class BahanMakanan extends SuperObject{
         return kekenyanganValue;
     }
 
-    @Override
-    public void setsolidArea() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setsolidArea'");
+    public void use(){
+        if (gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue() <= 100){
+            gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue());
+            gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
+            gamePanel.playSoundEffect(12);
+            gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
+        } else {
+            gamePanel.ui.addMessage("Kamu sudah kenyang!!");
+        }
     }
+
 }

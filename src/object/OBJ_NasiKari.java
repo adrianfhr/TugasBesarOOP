@@ -1,6 +1,5 @@
 package object;
 
-import java.awt.Container;
 import java.io.File;
 import java.io.IOException;
 
@@ -26,10 +25,4 @@ public class OBJ_NasiKari extends Makanan{
         }
     }
     
-    public void use(){
-        gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue());
-        gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
-        gamePanel.playSoundEffect(12);
-        gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
-    }
 }

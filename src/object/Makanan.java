@@ -1,13 +1,10 @@
 package object;
 
 import main.GamePanel;
-import object.SuperObject;
-
-import java.awt.*;
-
 
 public class Makanan extends SuperObject{
     int kekenyanganValue;
+
     public Makanan (GamePanel gamePanel){
         super(gamePanel);
     }
@@ -20,4 +17,16 @@ public class Makanan extends SuperObject{
         return kekenyanganValue;
     }
 
+    public void use(){
+        if (gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue() <= 100){
+            System.out.println("ini : " + gamePanel.player[gamePanel.currentPlayer].getHunger());
+            System.out.println("ini : " + getKekenyanganValue());
+            gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue());
+            gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
+            gamePanel.playSoundEffect(12);
+            gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
+        } else {
+            gamePanel.ui.addMessage("Kamu sudah kenyang!!");
+        }
+    }
 }

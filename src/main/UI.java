@@ -15,7 +15,7 @@ import java.util.Timer;
 import javax.swing.JOptionPane;
 
 import entity.Entity;
-import object.Asset;
+import object.SuperObject;
 import object.OBJ_Ayam;
 import object.OBJ_Bayam;
 import object.OBJ_Beef;
@@ -349,7 +349,7 @@ public class UI {
         int slotSize = gamePanel.tileSize / 3 * 3;
         
         // // // Isi Inventory
-        List<Asset> inventory = entity.getInventory();
+        List<SuperObject> inventory = entity.getInventory();
         drawItemsInInventory(entity, slotXStart, slotX, slotY, slotSize, inventory);
 
         if (cursor) {
@@ -389,7 +389,7 @@ public class UI {
         int slotSize = gamePanel.tileSize / 2 * 3;
         
         // // // Isi Inventory
-        List<Asset> dagangan = entity.getDagangan();
+        List<SuperObject> dagangan = entity.getDagangan();
         drawItemsInInventory(entity, slotXStart, slotX, slotY, slotSize, dagangan);
 
         // DRAW HINT WINDOW
@@ -552,9 +552,9 @@ public class UI {
         textY += lineHeight;
     }
 
-    private void drawItemsInInventory(Entity entity, int slotXStart, int slotX, int slotY, int slotSize, List<Asset> inventory) {
+    private void drawItemsInInventory(Entity entity, int slotXStart, int slotX, int slotY, int slotSize, List<SuperObject> inventory) {
         for (int i = 0; i < inventory.size(); i++) {
-            Asset object = inventory.get(i);
+            SuperObject object = inventory.get(i);
 
             // EQUIPPED BOX COLOR
             if (object == gamePanel.player[gamePanel.currentPlayer].getCurrentBahanMakanan()) {
@@ -585,7 +585,7 @@ public class UI {
         g2.drawRoundRect(cursorX + 15, cursorY + 173, cursorWidth + 25, cursorHeight + 25, 5, 5);
     }
 
-    private void drawItemDescriptionText(List<Asset> inventory, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
+    private void drawItemDescriptionText(List<SuperObject> inventory, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
         // DRAW DESCRIPTION TEXT
         int textX = descriptionFrameX + 50;
         int textY = descriptionFrameY + gamePanel.tileSize / 3;
@@ -1107,7 +1107,7 @@ public class UI {
         int slotSize = gamePanel.tileSize / 3 * 3;
         
         // // // Isi Inventory
-        List<Asset> menu = kompor.getMenu();
+        List<SuperObject> menu = kompor.getMenu();
         drawItemsInMenu(kompor, slotXStart, slotX, slotY, slotSize, menu);
         drawSubWindowMenu(frameX-100, frameY, frameWidth, frameHeight);
 
@@ -1136,9 +1136,9 @@ public class UI {
         g2.drawRoundRect(cursorX - 135, cursorY + 172, cursorWidth, cursorHeight, 10, 10);
     }
 
-    private void drawItemsInMenu(SuperObject kompor, int slotXStart, int slotX, int slotY, int slotSize, List<Asset> menu) {
+    private void drawItemsInMenu(SuperObject kompor, int slotXStart, int slotX, int slotY, int slotSize, List<SuperObject> menu) {
         for (int i = 0; i < menu.size(); i++) {
-            Asset object = menu.get(i);
+            SuperObject object = menu.get(i);
             g2.drawImage(object.getImage1(), slotX - 130, slotY + 180, null);
 
             slotX += slotSize;
@@ -1150,7 +1150,7 @@ public class UI {
         }
     } //
 
-    private void drawMenuDescriptionText(List<Asset> menu, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
+    private void drawMenuDescriptionText(List<SuperObject> menu, int descriptionFrameX, int descriptionFrameY, int descriptionFrameWidth, int descriptionFrameHeight, int slotCol, int slotRow) {
         // DRAW DESCRIPTION TEXT
         int textX = descriptionFrameX + 50;
         int textY = descriptionFrameY + gamePanel.tileSize / 3;

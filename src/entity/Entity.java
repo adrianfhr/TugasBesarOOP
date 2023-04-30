@@ -6,10 +6,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.GamePanel;
-import object.Asset;
+import object.SuperObject;
 import object.BahanMakanan;
-import object.OBJ_Ayam;
 
 public class Entity {
     public int worldX, worldY;
@@ -24,18 +22,18 @@ public class Entity {
     public boolean isInteracting = false;
     public int targetIndex; //variable bantu untuk cek index interaksi
     private final int maxInventorySize = 20;
-    private List<Asset> inventory = new ArrayList<>();
-    private List<Asset> dagangan = new ArrayList<>();
+    private List<SuperObject> inventory = new ArrayList<>();
+    private List<SuperObject> dagangan = new ArrayList<>();
     private BahanMakanan currentBahanMakanan;
     private int Kekenyangan;
     private String[] dialogues = new String[20];
     private int dialogueIndex;
 
-    public List<Asset> getInventory() {
+    public List<SuperObject> getInventory() {
         return inventory;
     }
 
-    public void setInventory(List<Asset> inventory) {
+    public void setInventory(List<SuperObject> inventory) {
         this.inventory = inventory;
     }
 
@@ -61,7 +59,7 @@ public class Entity {
         return this;
     }
 
-    public List<Asset> getDagangan() {
+    public List<SuperObject> getDagangan() {
         return dagangan;
     }
 
