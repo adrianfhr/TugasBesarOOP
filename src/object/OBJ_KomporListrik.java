@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_KomporListrik extends SuperObject {
+public class OBJ_KomporListrik extends Barang {
     GamePanel gamePanel;
     String stateObject;
     public OBJ_KomporListrik(GamePanel gamePanel){
@@ -31,7 +31,7 @@ public class OBJ_KomporListrik extends SuperObject {
             e.printStackTrace();
         }
         
-        this.collision = true;
+        this.collision = false;
         setsolidArea();
     }
 

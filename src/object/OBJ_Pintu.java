@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Pintu extends SuperObject{
+public class OBJ_Pintu extends Barang{
     GamePanel gamePanel;
 
     public OBJ_Pintu(GamePanel gamePanel){
