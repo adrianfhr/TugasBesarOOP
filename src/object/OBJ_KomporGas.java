@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_KomporGas extends SuperObject {
+public class OBJ_KomporGas extends Barang {
     GamePanel gamePanel;
 
     public OBJ_KomporGas(GamePanel gamePanel){
@@ -31,7 +31,7 @@ public class OBJ_KomporGas extends SuperObject {
             e.printStackTrace();
         }
         
-        this.collision = true;
+        this.collision = false;
         setsolidArea();
     }
 

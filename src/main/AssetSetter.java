@@ -3,13 +3,18 @@ package main;
 import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
+import object.OBJ_Jam;
+import object.OBJ_KingBed;
 import object.OBJ_KomporGas;
 import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
+import object.OBJ_MejaKursi;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
+import object.OBJ_QueenBed;
 import object.OBJ_Rumah;
 import object.OBJ_SingleBed;
+import object.OBJ_Toilet;
 
 public class AssetSetter {
     GamePanel gamePanel;
@@ -66,10 +71,10 @@ public class AssetSetter {
 
         switch (objek) {
             case "Rumah":
-                  x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
-                  y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
-                  worldX = Integer.parseInt(x);
-                 worldY = Integer.parseInt(y);
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
                 gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
                 gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
                 gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
@@ -85,24 +90,95 @@ public class AssetSetter {
                 break;
 
             case "Single Bed":
-                  x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
-                  y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
-                 worldX = Integer.parseInt(x);
-                 worldY = Integer.parseInt(y);
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
                 gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_SingleBed(gamePanel);
                 gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 break;
+
+            case "Jam":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x jam");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y jam");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_Jam(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+
+            case "King Bed":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_KingBed(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+            
+            case "Kompor Gas":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kompor");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kompor");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_KomporGas(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+
+            case "Kompor Listrik":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kompor");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kompor");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_KomporListrik(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+            
+            case "Meja Kursi":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x meja kursi");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y meja kursi");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_MejaKursi(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+
+            case "Queen Bed":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_QueenBed(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+            
+            case "Toilet":
+                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x toilet");
+                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y toilet");
+                worldX = Integer.parseInt(x);
+                worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_Toilet(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+
             default:
                 break;
-        }
-
-        if(objek.equals("rumah")){
-            
-        }if(objek.equals("Pintu")){
-            
-            
         }
 
     }
