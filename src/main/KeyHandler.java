@@ -126,6 +126,8 @@ public class KeyHandler implements KeyListener {
     private void checkDialogueStateKeyPressed(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gamePanel.setGameState(gamePanel.playState);
+            gamePanel.isNPC = false;
+            System.out.println("NPC: " + gamePanel.isNPC);
         }
     }
 

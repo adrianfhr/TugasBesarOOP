@@ -61,23 +61,48 @@ public class AssetSetter {
             }
         }
 
+        String x,y;
+        int worldX, worldY;
+
+        switch (objek) {
+            case "Rumah":
+                  x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
+                  y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
+                  worldX = Integer.parseInt(x);
+                 worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
+                gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+            
+                break;
+            case "Pintu":
+                gamePanel.obj[map][index] = new OBJ_Pintu(gamePanel);
+                gamePanel.obj[map][index].worldX = 53 * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = 53 * gamePanel.tileSize;
+                break;
+
+            case "Single Bed":
+                  x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
+                  y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
+                 worldX = Integer.parseInt(x);
+                 worldY = Integer.parseInt(y);
+                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                gamePanel.obj[map][index] = new OBJ_SingleBed(gamePanel);
+                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
+                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                break;
+            default:
+                break;
+        }
+
         if(objek.equals("rumah")){
-            String x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
-            String y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
-            int worldX = Integer.parseInt(x);
-            int worldY = Integer.parseInt(y);
-            gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
-            gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
-            gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-            gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
             
         }if(objek.equals("Pintu")){
             
-            gamePanel.obj[map][index] = new OBJ_Pintu(gamePanel);
-            gamePanel.obj[map][index].worldX = 53 * gamePanel.tileSize;
-            gamePanel.obj[map][index].worldY = 53 * gamePanel.tileSize;
-          
+            
         }
+
     }
 
     public void setNPC() {

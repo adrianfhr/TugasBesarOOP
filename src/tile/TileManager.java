@@ -45,7 +45,7 @@ public class TileManager {
         setup(14, "014_water12", true);
         setup(15, "015_water13", true);
         setup(16, "016_jalan1", false);
-        setup(17, "017_jalan2", false);
+        setup(17, "017i_jalan2", false);
         setup(18, "018_jalan3", false);
         setup(19, "019_jalan4", false);
         setup(20, "020_jalan5", false);
