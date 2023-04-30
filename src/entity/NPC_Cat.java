@@ -12,13 +12,10 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.UtilityTool;
 
-public class NPC_Wife extends Entity {
+public class NPC_Cat extends Entity{
     GamePanel gamePanel;
-    //private String[] dialogues = new String[20];
     private int dialogueIndex;
-
-
-    public NPC_Wife(GamePanel gamePanel) {
+    public NPC_Cat(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
         solidArea = new Rectangle();
@@ -30,9 +27,10 @@ public class NPC_Wife extends Entity {
     
         solidArea.width = 42 ; // 16 sebelumnya
         solidArea.height = 42 ;
-        setStateNPC("wife");
-        direction = "down";
+
+        direction = "left4";
         speed = 1;
+        setStateNPC("cat");
         gamePanel.setGameState(gamePanel.dialogueState);
         getNPCImage();
         setDialogue();
@@ -40,14 +38,22 @@ public class NPC_Wife extends Entity {
 
     public void getNPCImage(){
 
-        up1 = setup("wife_up_1");
-        up2 = setup("wife_up_2");
-        down1 = setup("wife_down_1");
-        down2 = setup("wife_down_2");
-        left1 = setup("wife_left_1");
-        left2 = setup("wife_left_2");
-        right1 = setup("wife_right_1");
-        right2 = setup("wife_right_2");
+        up1 = setup("l0_cat_13");
+        up2 = setup("l0_cat_12");
+        up3 = setup("l0_cat_11");
+        
+        down1 = setup("l0_cat_08");
+        down2 = setup("l0_cat_09");
+        down3 = setup("l0_cat_10");
+        
+        left1 = setup("l0_cat_04");
+        left2 = setup("l0_cat_03");
+        left3 = setup("l0_cat_02");
+        left4 = setup("l0_cat_01");
+        
+        right1 = setup("l0_cat_05");
+        right2 = setup("l0_cat_06");
+        right3 = setup("l0_cat_07");
     }
 
     public BufferedImage setup(String imageName){
@@ -55,7 +61,7 @@ public class NPC_Wife extends Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(new File("././res/wife/" + imageName + ".png"));
+            image = ImageIO.read(new File("././res/cat/" + imageName + ".png"));
             image = utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,6 +88,8 @@ public class NPC_Wife extends Entity {
                         image = up1;
                     } else if (spriteNum == 2){
                         image = up2;
+                    } else {
+                        image = up3;
                     }
                     break;
                 case "down":
@@ -89,6 +97,8 @@ public class NPC_Wife extends Entity {
                         image = down1;
                     } else if (spriteNum == 2){
                         image = down2;
+                    } else {
+                        image = down3;
                     }
                     break;
                 case "left":
@@ -96,6 +106,10 @@ public class NPC_Wife extends Entity {
                         image = left1;
                     } else if (spriteNum == 2){
                         image = left2;
+                    } else if (spriteNum == 3){
+                        image = left3;
+                    } else {
+                        image = left4;
                     }
                     break;
                 case "right":
@@ -103,10 +117,12 @@ public class NPC_Wife extends Entity {
                         image = right1;
                     } else if (spriteNum == 2){
                         image = right2;
+                    } else {
+                        image = right3;
                     }
                     break;
                 default:
-                    image = down1;
+                    image = left4;
                     break;
             }
             g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
@@ -177,10 +193,7 @@ public class NPC_Wife extends Entity {
     }
 
     public void setDialogue() {
-        getDialogues()[0] = "Hello, lad.";
-        getDialogues()[1] = "So you've come to this island to find \nthe treasure?";
-        getDialogues()[2] = "I used to be a great wizard, but now... \nI'm a bit too old for adventuring.";
-        getDialogues()[3] = "Well, good luck to you lad.";
+        getDialogues()[0] = "Meow meow meow...";
     }
 
     public void speak() {

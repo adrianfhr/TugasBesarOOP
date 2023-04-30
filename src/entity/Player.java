@@ -147,6 +147,7 @@ public class Player extends Entity{
         //patut diwaspadai
         if(gamePanel.gameState == gamePanel.playState){
             gamePanel.isNPC = false;
+            gamePanel.isCat = false;
         }
 
         if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")){          
@@ -165,6 +166,7 @@ public class Player extends Entity{
 
         //check npc collision
         int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+        int catIndex = gamePanel.collisionChecker.checkKucing(this, gamePanel.cat);
 
 
         //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
@@ -308,17 +310,25 @@ public class Player extends Entity{
     
     //
     public void interactOBJ(){
-        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC);
-        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC)){
+        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC + " isCat : " + gamePanel.isCat);
+        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC && !gamePanel.isCat)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        } else if(gamePanel.isNPC){
+        } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
             interactWithNPC(targetIndex);
+        } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
+            gamePanel.isNPC = false;
+            interactWithCat(targetIndex);
         }
     }
 
     public void interactWithNPC(int index) {
         gamePanel.setGameState(gamePanel.dialogueState);
         gamePanel.npc[0].speak();
+    }
+
+    public void interactWithCat(int index) {
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.cat[1].speak();
     }
 
     public void teleport(int x, int y, int map) {

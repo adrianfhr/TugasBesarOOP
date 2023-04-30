@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Cat;
 import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
@@ -187,6 +188,10 @@ public class AssetSetter {
         gamePanel.npc[0] = new NPC_Wife(gamePanel);
         gamePanel.npc[0]. worldX = gamePanel.tileSize*30;
         gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
+
+        gamePanel.cat[1] = new NPC_Cat(gamePanel);
+        gamePanel.cat[1]. worldX = gamePanel.tileSize*35;
+        gamePanel.cat[1]. worldY = gamePanel.tileSize*35;
     }
 
     public void setValidMap(int x, int y, int length, int width, int map) {
