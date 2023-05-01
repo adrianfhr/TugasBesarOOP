@@ -13,6 +13,7 @@ import entity.Entity;
 import entity.NPC_Cat;
 import entity.NPC_Wife;
 import entity.Player;
+import environment.EnvironmentManager;
 import object.SuperObject;
 import sound.SoundManager;
 import tile.TileManager;
@@ -61,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public int clock;
     private final Config config = new Config(this);
+    EnvironmentManager eManager = new EnvironmentManager(this);
     
     //entity and object
     public Player player[] = new Player[10];
@@ -89,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isPassiveAction = false;
     public boolean isInputAction = false;
     private boolean fullScreenOn;
+    
 
     public boolean isNPC = false;
     public boolean isCat = false;
@@ -111,6 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
          assetSetter.setNPC();
          gameState = titleState;
          tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+         eManager.setup();
          gps2d = (Graphics2D) tempScreen.getGraphics();
         if (fullScreenOn) {
             setFullScreen();
@@ -202,7 +206,7 @@ public class GamePanel extends JPanel implements Runnable {
                     cat[i].update();
                 }
             }
-
+            eManager.update();
         } 
 
         else if (gameState == interactObjState){
@@ -245,6 +249,9 @@ public class GamePanel extends JPanel implements Runnable {
                 cat[i].draw(g2d);
             }
         }
+
+        // Environment
+        eManager.draw(g2d);
 
         //player
         ui.draw(g2d);

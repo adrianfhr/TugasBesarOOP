@@ -366,6 +366,7 @@ public class Player extends Entity{
         getInventory().add(new OBJ_Kentang(gamePanel));
         getInventory().add(new OBJ_Kentang(gamePanel));
         getInventory().add(new OBJ_Beef(gamePanel));
+        getInventory().add(new OBJ_Lampu(gamePanel));
     }
 
     private void setDefaultBahanMakanan() {
