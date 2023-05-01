@@ -75,8 +75,8 @@ public class Lighting {
         }
         else if (dayState == dusk){
             filterAlpha += 0.001f;
-            if (filterAlpha > 0.8f){
-                filterAlpha = 0.8f;
+            if (filterAlpha > 0.9f){
+                filterAlpha = 0.9f;
                 dayState = night;
             }
         }
@@ -103,7 +103,7 @@ public class Lighting {
         g2.setColor(Color.WHITE);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
         g2.drawImage(darknessFilter, 0, 0, null);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         String situation = "";
 
