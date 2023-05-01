@@ -316,6 +316,7 @@ public class Player extends Entity{
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC && !gamePanel.isCat)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
         } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
+            gamePanel.isCat = false;
             interactWithNPC(targetIndex);
         } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
             gamePanel.isNPC = false;
@@ -329,24 +330,7 @@ public class Player extends Entity{
     }
 
     public void interactWithCat(int index) {
-        gamePanel.setGameState(gamePanel.dialogueState);
-        boolean hasWhiskas = false;
-        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
-
-        if (itemIndex < getInventory().size()) {
-                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                    if(recipe instanceof OBJ_Whiskas) hasWhiskas = true;
-                }
-                if (hasWhiskas){
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
-                    gamePanel.player[gamePanel.currentPlayer].setMood(getMood() + 5);
-                    gamePanel.ui.addMessage("Mood + 5");
-                    gamePanel.cat[1].speak();
-                    gamePanel.playSoundEffect(13);
-                } else {
-                    gamePanel.ui.setCurrentDialogue("Kamu tidak punya Whiskas");
-                }
-            }
+        gamePanel.cat[1].speak();
     }
 
     public void teleport(int x, int y, int map) {

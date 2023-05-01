@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.UtilityTool;
+import object.OBJ_Whiskas;
+import object.SuperObject;
 
 public class NPC_Cat extends Entity{
     GamePanel gamePanel;
@@ -196,20 +198,38 @@ public class NPC_Cat extends Entity{
 
     public void setDialogue() {
         getDialogues()[0] = "Meow meow meow...";
+        getDialogues()[1] = "Kamu tidak punya Whiskas!";
     }
 
     public void speak() {
-        if (getDialogues()[dialogueIndex] == null) {
-            dialogueIndex = 0;
+        gamePanel.setGameState(gamePanel.dialogueState);
+        boolean hasWhiskas = false;
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+        if (itemIndex < gamePanel.player[gamePanel.currentPlayer].getInventory().size()) {
+                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                    if(recipe instanceof OBJ_Whiskas) hasWhiskas = true;
+                }
+                if (hasWhiskas == true){
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
+                    gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 5);
+                    gamePanel.ui.addMessage("Mood + 5");
+                    gamePanel.playSoundEffect(13);
+                    dialogueIndex = 0;
+                } else {
+                        gamePanel.setGameState(gamePanel.dialogueState);
+                        dialogueIndex = 1;
+                }
         }
-            gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
-            dialogueIndex++;
+        
+        gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
 
-            switch (gamePanel.player[gamePanel.currentPlayer].direction) {
-                case "up" -> direction = "down";
-                case "down" -> direction = "up";
-                case "left" -> direction = "right";
-                case "right" -> direction = "left";
-            }
+        switch (gamePanel.player[gamePanel.currentPlayer].direction) {
+            case "up" -> direction = "down";
+            case "down" -> direction = "up";
+            case "left" -> direction = "right";
+            case "right" -> direction = "left";
+        }
+
+    
     }
 }
