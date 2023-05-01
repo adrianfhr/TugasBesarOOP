@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    public int clock;
+    public int clock = 360;
     private final Config config = new Config(this);
     EnvironmentManager eManager = new EnvironmentManager(this);
     
@@ -115,6 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
          gameState = titleState;
          tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
          eManager.setup();
+         eManager.lighting.dayCounter = clock;
          gps2d = (Graphics2D) tempScreen.getGraphics();
         if (fullScreenOn) {
             setFullScreen();
@@ -184,7 +185,10 @@ public class GamePanel extends JPanel implements Runnable {
                     player[currentPlayer].jamMemasak--;
                 }else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
+                }else if(player[currentPlayer].getState().equals("Toilet")){
+                    player[currentPlayer].jamMules--;
                 }
+                eManager.lighting.dayCounter++;
                 
             }
         }
@@ -208,12 +212,13 @@ public class GamePanel extends JPanel implements Runnable {
                     cat[i].update();
                 }
             }
-            eManager.update();
         } 
 
         else if (gameState == interactObjState){
             player[currentPlayer].update();
         } //else if(gameState == masakState) player[currentPlayer].update();
+
+        if(isActiveAction) eManager.update();
 
         playerTime();
 
@@ -374,6 +379,8 @@ public class GamePanel extends JPanel implements Runnable {
         if(player[currentPlayer].jamMules == 0){
             player[currentPlayer].interactOBJ();
             player[currentPlayer].jamMules = 10 * 2;
+            isActiveAction = false;
+
         }
 
         if(player[currentPlayer].jamTidakMules == 0){ //RIBEETTTTT TANDAINN
@@ -388,6 +395,7 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
             player[currentPlayer]. setHunger(player[currentPlayer].getHunger() - 5);
             player[currentPlayer].jamOlahraga = 20 * 2;
+            
         }
 
         //jMASIH BINGUNG ISINYA

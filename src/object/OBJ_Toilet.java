@@ -17,6 +17,7 @@ public class OBJ_Toilet extends Barang{
         this.height = 2;
         this.width = 2;
         setName("Toilet");
+        setStateOBJ("Toilet");
         setDescription("[" + getName() + "]\nSelamat menikmati");
         setPrice(50);
 
@@ -44,12 +45,16 @@ public class OBJ_Toilet extends Barang{
         if (gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getHunger() > 20) {
             gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() - 20);
             gamePanel.ui.addMessage("Hunger - 20");
-        }
-        else if (gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
-            gamePanel.player[gamePanel.currentPlayer].setMood(10);
-            gamePanel.ui.addMessage("Mood -  " + 10);
-        } else {
+        }else {
             gamePanel.ui.addMessage("You can't use this now");
+        }
+
+        if (gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
+            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
+            gamePanel.ui.addMessage("Mood +  " + 10);
+        } else if(gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() > 90){
+            gamePanel.ui.addMessage("Mood +  " + (100 - gamePanel.player[gamePanel.currentPlayer].getMood()));
+            gamePanel.player[gamePanel.currentPlayer].setMood(100);
         }
     }
 }

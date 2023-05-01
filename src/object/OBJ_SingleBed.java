@@ -16,7 +16,7 @@ public class OBJ_SingleBed extends Barang{
         this.gamePanel = gamePanel;
         this.height = 4;
         this.width = 1;
-        setDescription("Tidur");
+        setDescription("Untuk tidur dan ditiduri");
         setStateOBJ("Tidur");
         setName("Single Bed");
         setPrice(50);

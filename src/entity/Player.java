@@ -26,6 +26,8 @@ public class Player extends Entity{
     //tidur, kerja, makan
     public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung;
 
+    //naik mobil gak
+    public boolean naikMobil;
 
     //player game system
     GamePanel gamePanel;
@@ -111,6 +113,10 @@ public class Player extends Entity{
         left2 = setup("boy_left_2");
         right1 = setup("boy_right_1");
         right2 = setup("boy_right_2");
+        mobilup = setup("car_up");
+        mobildown = setup("car_down");
+        mobilleft = setup("car_left");
+        mobilright = setup("car_right");
     }
 
     public BufferedImage setup(String imageName){
@@ -155,7 +161,7 @@ public class Player extends Entity{
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
-                
+                if(state.equals("Toilet")) gamePanel.isActiveAction = true;
 
             }
         } else{
@@ -231,31 +237,39 @@ public class Player extends Entity{
         BufferedImage image =  down1;
         switch (direction) {
             case "up":
-                if (spriteNum == 1){
+                if (spriteNum == 1 && !naikMobil){
                     image = up1;
-                } else if (spriteNum == 2){
+                } else if (spriteNum == 2 && !naikMobil){
                     image = up2;
+                } else if (naikMobil){
+                    image = mobilup;
                 }
                 break;
             case "down":
-                if (spriteNum == 1){
+                if (spriteNum == 1 && !naikMobil){
                     image = down1;
-                } else if (spriteNum == 2){
+                } else if (spriteNum == 2 && !naikMobil){
                     image = down2;
+                } else if (naikMobil){
+                    image = mobildown;
                 }
                 break;
             case "left":
-                if (spriteNum == 1){
+                if (spriteNum == 1 && !naikMobil){
                     image = left1;
-                } else if (spriteNum == 2){
+                } else if (spriteNum == 2 && !naikMobil){
                     image = left2;
-                }
+                } else if (naikMobil){
+                    image = mobilleft;
+                } 
                 break;
             case "right":
-                if (spriteNum == 1){
+                if (spriteNum == 1 && !naikMobil){
                     image = right1;
-                } else if (spriteNum == 2){
+                } else if (spriteNum == 2 && !naikMobil){
                     image = right2;
+                } else if (naikMobil){
+                    image = mobilright;
                 }
                 break;
             default:

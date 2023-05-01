@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 public class Lighting {
     GamePanel gamePanel;
     BufferedImage darknessFilter;
-    int dayCounter;
+    public int dayCounter;
     float filterAlpha;
     public int lightRadius = 500;
 
@@ -21,7 +21,7 @@ public class Lighting {
     final int dusk  = 1;
     final int night = 2;
     final int dawn  = 3;
-    int dayState = day;
+    public int dayState = day;
     private Font maruMonica;
 
     public Lighting(GamePanel gamePanel) {
@@ -66,29 +66,28 @@ public class Lighting {
     }
 
     public void update(){
+        System.out.println("daycount" + dayCounter);
         if (dayState == day){
-            dayCounter++;
-            if (dayCounter > 7200){
+            if ((gamePanel.clock/60)%24 == 13){
                 dayState = dusk;
                 dayCounter = 0;
             }
         }
         else if (dayState == dusk){
-            filterAlpha += 0.001f;
-            if (filterAlpha > 0.9f){
-                filterAlpha = 0.9f;
+            filterAlpha += 0.0001f;
+            if (filterAlpha > 1f){
+                filterAlpha = 1f;
                 dayState = night;
             }
         }
         else if (dayState == night){
-            dayCounter++;
-            if (dayCounter > 7200){
+            if ((gamePanel.clock/60)%24 == 0){
                 dayState = dawn;
                 dayCounter = 0;
             }
         }
         else if (dayState == dawn){
-            filterAlpha -= 0.001f;
+            filterAlpha -= 0.0001f;
             if (filterAlpha < 0f){
                 filterAlpha = 0;
                 dayState = day;

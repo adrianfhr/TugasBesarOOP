@@ -131,7 +131,7 @@ public class UI {
              jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Bekerja")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
-        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Buang Air")){
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Toilet")){
              jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamBerkunjung ;

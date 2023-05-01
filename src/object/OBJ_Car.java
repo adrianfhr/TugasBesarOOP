@@ -37,7 +37,8 @@ public class OBJ_Car extends SuperObject{
     }
 
     public void interact(Player player){
-        gamePanel.setGameState(gamePanel.dialogueState);
-        gamePanel.ui.setCurrentDialogue("Maaf, mobil ini sedang rusak.");
+        gamePanel.player[gamePanel.currentPlayer].direction = "up";
+        gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
+        gamePanel.player[gamePanel.currentPlayer].speed += 5;
     }
 }
