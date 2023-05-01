@@ -61,7 +61,7 @@ public class Player extends Entity{
         this.mood = 80;
         this.health = 80;
         this.hunger = 80;
-        this.money = 100;
+        this.money = 1000;
 
         //set jam kerja default
         jamKerja = 30*2;
@@ -485,13 +485,19 @@ public class Player extends Entity{
         if (itemIndex < getDagangan().size()) {
             SuperObject selectedItem = getDagangan().get(itemIndex);
             if (selectedItem instanceof SuperObject){
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
-                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
-                } else {
+                if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() < gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()){
+                    if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
+                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                        gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
+                    } else{
+                        gamePanel.ui.setSubState(0);
+                        gamePanel.setGameState(gamePanel.dialogueState);
+                        gamePanel.ui.setCurrentDialogue("Oopss!! Uang tidak cukup");
+                    }
+                } else{
                     gamePanel.ui.setSubState(0);
                     gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Oopss!! Uang tidak cukup");
+                    gamePanel.ui.setCurrentDialogue("Oopss!! Penyimpanan tidak cukup");
                 }
             }
         }
