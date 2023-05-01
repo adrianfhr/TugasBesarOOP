@@ -41,6 +41,7 @@ public class OBJ_Mixue extends Barang{
         gamePanel.setGameState(gamePanel.dialogueState);
         gamePanel.ui.setCurrentDialogue("Selamat Menikmati!");
         gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 2);
+        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Eskrim(gamePanel));
         gamePanel.ui.addMessage("Money - 2");
     }
 
