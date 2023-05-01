@@ -22,6 +22,7 @@ public class TileManager {
         tile = new Tile[100];
         getTileImage();
         mapTileNump = new int[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
+        mapTileValidation = new boolean[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
         loadMap("res/map/worldMap.txt", 0);
         loadMap("res/map/homeMap.txt", 1);
 
@@ -105,7 +106,7 @@ public class TileManager {
                     String number[] = line.split(" ");
                     int num = Integer.parseInt(number[col]);
                     mapTileNump[mapIndex][col][row] = num;
-                    //mapTileValidation[mapIndex][col][row] = tile[num].collision;
+                    mapTileValidation[mapIndex][col][row] = tile[num].collision;
                     col++;
                 }
 

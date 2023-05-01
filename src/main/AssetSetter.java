@@ -28,6 +28,12 @@ public class AssetSetter {
         gamePanel.obj[1][0] = new OBJ_SingleBed(gamePanel);
         gamePanel.obj[1][0].worldX = 48 * gamePanel.tileSize;
         gamePanel.obj[1][0].worldY = 48 * gamePanel.tileSize;
+        for (int i = 48; i < 48 + gamePanel.obj[1][0].width; i++) {
+            for (int j = 48; j < 48 + gamePanel.obj[1][0].height; j++) {
+                gamePanel.tileManager.mapTileValidation[1][i][j] = true;
+            }
+        }
+
 
         gamePanel.obj[1][1] = new OBJ_Pintu(gamePanel);
         gamePanel.obj[1][1].worldX = 53 * gamePanel.tileSize;
@@ -94,10 +100,21 @@ public class AssetSetter {
                 y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
                 worldX = Integer.parseInt(x);
                 worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_SingleBed(gamePanel);
                 gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
+                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
+                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+                    System.out.println("Objek berhasil diletakkan");
+                }else{
+                    gamePanel.obj[map][index] = null;
+                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SingleBed(gamePanel));
+                }
+                    
+                
+                   
+                
                 break;
 
             case "Jam":
@@ -105,6 +122,7 @@ public class AssetSetter {
                 y = JOptionPane.showInputDialog(null, "Masukkan lokasi y jam");
                 worldX = Integer.parseInt(x);
                 worldY = Integer.parseInt(y);
+                
                 gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_Jam(gamePanel);
                 gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
@@ -189,11 +207,35 @@ public class AssetSetter {
         gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
     }
 
-    public void setValidMap(int x, int y, int length, int width, int map) {
-        for (int i = x; i < x + length; i++) {
-            for (int j = y; j < y + width; j++) {
-                gamePanel.tileManager.mapTileValidation[map][i][j] = true;
+    public boolean setValidMap(int x, int y, int width, int height, int map) {
+        boolean valid = false;
+        int tempX = x;
+        int tempY = y;
+
+        while(!valid && tempX < x + width) {
+            while(!valid && tempY < y + height) {
+                if(gamePanel.tileManager.mapTileValidation[map][tempX][tempY]) {
+                    valid = true;
+                }
+                tempY++;
             }
+
+            if(tempY == y + width){
+                tempY = y;
+            }
+
+            tempX++;
+        }
+
+        if(!valid){
+            for (int i = x; i < x + width; i++) {
+                for (int j = y; j < y + height; j++) {
+                    gamePanel.tileManager.mapTileValidation[map][i][j] = true;
+                }
+            }
+            return true;
+        }else{
+            return false;
         }
     }
 }
