@@ -31,7 +31,7 @@ public class OBJ_KomporListrik extends Barang {
             e.printStackTrace();
         }
         
-        this.collision = true;
+        this.collision = false;
         setsolidArea();
     }
 

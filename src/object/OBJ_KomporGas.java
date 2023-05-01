@@ -31,7 +31,7 @@ public class OBJ_KomporGas extends Barang {
             e.printStackTrace();
         }
         
-        this.collision = true;
+        this.collision = false;
         setsolidArea();
     }
 
