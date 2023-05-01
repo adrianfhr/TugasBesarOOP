@@ -86,6 +86,7 @@ public class Entity {
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getName().equals(name)) {
                 inventory.remove(i);
+                break;
             }
         }
     }

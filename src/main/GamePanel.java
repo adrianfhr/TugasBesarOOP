@@ -182,6 +182,8 @@ public class GamePanel extends JPanel implements Runnable {
                     player[currentPlayer].jamTidur--;
                 }else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
+                }else if(player[currentPlayer].getState().equals("Bekerja")){
+                    player[currentPlayer].jamKerja--;
                 }
                 
             }
@@ -358,6 +360,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if(player[currentPlayer].jamKerja == 0){
+            isActiveAction = false;
+            System.out.println("Kerja" + player[currentPlayer].getJob() + "selesai");
+            if(player[currentPlayer].getJob().equals("Badut Sulap")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 15);
+            if(player[currentPlayer].getJob().equals("Koki")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 30);
+            if(player[currentPlayer].getJob().equals("Polisi")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 35);
+            if(player[currentPlayer].getJob().equals("Programmer")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 45);
+            if(player[currentPlayer].getJob().equals("Dokter")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 50);
+            
             player[currentPlayer].jamKerja = 30 * 2;
         }
 
@@ -386,9 +396,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if(player[currentPlayer].jamMemasak == 0){
-        //     //belum tau isinya
         player[currentPlayer].interactOBJ();
-        //player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
         isActiveAction = false;
         player[currentPlayer].jamMemasak = 30;
         gameState = playState;

@@ -129,7 +129,7 @@ public class UI {
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamMakan ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Olahraga")){
              jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
-        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Kerja")){
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Bekerja")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Buang Air")){
              jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
@@ -655,11 +655,17 @@ public class UI {
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
+               if(gamePanel.player[gamePanel.currentPlayer].getJob().equals("Badut Sulap")){
                 gamePanel.isActiveAction = true;
                 gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
                 gamePanel.setGameState(gamePanel.dialogueState);
                 currentDialogue = "Hari hari jadi badut :((";
                 splitAndDrawDialogue(textX, textY);
+               }else{
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Maaf anda bukanlah badut yang layak";
+                splitAndDrawDialogue(textX, textY);
+               }
             }
         }
 
@@ -669,11 +675,17 @@ public class UI {
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.isActiveAction = true;
-                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Hope Gordon Ramsay won't\nkill me this time...";
-                splitAndDrawDialogue(textX, textY);
+                if(gamePanel.player[gamePanel.currentPlayer].getJob().equals("Koki")){
+                    gamePanel.isActiveAction = true;
+                    gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Hope Gordon Ramsay won't\nkill me this time...";
+                    splitAndDrawDialogue(textX, textY);
+                   }else{
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Maaf anda bukanlah koki yang layak";
+                    splitAndDrawDialogue(textX, textY);
+                   }
             }
         }
 
@@ -683,11 +695,17 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.isActiveAction = true;
-                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Siap mengayomi dan melindungi\nmasyarakat!!";
-                splitAndDrawDialogue(textX, textY);
+                if(gamePanel.player[gamePanel.currentPlayer].getJob().equals("Polisi")){
+                    gamePanel.isActiveAction = true;
+                    gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Siap mengayomi dan melindungi\nmasyarakat!!";
+                    splitAndDrawDialogue(textX, textY);
+                }else{
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Maaf anda bukanlah polisi yang layak";
+                    splitAndDrawDialogue(textX, textY);
+                }
             }
         }
 
@@ -697,11 +715,17 @@ public class UI {
         if (commandNumber == 3) {
             g2.drawString(">", textX + 10, textY + 75);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.isActiveAction = true;
-                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Not sure if I am a good\nprogrammer or good at googling...";
-                splitAndDrawDialogue(textX, textY);
+                if(gamePanel.player[gamePanel.currentPlayer].getJob().equals("Programmer")){
+                    gamePanel.isActiveAction = true;
+                    gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Not sure if I am a good\nprogrammer or good at googling...";
+                    splitAndDrawDialogue(textX, textY);
+                }else{
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Maaf anda bukanlah programmer yang layak";
+                    splitAndDrawDialogue(textX, textY);
+                } 
             }
         }
 
@@ -711,11 +735,18 @@ public class UI {
         if (commandNumber == 4) {
             g2.drawString(">", textX + 10, textY + 90);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.isActiveAction = true;
-                gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Kami sudah berusaha semaksimal\nmungkin...";
+                if(gamePanel.player[gamePanel.currentPlayer].getJob().equals("Dokter")){
+                    gamePanel.isActiveAction = true;
+                    gamePanel.player[gamePanel.currentPlayer].setState("Bekerja");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Kami sudah berusaha semaksimal\nmungkin...";
                 splitAndDrawDialogue(textX, textY);
+                }else{
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    currentDialogue = "Maaf anda bukanlah dokter yang layak";
+                    splitAndDrawDialogue(textX, textY);
+                } 
+                
             }
         }
 

@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
@@ -56,12 +58,12 @@ public class Player extends Entity{
 
         //set atribut
         this.name = name;
-        this.job = "Student";
         this.state = "Idle";
         this.mood = 80;
         this.health = 80;
         this.hunger = 80;
         this.money = 100;
+        startPekerjaan();
 
         //set jam kerja default
         jamKerja = 30*2;
@@ -81,6 +83,22 @@ public class Player extends Entity{
         worldY = gamePanel.tileSize * 22;
         speed = 4;
         direction = "down";
+    }
+
+    public void startPekerjaan(){
+        ArrayList<String> strings = new ArrayList<String>();
+        strings.add("Polisi");
+        strings.add("Badut Sulap");
+        strings.add("Programmer");
+        strings.add("Koki");
+        strings.add("Dokter");
+
+        Random random = new Random();
+        int index = random.nextInt(strings.size());
+        String randomString = strings.get(index);
+        this.job = randomString;
+    
+        System.out.println("Random string: " + randomString);
     }
 
     public void getPlayerImage(){
@@ -388,12 +406,15 @@ public class Player extends Entity{
             switch (namaMakanan) {
                 case "Nasi Ayam":
                     if(hasAyam && hasNasi){
+                        jamMemasak = (int) (16*1.5);
                         gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Ayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
                     }else{
                         gamePanel.isActiveAction = false;
+                        gamePanel.setGameState(gamePanel.playState);
+                        gamePanel.ui.addMessage("Bahan anda tidak cukup");
     
 
                         
@@ -401,6 +422,7 @@ public class Player extends Entity{
                     break;
                 case "Bistik":
                     if(hasBeef && hasKentang){
+                        jamMemasak = (int) (22*1.5);
                         gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
@@ -408,11 +430,14 @@ public class Player extends Entity{
                         break;
                     }else{
                         gamePanel.isActiveAction = false;
+                        gamePanel.setGameState(gamePanel.playState);
+                        gamePanel.ui.addMessage("Bahan anda tidak cukup");
                 
                     }
                     break;
                 case "Nasi Kari":
                     if(hasNasi && hasKentang && hasWortel && hasBeef){
+                        jamMemasak = (int) (30*1.5);
                         gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
@@ -422,11 +447,14 @@ public class Player extends Entity{
                         
                     }else{
                         gamePanel.isActiveAction = false;
+                        gamePanel.setGameState(gamePanel.playState);
+                        gamePanel.ui.addMessage("Bahan anda tidak cukup");
                 
                     }
                     break;
                 case "Susu Kacang":
                     if(hasSusu && hasKacang){
+                        jamMemasak = (int) (5*1.5);
                         gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Susu");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kacang");
@@ -434,11 +462,14 @@ public class Player extends Entity{
                         
                     }else{
                         gamePanel.isActiveAction = false;
+                        gamePanel.setGameState(gamePanel.playState);
+                        gamePanel.ui.addMessage("Bahan anda tidak cukup");
                 
                     }
                     break;
                 case "Tumis Sayuran":
                     if(hasBayam && hasWortel){
+                        jamMemasak = (int) (5*1.5);
                         gamePanel.isActiveAction = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Bayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");  
@@ -446,6 +477,8 @@ public class Player extends Entity{
                         
                     }else{
                         gamePanel.isActiveAction = false;
+                        gamePanel.setGameState(gamePanel.playState);
+                        gamePanel.ui.addMessage("Bahan anda tidak cukup");
                 
                     }
                     break;
