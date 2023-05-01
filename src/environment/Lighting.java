@@ -68,7 +68,7 @@ public class Lighting {
     public void update(){
         if (dayState == day){
             dayCounter++;
-            if (dayCounter > 720){
+            if (dayCounter > 7200){
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -82,7 +82,7 @@ public class Lighting {
         }
         else if (dayState == night){
             dayCounter++;
-            if (dayCounter > 720){
+            if (dayCounter > 7200){
                 dayState = dawn;
                 dayCounter = 0;
             }
