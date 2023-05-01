@@ -137,7 +137,7 @@ public class AssetSetter {
         while (gamePanel.obj[map][index] != null) {
             index++;
             if (index == gamePanel.obj[map].length) {
-                System.out.println("Array penuh, tidak bisa menambahkan objek baru!");
+                gamePanel.ui.setCurrentDialogue("Array penuh, tidak bisa menambahkan objek baru!");
                 return;
             }
         }
@@ -175,10 +175,13 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SingleBed(gamePanel));
                 }
                 break;
@@ -195,10 +198,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Jam(gamePanel));
                 }
                 break;
@@ -214,10 +219,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KingBed(gamePanel));
                 }
                 break;
@@ -233,10 +240,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KomporGas(gamePanel));
                 }
                 break;
@@ -252,10 +261,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KomporListrik(gamePanel));
                 }
                 break;
@@ -271,10 +282,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_MejaKursi(gamePanel));
                 }
                 break;
@@ -290,10 +303,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_QueenBed(gamePanel));
                 }
                 break;
@@ -309,10 +324,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Toilet(gamePanel));
                 }
                 break;
@@ -328,10 +345,12 @@ public class AssetSetter {
                 gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
                 if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
                     gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    System.out.println("Objek berhasil diletakkan");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
                 }else{
                     gamePanel.obj[map][index] = null;
-                    System.out.println("Tidak bisa menaruh objek di sini");
+                    gamePanel.setGameState(gamePanel.dialogueState);
+                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TV(gamePanel));
                 }
                 break;
