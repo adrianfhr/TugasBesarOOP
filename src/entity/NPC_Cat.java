@@ -127,7 +127,7 @@ public class NPC_Cat extends Entity{
                     image = left4;
                     break;
             }
-            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize / 2, gamePanel.tileSize / 2, null);
         }
     }
 
@@ -220,7 +220,7 @@ public class NPC_Cat extends Entity{
                         dialogueIndex = 1;
                 }
         }
-        
+
         gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
 
         switch (gamePanel.player[gamePanel.currentPlayer].direction) {

@@ -14,12 +14,12 @@ public class OBJ_Car extends SuperObject{
     public OBJ_Car(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 2;
+        this.height = 1;
         this.width = 1;
         setName("Car");
         
         try {
-            image = ImageIO.read(new File("././res/object/car2.png"));
+            image = ImageIO.read(new File("././res/object/garage.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,8 +37,15 @@ public class OBJ_Car extends SuperObject{
     }
 
     public void interact(Player player){
+        if (gamePanel.player[gamePanel.currentPlayer].naikMobil){
+            gamePanel.player[gamePanel.currentPlayer].naikMobil = false;
+            gamePanel.player[gamePanel.currentPlayer].speed = 4;
+
+        } else {
+            gamePanel.player[gamePanel.currentPlayer].speed = 10;
+            gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
+        }
         gamePanel.player[gamePanel.currentPlayer].direction = "up";
-        gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
-        gamePanel.player[gamePanel.currentPlayer].speed += 5;
+
     }
 }
