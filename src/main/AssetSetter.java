@@ -9,7 +9,6 @@ import object.OBJ_Jam;
 import object.OBJ_KingBed;
 import object.OBJ_KomporGas;
 import object.OBJ_KomporListrik;
-import object.OBJ_Lampu;
 import object.OBJ_Masjid;
 import object.OBJ_MejaKursi;
 import object.OBJ_Mixue;

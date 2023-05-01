@@ -18,6 +18,7 @@ public class OBJ_Mixue extends Barang{
         this.height = 3;
         this.width = 3;
         setName("Mixue");
+        setStateOBJ("Mixue");
 
         try {
             image = ImageIO.read(new File("././res/Mixue/gd_mixue2.png"));

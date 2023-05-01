@@ -136,6 +136,7 @@ public class Player extends Entity{
                 if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 if(state.equals("Nonton")) gamePanel.isActiveAction = true;
+                if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
                 
 
             }
@@ -356,17 +357,6 @@ public class Player extends Entity{
 
     public void setItems(){
         getInventory().clear();
-        setDefaultBahanMakanan();
-        getInventory().add(getCurrentBahanMakanan());
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Ayam(gamePanel));
-        getInventory().add(new OBJ_Bayam(gamePanel));
-        getInventory().add(new OBJ_Wortel(gamePanel));
-        getInventory().add(new OBJ_Susu(gamePanel));
-        getInventory().add(new OBJ_Kentang(gamePanel));
-        getInventory().add(new OBJ_Kentang(gamePanel));
-        getInventory().add(new OBJ_Beef(gamePanel));
-        getInventory().add(new OBJ_Lampu(gamePanel));
     }
 
     private void setDefaultBahanMakanan() {
