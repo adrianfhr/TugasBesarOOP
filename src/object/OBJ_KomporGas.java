@@ -31,7 +31,7 @@ public class OBJ_KomporGas extends Barang {
             e.printStackTrace();
         }
         
-        this.collision = false;
+        this.collision = true;
         setsolidArea();
     }
 
@@ -52,6 +52,7 @@ public class OBJ_KomporGas extends Barang {
 
     public void interact(Player player){
         gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
+        gamePanel.ui.addMessage("Mood + 10");
     }
 
     

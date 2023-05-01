@@ -135,6 +135,7 @@ public class Player extends Entity{
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
+                if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 
 
             }
@@ -147,6 +148,7 @@ public class Player extends Entity{
         //patut diwaspadai
         if(gamePanel.gameState == gamePanel.playState){
             gamePanel.isNPC = false;
+            gamePanel.isCat = false;
         }
 
         if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")){          
@@ -165,6 +167,7 @@ public class Player extends Entity{
 
         //check npc collision
         int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+        int catIndex = gamePanel.collisionChecker.checkKucing(this, gamePanel.cat);
 
 
         //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
@@ -308,17 +311,41 @@ public class Player extends Entity{
     
     //
     public void interactOBJ(){
-        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC);
-        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC)){
+        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC + " isCat : " + gamePanel.isCat);
+        if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC && !gamePanel.isCat)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        } else if(gamePanel.isNPC){
+        } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
             interactWithNPC(targetIndex);
+        } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
+            gamePanel.isNPC = false;
+            interactWithCat(targetIndex);
         }
     }
 
     public void interactWithNPC(int index) {
         gamePanel.setGameState(gamePanel.dialogueState);
         gamePanel.npc[0].speak();
+    }
+
+    public void interactWithCat(int index) {
+        gamePanel.setGameState(gamePanel.dialogueState);
+        boolean hasWhiskas = false;
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+
+        if (itemIndex < getInventory().size()) {
+                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                    if(recipe instanceof OBJ_Whiskas) hasWhiskas = true;
+                }
+                if (hasWhiskas){
+                    gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
+                    gamePanel.player[gamePanel.currentPlayer].setMood(getMood() + 5);
+                    gamePanel.ui.addMessage("Mood + 5");
+                    gamePanel.cat[1].speak();
+                    gamePanel.playSoundEffect(13);
+                } else {
+                    gamePanel.ui.setCurrentDialogue("Kamu tidak punya Whiskas");
+                }
+            }
     }
 
     public void teleport(int x, int y, int map) {
@@ -474,6 +501,7 @@ public class Player extends Entity{
             getDagangan().add(new OBJ_KomporListrik(gamePanel));
             getDagangan().add(new OBJ_MejaKursi(gamePanel));
             getDagangan().add(new OBJ_Jam(gamePanel));
+            getDagangan().add(new OBJ_Whiskas(gamePanel));
         }
 
         public void beliBarang(){

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import entity.Entity;
+import entity.NPC_Cat;
 import entity.NPC_Wife;
 import entity.Player;
 import object.SuperObject;
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player[] = new Player[10];
     public SuperObject obj[][] = new SuperObject[maxMap][10];
     public NPC_Wife npc[] = new NPC_Wife[10];
+    public NPC_Cat cat[] = new NPC_Cat[10];
 
     //state
     public int gameState = 0;
@@ -89,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean fullScreenOn;
 
     public boolean isNPC = false;
+    public boolean isCat = false;
     
     
 
@@ -194,6 +197,12 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            for (int i = 0; i < cat.length; i++) {
+                if (cat[i] != null) {
+                    cat[i].update();
+                }
+            }
+
         } 
 
         else if (gameState == interactObjState){
@@ -227,6 +236,13 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i< npc.length; i++) {
             if(npc[i] != null) {
                 npc[i].draw(g2d);
+            }
+        }
+
+        //CAT
+        for (int i = 0; i < cat.length; i++) {
+            if (cat[i] != null) {
+                cat[i].draw(g2d);
             }
         }
 

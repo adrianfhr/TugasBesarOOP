@@ -127,7 +127,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             gamePanel.setGameState(gamePanel.playState);
             gamePanel.isNPC = false;
+            gamePanel.isCat = false;
             System.out.println("NPC: " + gamePanel.isNPC);
+            System.out.println("Cat: " + gamePanel.isCat);
         }
     }
 

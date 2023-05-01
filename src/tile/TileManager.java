@@ -23,7 +23,7 @@ public class TileManager {
         getTileImage();
         mapTileNump = new int[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
         mapTileValidation = new boolean[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
-        loadMap("res/map/worldMap.txt", 0);
+        loadMap("res/map/worldMapV2.txt", 0);
         loadMap("res/map/homeMap.txt", 1);
 
     }
@@ -72,6 +72,8 @@ public class TileManager {
         setup(39, "039_jalan21", false);
         setup(40, "040_jalan22", false);
         setup(41, "041_tanah", false);
+        setup(42, "042_pohon", true);
+        setup(43, "043_mixue", true);
             
     }
 

@@ -274,7 +274,7 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
 
-        g2.drawString("Player sedang " + gamePanel.player[gamePanel.currentPlayer].getState() + "...",frameX*9 + 12 ,frameY + 100);
+        g2.drawString("Player sedang " + gamePanel.player[gamePanel.currentPlayer].getState() + "...",frameX*9 + 16 ,frameY + 105);
     }
 
     public void addMessage(String text) {
