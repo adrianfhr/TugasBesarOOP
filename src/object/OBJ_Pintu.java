@@ -37,7 +37,7 @@ public class OBJ_Pintu extends Barang{
     }
 
     public void interact(Player player ){
-        gamePanel.player[gamePanel.currentPlayer].teleport(36, 24, 0);
+        gamePanel.player[gamePanel.currentPlayer].teleport(42, 22, 0);
         gamePanel.playSoundEffect(2);
     }
 
