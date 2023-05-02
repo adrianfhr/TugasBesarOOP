@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     //entity and object
     public Player player[] = new Player[10];
-    public SuperObject obj[][] = new SuperObject[maxMap][10];
+    public SuperObject obj[][] = new SuperObject[maxMap][100];
     public NPC_Wife npc[] = new NPC_Wife[10];
     public NPC_Cat cat[] = new NPC_Cat[10];
 

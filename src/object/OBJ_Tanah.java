@@ -8,20 +8,17 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Mixue extends Barang{
+public class OBJ_Tanah extends Barang{
     GamePanel gamePanel;
-    int pemilik;
-
-    public OBJ_Mixue(GamePanel gamePanel){
+    public OBJ_Tanah(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 5;
-        this.width = 5;
-        setName("Mixue");
-        setStateOBJ("Mixue");
+        this.height = 4;
+        this.width = 6;
+        setName("Tanah");
 
         try {
-            image = ImageIO.read(new File("././res/Mixue/gd_mixue2.png"));
+            image = ImageIO.read(new File("././res/object/tanah.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,12 +36,7 @@ public class OBJ_Mixue extends Barang{
     }
 
     public void interact(Player player ){
-        gamePanel.setGameState(gamePanel.dialogueState);
-        gamePanel.ui.setCurrentDialogue("Selamat Menikmati!");
-        gamePanel.playSoundEffect(14);
-        gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 2);
-        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Eskrim(gamePanel));
-        gamePanel.ui.addMessage("Money - 2");
+        System.out.println("Berkunjung");
     }
 
 

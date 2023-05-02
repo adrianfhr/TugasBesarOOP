@@ -73,6 +73,9 @@ public class TileManager {
         setup(40, "040_jalan22", false);
         setup(41, "041_tanah", false);
         setup(42, "042_pohon", true);
+        setup(43, "043_tanaman_1", true);
+        setup(44, "044_tanaman_2", true);
+        setup(45, "045_tanaman_3", true);
     }
 
     public void setup(int index, String imagePath, boolean collision){
