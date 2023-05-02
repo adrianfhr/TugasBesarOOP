@@ -8,20 +8,19 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Mixue extends Barang{
+public class OBJ_Pitch extends Barang{
     GamePanel gamePanel;
     int pemilik;
 
-    public OBJ_Mixue(GamePanel gamePanel){
+    public OBJ_Pitch(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 5;
-        this.width = 5;
-        setName("Mixue");
-        setStateOBJ("Mixue");
+        this.height = 3;
+        this.width = 3;
+        setName("Pitch");
 
         try {
-            image = ImageIO.read(new File("././res/Mixue/gd_mixue2.png"));
+            image = ImageIO.read(new File("././res/object/coffe_shop.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,12 +38,12 @@ public class OBJ_Mixue extends Barang{
     }
 
     public void interact(Player player ){
-        gamePanel.setGameState(gamePanel.dialogueState);
-        gamePanel.ui.setCurrentDialogue("Selamat Menikmati!");
-        gamePanel.playSoundEffect(14);
-        gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 2);
-        gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Eskrim(gamePanel));
-        gamePanel.ui.addMessage("Money - 2");
+        if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
+            gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
+            gamePanel.playSoundEffect(2);
+        }else{ 
+            System.out.println("Berkunjung");
+        }
     }
 
 
