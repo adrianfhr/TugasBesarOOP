@@ -12,7 +12,7 @@ import java.util.List;
 public class SuperObject{
 
     public BufferedImage image;
-    public String name;
+    public String name, direction;
     public String description;
     public boolean collision = false;
     public int worldX, worldY;
@@ -34,7 +34,12 @@ public class SuperObject{
         setStateOBJ("Idle");
     }
 
+    public void update(){
+        
+    }
+
     public void draw(Graphics2D g2d, GamePanel gamePanel){
+        
 
         int screenX = worldX - gamePanel.player[gamePanel.currentPlayer].worldX + gamePanel.player[gamePanel.currentPlayer].screenX;; 
         int screenY = worldY - gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY;
@@ -119,5 +124,28 @@ public class SuperObject{
         System.out.println("use");
     }
 
+    public void moveUp(){
+        if (this.worldX > 0){
+            this.worldX -= 1 * gamePanel.tileSize;
+        }
+    }
+
+    public void moveDown(){
+        if (this.worldX < gamePanel.worldWidth * gamePanel.tileSize - gamePanel.tileSize){
+            this.worldX += 1 * gamePanel.tileSize;
+        }
+    }
+
+    public void moveLeft(){
+        if (this.worldY > 0){
+            this.worldY -= 1 * gamePanel.tileSize;
+        }
+    }
+
+    public void moveRight(){
+        if (this.worldY < gamePanel.worldHeight * gamePanel.tileSize - gamePanel.tileSize){
+            this.worldY += 1 * gamePanel.tileSize;
+        }
+    }
     
 }

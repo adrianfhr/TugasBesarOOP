@@ -19,12 +19,17 @@ import object.OBJ_Rumah;
 import object.OBJ_SingleBed;
 import object.OBJ_TV;
 import object.OBJ_Toilet;
+import object.SuperObject;
 
 public class AssetSetter {
     GamePanel gamePanel;
+    String direction;
+    int index;
 
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        direction = "";
+        index = 0;
     }
 
     public void setObject(){
@@ -133,7 +138,8 @@ public class AssetSetter {
     }
 
     public void makeOBJ(String objek, int map, int player){
-        int index = 0;
+        index = 0;
+
         while (gamePanel.obj[map][index] != null) {
             index++;
             if (index == gamePanel.obj[map].length) {
@@ -147,16 +153,9 @@ public class AssetSetter {
 
         switch (objek) {
             case "Rumah":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x rumah");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y rumah");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY - 1, 0);
                 gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-    
-
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
             
                 break;
             case "Pintu":
@@ -166,234 +165,114 @@ public class AssetSetter {
                 break;
 
             case "Single Bed":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
                 gamePanel.obj[map][index] = new OBJ_SingleBed(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SingleBed(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
+                
                 break;
 
             case "Jam":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x jam");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y jam");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
+    
                 gamePanel.obj[map][index] = new OBJ_Jam(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Jam(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+               
                 break;
 
             case "King Bed":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_KingBed(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KingBed(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
             
             case "Kompor Gas":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kompor");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kompor");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_KomporGas(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KomporGas(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
 
             case "Kompor Listrik":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kompor");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kompor");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_KomporListrik(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_KomporListrik(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
+                
                 break;
             
             case "Meja Kursi":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x meja kursi");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y meja kursi");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_MejaKursi(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_MejaKursi(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+               
                 break;
 
             case "Queen Bed":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x kasur");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y kasur");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_QueenBed(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_QueenBed(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
             
             case "Toilet":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x toilet");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y toilet");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_Toilet(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Toilet(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
             
             case "TV":
-                x = JOptionPane.showInputDialog(null, "Masukkan lokasi x tv");
-                y = JOptionPane.showInputDialog(null, "Masukkan lokasi y tv");
-                worldX = Integer.parseInt(x);
-                worldY = Integer.parseInt(y);
-                gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
                 gamePanel.obj[map][index] = new OBJ_TV(gamePanel);
-                gamePanel.obj[map][index].worldX = worldX * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = worldY * gamePanel.tileSize;
-                if(setValidMap(worldX, worldY, gamePanel.obj[map][index].width, gamePanel.obj[map][index].height, map)){
-                    gamePanel.player[gamePanel.currentPlayer].teleport(worldX, worldY, gamePanel.currentMap);
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Objek berhasil diletakkan");
-                }else{
-                    gamePanel.obj[map][index] = null;
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    gamePanel.ui.setCurrentDialogue("Tidak bisa menaruh objek di sini");
-                    gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TV(gamePanel));
-                }
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
 
             default:
                 break;
         }
 
+        
+
+        
+        
     }
 
     public void setNPC() {
         gamePanel.npc[0] = new NPC_Wife(gamePanel);
-        gamePanel.npc[0]. worldX = gamePanel.tileSize*28;
-        gamePanel.npc[0]. worldY = gamePanel.tileSize*30;
+        gamePanel.npc[0].worldX = gamePanel.tileSize*28;
+        gamePanel.npc[0].worldY = gamePanel.tileSize*30;
 
         gamePanel.cat[1] = new NPC_Cat(gamePanel);
-        gamePanel.cat[1]. worldX = gamePanel.tileSize*35;
-        gamePanel.cat[1]. worldY = gamePanel.tileSize*35;
+        gamePanel.cat[1].worldX = gamePanel.tileSize*35;
+        gamePanel.cat[1].worldY = gamePanel.tileSize*35;
     }
 
-    public boolean setValidMap(int x, int y, int width, int height, int map) {
+    public boolean setValidMap(SuperObject o, int map) {
         boolean valid = false;
-        int tempX = x;
-        int tempY = y;
+        int tempX = o.worldX / gamePanel.tileSize;
+        int tempY = o.worldY / gamePanel.tileSize;
 
-        while(!valid && tempX < x + width) {
-            while(!valid && tempY < y + height) {
+        while(!valid && tempX < o.worldX/ gamePanel.tileSize + o.width) {
+            while(!valid && tempY < o.worldY / gamePanel.tileSize + o.height) {
                 if(gamePanel.tileManager.mapTileValidation[map][tempX][tempY]) {
                     valid = true;
                 }
                 tempY++;
             }
 
-            if(tempY == y + width){
-                tempY = y;
+            if(tempY == o.worldY / gamePanel.tileSize + o.width){
+                tempY = o.worldY / gamePanel.tileSize;
             }
 
             tempX++;
         }
 
         if(!valid){
-            for (int i = x; i < x + width; i++) {
-                for (int j = y; j < y + height; j++) {
+            for (int i = o.worldX/ gamePanel.tileSize; i < o.worldX/ gamePanel.tileSize + o.width; i++) {
+                for (int j = o.worldY/ gamePanel.tileSize; j < o.worldY/ gamePanel.tileSize + o.height; j++) {
                     gamePanel.tileManager.mapTileValidation[map][i][j] = true;
                 }
             }
@@ -401,5 +280,63 @@ public class AssetSetter {
         }else{
             return false;
         }
+    }
+
+    public void update(){
+        if(gamePanel.keyHandler.upPressed || gamePanel.keyHandler.downPressed || gamePanel.keyHandler.leftPressed || gamePanel.keyHandler.rightPressed){
+            if (gamePanel.keyHandler.upPressed){
+                direction = "up";
+                
+            } else if (gamePanel.keyHandler.downPressed){
+                direction = "down";
+                
+            } else if (gamePanel.keyHandler.leftPressed){
+                direction = "left";
+            
+            } else if (gamePanel.keyHandler.rightPressed){
+                direction = "right";
+            } else {
+                direction = "";
+            }
+        }
+
+        switch (direction) {
+            case "up":
+                gamePanel.obj[gamePanel.currentMap][index].worldY -= 1 * gamePanel.tileSize;
+                direction = "";
+                gamePanel.keyHandler.upPressed = false;
+                break;
+            case "down":
+                gamePanel.obj[gamePanel.currentMap][index].worldY += 1 * gamePanel.tileSize;
+                direction = "";
+                gamePanel.keyHandler.downPressed = false;
+                break;
+            case "left":
+                gamePanel.obj[gamePanel.currentMap][index].worldX -= 1 * gamePanel.tileSize;
+                direction = "";
+                gamePanel.keyHandler.leftPressed = false;
+                break;
+            case "right":
+                gamePanel.obj[gamePanel.currentMap][index].worldX += 1 * gamePanel.tileSize;
+                direction = "";
+                gamePanel.keyHandler.rightPressed = false;
+                break;
+            default:
+                break;
+            
+        }
+        
+        if(gamePanel.keyHandler.enterPressed){
+            if(setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
+                gamePanel.setGameState(gamePanel.playState);
+                gamePanel.keyHandler.enterPressed = false;
+            }//else if(!setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
+            //     gamePanel.player[gamePanel.currentPlayer].getInventory().add(gamePanel.obj[gamePanel.currentMap][index]);
+            //     gamePanel.obj[gamePanel.currentMap][index] = null;
+            //     gamePanel.ui.addMessage("Anda tidak bisa meletakkan objek disini!");
+            //     gamePanel.setGameState(gamePanel.playState);
+    
+            // }
+        } 
     }
 }

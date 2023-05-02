@@ -391,8 +391,8 @@ public class Player extends Entity{
                 selectedItem.use();
             } else if (selectedItem instanceof Barang){
                 selectedItem.use();
-                gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer );
-
+                gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer);
+                gamePanel.setGameState(gamePanel.useBarangState);
             }
         }
     }

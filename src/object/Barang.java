@@ -16,6 +16,11 @@ public abstract class Barang extends SuperObject{
         gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
     }
 
+
+    
+
+
+
     abstract public void setsolidArea();
 
     abstract public void interact(Player player);

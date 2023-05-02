@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //SYSTEM SETTINGS
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler(this);
+    public KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     public UI ui = new UI(this);
     public AssetSetter assetSetter = new AssetSetter(this);
@@ -84,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int masakState = 9;
     public final int gameEventState = 10;
     public final int tradeState = 11;
+    public final int useBarangState = 12;
 
 
     //state non-aktif
@@ -216,11 +217,14 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (gameState == interactObjState){
             player[currentPlayer].update();
+        }
+        if (gameState == useBarangState){
+            assetSetter.update();
         } //else if(gameState == masakState) player[currentPlayer].update();
-
         if(isActiveAction) eManager.update();
 
         playerTime();
+        
 
     }
 

@@ -45,6 +45,8 @@ public class KeyHandler implements KeyListener {
             checkMasakStateKeys(code);
         } else if (gamePanel.getGameState() == gamePanel.gameEventState){
             checkGameEventStateKeys(code);
+        } else if(gamePanel.getGameState() == gamePanel.useBarangState){
+            checkUseBarangStateKeyPressed(code);
         }
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
@@ -58,6 +60,25 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
+    }
+
+    private void checkUseBarangStateKeyPressed(int code){
+        if (code == KeyEvent.VK_ENTER && limit == 1) {
+            enterPressed = true;
+            limit = 0;
+        } else if(code == KeyEvent.VK_W && limit == 1){
+            upPressed = true;
+            limit = 0;
+        } else if(code == KeyEvent.VK_S && limit == 1){
+            downPressed = true;
+            limit = 0;
+        } else if(code == KeyEvent.VK_A && limit == 1){
+            leftPressed = true;
+            limit = 0;
+        } else if(code == KeyEvent.VK_D && limit == 1){
+            rightPressed = true;
+            limit = 0;
+        }
     }
 
     private void checkGameStateKeys(int code) {
@@ -128,8 +149,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.setGameState(gamePanel.playState);
             gamePanel.isNPC = false;
             gamePanel.isCat = false;
-            System.out.println("NPC: " + gamePanel.isNPC);
-            System.out.println("Cat: " + gamePanel.isCat);
         }
     }
 
@@ -257,18 +276,26 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
         if(code == KeyEvent.VK_W){
             upPressed = false;
+            limit = 1;
         }
         if(code == KeyEvent.VK_S){
             downPressed = false;
+            limit = 1;
         }
         if(code == KeyEvent.VK_A){
             leftPressed = false;
+            limit = 1;
         }
         if(code == KeyEvent.VK_D){
             rightPressed = false;
+            limit = 1;
         }
         if(code == KeyEvent.VK_E ){
             ePressed = false;
+            limit = 1;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = false;
             limit = 1;
         }
 
