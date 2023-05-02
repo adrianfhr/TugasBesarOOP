@@ -131,7 +131,7 @@ public class UI {
              jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Bekerja")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
-        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Toilet")){
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("buang air")){
              jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamBerkunjung ;
@@ -257,7 +257,7 @@ public class UI {
     public void drawTextStat(int x, int y, int lineHeight){
         String waktu = String.format("%02d:%02d", (gamePanel.clock/60)%24, (gamePanel.clock%60));
         g2.drawString(waktu, x, y);
-        g2.drawString("DAY - " + gamePanel.clock/(60*24),  x, y + lineHeight);
+        g2.drawString("DAY - " + gamePanel.clock/(60*24)+1,  x, y + lineHeight);
         g2.drawString("FPS: " + gamePanel.fps, x , (y + lineHeight * 2));
         g2.drawString("X: " + (gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize) + " Y: " + (gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize), x, y + lineHeight * 3);
 
@@ -768,7 +768,7 @@ public class UI {
         int textY;
 
         // TITLE
-        String text = "Options";
+        String text = "Actions";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
         textY = frameY + gamePanel.tileSize / 3 + 35;
         g2.drawString(text, textX + 13, textY);

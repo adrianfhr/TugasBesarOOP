@@ -45,7 +45,10 @@ public class OBJ_Rumah extends Barang{
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
             gamePanel.playSoundEffect(2);
         }else{ 
-            System.out.println("Berkunjung");
+            gamePanel.setGameState(gamePanel.dialogueState);
+            gamePanel.ui.setCurrentDialogue("Berkunjung");
+            gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, this.pemilik);
+            gamePanel.playSoundEffect(2);
         }
     }
 

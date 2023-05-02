@@ -186,7 +186,7 @@ public class GamePanel extends JPanel implements Runnable {
                     player[currentPlayer].jamMemasak--;
                 }else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
-                }else if(player[currentPlayer].getState().equals("Toilet")){
+                }else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
                 }
                 eManager.lighting.dayCounter++;

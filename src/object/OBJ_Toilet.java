@@ -17,7 +17,7 @@ public class OBJ_Toilet extends Barang{
         this.height = 2;
         this.width = 2;
         setName("Toilet");
-        setStateOBJ("Toilet");
+        setStateOBJ("buang air");
         setDescription("[" + getName() + "]\nSelamat menikmati");
         setPrice(50);
 

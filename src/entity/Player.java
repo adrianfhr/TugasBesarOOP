@@ -161,7 +161,7 @@ public class Player extends Entity{
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
-                if(state.equals("Toilet")) gamePanel.isActiveAction = true;
+                if(state.equals("buang air")) gamePanel.isActiveAction = true;
 
             }
         } else{
