@@ -155,7 +155,7 @@ public class Player extends Entity{
             gamePanel.gameState = gamePanel.interactObjState;
 
 
-            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting){
+            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil){
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);

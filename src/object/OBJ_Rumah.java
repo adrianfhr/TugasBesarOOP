@@ -39,6 +39,8 @@ public class OBJ_Rumah extends Barang{
     }
 
     public void interact(Player player ){
+        gamePanel.player[gamePanel.currentPlayer].naikMobil = false;
+        gamePanel.player[gamePanel.currentPlayer].speed = 4;
         if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
             gamePanel.playSoundEffect(2);
