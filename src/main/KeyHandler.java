@@ -30,7 +30,7 @@ public class KeyHandler implements KeyListener {
         } else if (gamePanel.getGameState() == gamePanel.dialogueState) {
             checkDialogueStateKeyPressed(code);
 
-        } else if (gamePanel.getGameState() == gamePanel.characterState) {
+        } else if (gamePanel.getGameState() == gamePanel.characterState || gamePanel.getGameState() == gamePanel.makanState) {
             checkCharacterStateKeyPressed(code);
 
         } else if (gamePanel.getGameState() == gamePanel.optionState) {

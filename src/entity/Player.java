@@ -163,6 +163,7 @@ public class Player extends Entity{
                 if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
                 if(state.equals("buang air")) gamePanel.isActiveAction = true;
                 if(state.equals("Olahraga")) gamePanel.isActiveAction = true;
+                if(state.equals("makan")) gamePanel.setGameState(gamePanel.makanState);
 
             }
         } else{
@@ -387,9 +388,17 @@ public class Player extends Entity{
             SuperObject selectedItem = getInventory().get(itemIndex);
 
             if (selectedItem instanceof BahanMakanan) {
-                selectedItem.use();
+                if (gamePanel.getGameState() != gamePanel.makanState){
+                    gamePanel.ui.addMessage("Makan harus di meja makan!");
+                } else {
+                    selectedItem.use();
+                }
             } else if (selectedItem instanceof Makanan) {
-                selectedItem.use();
+                if (gamePanel.getGameState() != gamePanel.makanState){
+                    gamePanel.ui.addMessage("Makan harus di meja makan!");
+                } else {
+                    selectedItem.use();
+                }
             } else if (selectedItem instanceof Barang){
                 selectedItem.use();
                 gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer);

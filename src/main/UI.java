@@ -102,6 +102,8 @@ public class UI {
             drawDialogueScreen();
         } else if (gamePanel.getGameState() == gamePanel.wifeState){
             drawInteractWifeScreen();
+        } else if (gamePanel.getGameState() == gamePanel.makanState){
+            drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
         }
     }
 
