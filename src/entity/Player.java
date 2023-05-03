@@ -368,8 +368,8 @@ public class Player extends Entity{
 
     public void teleport(int x, int y, int map) {
 		gamePanel.currentMap = map;
-        worldX = x * gamePanel.tileSize;
-		worldY = y* gamePanel.tileSize;
+        gamePanel.player[gamePanel.currentPlayer].worldX = x * gamePanel.tileSize;
+		gamePanel.player[gamePanel.currentPlayer].worldY = y* gamePanel.tileSize;
 	}
 
     public void setItems(){

@@ -141,7 +141,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
                 if (gamePanel.ui.getCommandNumber() < 0) {
-                    gamePanel.ui.setCommandNumber(2);
+                    gamePanel.ui.setCommandNumber(3);
                 }
                 gamePanel.playSoundEffect(8);
             }
