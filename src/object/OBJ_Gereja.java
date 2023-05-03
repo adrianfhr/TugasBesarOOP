@@ -8,16 +8,16 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Pitch extends Barang{
+public class OBJ_Gereja extends Barang{
     GamePanel gamePanel;
     int pemilik;
 
-    public OBJ_Pitch(GamePanel gamePanel){
+    public OBJ_Gereja(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 3;
-        this.width = 3;
-        setName("Pitch");
+        this.height = 4;
+        this.width = 7;
+        setName("Gereja");
 
         try {
             image = ImageIO.read(new File("././res/object/coffe_shop.png"));
