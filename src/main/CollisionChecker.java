@@ -44,7 +44,7 @@ public class CollisionChecker {
                 if(gamePanel.tileManager.tile[tileNum1].collision || gamePanel.tileManager.tile[tileNum2].collision){
                     entity.collisionOn = true;
                 }
-                
+             
                 break;
             case "left":
                 entityLeftCol = (entityLeftWorldX - entity.speed) / gamePanel.tileSize;
@@ -261,7 +261,7 @@ public class CollisionChecker {
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                             
+                            System.out.println("MASUKKDW");
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;

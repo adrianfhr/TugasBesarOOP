@@ -160,7 +160,9 @@ public class Player extends Entity{
                 if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
                 if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
-                if(state.equals("Toilet")) gamePanel.isActiveAction = true;
+                if(state.equals("buang air")) gamePanel.isActiveAction = true;
+                if(state.equals("Olahraga")) gamePanel.isActiveAction = true;
+                if(state.equals("makan")) gamePanel.setGameState(gamePanel.makanState);
 
             }
         } else{
@@ -347,7 +349,7 @@ public class Player extends Entity{
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
         } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
             gamePanel.isCat = false;
-            interactWithNPC(targetIndex);
+            gamePanel.setGameState(gamePanel.wifeState);
         } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
             gamePanel.isNPC = false;
             interactWithCat(targetIndex);
@@ -365,8 +367,8 @@ public class Player extends Entity{
 
     public void teleport(int x, int y, int map) {
 		gamePanel.currentMap = map;
-        worldX = x * gamePanel.tileSize;
-		worldY = y* gamePanel.tileSize;
+        gamePanel.player[gamePanel.currentPlayer].worldX = x * gamePanel.tileSize;
+		gamePanel.player[gamePanel.currentPlayer].worldY = y* gamePanel.tileSize;
 	}
 
     public void setItems(){
@@ -384,9 +386,17 @@ public class Player extends Entity{
             SuperObject selectedItem = getInventory().get(itemIndex);
 
             if (selectedItem instanceof BahanMakanan) {
-                selectedItem.use();
+                if (gamePanel.getGameState() != gamePanel.makanState){
+                    gamePanel.ui.addMessage("Makan harus di meja makan!");
+                } else {
+                    selectedItem.use();
+                }
             } else if (selectedItem instanceof Makanan) {
-                selectedItem.use();
+                if (gamePanel.getGameState() != gamePanel.makanState){
+                    gamePanel.ui.addMessage("Makan harus di meja makan!");
+                } else {
+                    selectedItem.use();
+                }
             } else if (selectedItem instanceof Barang){
                 selectedItem.use();
                 gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer);
@@ -522,6 +532,7 @@ public class Player extends Entity{
             getDagangan().add(new OBJ_MejaKursi(gamePanel));
             getDagangan().add(new OBJ_Jam(gamePanel));
             getDagangan().add(new OBJ_Whiskas(gamePanel));
+            getDagangan().add(new OBJ_Barbel(gamePanel));
         }
 
         public void beliBarang(){

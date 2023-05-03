@@ -100,7 +100,10 @@ public class UI {
             drawGameEventScreen();
         } else if (gamePanel.getGameState() == gamePanel.dialogueState) {
             drawDialogueScreen();
-            
+        } else if (gamePanel.getGameState() == gamePanel.wifeState){
+            drawInteractWifeScreen();
+        } else if (gamePanel.getGameState() == gamePanel.makanState){
+            drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
         }
     }
 
@@ -131,7 +134,7 @@ public class UI {
              jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Bekerja")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
-        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Toilet")){
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("buang air")){
              jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamBerkunjung ;
@@ -257,7 +260,7 @@ public class UI {
     public void drawTextStat(int x, int y, int lineHeight){
         String waktu = String.format("%02d:%02d", (gamePanel.clock/60)%24, (gamePanel.clock%60));
         g2.drawString(waktu, x, y);
-        g2.drawString("DAY - " + gamePanel.clock/(60*24),  x, y + lineHeight);
+        g2.drawString("DAY - " + gamePanel.clock/(60*24)+1,  x, y + lineHeight);
         g2.drawString("FPS: " + gamePanel.fps, x , (y + lineHeight * 2));
         g2.drawString("X: " + (gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize) + " Y: " + (gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize), x, y + lineHeight * 3);
 
@@ -823,7 +826,7 @@ public class UI {
         int textY;
 
         // TITLE
-        String text = "Options";
+        String text = "Actions";
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
         textY = frameY + gamePanel.tileSize / 3 + 35;
         g2.drawString(text, textX + 13, textY);
@@ -933,6 +936,76 @@ public class UI {
         }
 
         gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    private void drawInteractWifeScreen() {
+        switch (subState) {
+            case 0 -> interactWifeSelect();
+        }
+        gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    private void interactWifeSelect() {
+        gamePanel.player[gamePanel.currentPlayer].interactWithNPC(commandNumber);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+        // DRAW WINDOW
+        int x = gamePanel.tileSize * 5;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.tileSize * 3;
+        int height = (int) (gamePanel.tileSize * 3.5);
+        drawSubWindow(x, y, width, height);
+
+        // DRAW TEXT
+        x += gamePanel.tileSize;
+        y += gamePanel.tileSize;
+        g2.drawString("Talk", x-20, y-10);
+        if (commandNumber == 0) {
+            g2.drawString(">", x - 30, y-10);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Hi! you look good today!";
+            }
+        }
+        y += gamePanel.tileSize;
+        g2.drawString("Woohoo", x-20, y-30);
+        if (commandNumber == 1) {
+            g2.drawString(">", x - 30, y-30);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                if (gamePanel.currentMap == 0){
+                    currentDialogue = "Ahh.. Jangan dong...";
+                    gamePanel.playSoundEffect(15);
+                } else {
+                    currentDialogue = "Yes, Daddy!";
+                }
+            }
+        }
+
+        y += gamePanel.tileSize;
+        g2.drawString("Suruh pulang", x-20, y-50);
+        if (commandNumber == 2) {
+            g2.drawString(">", x - 30, y-50);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                subState = 0;
+                gamePanel.npc[0].teleportNPC(50, 50, 0);
+            }
+        }
+
+        y += gamePanel.tileSize;
+        g2.drawString("Leave", x-20, y-55);
+        if (commandNumber == 3) {
+            g2.drawString(">", x - 30, y-55);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "See u later!";
+            }
+        }
+
     }
 
     private void splitAndDrawDialogue(int x, int y) {

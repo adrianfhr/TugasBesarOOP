@@ -17,6 +17,7 @@ public class OBJ_MejaKursi extends Barang {
         this.height = 3;
         this.width = 3;
         setName("Meja Kursi");
+        setStateOBJ("makan");
         setPrice(50);
 
         try{
@@ -40,7 +41,6 @@ public class OBJ_MejaKursi extends Barang {
 
     @Override
     public void interact(Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'interact'");
+
     }
 }

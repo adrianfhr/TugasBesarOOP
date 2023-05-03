@@ -176,17 +176,23 @@ public class NPC_Wife extends Entity {
         }
     }
 
+    public void teleportNPC(int x, int y, int map) {
+		gamePanel.currentMap = map;
+        gamePanel.npc[0].worldX = x * gamePanel.tileSize;
+		gamePanel.npc[0].worldY = y* gamePanel.tileSize;
+	}
+
     public void setDialogue() {
-        getDialogues()[0] = "Hello, lad.";
-        getDialogues()[1] = "So you've come to this island to find \nthe treasure?";
-        getDialogues()[2] = "I used to be a great wizard, but now... \nI'm a bit too old for adventuring.";
-        getDialogues()[3] = "Well, good luck to you lad.";
+        getDialogues()[0] = "Hi! you look good today!";
     }
 
     public void speak() {
         if (getDialogues()[dialogueIndex] == null) {
             dialogueIndex = 0;
         }
+        // if (dialogueIndex == 0) {
+        //     gamePanel.playSoundEffect(15);
+        // }
             gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
             dialogueIndex++;
 
@@ -196,5 +202,6 @@ public class NPC_Wife extends Entity {
                 case "left" -> direction = "right";
                 case "right" -> direction = "left";
             }
+            gamePanel.setGameState(gamePanel.wifeState);
     }
 }

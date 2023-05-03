@@ -4,6 +4,7 @@ import entity.NPC_Cat;
 import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
+import object.OBJ_Barbel;
 import object.OBJ_Car;
 import object.OBJ_Gudang;
 import object.OBJ_Hotel;
@@ -392,6 +393,13 @@ public class AssetSetter {
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
                 index = tempIndex;
+                break;
+
+            case "Barbel":
+                gamePanel.obj[map][index] = new OBJ_Barbel(gamePanel);
+                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
                 break;
 
             default:
