@@ -162,6 +162,7 @@ public class Player extends Entity{
                 if(state.equals("Nonton")) gamePanel.isActiveAction = true;
                 if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
                 if(state.equals("buang air")) gamePanel.isActiveAction = true;
+                if(state.equals("Olahraga")) gamePanel.isActiveAction = true;
 
             }
         } else{
@@ -524,6 +525,7 @@ public class Player extends Entity{
             getDagangan().add(new OBJ_MejaKursi(gamePanel));
             getDagangan().add(new OBJ_Jam(gamePanel));
             getDagangan().add(new OBJ_Whiskas(gamePanel));
+            getDagangan().add(new OBJ_Barbel(gamePanel));
         }
 
         public void beliBarang(){

@@ -182,12 +182,14 @@ public class GamePanel extends JPanel implements Runnable {
                 player[currentPlayer].jamTidakTidur--;
                 if(player[currentPlayer].getState().equals("Tidur")){
                     player[currentPlayer].jamTidur--;
-                }else if(gameState == masakState ){
+                } else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
-                }else if(player[currentPlayer].getState().equals("Bekerja")){
+                } else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
-                }else if(player[currentPlayer].getState().equals("buang air")){
+                } else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
+                } else if(player[currentPlayer].getState().equals("Olahraga")){
+                    player[currentPlayer].jamOlahraga--;
                 }
                 eManager.lighting.dayCounter++;
                 
@@ -360,6 +362,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(player[currentPlayer].jamTidur == 0 ){
             player[currentPlayer].interactOBJ();
             player[currentPlayer].jamTidur = 4 * 60 * 2;
+            ui.addMessage("Tidur selesai");
         }
 
         if(player[currentPlayer].jamTidakTidur == 0){
@@ -384,7 +387,7 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].interactOBJ();
             player[currentPlayer].jamMules = 10 * 2;
             isActiveAction = false;
-
+            ui.addMessage("Jangan lupa cebok");
         }
 
         if(player[currentPlayer].jamTidakMules == 0){ //RIBEETTTTT TANDAINN
@@ -398,8 +401,15 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].setHealth(player[currentPlayer].getHealth() + 5);
             player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
             player[currentPlayer]. setHunger(player[currentPlayer].getHunger() - 5);
+            ui.addMessage("Olahraga selesai");
+            ui.addMessage("Health + 5");
+            ui.addMessage("Mood + 10");
+            ui.addMessage("Hunger - 5");
+            if (player[currentPlayer].getMood() > 100 && player[currentPlayer].getHealth() > 100){
+                player[currentPlayer].setHealth(100);
+            }
             player[currentPlayer].jamOlahraga = 20 * 2;
-            
+            isActiveAction = false;
         }
 
         //jMASIH BINGUNG ISINYA
@@ -412,6 +422,7 @@ public class GamePanel extends JPanel implements Runnable {
         isActiveAction = false;
         player[currentPlayer].jamMemasak = 30;
         gameState = playState;
+        ui.addMessage("Makanan sudah jadi!");
         }
 
         if(player[currentPlayer].jamBerkunjung == 0){
