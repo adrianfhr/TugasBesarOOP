@@ -100,7 +100,6 @@ public class Player extends Entity{
         String randomString = strings.get(index);
         this.job = randomString;
     
-        System.out.println("Random string: " + randomString);
     }
 
     public void getPlayerImage(){
@@ -344,7 +343,6 @@ public class Player extends Entity{
     
     //
     public void interactOBJ(){
-        System.out.println("gameState : " + gamePanel.gameState + " isInteracting : " + isInteracting + " isNPC : " + gamePanel.isNPC + " isCat : " + gamePanel.isCat);
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC && !gamePanel.isCat)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
         } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){

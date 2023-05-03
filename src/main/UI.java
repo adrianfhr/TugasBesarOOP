@@ -96,7 +96,7 @@ public class UI {
             }else{
                 masak();
             }
-        } else if (gamePanel.getGameState() == gamePanel.gameEventState){
+        } else if (gamePanel.getGameState() == gamePanel.gameEventState && !gamePanel.isInputAction){
             drawGameEventScreen();
         } else if (gamePanel.getGameState() == gamePanel.dialogueState) {
             drawDialogueScreen();
@@ -633,6 +633,7 @@ public class UI {
             case 0 -> gameEventTop(frameX, frameY);
             case 1 -> drawDaganganScreen(gamePanel.player[gamePanel.currentPlayer], true);
             case 2 -> selectJobScreen(frameX, frameY);
+            case 3 -> selectUpgradeScreen(frameX, frameY);
         }
 
         gamePanel.getKeyHandler().setEnterPressed(false);
@@ -763,6 +764,60 @@ public class UI {
         }
     }
 
+    private void selectUpgradeScreen(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "Select Your Room";
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY = frameY + gamePanel.tileSize / 3 + 35;
+        g2.drawString(text, textX + 13, textY);
+
+        // BELI BARANG
+        textX = frameX + gamePanel.tileSize / 3;
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Atas", textX + 30, textY + 30);
+        if (commandNumber == 0) {
+            g2.drawString(">", textX + 10, textY + 30);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+               gamePanel.upgradeRumah("Atas");
+            }
+        }
+
+        // KERJA
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Kanan", textX + 30, textY + 45);
+        if (commandNumber == 1) {
+            g2.drawString(">", textX + 10, textY + 45);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.upgradeRumah("Kanan");
+            }
+        }
+
+        // UPGRADE RUMAH
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Kiri", textX + 30, textY + 60);
+        if (commandNumber == 2) {
+            g2.drawString(">", textX + 10, textY + 60);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.upgradeRumah("Kiri");
+            }
+        }
+
+        // BACK
+        textX = frameX + gamePanel.tileSize / 3;
+        textY = frameY + gamePanel.tileSize / 3 * 9;
+        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 200);
+        if (commandNumber == 5) {
+            g2.drawString(">", textX + 9, textY + 200);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                commandNumber = 0;
+            }
+        }
+    }
+
     private void gameEventTop(int frameX, int frameY){
         int textX;
         int textY;
@@ -801,6 +856,10 @@ public class UI {
         g2.drawString("Upgrade Rumah", textX + 30, textY + 60);
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 3;
+                commandNumber = 0;
+            }
         }
 
         // NEW PLAYER
@@ -809,10 +868,9 @@ public class UI {
         if (commandNumber == 3) {
             g2.drawString(">", textX + 10, textY + 75);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                System.out.println("masok");
                 subState = 0;
                 commandNumber = 0;
-                gamePanel.gameState = gamePanel.playState;
+                gamePanel.isInputAction = true;
                 gamePanel.makePlayer();
 
             }

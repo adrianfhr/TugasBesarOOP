@@ -60,6 +60,9 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
+        if(code == KeyEvent.VK_M){
+            gamePanel.player[gamePanel.currentPlayer].teleport(50, 42, 1);
+        }
     }
 
     private void checkUseBarangStateKeyPressed(int code){

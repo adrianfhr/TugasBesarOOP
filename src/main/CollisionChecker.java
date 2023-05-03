@@ -175,7 +175,6 @@ public class CollisionChecker {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){ //ngecek apakah bersentuhan
-                            System.out.println("MASUKKDW");
                             entity.collisionOn = true;
                                 
                             entity.targetIndex = i;
@@ -187,7 +186,7 @@ public class CollisionChecker {
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;
@@ -198,7 +197,7 @@ public class CollisionChecker {
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                                 
                             
@@ -210,7 +209,7 @@ public class CollisionChecker {
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;
@@ -250,7 +249,7 @@ public class CollisionChecker {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){ //ngecek apakah bersentuhan
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                                 
                             entity.targetIndex = i;
@@ -262,7 +261,7 @@ public class CollisionChecker {
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;
@@ -273,7 +272,7 @@ public class CollisionChecker {
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                                 
                             
@@ -285,7 +284,7 @@ public class CollisionChecker {
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                             
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;

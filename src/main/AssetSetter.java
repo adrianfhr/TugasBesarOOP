@@ -297,11 +297,11 @@ public class AssetSetter {
     }
 
     public void makeOBJ(String objek, int map, int player){
-        index = 0;
+        int tempIndex = 0;
 
-        while (gamePanel.obj[map][index] != null) {
-            index++;
-            if (index == gamePanel.obj[map].length) {
+        while (gamePanel.obj[map][tempIndex] != null) {
+            tempIndex++;
+            if (tempIndex == gamePanel.obj[map].length) {
                 gamePanel.ui.setCurrentDialogue("Array penuh, tidak bisa menambahkan objek baru!");
                 return;
             }
@@ -310,83 +310,88 @@ public class AssetSetter {
         String x,y;
         int worldX, worldY;
 
+        
         switch (objek) {
             case "Rumah":
-                gamePanel.obj[map][index] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                
+                gamePanel.obj[map][tempIndex] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.player[gamePanel.currentPlayer].teleport(gamePanel.obj[map][tempIndex].worldX/gamePanel.tileSize, gamePanel.obj[map][tempIndex].worldY/gamePanel.tileSize - 1, map);
+                index = tempIndex;
+            
             
                 break;
             case "Pintu":
-                gamePanel.obj[map][index] = new OBJ_Pintu(gamePanel);
-                gamePanel.obj[map][index].worldX = 53 * gamePanel.tileSize;
-                gamePanel.obj[map][index].worldY = 53 * gamePanel.tileSize;
+                gamePanel.obj[map][tempIndex] = new OBJ_Pintu(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = 53 * gamePanel.tileSize;
+                gamePanel.obj[map][tempIndex].worldY = 53 * gamePanel.tileSize;
                 break;
 
             case "Single Bed":
-                gamePanel.obj[map][index] = new OBJ_SingleBed(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_SingleBed(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 
                 break;
 
             case "Jam":
     
-                gamePanel.obj[map][index] = new OBJ_Jam(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-               
+                gamePanel.obj[map][tempIndex] = new OBJ_Jam(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
 
             case "King Bed":
-                gamePanel.obj[map][index] = new OBJ_KingBed(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_KingBed(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
             
             case "Kompor Gas":
-                gamePanel.obj[map][index] = new OBJ_KomporGas(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_KomporGas(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
 
             case "Kompor Listrik":
-                gamePanel.obj[map][index] = new OBJ_KomporListrik(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_KomporListrik(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 
                 break;
             
             case "Meja Kursi":
-                gamePanel.obj[map][index] = new OBJ_MejaKursi(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-               
+                gamePanel.obj[map][tempIndex] = new OBJ_MejaKursi(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
 
             case "Queen Bed":
-                gamePanel.obj[map][index] = new OBJ_QueenBed(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_QueenBed(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
             
             case "Toilet":
-                gamePanel.obj[map][index] = new OBJ_Toilet(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_Toilet(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
             
             case "TV":
-                gamePanel.obj[map][index] = new OBJ_TV(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_TV(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
 
             default:
@@ -445,7 +450,6 @@ public class AssetSetter {
         if(gamePanel.keyHandler.upPressed || gamePanel.keyHandler.downPressed || gamePanel.keyHandler.leftPressed || gamePanel.keyHandler.rightPressed){
             if (gamePanel.keyHandler.upPressed){
                 direction = "up";
-                
             } else if (gamePanel.keyHandler.downPressed){
                 direction = "down";
                 
