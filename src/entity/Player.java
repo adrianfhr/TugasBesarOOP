@@ -350,7 +350,7 @@ public class Player extends Entity{
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
         } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
             gamePanel.isCat = false;
-            interactWithNPC(targetIndex);
+            gamePanel.setGameState(gamePanel.wifeState);
         } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
             gamePanel.isNPC = false;
             interactWithCat(targetIndex);

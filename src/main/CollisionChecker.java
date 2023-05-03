@@ -44,7 +44,7 @@ public class CollisionChecker {
                 if(gamePanel.tileManager.tile[tileNum1].collision || gamePanel.tileManager.tile[tileNum2].collision){
                     entity.collisionOn = true;
                 }
-                
+             
                 break;
             case "left":
                 entityLeftCol = (entityLeftWorldX - entity.speed) / gamePanel.tileSize;

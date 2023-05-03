@@ -176,17 +176,23 @@ public class NPC_Wife extends Entity {
         }
     }
 
+    public void teleportNPC(int x, int y, int map) {
+		gamePanel.currentMap = map;
+        gamePanel.npc[0].worldX = x * gamePanel.tileSize;
+		gamePanel.npc[0].worldY = y* gamePanel.tileSize;
+	}
+
     public void setDialogue() {
-        getDialogues()[0] = "Ahh... Jangan dongg...";
+        getDialogues()[0] = "Hi! you look good today!";
     }
 
     public void speak() {
         if (getDialogues()[dialogueIndex] == null) {
             dialogueIndex = 0;
         }
-        if (dialogueIndex == 0) {
-            gamePanel.playSoundEffect(15);
-        }
+        // if (dialogueIndex == 0) {
+        //     gamePanel.playSoundEffect(15);
+        // }
             gamePanel.ui.setCurrentDialogue(getDialogues()[dialogueIndex]);
             dialogueIndex++;
 
@@ -196,5 +202,6 @@ public class NPC_Wife extends Entity {
                 case "left" -> direction = "right";
                 case "right" -> direction = "left";
             }
+            gamePanel.setGameState(gamePanel.wifeState);
     }
 }

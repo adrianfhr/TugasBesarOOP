@@ -47,6 +47,8 @@ public class KeyHandler implements KeyListener {
             checkGameEventStateKeys(code);
         } else if(gamePanel.getGameState() == gamePanel.useBarangState){
             checkUseBarangStateKeyPressed(code);
+        } else if (gamePanel.getGameState() == gamePanel.wifeState){
+            checkWifeStateKeyPressed(code);
         }
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
@@ -126,6 +128,30 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getKomporSlotCol() != 4) {
                 gamePanel.playSoundEffect(8);
                 gamePanel.ui.setKomporSlotCol(gamePanel.ui.getKomporSlotCol() + 1);
+            }
+        }
+    }
+
+    private void checkWifeStateKeyPressed(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+
+        if (gamePanel.ui.getSubState() == 0) {
+            if (code == KeyEvent.VK_W) {
+                gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
+                if (gamePanel.ui.getCommandNumber() < 0) {
+                    gamePanel.ui.setCommandNumber(2);
+                }
+                gamePanel.playSoundEffect(8);
+            }
+
+            if (code == KeyEvent.VK_S) {
+                gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
+                if (gamePanel.ui.getCommandNumber() > 3) {
+                    gamePanel.ui.setCommandNumber(0);
+                }
+                gamePanel.playSoundEffect(8);
             }
         }
     }
