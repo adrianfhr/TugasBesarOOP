@@ -24,7 +24,7 @@ public class Player extends Entity{
     private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
-    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung;
+    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang;
 
     //naik mobil gak
     public boolean naikMobil;
@@ -67,6 +67,9 @@ public class Player extends Entity{
         this.money = 100;
         startPekerjaan();
 
+        Random random = new Random();
+        int beli = random.nextInt(60)+1;
+
         //set jam kerja default
         jamKerja = 30*2;
         jamOlahraga = 20*2;
@@ -77,6 +80,7 @@ public class Player extends Entity{
         jamBerkunjung = 30 * 2;
         jamMules = 10 * 2;
         jamTidakMules = 4 * 60 * 2;
+        jamBarang = beli;
     }
 
    
@@ -347,7 +351,7 @@ public class Player extends Entity{
     public void interactOBJ(){
         if((gamePanel.gameState == gamePanel.interactObjState && isInteracting && !gamePanel.isNPC && !gamePanel.isCat)){
             gamePanel.obj[gamePanel.currentMap][this.targetIndex].interact(this);
-        } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife")){
+        } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife") && !naikMobil){
             gamePanel.isCat = false;
             gamePanel.setGameState(gamePanel.wifeState);
         } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
@@ -543,8 +547,12 @@ public class Player extends Entity{
             if (selectedItem instanceof SuperObject){
                 if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() < gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()){
                     if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
-                        gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
-                        gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
+                        System.out.println("Jam Barang : "+gamePanel.player[gamePanel.currentPlayer].jamBarang);
+                            System.out.println("Masuk Barang");
+                            gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
+                            gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
+                            gamePanel.ui.addMessage("Barang sudah sampai!");
+                            gamePanel.isPassiveAction = false;
                     } else{
                         gamePanel.ui.setSubState(0);
                         gamePanel.setGameState(gamePanel.dialogueState);

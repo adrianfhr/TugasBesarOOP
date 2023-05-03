@@ -411,7 +411,7 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 enterPressed = true;
-                gamePanel.player[gamePanel.currentPlayer].beliBarang();
+                gamePanel.isPassiveAction = true;
                 gamePanel.playSoundEffect(12);
             }
         

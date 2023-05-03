@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -185,19 +187,28 @@ public class GamePanel extends JPanel implements Runnable {
                 player[currentPlayer].jamTidakTidur--;
                 if(player[currentPlayer].getState().equals("Tidur")){
                     player[currentPlayer].jamTidur--;
+                    player[currentPlayer].jamBarang--;
                 } else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
+                    player[currentPlayer].jamBarang--;
+                    
                 } else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
+                    player[currentPlayer].jamBarang--;
+                    
                 } else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
+                    player[currentPlayer].jamBarang--;
+                    
                 }else if(player[currentPlayer].getState().equals("Berkunjung")){
                     player[currentPlayer].jamBerkunjung--;
+                    player[currentPlayer].jamBarang--;
+                    
                 } else if(player[currentPlayer].getState().equals("Olahraga")){
                     player[currentPlayer].jamOlahraga--;
+                    player[currentPlayer].jamBarang--;
                 }
                 eManager.lighting.dayCounter++;
-                
             }
         }
     }
@@ -231,8 +242,6 @@ public class GamePanel extends JPanel implements Runnable {
         if(isActiveAction) eManager.update();
 
         playerTime();
-        
-
     }
 
     public void paintComponent(Graphics g){
@@ -436,9 +445,12 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].setHunger(player[currentPlayer].getHunger() - 10);
         }
 
-        if(player[currentPlayer].jamBerkunjung == 0){
-    
-
+        if(player[currentPlayer].jamBarang == 0){
+            Random random = new Random();
+            int beli = random.nextInt(60)+1;
+            player[currentPlayer].jamBarang = beli;
+            isPassiveAction = true;
+            player[currentPlayer].beliBarang();
         }
 
     }
