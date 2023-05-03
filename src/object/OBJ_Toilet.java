@@ -14,8 +14,8 @@ public class OBJ_Toilet extends Barang{
     public OBJ_Toilet(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 2;
-        this.width = 2;
+        this.height = 1;
+        this.width = 1;
         setName("Toilet");
         setStateOBJ("buang air");
         setDescription("[" + getName() + "]\nSelamat menikmati");

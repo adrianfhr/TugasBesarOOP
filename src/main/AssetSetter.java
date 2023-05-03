@@ -15,6 +15,7 @@ import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
 import object.OBJ_MejaKursi;
 import object.OBJ_Mixue;
+import object.OBJ_Parking;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
 import object.OBJ_Pitch;
@@ -291,6 +292,24 @@ public class AssetSetter {
         gamePanel.obj[0][21].worldY = 6 * gamePanel.tileSize;
         for (int i = 3; i < 3 + gamePanel.obj[0][21].width; i++) {
             for (int j = 6; j < 6 + gamePanel.obj[0][21].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][22] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][22].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[0][22].worldY = 24 * gamePanel.tileSize;
+        for (int i = 52; i < 52 + gamePanel.obj[0][22].width; i++) {
+            for (int j = 24; j < 24 + gamePanel.obj[0][22].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][23] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][23].worldX = 35 * gamePanel.tileSize;
+        gamePanel.obj[0][23].worldY = 9 * gamePanel.tileSize;
+        for (int i = 35; i < 35 + gamePanel.obj[0][23].width; i++) {
+            for (int j = 9; j < 9 + gamePanel.obj[0][23].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
