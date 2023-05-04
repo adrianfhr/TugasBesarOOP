@@ -61,6 +61,7 @@ public class UI {
     public void draw(Graphics2D g2d){
         this.g2 = g2d;
         setupDefaultGraphics(g2d);
+        drawMessages();
         //statistic();
         if (gamePanel.getGameState() == gamePanel.titleState){
             drawTitleScreen();
@@ -83,6 +84,7 @@ public class UI {
         }
         else if (gamePanel.getGameState() == gamePanel.characterState){
             drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
+            drawMessages();
         }
         else if (gamePanel.getGameState() == gamePanel.pauseState){
             drawPauseScreen();
@@ -104,7 +106,12 @@ public class UI {
         } else if (gamePanel.getGameState() == gamePanel.wifeState){
             drawInteractWifeScreen();
         } else if (gamePanel.getGameState() == gamePanel.makanState){
-            drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
+            if (gamePanel.isActiveAction){
+                drawActiveStateScreen();
+                drawPlayerActiveState();
+            } else{
+                drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
+            }
         }
     }
 
@@ -129,7 +136,7 @@ public class UI {
             jam = (4*60*2) - gamePanel.player[gamePanel.currentPlayer].jamTidur ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Memasak")){
              jam = (30) - gamePanel.player[gamePanel.currentPlayer].jamMemasak ;
-        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Makan")){
+        }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("makan")){
              jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamMakan ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Olahraga")){
              jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
@@ -813,7 +820,7 @@ public class UI {
         textX = frameX + gamePanel.tileSize / 3;
         textY = frameY + gamePanel.tileSize / 3 * 9;
         g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 200);
-        if (commandNumber == 5) {
+        if (commandNumber == 3) {
             g2.drawString(">", textX + 9, textY + 200);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 subState = 0;

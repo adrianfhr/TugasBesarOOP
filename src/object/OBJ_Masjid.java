@@ -39,8 +39,7 @@ public class OBJ_Masjid extends SuperObject{
     }
 
     public void interact(Player player){
-        gamePanel.setGameState(gamePanel.dialogueState);
-        gamePanel.ui.setCurrentDialogue("Allaahumaghfirlii dzunuubii\nwaftah lii abwaaba rahmatika...");
+        
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

@@ -78,18 +78,24 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER && limit == 1) {
             enterPressed = true;
             limit = 0;
+            gamePanel.ui.addMessage("Barang berhasil diletakkan!");
+            gamePanel.playSoundEffect(2);
         } else if(code == KeyEvent.VK_W && limit == 1){
             upPressed = true;
             limit = 0;
+            gamePanel.playSoundEffect(8);
         } else if(code == KeyEvent.VK_S && limit == 1){
             downPressed = true;
             limit = 0;
+            gamePanel.playSoundEffect(8);
         } else if(code == KeyEvent.VK_A && limit == 1){
             leftPressed = true;
             limit = 0;
+            gamePanel.playSoundEffect(8);
         } else if(code == KeyEvent.VK_D && limit == 1){
             rightPressed = true;
             limit = 0;
+            gamePanel.playSoundEffect(8);
         }
     }
 
@@ -194,7 +200,12 @@ public class KeyHandler implements KeyListener {
         }
 
         if (code == KeyEvent.VK_ENTER) {
-            gamePanel.player[gamePanel.currentPlayer].selectItem();
+            if (gamePanel.getGameState() == gamePanel.makanState){
+                enterPressed = true;
+                gamePanel.isActiveAction = true;
+            } else {
+                gamePanel.player[gamePanel.currentPlayer].selectBarang();
+            }
         }
 
         playerInventoryMovement(code);

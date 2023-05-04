@@ -33,7 +33,6 @@ public class NPC_Cat extends Entity{
         direction = "left4";
         speed = 1;
         setStateNPC("cat");
-        gamePanel.setGameState(gamePanel.dialogueState);
         getNPCImage();
         setDialogue();
     }
