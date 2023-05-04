@@ -41,12 +41,6 @@ public class OBJ_TV extends Barang{
     }
 
     public void interact(Player player ){
-        if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
-            gamePanel.ui.addMessage("Mood + 10");
-        } else {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 0);
-        }
         
     }
 

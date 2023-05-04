@@ -52,6 +52,9 @@ public class OBJ_KomporGas extends Barang {
 
     public void interact(Player player){
         gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
+        if (gamePanel.player[gamePanel.currentPlayer].getMood() > 100){
+            gamePanel.player[gamePanel.currentPlayer].setMood(100);
+        }
         gamePanel.ui.addMessage("Mood + 10");
     }
 

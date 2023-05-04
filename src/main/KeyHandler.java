@@ -455,7 +455,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.setSubState(0);
             }
             if (code == KeyEvent.VK_ENTER) {
-                gamePanel.isPassiveAction = true;
+                gamePanel.player[gamePanel.currentPlayer].beliBarang();
                 gamePanel.playSoundEffect(12);
             }
         

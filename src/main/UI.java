@@ -70,6 +70,8 @@ public class UI {
         else if ((gamePanel.getGameState() == gamePanel.playState || gamePanel.getGameState() == gamePanel.interactObjState) && !gamePanel.isInputAction){
             drawCharacterScreen();
             drawMessages();
+
+
             
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
@@ -145,6 +147,7 @@ public class UI {
         String jamMemasak = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMemasak/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMemasak%60));
         String jamMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMules%60));
         String jamBerkunjung = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung%60));
+        String jamIbadah = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamIbadah/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamIbadah%60));
         if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Tidur")){
             jam = jamTidur;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Memasak")){
@@ -159,7 +162,9 @@ public class UI {
              jam = jamMules ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
              jam = jamBerkunjung ;
-        }
+        } else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Ibadah")){
+            jam = jamIbadah ;
+       }
         
          
         
@@ -415,6 +420,7 @@ public class UI {
         
         // // // Isi Inventory
         List<SuperObject> dagangan = entity.getDagangan();
+
         drawItemsInInventory(entity, slotXStart, slotX, slotY, slotSize, dagangan);
 
         // DRAW HINT WINDOW
@@ -603,6 +609,58 @@ public class UI {
             }
         }
     } //
+
+    private void drawGameOverScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+        int textX;
+        int textY;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
+
+        // TITLE TEXT
+        text = "Game Over";
+
+        // Shadow
+        g2.setColor(Color.black);
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY = gamePanel.tileSize * 4;
+        g2.drawString(text, textX, textY);
+
+        // Text
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, textX - 4, textY - 4);
+
+        // RETRY
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY += gamePanel.tileSize * 4;
+        g2.drawString(text, textX, textY);
+        if (commandNumber == 0) {
+            g2.drawString(">", textX - 40, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                gamePanel.retry();
+            }
+        }
+
+        // BACK TO TITLE
+        text = "Quit";
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY += 55;
+        g2.drawString(text, textX, textY);
+        if (commandNumber == 1) {
+            g2.drawString(">", textX - 40, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                gamePanel.restart();
+            }
+        }
+
+        gamePanel.getKeyHandler().setEnterPressed(false);
+    }
 
     private void drawSelectionBox(int slotXStart, int slotYStart, int slotSize, int slotCol, int slotRow) {
         // CURSOR selection box
@@ -811,7 +869,15 @@ public class UI {
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-               gamePanel.upgradeRumah("Atas");
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.playSoundEffect(18);
+                    gamePanel.isPassiveAction = true;
+                    gamePanel.upgradeRumah("Atas");
+                    addMessage("Upgrade berhasil!");
+                } else{
+                    addMessage("Uang anda tidak cukup");
+                    gamePanel.playSoundEffect(19);
+                }
             }
         }
 
@@ -821,7 +887,15 @@ public class UI {
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.upgradeRumah("Kanan");
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.playSoundEffect(18);
+                    gamePanel.isPassiveAction = true;
+                    gamePanel.upgradeRumah("Kanan");
+                    addMessage("Upgrade berhasil!");
+                } else{
+                    addMessage("Uang anda tidak cukup");
+                    gamePanel.playSoundEffect(19);
+                }
             }
         }
 
@@ -831,7 +905,15 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                gamePanel.upgradeRumah("Kiri");
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.playSoundEffect(18);
+                    gamePanel.isPassiveAction = true;
+                    gamePanel.upgradeRumah("Kiri");
+                    addMessage("Upgrade berhasil!");
+                } else{
+                    addMessage("Uang anda tidak cukup");
+                    gamePanel.playSoundEffect(19);
+                }
             }
         }
 

@@ -211,6 +211,9 @@ public class NPC_Cat extends Entity{
                     gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
                     gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 5);
                     gamePanel.ui.addMessage("Mood + 5");
+                    if (gamePanel.player[gamePanel.currentPlayer].getMood() > 100){
+                        gamePanel.player[gamePanel.currentPlayer].setMood(100);
+                    }
                     gamePanel.playSoundEffect(13);
                     dialogueIndex = 0;
                 } else {

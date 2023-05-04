@@ -40,27 +40,6 @@ public class OBJ_Barbel extends Barang{
     }
 
     public void interact(Player player ){
-        if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getHealth() <= 80) {
-            gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 20);
-            gamePanel.ui.addMessage("Health + 20");
-        } else if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getHealth() <= 90){
-            gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 10);
-            gamePanel.ui.addMessage("Health + 10");
-        } else {
-            gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 0);
-        }
-        if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 70) {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 30);
-            gamePanel.ui.addMessage("Mood + 30");
-        } else if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 80) {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 20);
-            gamePanel.ui.addMessage("Mood + 20");
-        } else if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
-            gamePanel.ui.addMessage("Mood + 10");
-        } else {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 0);
-        }
         
     }
 

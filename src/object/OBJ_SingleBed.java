@@ -47,7 +47,11 @@ public class OBJ_SingleBed extends Barang{
             gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 10);
             gamePanel.ui.addMessage("Health + 10");
         } else {
-            gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 0);
+            gamePanel.player[gamePanel.currentPlayer].setHealth(gamePanel.player[gamePanel.currentPlayer].getHealth() + 20);
+            gamePanel.ui.addMessage("Health + 20");
+            if (gamePanel.player[gamePanel.currentPlayer].getHealth() > 100){
+                gamePanel.player[gamePanel.currentPlayer].setHealth(100);
+            }
         }
         if (gamePanel.player[gamePanel.currentPlayer].jamTidur == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 70) {
             gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 30);
@@ -59,7 +63,11 @@ public class OBJ_SingleBed extends Barang{
             gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
             gamePanel.ui.addMessage("Mood + 10");
         } else {
-            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 0);
+            gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 30);
+            gamePanel.ui.addMessage("Mood + 30");
+            if (gamePanel.player[gamePanel.currentPlayer].getMood() > 100){
+                gamePanel.player[gamePanel.currentPlayer].setMood(100);
+            }
         }
         
     }

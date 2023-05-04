@@ -18,7 +18,7 @@ public class OBJ_Masjid extends SuperObject{
         this.height = 2;
         this.width = 2;
         setName("Masjid");
-        setStateOBJ("Sholat");
+        setStateOBJ("Ibadah");
         
         try {
             image = ImageIO.read(new File("././res/object/masjid.png"));
@@ -39,7 +39,7 @@ public class OBJ_Masjid extends SuperObject{
     }
 
     public void interact(Player player){
-        gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
+        gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 5);
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

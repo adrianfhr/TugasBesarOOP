@@ -37,6 +37,9 @@ public class SoundManager {
             soundUrl[15] = new File("././res/sounds/jangandong.wav").toURI().toURL();
             soundUrl[16] = new File("././res/sounds/carEngine.wav").toURI().toURL();
             soundUrl[17] = new File("././res/sounds/carIdle.wav").toURI().toURL();
+            soundUrl[18] = new File("././res/sounds/upgrade.wav").toURI().toURL();
+            soundUrl[19] = new File("././res/sounds/denied.wav").toURI().toURL();
+            soundUrl[20] = new File("././res/sounds/dead.wav").toURI().toURL();
             
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block

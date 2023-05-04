@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -126,6 +127,9 @@ public class GamePanel extends JPanel implements Runnable {
          eManager.setup();
          eManager.lighting.dayCounter = clock;
          gps2d = (Graphics2D) tempScreen.getGraphics();
+         for(int i = 0; i < tempBuyObjCount.length; i++){
+             tempBuyObjCount[i] = 999;
+         }
         if (fullScreenOn) {
             setFullScreen();
         }
@@ -182,11 +186,6 @@ public class GamePanel extends JPanel implements Runnable {
                 repaint();
                 drawCount++;
                 delta--;
-
-
-                System.out.println("State : " + gameState);
-                System.out.println("Player : " + player[currentPlayer].getState());
-                System.out.println("isAction : " + isActiveAction);
             }
 
             if(deltaClock >= 1 && isActiveAction){
@@ -238,16 +237,43 @@ public class GamePanel extends JPanel implements Runnable {
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
                     player[currentPlayer].jamTidakMules--;
+                    }
                 }
+                else if(player[currentPlayer].getState().equals("Ibadah")){
+                    player[currentPlayer].jamIbadah--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                } else if(player[currentPlayer].getState().equals("Nonton")){
+                    player[currentPlayer].jamNonton--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
+                    }
                 }
 
                 if (isPassiveAction){
-                    player[currentPlayer].jamBarang--;
+                    for(int i = 0; i < tempBuyObj.length; i++){
+                        if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
+                            tempBuyObjCount[i]--;
+                        }
+                    }
                 }
+            }
+
+                
                 eManager.lighting.dayCounter++;
+
+                for(int i = 0; i < tempBuyObj.length; i++){
+                    if (tempBuyObjCount[i] != 999){
+                        System.out.println("temp OBJ : " + tempBuyObj[i]);
+                        System.out.println("temp OBJ Count : " + tempBuyObjCount[i]);
+                    }
+                }
             }
         }
-    }
+    
 
     public void update(){
         //update game logic
@@ -462,8 +488,11 @@ public class GamePanel extends JPanel implements Runnable {
             ui.addMessage("Health + 5");
             ui.addMessage("Mood + 10");
             ui.addMessage("Hunger - 5");
-            if (player[currentPlayer].getMood() > 100 && player[currentPlayer].getHealth() > 100){
+            if (player[currentPlayer].getHealth() > 100){
                 player[currentPlayer].setHealth(100);
+            }
+            if (player[currentPlayer].getMood() > 100){
+                player[currentPlayer].setMood(100);
             }
             player[currentPlayer].jamOlahraga = 20 * 2;
             isActiveAction = false;
@@ -479,25 +508,75 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if(player[currentPlayer].jamMemasak == 0){
-        player[currentPlayer].interactOBJ();
-        isActiveAction = false;
-        player[currentPlayer].jamMemasak = 30;
-        gameState = playState;
-        ui.addMessage("Makanan sudah jadi!");
+            player[currentPlayer].interactOBJ();
+            isActiveAction = false;
+            player[currentPlayer].jamMemasak = 30;
+            gameState = playState;
+            ui.addMessage("Makanan sudah jadi!");
         }
 
         if(player[currentPlayer].jamBerkunjung == 0){
             player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
             player[currentPlayer].setHunger(player[currentPlayer].getHunger() - 10);
+            if (player[currentPlayer].getMood() > 100){
+                player[currentPlayer].setMood(100);
+            }
+        }
+
+        if(player[currentPlayer].jamIbadah == 0){
+            isActiveAction = false;
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 5);
+            if (player[currentPlayer].getMood() > 100){
+                player[currentPlayer].setMood(100);
+            }
+            player[currentPlayer].jamIbadah = 10;
+            ui.addMessage("Mood + 5");
+            playSoundEffect(12);
+        }
+
+        if(player[currentPlayer].jamNonton == 0){
+            isActiveAction = false;
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 5);
+            if (player[currentPlayer].getMood() > 100){
+                player[currentPlayer].setMood(100);
+            }
+            player[currentPlayer].jamNonton = 10;
+            ui.addMessage("Mood + 5");
+            playSoundEffect(12);
         }
 
         if(player[currentPlayer].jamBarang == 0){
-            // Random random = new Random();
+             Random random = new Random();
             // int beli = random.nextInt(60)+1;
             // player[currentPlayer].jamBarang = beli;
             // isPassiveAction = true;
             // player[currentPlayer].beliBarang();
         }
+
+        checkWaktuBeliBarang();
+
+    }
+
+    public void deleteTempBuyObj(int index){
+
+    }
+
+    public synchronized void checkWaktuBeliBarang(){
+        for(int i = 0; i < tempBuyObj.length;i++){
+            if(tempBuyObjCount[i] == 0){
+                System.out.println("MASUKK ADD");
+                addInventory(tempBuyObj[i]);
+                tempBuyObj[i] = null;
+                tempBuyObjCount[i] = 999 ;
+            }
+        }
+    }
+
+    public void addInventory(SuperObject o){
+        
+        List<SuperObject> inventory = player[currentPlayer].getInventory();
+        inventory.add(o);
+       ui.addMessage("Barang "+ o.getName() + " sudah sampai");
 
     }
 
@@ -613,7 +692,4 @@ public class GamePanel extends JPanel implements Runnable {
         
     }
 
-    public void beliBarangSementara(){
-
-    }
 }

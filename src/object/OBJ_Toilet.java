@@ -42,13 +42,9 @@ public class OBJ_Toilet extends Barang{
 
     @Override
     public void interact(Player player) {
-        if (gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getHunger() > 20) {
-            gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() - 20);
-            gamePanel.ui.addMessage("Hunger - 20");
-        }else {
-            gamePanel.ui.addMessage("You can't use this now");
-        }
-
+        gamePanel.player[gamePanel.currentPlayer].setHunger(gamePanel.player[gamePanel.currentPlayer].getHunger() - 20);
+        gamePanel.ui.addMessage("Hunger - 20");
+        gamePanel.playSoundEffect(12);
         if (gamePanel.player[gamePanel.currentPlayer].jamMules == 0 && gamePanel.player[gamePanel.currentPlayer].getMood() <= 90) {
             gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
             gamePanel.ui.addMessage("Mood +  " + 10);

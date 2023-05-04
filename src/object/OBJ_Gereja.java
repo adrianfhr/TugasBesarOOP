@@ -18,6 +18,7 @@ public class OBJ_Gereja extends Barang{
         this.height = 4;
         this.width = 7;
         setName("Gereja");
+        setStateOBJ("Ibadah");
 
         try {
             image = ImageIO.read(new File("././res/object/coffe_shop.png"));
@@ -38,12 +39,6 @@ public class OBJ_Gereja extends Barang{
     }
 
     public void interact(Player player ){
-        if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
-            gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
-            gamePanel.playSoundEffect(2);
-        }else{ 
-            System.out.println("Berkunjung");
-        }
     }
 
 
