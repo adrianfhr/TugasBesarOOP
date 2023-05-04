@@ -477,7 +477,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         int x = player[currentPlayer].worldX/tileSize;
         int y = player[currentPlayer].worldY/tileSize;
+        int posisiX = 48, posisiY = 48;
 
+        isInputAction = true;
+        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan");
+        isInputAction = false;
 
         if(posisi.equals("Atas")){
             while(!top){
@@ -494,6 +498,8 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y - 1; j > y - 1 - 6; j--){
                     tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    posisiX = i;
+                    posisiY = j;
                 }
             }
         }
@@ -513,6 +519,8 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y + 1 ; j < y + 6 + 1 ; j++){
                     tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    posisiX = i;
+                    posisiY = j;
                 }
             }
         }
@@ -533,9 +541,45 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x - 1; i > x - 6 - 1; i--){
                 for(int j = y + 1 ; j < y + 6 + 1; j++){
                     tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    posisiX = i;
+                    posisiY = j;
                 }
             }
         }
         
+        for(SuperObject rumah : obj[0] ){
+            if(rumah instanceof OBJ_Rumah){
+                OBJ_Rumah tempRumah = (OBJ_Rumah) rumah;
+                if(tempRumah.pemilik == player[currentPlayer].getId()){
+                    tempRumah.upgradeRumah(ruangan, posisiX, posisiY);
+                }
+            }
+        }
+
     }    
+
+    public void pindahRuangan(){
+        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan");
+        int x, y;
+
+        for(SuperObject rumah : obj[0] ){
+            if(rumah instanceof OBJ_Rumah){
+                OBJ_Rumah tempRumah = (OBJ_Rumah) rumah;
+                if(tempRumah.pemilik == player[currentPlayer].getId()){
+                    for(int i = 0; i < tempRumah.ruangan.length; i++){
+                        if(tempRumah.ruangan[i].equals(ruangan)){
+                            x = tempRumah.xRuangan[i];
+                            y = tempRumah.yRuangan[i];
+                            player[currentPlayer].teleport(x, y, currentMap);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            
+        }
+
+        
+    }
 }

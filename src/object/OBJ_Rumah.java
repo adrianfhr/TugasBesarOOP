@@ -9,9 +9,10 @@ import main.GamePanel;
 
 public class OBJ_Rumah extends Barang{
     GamePanel gamePanel;
-    int pemilik;
-    public int xRumah[];
-    int yRumah[];
+    public int pemilik;
+    public String ruangan[];
+    public int xRuangan[];
+    public int yRuangan[];
 
     public OBJ_Rumah(GamePanel gamePanel, int pemilik){
         super(gamePanel);
@@ -19,25 +20,14 @@ public class OBJ_Rumah extends Barang{
         this.height = 3;
         this.width = 3;
         setName("Rumah");
-        //setStateOBJ("Berkunjung");
         this.pemilik = pemilik;
-        xRumah = new int[4];
-        yRumah = new int[4];
-        //0 kiri atas
-        xRumah[0] = 48;
-        yRumah[0] = 48;
-
-        //1 kiri bawah
-        xRumah[1] = 48;
-        yRumah[1] = 48 + 6;
-
-        //2 kanan atas
-        xRumah[2] = 48 + 6;
-        yRumah[2] = 48;
-
-        //3 kanan bawah
-        xRumah[3] = 48 + 6;
-        yRumah[3] = 48 + 6;
+        this.ruangan = new String[10];
+        this.xRuangan = new int[10];
+        this.yRuangan = new int[10];
+        ruangan[0] = "Utama";
+        xRuangan[0] = 48;
+        yRuangan[0] = 48;
+        
 
         try {
             image = ImageIO.read(new File("././res/object/rumah.png"));
@@ -68,6 +58,16 @@ public class OBJ_Rumah extends Barang{
             gamePanel.isActiveAction = true;
 
         }
+    }
+
+    public void upgradeRumah(String namaRuangan, int x, int y){
+        int index = 0;
+        while(ruangan[index] != null){
+            index++;
+        }
+        ruangan[index] = namaRuangan;
+        xRuangan[index] = x;
+        yRuangan[index] = y;
     }
 
 

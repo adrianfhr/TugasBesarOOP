@@ -67,11 +67,12 @@ public class KeyHandler implements KeyListener {
         checkGameStateKeys(code);
         checkInteractionKeys(code);
         if(code == KeyEvent.VK_M){
-            String x = JOptionPane.showInputDialog("Masukkan X: ");
-            String y = JOptionPane.showInputDialog("Masukkan Y: ");
-            int intX = Integer.parseInt(x);
-            int intY = Integer.parseInt(y); 
-            gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
+            // String x = JOptionPane.showInputDialog("Masukkan X: ");
+            // String y = JOptionPane.showInputDialog("Masukkan Y: ");
+            // int intX = Integer.parseInt(x);
+            // int intY = Integer.parseInt(y); 
+            // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
+            gamePanel.pindahRuangan();
         }
     }
 

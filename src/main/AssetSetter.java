@@ -366,7 +366,6 @@ public class AssetSetter {
                 break;
 
             case "Jam":
-    
                 gamePanel.obj[map][tempIndex] = new OBJ_Jam(gamePanel);
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
