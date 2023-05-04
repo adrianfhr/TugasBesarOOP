@@ -378,10 +378,8 @@ public class Player extends Entity{
 
     public void setItems(){
         getInventory().clear();
-    }
-
-    private void setDefaultBahanMakanan() {
-        setCurrentBahanMakanan(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_MejaKursi(gamePanel));
+        getInventory().add(new OBJ_Nasi(gamePanel));
     }
 
     public void selectItem() {
@@ -391,21 +389,36 @@ public class Player extends Entity{
             SuperObject selectedItem = getInventory().get(itemIndex);
 
             if (selectedItem instanceof BahanMakanan) {
+                    jamMakan = 2*30;
+                    selectedItem.use();
+            } else if (selectedItem instanceof Makanan) {
+                    jamMakan = 2*30;
+                    selectedItem.use();
+            } else {
+                gamePanel.ui.addMessage("Kamu gabisa makan ini!");
+                gamePanel.setGameState(gamePanel.playState);
+            }
+        }
+    }
+
+    public void selectBarang() {
+        int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
+
+        if (itemIndex < getInventory().size()) {
+            SuperObject selectedItem = getInventory().get(itemIndex);
+
+            if (selectedItem instanceof Barang){
+                selectedItem.use();
+                gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer);
+                gamePanel.setGameState(gamePanel.useBarangState);
+            } else if (selectedItem instanceof BahanMakanan) {
                 if (gamePanel.getGameState() != gamePanel.makanState){
                     gamePanel.ui.addMessage("Makan harus di meja makan!");
-                } else {
-                    selectedItem.use();
                 }
             } else if (selectedItem instanceof Makanan) {
                 if (gamePanel.getGameState() != gamePanel.makanState){
                     gamePanel.ui.addMessage("Makan harus di meja makan!");
-                } else {
-                    selectedItem.use();
                 }
-            } else if (selectedItem instanceof Barang){
-                selectedItem.use();
-                gamePanel.assetSetter.makeOBJ(selectedItem.getName(), gamePanel.currentMap,gamePanel.currentPlayer);
-                gamePanel.setGameState(gamePanel.useBarangState);
             }
         }
     }

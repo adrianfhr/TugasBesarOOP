@@ -41,6 +41,5 @@ public class OBJ_MejaKursi extends Barang {
 
     @Override
     public void interact(Player player) {
-
     }
 }

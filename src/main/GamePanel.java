@@ -187,25 +187,26 @@ public class GamePanel extends JPanel implements Runnable {
                 player[currentPlayer].jamTidakTidur--;
                 if(player[currentPlayer].getState().equals("Tidur")){
                     player[currentPlayer].jamTidur--;
-                    player[currentPlayer].jamBarang--;
                 } else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
-                    player[currentPlayer].jamBarang--;
                     
                 } else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
-                    player[currentPlayer].jamBarang--;
                     
                 } else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
-                    player[currentPlayer].jamBarang--;
                     
                 }else if(player[currentPlayer].getState().equals("Berkunjung")){
                     player[currentPlayer].jamBerkunjung--;
-                    player[currentPlayer].jamBarang--;
                     
                 } else if(player[currentPlayer].getState().equals("Olahraga")){
                     player[currentPlayer].jamOlahraga--;
+
+                } else if(player[currentPlayer].getState().equals("makan")){
+                    player[currentPlayer].jamMakan--;
+                }
+
+                if (isPassiveAction){
                     player[currentPlayer].jamBarang--;
                 }
                 eManager.lighting.dayCounter++;
@@ -429,7 +430,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         //jMASIH BINGUNG ISINYA
         if(player[currentPlayer].jamMakan == 0){
-            //BELUM TAU ISINYA GMNA
+            isActiveAction = false;
+            gameState = playState;
+            player[currentPlayer].jamMakan = 30 * 2;
+            player[currentPlayer].selectItem();
         }
 
         if(player[currentPlayer].jamMemasak == 0){
