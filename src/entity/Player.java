@@ -27,6 +27,7 @@ public class Player extends Entity{
 
     //naik mobil gak
     public boolean naikMobil;
+    public boolean abisMakan;
 
     //player game system
     GamePanel gamePanel;
@@ -396,6 +397,8 @@ public class Player extends Entity{
         getInventory().clear();
         getInventory().add(new OBJ_MejaKursi(gamePanel));
         getInventory().add(new OBJ_Nasi(gamePanel));
+        getInventory().add(new OBJ_Kentang(gamePanel));
+        getInventory().add(new OBJ_Beef(gamePanel));
     }
 
     public void selectItem() {

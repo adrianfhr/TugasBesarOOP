@@ -423,10 +423,10 @@ public class AssetSetter {
                 break;
 
             case "Barbel":
-                gamePanel.obj[map][index] = new OBJ_Barbel(gamePanel);
-                gamePanel.obj[map][index].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.obj[map][index].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                
+                gamePanel.obj[map][tempIndex] = new OBJ_Barbel(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
                 break;
 
             default:

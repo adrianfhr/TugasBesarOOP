@@ -72,6 +72,8 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject obj[][] = new SuperObject[maxMap][100];
     public NPC_Wife npc[] = new NPC_Wife[10];
     public NPC_Cat cat[] = new NPC_Cat[10];
+    public SuperObject tempBuyObj[] = new SuperObject[10]; 
+    public int tempBuyObjCount[] = new int[10];
 
     //state
     public int gameState = 0;
@@ -190,26 +192,53 @@ public class GamePanel extends JPanel implements Runnable {
             if(deltaClock >= 1 && isActiveAction){
                 clock++;
                 deltaClock--;
-                player[currentPlayer].jamTidakTidur--;
+                
                 if(player[currentPlayer].getState().equals("Tidur")){
                     player[currentPlayer].jamTidur--;
+                    if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
+                    }
                 } else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
                     
                 } else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
                     
                 } else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
                     
                 }else if(player[currentPlayer].getState().equals("Berkunjung")){
                     player[currentPlayer].jamBerkunjung--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
                     
                 } else if(player[currentPlayer].getState().equals("Olahraga")){
                     player[currentPlayer].jamOlahraga--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
 
                 } else if(player[currentPlayer].getState().equals("makan")){
                     player[currentPlayer].jamMakan--;
+                    player[currentPlayer].jamTidakTidur--;
+                    if (player[currentPlayer].abisMakan){
+                    player[currentPlayer].jamTidakMules--;
+                }
                 }
 
                 if (isPassiveAction){
@@ -362,7 +391,6 @@ public class GamePanel extends JPanel implements Runnable {
         player[index] = new Player(this, keyHandler, name, index + 1);
         assetSetter.makeOBJ("Rumah", 0, index);
         setGameState(useBarangState);
-        assetSetter.makeOBJ("Pintu", player[index].getId(), index);
         tileManager.loadMap("res/map/homeMap.txt", player[index].getId());
     }
 
@@ -391,6 +419,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(player[currentPlayer].jamTidur == 0 ){
             player[currentPlayer].interactOBJ();
             player[currentPlayer].jamTidur = 4 * 60 * 2;
+            player[currentPlayer].jamTidakTidur = 10 * 60 * 2;
             ui.addMessage("Tidur selesai");
         }
 
@@ -442,6 +471,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         //jMASIH BINGUNG ISINYA
         if(player[currentPlayer].jamMakan == 0){
+            player[currentPlayer].abisMakan = true;
             isActiveAction = false;
             gameState = playState;
             player[currentPlayer].jamMakan = 30 * 2;
@@ -462,11 +492,11 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if(player[currentPlayer].jamBarang == 0){
-            Random random = new Random();
-            int beli = random.nextInt(60)+1;
-            player[currentPlayer].jamBarang = beli;
-            isPassiveAction = true;
-            player[currentPlayer].beliBarang();
+            // Random random = new Random();
+            // int beli = random.nextInt(60)+1;
+            // player[currentPlayer].jamBarang = beli;
+            // isPassiveAction = true;
+            // player[currentPlayer].beliBarang();
         }
 
     }
@@ -581,5 +611,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         
+    }
+
+    public void beliBarangSementara(){
+
     }
 }

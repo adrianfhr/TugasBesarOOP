@@ -61,6 +61,7 @@ public class UI {
     public void draw(Graphics2D g2d){
         this.g2 = g2d;
         setupDefaultGraphics(g2d);
+        
         drawMessages();
         //statistic();
         if (gamePanel.getGameState() == gamePanel.titleState){
@@ -73,6 +74,7 @@ public class UI {
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
                 drawPlayerActiveState();
+                drawCharacterScreen();
                 drawMessages();
             }else{
                 gameStatScreen();
@@ -95,6 +97,7 @@ public class UI {
 
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
+                drawCharacterScreen();
                 drawPlayerActiveState();
             }else{
                 masak();
@@ -109,6 +112,7 @@ public class UI {
             if (gamePanel.isActiveAction){
                 drawActiveStateScreen();
                 drawPlayerActiveState();
+                drawCharacterScreen();
             } else{
                 drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
             }
@@ -133,26 +137,33 @@ public class UI {
 
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
-        int jam = 0;
+        String jam = "";
+        String jamTidur = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidur/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidur%60));
+        String jamMakan = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMakan/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMakan%60));
+        String jamOlahraga = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamOlahraga/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamOlahraga%60));
+        String jamKerja = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamKerja/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamKerja%60));
+        String jamMemasak = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMemasak/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMemasak%60));
+        String jamMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMules%60));
+        String jamBerkunjung = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung%60));
         if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Tidur")){
-            jam = (4*60*2) - gamePanel.player[gamePanel.currentPlayer].jamTidur ;
+            jam = jamTidur;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Memasak")){
-             jam = (30) - gamePanel.player[gamePanel.currentPlayer].jamMemasak ;
+             jam = jamMemasak;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("makan")){
-             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamMakan ;
+             jam = jamMakan;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Olahraga")){
-             jam = (20*2) - gamePanel.player[gamePanel.currentPlayer].jamOlahraga ;
+             jam = jamOlahraga;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Bekerja")){
-             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamKerja ;
+             jam = jamKerja;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("buang air")){
-             jam = (10*2) - gamePanel.player[gamePanel.currentPlayer].jamMules ;
+             jam = jamMules ;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Berkunjung")){
-             jam = (30*2) - gamePanel.player[gamePanel.currentPlayer].jamBerkunjung ;
+             jam = jamBerkunjung ;
         }
         
          
         
-        g2.drawString(gamePanel.player[gamePanel.currentPlayer].getState() + " : " + jam,frameX + 28 ,48);
+        g2.drawString(gamePanel.player[gamePanel.currentPlayer].getState() + " : " + jam ,frameX + 15 ,75);
     }
 
 
@@ -498,7 +509,7 @@ public class UI {
         int frameX = gamePanel.tileSize / 3 * 2;
         int frameY = gamePanel.tileSize / 3;
         int frameWidth = gamePanel.tileSize / 3 * 10;
-        int frameHeight = (int) (gamePanel.tileSize / 3 * 10.5);
+        int frameHeight = (int) (gamePanel.tileSize / 3 * 14);
 
         drawSubWindowPlayerStat(frameX, frameY, frameWidth, frameHeight);
 
@@ -517,6 +528,8 @@ public class UI {
     }
 
     public void drawText(int textX, int textY, int lineHeight){
+        String waktuMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakMules%60));
+        String waktuTidur = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur%60));
         g2.drawString("Name", textX, textY);
         textY += lineHeight;
         g2.drawString("Job", textX, textY);
@@ -528,6 +541,10 @@ public class UI {
         g2.drawString("Hunger", textX, textY);
         textY += lineHeight;
         g2.drawString("Money", textX, textY);
+        textY += lineHeight + 15;
+        g2.drawString("Harus Tidur : " + waktuTidur, textX, textY);
+        textY += lineHeight;
+        g2.drawString("Harus Poop : " + waktuMules, textX, textY);
         textY += lineHeight;
     }
 
@@ -987,7 +1004,7 @@ public class UI {
                 if (gamePanel.currentMap == 0){
                     currentDialogue = "Ahh.. Jangan dong...";
                     gamePanel.playSoundEffect(15);
-                } else {
+                } else if (gamePanel.currentMap == 1){
                     currentDialogue = "Yes, Daddy!";
                 }
             }
@@ -1000,7 +1017,7 @@ public class UI {
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 commandNumber = 0;
                 subState = 0;
-                gamePanel.npc[0].teleportNPC(50, 50, 0);
+                gamePanel.npc[0].teleportNPC(48, 48, 0);
             }
         }
 
