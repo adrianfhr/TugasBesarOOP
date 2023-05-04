@@ -5,6 +5,8 @@ import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
+
 public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed;
@@ -63,7 +65,11 @@ public class KeyHandler implements KeyListener {
         checkGameStateKeys(code);
         checkInteractionKeys(code);
         if(code == KeyEvent.VK_M){
-            gamePanel.player[gamePanel.currentPlayer].teleport(50, 42, 1);
+            String x = JOptionPane.showInputDialog("Masukkan X: ");
+            String y = JOptionPane.showInputDialog("Masukkan Y: ");
+            int intX = Integer.parseInt(x);
+            int intY = Integer.parseInt(y); 
+            gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
         }
     }
 
