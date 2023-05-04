@@ -90,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int useBarangState = 12;
     public final int wifeState = 13;
     public final int makanState = 14;
+    public final int catState = 15;
 
 
     //state non-aktif
@@ -162,7 +163,7 @@ public class GamePanel extends JPanel implements Runnable {
         long currentTime;
         long timer = 0;
         long drawCount = 0; 
-
+        
         while(gameThread != null){
 
             currentTime = System.nanoTime();
@@ -179,6 +180,11 @@ public class GamePanel extends JPanel implements Runnable {
                 repaint();
                 drawCount++;
                 delta--;
+
+
+                System.out.println("State : " + gameState);
+                System.out.println("Player : " + player[currentPlayer].getState());
+                System.out.println("isAction : " + isActiveAction);
             }
 
             if(deltaClock >= 1 && isActiveAction){
@@ -288,6 +294,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playMusic(int index) {
+        music.setFile(index);
+        music.play();
+        music.loop();
+    }
+
+    public void carEngine(int index) {
         music.setFile(index);
         music.play();
         music.loop();

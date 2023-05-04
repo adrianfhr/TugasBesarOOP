@@ -201,7 +201,6 @@ public class NPC_Cat extends Entity{
     }
 
     public void speak() {
-        gamePanel.setGameState(gamePanel.dialogueState);
         boolean hasWhiskas = false;
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
         if (itemIndex < gamePanel.player[gamePanel.currentPlayer].getInventory().size()) {
@@ -215,7 +214,6 @@ public class NPC_Cat extends Entity{
                     gamePanel.playSoundEffect(13);
                     dialogueIndex = 0;
                 } else {
-                        gamePanel.setGameState(gamePanel.dialogueState);
                         dialogueIndex = 1;
                 }
         }
@@ -228,7 +226,6 @@ public class NPC_Cat extends Entity{
             case "left" -> direction = "right";
             case "right" -> direction = "left";
         }
-
-    
+        // gamePanel.setGameState(gamePanel.catState);
     }
 }

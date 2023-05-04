@@ -158,17 +158,23 @@ public class Player extends Entity{
             gamePanel.gameState = gamePanel.interactObjState;
 
 
-            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil){
+            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil &&!gamePanel.isCat){
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
-                if(state.equals("Tidur")) gamePanel.isActiveAction = true; 
-                if(state.equals("Memasak")) gamePanel.setGameState(gamePanel.masakState);
-                if(state.equals("Nonton")) gamePanel.isActiveAction = true;
-                if(state.equals("Mixue")) interactOBJ(); keyHandler.ePressed = false;
-                if(state.equals("buang air")) gamePanel.isActiveAction = true;
-                if(state.equals("Olahraga")) gamePanel.isActiveAction = true;
-                if(state.equals("makan")) gamePanel.setGameState(gamePanel.makanState);
-                if(state.equals("Sholat")) gamePanel.isActiveAction = true;
-
+                if(state.equals("Tidur")&&!gamePanel.isCat) gamePanel.isActiveAction = true; 
+                if(state.equals("Memasak")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.masakState);
+                if(state.equals("Nonton")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("Mixue")&&!gamePanel.isCat) interactOBJ(); keyHandler.ePressed = false;
+                if(state.equals("buang air")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("Olahraga")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("makan")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.makanState);
+                if(state.equals("Sholat")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                
+            }else if (gamePanel.isCat){
+                gamePanel.setGameState(gamePanel.catState);
+                System.out.println("Cat");
+                System.out.println("Game state : " + gamePanel.obj[gamePanel.currentMap][targetIndex].getState());
+                gamePanel.isActiveAction = false;
+                keyHandler.ePressed = false;
             }
         } else{
             gamePanel.gameState = gamePanel.playState;
@@ -176,13 +182,26 @@ public class Player extends Entity{
             
         }
         
+        // if (gamePanel.isCat){
+        //     System.out.println("Cat");
+        //     System.out.println("Game state : " + gamePanel.obj[gamePanel.currentMap][targetIndex].getState());
+        //     gamePanel.setGameState(gamePanel.catState);
+        //     gamePanel.isActiveAction = false;
+        //     // keyHandler.ePressed = false;
+        // }
+
+        // if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife") && !naikMobil){
+        //     gamePanel.isCat = false;
+        //     gamePanel.setGameState(gamePanel.wifeState);
+        // }
+
         //patut diwaspadai
         if(gamePanel.gameState == gamePanel.playState){
             gamePanel.isNPC = false;
             gamePanel.isCat = false;
         }
 
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")){          
+        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")&&!gamePanel.isCat){          
             interactOBJ();
             keyHandler.ePressed = false;   
         }
@@ -355,9 +374,6 @@ public class Player extends Entity{
         } else if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife") && !naikMobil){
             gamePanel.isCat = false;
             gamePanel.setGameState(gamePanel.wifeState);
-        } else if(gamePanel.isCat && gamePanel.cat[1].getStateNPC().equals("cat")){
-            gamePanel.isNPC = false;
-            interactWithCat(targetIndex);
         }
     }
 
@@ -367,6 +383,7 @@ public class Player extends Entity{
     }
 
     public void interactWithCat(int index) {
+        gamePanel.setGameState(gamePanel.dialogueState);
         gamePanel.cat[1].speak();
     }
 
@@ -555,7 +572,6 @@ public class Player extends Entity{
 
         public void beliBarang(){
             int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getDaganganSlotCol(), gamePanel.ui.getDaganganSlotRow());
-
         if (itemIndex < getDagangan().size()) {
             SuperObject selectedItem = getDagangan().get(itemIndex);
             if (selectedItem instanceof SuperObject){
@@ -567,6 +583,7 @@ public class Player extends Entity{
                             gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
                             gamePanel.ui.addMessage("Barang sudah sampai!");
                             gamePanel.isPassiveAction = false;
+                            gamePanel.setGameState(gamePanel.playState);
                     } else{
                         gamePanel.ui.setSubState(0);
                         gamePanel.setGameState(gamePanel.dialogueState);

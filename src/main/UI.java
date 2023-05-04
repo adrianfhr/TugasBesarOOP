@@ -112,6 +112,8 @@ public class UI {
             } else{
                 drawInventoryScreen(gamePanel.player[gamePanel.currentPlayer], true);
             }
+        } else if (gamePanel.getGameState() == gamePanel.catState){
+            drawInteractCatScreen();
         }
     }
 
@@ -675,7 +677,7 @@ public class UI {
                 splitAndDrawDialogue(textX, textY);
                }else{
                 gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Maaf anda bukanlah badut yang layak";
+                currentDialogue = "Maaf anda bukanlah\nbadut yang layak";
                 splitAndDrawDialogue(textX, textY);
                }
             }
@@ -715,7 +717,7 @@ public class UI {
                     splitAndDrawDialogue(textX, textY);
                 }else{
                     gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah polisi yang layak";
+                    currentDialogue = "Maaf anda bukanlah\npolisi yang layak";
                     splitAndDrawDialogue(textX, textY);
                 }
             }
@@ -735,7 +737,7 @@ public class UI {
                     splitAndDrawDialogue(textX, textY);
                 }else{
                     gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah programmer yang layak";
+                    currentDialogue = "Maaf anda bukanlah\nprogrammer yang layak";
                     splitAndDrawDialogue(textX, textY);
                 } 
             }
@@ -755,7 +757,7 @@ public class UI {
                 splitAndDrawDialogue(textX, textY);
                 }else{
                     gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah dokter yang layak";
+                    currentDialogue = "Maaf anda bukanlah\ndokter yang layak";
                     splitAndDrawDialogue(textX, textY);
                 } 
                 
@@ -1011,6 +1013,59 @@ public class UI {
                 subState = 0;
                 gamePanel.setGameState(gamePanel.dialogueState);
                 currentDialogue = "See u later!";
+            }
+        }
+
+    }
+
+    private void drawInteractCatScreen() {
+        switch (subState) {
+            case 0 -> interactCatSelect();
+        }
+        gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    private void interactCatSelect() {
+        // gamePanel.player[gamePanel.currentPlayer].interactWithCat(commandNumber);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+        // DRAW WINDOW
+        int x = gamePanel.tileSize * 5;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.tileSize * 3;
+        int height = (int) (gamePanel.tileSize * 3.5);
+        drawSubWindow(x, y, width, height);
+
+        // DRAW TEXT
+        x += gamePanel.tileSize;
+        y += gamePanel.tileSize;
+        g2.drawString("Pet", x-20, y-10);
+        if (commandNumber == 0) {
+            g2.drawString(">", x - 30, y-10);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Meow Meow!";
+            }
+        }
+        y += gamePanel.tileSize;
+        g2.drawString("Kasih Makan", x-20, y-20);
+        if (commandNumber == 1) {
+            g2.drawString(">", x - 30, y-20);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.player[gamePanel.currentPlayer].interactWithCat(1);
+            }
+        }
+
+        y += gamePanel.tileSize;
+        g2.drawString("Leave", x-20, y);
+        if (commandNumber == 2) {
+            g2.drawString(">", x - 30, y);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Meow!";
             }
         }
 

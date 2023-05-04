@@ -249,47 +249,46 @@ public class CollisionChecker {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){ //ngecek apakah bersentuhan
+                            gamePanel.isCat = true;
                              
                             entity.collisionOn = true;
                                 
                             entity.targetIndex = i;
                             entity.isInteracting = true;
-                            gamePanel.isCat = true;
                          ;
                         }
                         break;
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
-                            System.out.println("MASUKKDW");
+                            gamePanel.isCat = true;
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
-                            gamePanel.isCat = true;
                         }
                         break;
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
                              
+                            gamePanel.isCat = true;
                             entity.collisionOn = true;
                                 
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
-                            gamePanel.isCat = true;
                         }
                         break;
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(target[i].solidArea)){
+                            gamePanel.isCat = true;
                              
                             entity.collisionOn = true;
                             
                             entity.targetIndex = i;
                             entity.isInteracting = true;
-                            gamePanel.isCat = true;
                         }
                         break;
                     default:
@@ -359,6 +358,4 @@ public class CollisionChecker {
                 gamePanel.player[gamePanel.currentPlayer].solidArea.x = gamePanel.player[gamePanel.currentPlayer].solidAreaDefaultX;
                 gamePanel.player[gamePanel.currentPlayer].solidArea.y = gamePanel.player[gamePanel.currentPlayer].solidAreaDefaultY;
     }
-        
-    
 }

@@ -33,7 +33,7 @@ public class NPC_Wife extends Entity {
         setStateNPC("wife");
         direction = "down";
         speed = 1;
-        gamePanel.setGameState(gamePanel.dialogueState);
+        // gamePanel.setGameState(gamePanel.dialogueState);
         getNPCImage();
         setDialogue();
     }

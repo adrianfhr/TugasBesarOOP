@@ -51,6 +51,8 @@ public class KeyHandler implements KeyListener {
             checkUseBarangStateKeyPressed(code);
         } else if (gamePanel.getGameState() == gamePanel.wifeState){
             checkWifeStateKeyPressed(code);
+        } else if (gamePanel.getGameState() == gamePanel.catState){
+            checkCatStateKeyPressed(code);
         }
         // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
         //     checkGameOverStateKeyPressed(code);
@@ -164,6 +166,30 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_S) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
                 if (gamePanel.ui.getCommandNumber() > 3) {
+                    gamePanel.ui.setCommandNumber(0);
+                }
+                gamePanel.playSoundEffect(8);
+            }
+        }
+    }
+
+    private void checkCatStateKeyPressed(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+
+        if (gamePanel.ui.getSubState() == 0) {
+            if (code == KeyEvent.VK_W) {
+                gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
+                if (gamePanel.ui.getCommandNumber() < 0) {
+                    gamePanel.ui.setCommandNumber(2);
+                }
+                gamePanel.playSoundEffect(8);
+            }
+
+            if (code == KeyEvent.VK_S) {
+                gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
+                if (gamePanel.ui.getCommandNumber() > 2) {
                     gamePanel.ui.setCommandNumber(0);
                 }
                 gamePanel.playSoundEffect(8);
@@ -415,6 +441,7 @@ public class KeyHandler implements KeyListener {
     private void checkGameEventStateKeys(int code) {
         if (code == KeyEvent.VK_SPACE) {
             gamePanel.setGameState(gamePanel.playState);
+            gamePanel.ui.setSubState(0);
         }
 
         if (code == KeyEvent.VK_ENTER) {
@@ -427,7 +454,6 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.setSubState(0);
             }
             if (code == KeyEvent.VK_ENTER) {
-                enterPressed = true;
                 gamePanel.isPassiveAction = true;
                 gamePanel.playSoundEffect(12);
             }
@@ -449,6 +475,7 @@ public class KeyHandler implements KeyListener {
         switch (gamePanel.ui.getSubState()) {
             case 0 -> maxCommandNumber = 6;
             case 2 -> maxCommandNumber = 5;
+            case 3 -> maxCommandNumber = 3;
             default -> maxCommandNumber = 6;
         }
 

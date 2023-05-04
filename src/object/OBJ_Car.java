@@ -44,6 +44,7 @@ public class OBJ_Car extends SuperObject{
         } else {
             gamePanel.player[gamePanel.currentPlayer].speed = 10;
             gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
+            gamePanel.playSoundEffect(16);
         }
         gamePanel.player[gamePanel.currentPlayer].direction = "up";
 

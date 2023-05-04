@@ -35,6 +35,8 @@ public class SoundManager {
             soundUrl[13] = new File("././res/sounds/meow.wav").toURI().toURL();
             soundUrl[14] = new File("././res/sounds/BingChilling.wav").toURI().toURL();
             soundUrl[15] = new File("././res/sounds/jangandong.wav").toURI().toURL();
+            soundUrl[16] = new File("././res/sounds/carEngine.wav").toURI().toURL();
+            soundUrl[17] = new File("././res/sounds/carIdle.wav").toURI().toURL();
             
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
@@ -49,7 +51,7 @@ public class SoundManager {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            //checkVolume();
+            checkVolume();
         } catch (Exception e) {
             e.printStackTrace();
         }

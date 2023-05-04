@@ -39,7 +39,7 @@ public class OBJ_Masjid extends SuperObject{
     }
 
     public void interact(Player player){
-        
+        gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 10);
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){
