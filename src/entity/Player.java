@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import object.*;
 import main.GamePanel;
