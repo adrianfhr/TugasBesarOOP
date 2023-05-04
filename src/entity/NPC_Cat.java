@@ -206,10 +206,10 @@ public class NPC_Cat extends Entity{
         boolean hasWhiskas = false;
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getPlayerSlotCol(), gamePanel.ui.getPlayerSlotRow());
         if (itemIndex < gamePanel.player[gamePanel.currentPlayer].getInventory().size()) {
-                for (SuperObject recipe : gamePanel.player[gamePanel.currentPlayer].getInventory()){
-                    if(recipe instanceof OBJ_Whiskas) hasWhiskas = true;
+                for (SuperObject makanKucing : gamePanel.player[gamePanel.currentPlayer].getInventory()){
+                    if(makanKucing instanceof OBJ_Whiskas) hasWhiskas = true;
                 }
-                if (hasWhiskas == true){
+                if (hasWhiskas){
                     gamePanel.player[gamePanel.currentPlayer].getInventory().remove(itemIndex);
                     gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 5);
                     gamePanel.ui.addMessage("Mood + 5");

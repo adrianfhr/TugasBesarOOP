@@ -18,6 +18,7 @@ public class OBJ_Masjid extends SuperObject{
         this.height = 2;
         this.width = 2;
         setName("Masjid");
+        setStateOBJ("Sholat");
         
         try {
             image = ImageIO.read(new File("././res/object/masjid.png"));
@@ -38,7 +39,8 @@ public class OBJ_Masjid extends SuperObject{
     }
 
     public void interact(Player player){
-        System.out.println("Memasuki Masjid...");
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Allaahumaghfirlii dzunuubii\nwaftah lii abwaaba rahmatika...");
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import object.OBJ_Barbel;
 import object.OBJ_Car;
+import object.OBJ_Gereja;
 import object.OBJ_Gudang;
 import object.OBJ_Hotel;
 import object.OBJ_Jam;
@@ -15,9 +16,9 @@ import object.OBJ_KomporListrik;
 import object.OBJ_Masjid;
 import object.OBJ_MejaKursi;
 import object.OBJ_Mixue;
+import object.OBJ_Parking;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
-import object.OBJ_Pitch;
 import object.OBJ_QueenBed;
 import object.OBJ_Rumah;
 import object.OBJ_Sale;
@@ -250,11 +251,11 @@ public class AssetSetter {
             }
         }
 
-        gamePanel.obj[0][17] = new OBJ_Pitch(gamePanel);
-        gamePanel.obj[0][17].worldX = 3 * gamePanel.tileSize;
-        gamePanel.obj[0][17].worldY = 20 * gamePanel.tileSize;
-        for (int i = 3; i < 3 + gamePanel.obj[0][17].width; i++) {
-            for (int j = 20; j < 20 + gamePanel.obj[0][17].height; j++) {
+        gamePanel.obj[0][17] = new OBJ_Gereja(gamePanel);
+        gamePanel.obj[0][17].worldX = 17 * gamePanel.tileSize;
+        gamePanel.obj[0][17].worldY = 42 * gamePanel.tileSize;
+        for (int i = 17; i < 17 + gamePanel.obj[0][17].width; i++) {
+            for (int j = 42; j < 42 + gamePanel.obj[0][17].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
@@ -291,6 +292,33 @@ public class AssetSetter {
         gamePanel.obj[0][21].worldY = 6 * gamePanel.tileSize;
         for (int i = 3; i < 3 + gamePanel.obj[0][21].width; i++) {
             for (int j = 6; j < 6 + gamePanel.obj[0][21].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][22] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][22].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[0][22].worldY = 24 * gamePanel.tileSize;
+        for (int i = 52; i < 52 + gamePanel.obj[0][22].width; i++) {
+            for (int j = 24; j < 24 + gamePanel.obj[0][22].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][23] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][23].worldX = 35 * gamePanel.tileSize;
+        gamePanel.obj[0][23].worldY = 9 * gamePanel.tileSize;
+        for (int i = 35; i < 35 + gamePanel.obj[0][23].width; i++) {
+            for (int j = 9; j < 9 + gamePanel.obj[0][23].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][24] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][24].worldX = 20 * gamePanel.tileSize;
+        gamePanel.obj[0][24].worldY = 48 * gamePanel.tileSize;
+        for (int i = 20; i < 20 + gamePanel.obj[0][24].width; i++) {
+            for (int j = 48; j < 48 + gamePanel.obj[0][24].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }

@@ -72,6 +72,7 @@ public class UI {
             if(gamePanel.isActiveAction){
                 drawActiveStateScreen();
                 drawPlayerActiveState();
+                drawMessages();
             }else{
                 gameStatScreen();
             }

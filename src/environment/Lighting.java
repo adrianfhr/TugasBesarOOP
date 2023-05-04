@@ -66,7 +66,6 @@ public class Lighting {
     }
 
     public void update(){
-        System.out.println("daycount" + dayCounter);
         if (dayState == day){
             if ((gamePanel.clock/60)%24 == 13){
                 dayState = dusk;
