@@ -1010,16 +1010,26 @@ public class UI {
         if (commandNumber == 5) {
             g2.drawString(">", textX + 10, textY + 105);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                subState = 3;
                 commandNumber = 0;
+            }
+        }
+
+        // PUNYA ISTRI
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Berkunjung", textX + 30, textY + 120);
+        if (commandNumber == 6) {
+            g2.drawString(">", textX + 10, textY + 120);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+
             }
         }
 
         // BACK
         textY += gamePanel.tileSize / 3 * 2;
-        g2.drawString("Back", textX + 30, textY + 120);
-        if (commandNumber == 6) {
-            g2.drawString(">", textX + 10, textY + 120);
+        g2.drawString("Back", textX + 30, textY + 135);
+        if (commandNumber == 7) {
+            g2.drawString(">", textX + 10, textY + 135);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 gamePanel.setGameState(gamePanel.playState);
                 commandNumber = 0;
