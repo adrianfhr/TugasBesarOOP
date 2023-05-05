@@ -22,6 +22,7 @@ public class OBJ_MejaKursi extends Barang {
 
         try{
             image = ImageIO.read(new File("././res/object/mejakursi.png"));
+            image_orang = ImageIO.read(new File("././res/object/mejakursi_orang.png"));
             setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         }
         catch (IOException e){

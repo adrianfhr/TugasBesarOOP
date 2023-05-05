@@ -511,6 +511,7 @@ public class GamePanel extends JPanel implements Runnable {
         //jMASIH BINGUNG ISINYA
         if(player[currentPlayer].jamMakan == 0){
             player[currentPlayer].abisMakan = true;
+            obj[currentMap][player[currentPlayer].targetIndex].isActiveActionOBJ = true;
             isActiveAction = false;
             gameState = playState;
             player[currentPlayer].jamMakan = 30 * 2;

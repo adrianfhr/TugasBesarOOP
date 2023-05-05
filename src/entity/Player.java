@@ -174,7 +174,7 @@ public class Player extends Entity{
                 if(state.equals("Memasak")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.masakState);
                 if(state.equals("Nonton")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
                 if(state.equals("Mixue")&&!gamePanel.isCat) interactOBJ(); keyHandler.ePressed = false;
-                if(state.equals("buang air")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("buang air")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("Olahraga")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
                 if(state.equals("makan")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.makanState);
                 if(state.equals("Ibadah")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
@@ -187,6 +187,7 @@ public class Player extends Entity{
                 keyHandler.ePressed = false;
             }
         } else{
+            if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null) gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = false;
             gamePanel.gameState = gamePanel.playState;
             this.state = "idle";
             

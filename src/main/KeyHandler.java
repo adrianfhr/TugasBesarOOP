@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
+import entity.Player;
+
 public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed;
@@ -227,6 +229,7 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_ENTER) {
             if (gamePanel.getGameState() == gamePanel.makanState){
+                gamePanel.obj[gamePanel.currentMap][gamePanel.player[gamePanel.currentPlayer].targetIndex].isActiveActionOBJ = true;
                 enterPressed = true;
                 gamePanel.isActiveAction = true;
             } else {

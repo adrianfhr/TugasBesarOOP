@@ -11,10 +11,10 @@ import java.util.List;
 
 public class SuperObject{
 
-    public BufferedImage image;
+    public BufferedImage image, image_orang;
     public String name, direction;
     public String description;
-    public boolean collision = false;
+    public boolean collision = false, isActiveActionOBJ = false;
     public int worldX, worldY;
     public int height = 1, width = 1;
     public Rectangle solidArea = new Rectangle();
@@ -51,7 +51,12 @@ public class SuperObject{
                         worldY - gamePanel.tileSize < gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY){
                 
                 //g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-                g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width, gamePanel.tileSize * height, null);
+                if(isActiveActionOBJ){
+                    g2d.drawImage(image_orang, screenX, screenY, gamePanel.tileSize * width, gamePanel.tileSize * height, null);
+                }else{
+                    g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width, gamePanel.tileSize * height, null);
+
+                }
             }
         
     }

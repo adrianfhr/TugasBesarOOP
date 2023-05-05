@@ -8,6 +8,7 @@ import object.OBJ_Barbel;
 import object.OBJ_Car;
 import object.OBJ_Gereja;
 import object.OBJ_Gudang;
+import object.OBJ_Hospital;
 import object.OBJ_Hotel;
 import object.OBJ_Jam;
 import object.OBJ_KingBed;
@@ -319,6 +320,15 @@ public class AssetSetter {
         gamePanel.obj[0][24].worldY = 48 * gamePanel.tileSize;
         for (int i = 20; i < 20 + gamePanel.obj[0][24].width; i++) {
             for (int j = 48; j < 48 + gamePanel.obj[0][24].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][25] = new OBJ_Hospital(gamePanel);
+        gamePanel.obj[0][25].worldX = 8 * gamePanel.tileSize;
+        gamePanel.obj[0][25].worldY = 42 * gamePanel.tileSize;
+        for (int i = 8; i < 8 + gamePanel.obj[0][25].width; i++) {
+            for (int j = 42; j < 42 + gamePanel.obj[0][25].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
