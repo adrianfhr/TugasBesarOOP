@@ -100,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isActiveAction = false;
     public boolean isPassiveAction = false;
     public boolean isInputAction = false;
+    
     private boolean fullScreenOn;
     
 
@@ -174,7 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
-            if(isActiveAction){
+            if(isActiveAction || player[currentPlayer].isBerkunjungAction){
                 deltaClock += (currentTime - lastTime) / (drawInterval*30);
             }
 
@@ -188,79 +189,80 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if(deltaClock >= 1 && isActiveAction){
-                clock++;
-                deltaClock--;
+            if(deltaClock >= 1 && (player[currentPlayer].isBerkunjungAction || isActiveAction)){
                 
-                if(player[currentPlayer].getState().equals("Tidur")){
-                    player[currentPlayer].jamTidur--;
-                    if (player[currentPlayer].abisMakan){
+                    clock++;
+                    deltaClock--;
+                    if(player[currentPlayer].getState().equals("Tidur")){
+                        player[currentPlayer].jamTidur--;
+                        if (player[currentPlayer].abisMakan){
+                            player[currentPlayer].jamTidakMules--;
+                        }
+                    } else if(gameState == masakState ){
+                        player[currentPlayer].jamMemasak--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
-                } else if(gameState == masakState ){
-                    player[currentPlayer].jamMemasak--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                }
-                    
-                } else if(player[currentPlayer].getState().equals("Bekerja")){
-                    player[currentPlayer].jamKerja--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                }
-                    
-                } else if(player[currentPlayer].getState().equals("buang air")){
-                    player[currentPlayer].jamMules--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                }
-                    
-                }else if(player[currentPlayer].getState().equals("Berkunjung")){
-                    player[currentPlayer].jamBerkunjung--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                }
-                    
-                } else if(player[currentPlayer].getState().equals("Olahraga")){
-                    player[currentPlayer].jamOlahraga--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                }
-
-                } else if(player[currentPlayer].getState().equals("makan")){
-                    player[currentPlayer].jamMakan--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
-                    }
-                }
-                else if(player[currentPlayer].getState().equals("Ibadah")){
-                    player[currentPlayer].jamIbadah--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
+                        
+                    } else if(player[currentPlayer].getState().equals("Bekerja")){
+                        player[currentPlayer].jamKerja--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
-                } else if(player[currentPlayer].getState().equals("Nonton")){
-                    player[currentPlayer].jamNonton--;
-                    player[currentPlayer].jamTidakTidur--;
-                    if (player[currentPlayer].abisMakan){
+                        
+                    } else if(player[currentPlayer].getState().equals("buang air")){
+                        player[currentPlayer].jamMules--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
-                }
-
-                for(int i = 0; i < tempBuyObj.length; i++){
-                    if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
-                        tempBuyObjCount[i]--;
+                        
+                    }else if(player[currentPlayer].isBerkunjungAction){
+                        player[currentPlayer].jamBerkunjung--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
                     }
-                }
+                        
+                    } else if(player[currentPlayer].getState().equals("Olahraga")){
+                        player[currentPlayer].jamOlahraga--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
+                    }
 
-                if (isPassiveAction){
-                }
+                    } else if(player[currentPlayer].getState().equals("makan")){
+                        player[currentPlayer].jamMakan--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                        player[currentPlayer].jamTidakMules--;
+                        }
+                    }
+                    else if(player[currentPlayer].getState().equals("Ibadah")){
+                        player[currentPlayer].jamIbadah--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                            player[currentPlayer].jamTidakMules--;
+                        }
+                    } else if(player[currentPlayer].getState().equals("Nonton")){
+                        player[currentPlayer].jamNonton--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                            player[currentPlayer].jamTidakMules--;
+                        }
+                    }
+
+                    for(int i = 0; i < tempBuyObj.length; i++){
+                        if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
+                            tempBuyObjCount[i]--;
+                        }
+                    }
+
+                    if (isPassiveAction){
+                    }
+                
             }
 
                 
@@ -701,6 +703,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         
+    }
+
+    public void berkunjung(){
+        player[currentPlayer].isBerkunjungAction = true;
     }
 
 }

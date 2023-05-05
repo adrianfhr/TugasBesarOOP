@@ -28,6 +28,7 @@ public class Player extends Entity{
     //naik mobil gak
     public boolean naikMobil;
     public boolean abisMakan;
+    public boolean isBerkunjungAction = false;
 
     //player game system
     GamePanel gamePanel;
