@@ -874,8 +874,8 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Atas");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isAtas = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade + " jam");
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -892,8 +892,7 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Kanan");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isKanan = true;
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -910,8 +909,7 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Kiri");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isKiri = true;
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -1010,16 +1008,26 @@ public class UI {
         if (commandNumber == 5) {
             g2.drawString(">", textX + 10, textY + 105);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                subState = 3;
                 commandNumber = 0;
+            }
+        }
+
+        // PUNYA ISTRI
+        textY += gamePanel.tileSize / 2;
+        g2.drawString("Berkunjung", textX + 30, textY + 120);
+        if (commandNumber == 6) {
+            g2.drawString(">", textX + 10, textY + 120);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+
             }
         }
 
         // BACK
         textY += gamePanel.tileSize / 3 * 2;
-        g2.drawString("Back", textX + 30, textY + 120);
-        if (commandNumber == 6) {
-            g2.drawString(">", textX + 10, textY + 120);
+        g2.drawString("Back", textX + 30, textY + 135);
+        if (commandNumber == 7) {
+            g2.drawString(">", textX + 10, textY + 135);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 gamePanel.setGameState(gamePanel.playState);
                 commandNumber = 0;

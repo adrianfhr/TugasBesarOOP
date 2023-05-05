@@ -100,7 +100,9 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isActiveAction = false;
     public boolean isPassiveAction = false;
     public boolean isInputAction = false;
-    
+    public boolean isKanan = false;
+    public boolean isKiri = false;
+    public boolean isAtas = false;
     private boolean fullScreenOn;
     
 
@@ -260,9 +262,9 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
 
-                    if (isPassiveAction){
-                    }
-                
+                if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
+                }
             }
 
                 
@@ -564,6 +566,27 @@ public class GamePanel extends JPanel implements Runnable {
             // player[currentPlayer].jamBarang = beli;
             // isPassiveAction = true;
             // player[currentPlayer].beliBarang();
+        }
+
+        if(player[currentPlayer].jamUpgrade == 0){
+            if (isKanan){
+                upgradeRumah("Kanan");
+                ui.addMessage("Upgrade berhasil!");
+                isKanan = false;
+                isPassiveAction = false;
+            }
+            if (isKiri){
+                upgradeRumah("Kiri");
+                ui.addMessage("Upgrade berhasil!");
+                isKiri = false;
+                isPassiveAction = false;
+            }
+            if (isAtas){
+                upgradeRumah("Atas");
+                ui.addMessage("Upgrade berhasil!");
+                isAtas = false;
+                isPassiveAction = false;
+            }
         }
 
         checkWaktuBeliBarang();

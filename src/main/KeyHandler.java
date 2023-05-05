@@ -500,7 +500,7 @@ public class KeyHandler implements KeyListener {
         int maxCommandNumber;
 
         switch (gamePanel.ui.getSubState()) {
-            case 0 -> maxCommandNumber = 6;
+            case 0 -> maxCommandNumber = 7;
             case 2 -> maxCommandNumber = 5;
             case 3 -> maxCommandNumber = 3;
             default -> maxCommandNumber = 6;
