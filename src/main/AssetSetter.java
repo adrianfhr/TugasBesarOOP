@@ -354,18 +354,17 @@ public class AssetSetter {
             case "Rumah":
                 
                 gamePanel.obj[map][tempIndex] = new OBJ_Rumah(gamePanel,gamePanel.player[player].getId() );
+                OBJ_Rumah tempRumah = (OBJ_Rumah) gamePanel.obj[map][tempIndex];
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
-                gamePanel.player[gamePanel.currentPlayer].teleport(gamePanel.obj[map][tempIndex].worldX/gamePanel.tileSize, gamePanel.obj[map][tempIndex].worldY/gamePanel.tileSize - 1, map);
                 index = tempIndex;
-            
-            
+                gamePanel.player[gamePanel.currentPlayer].teleport(gamePanel.obj[map][tempIndex].worldX/gamePanel.tileSize, gamePanel.obj[map][tempIndex].worldY/gamePanel.tileSize - 1, map);
+                gamePanel.obj[tempRumah.pemilik][tempIndex+1] = new OBJ_Pintu(gamePanel);
+                gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldX = 53 * gamePanel.tileSize;
+                gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldY = 53 * gamePanel.tileSize;
+                
                 break;
-            case "Pintu":
-                gamePanel.obj[map][tempIndex] = new OBJ_Pintu(gamePanel);
-                gamePanel.obj[map][tempIndex].worldX = 53 * gamePanel.tileSize;
-                gamePanel.obj[map][tempIndex].worldY = 53 * gamePanel.tileSize;
-                break;
+
 
             case "Single Bed":
                 gamePanel.obj[map][tempIndex] = new OBJ_SingleBed(gamePanel);
