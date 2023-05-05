@@ -448,6 +448,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC();
         currentMap = 0;
         gameState = playState;
+        playMusic(0);
     }
 
     public void playerTime(){

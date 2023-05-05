@@ -64,7 +64,7 @@ public class Player extends Entity{
         this.mood = 80;
         this.health = 80;
         this.hunger = 80;
-        this.money = 100;
+        this.money = 10000;
         startPekerjaan();
 
         Random random = new Random();

@@ -80,8 +80,8 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER && limit == 1) {
             enterPressed = true;
             limit = 0;
-            gamePanel.ui.addMessage("Barang berhasil diletakkan!");
             gamePanel.playSoundEffect(2);
+            gamePanel.ui.addMessage("Barang berhasil diletakkan!");
         } else if(code == KeyEvent.VK_W && limit == 1){
             upPressed = true;
             limit = 0;
@@ -479,6 +479,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 gamePanel.player[gamePanel.currentPlayer].beliBarang();
                 gamePanel.playSoundEffect(12);
+                gamePanel.ui.setSubState(0);
             }
         
         if (gamePanel.ui.getSubState() == 2){
