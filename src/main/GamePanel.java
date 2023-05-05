@@ -417,8 +417,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
         player[index] = new Player(this, keyHandler, name, index + 1);
         assetSetter.makeOBJ("Rumah", 0, index);
-        setGameState(useBarangState);
         tileManager.loadMap("res/map/homeMap.txt", player[index].getId());
+        setGameState(useBarangState);
     }
 
     public void changePlayer(){
