@@ -164,6 +164,11 @@ public class Player extends Entity{
             }
         }
 
+        //remove
+        // if(keyHandler.Pressed){
+           
+        // }
+
         //jika dia melakukan aksi
         if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState;
@@ -171,12 +176,12 @@ public class Player extends Entity{
             
             if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil &&!gamePanel.isCat){
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
-                if(state.equals("Tidur")&&!gamePanel.isCat) gamePanel.isActiveAction = true; 
+                if(state.equals("Tidur")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("Memasak")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.masakState);
-                if(state.equals("Nonton")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("Nonton")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("Mixue")&&!gamePanel.isCat) interactOBJ(); keyHandler.ePressed = false;
                 if(state.equals("buang air")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
-                if(state.equals("Olahraga")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
+                if(state.equals("Olahraga")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("makan")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.makanState);
                 if(state.equals("Ibadah")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
                 
