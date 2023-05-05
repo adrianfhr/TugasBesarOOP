@@ -120,6 +120,9 @@ public class UI {
             }
         } else if (gamePanel.getGameState() == gamePanel.catState){
             drawInteractCatScreen();
+        } else if (gamePanel.getGameState() == gamePanel.gameOverState){
+            gamePanel.stopMusic();
+            drawGameOverScreen();
         }
     }
 
@@ -654,8 +657,7 @@ public class UI {
         if (commandNumber == 1) {
             g2.drawString(">", textX - 40, textY);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                commandNumber = 0;
-                gamePanel.restart();
+                System.exit(0);
             }
         }
 

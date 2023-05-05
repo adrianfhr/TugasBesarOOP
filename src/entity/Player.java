@@ -86,6 +86,12 @@ public class Player extends Entity{
         jamBarang = beli;
     }
 
+    public void restoreLife() {
+        setHealth(80);
+        setMood(80);
+        setHunger(80);
+    }
+
    
     public void setDefaultvalues(){ //position player in x and y
         worldX = gamePanel.tileSize * 41;
@@ -157,12 +163,11 @@ public class Player extends Entity{
             }
         }
 
-        checkIfAlive();
         //jika dia melakukan aksi
         if(keyHandler.ePressed || gamePanel.isActiveAction){
             gamePanel.gameState = gamePanel.interactObjState;
-
-
+            
+            
             if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil &&!gamePanel.isCat){
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")&&!gamePanel.isCat) gamePanel.isActiveAction = true; 
@@ -188,83 +193,83 @@ public class Player extends Entity{
         }
         
         // if (gamePanel.isCat){
-        //     System.out.println("Cat");
-        //     System.out.println("Game state : " + gamePanel.obj[gamePanel.currentMap][targetIndex].getState());
-        //     gamePanel.setGameState(gamePanel.catState);
-        //     gamePanel.isActiveAction = false;
-        //     // keyHandler.ePressed = false;
-        // }
-
-        // if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife") && !naikMobil){
-        //     gamePanel.isCat = false;
-        //     gamePanel.setGameState(gamePanel.wifeState);
-        // }
-
-        //patut diwaspadai
-        if(gamePanel.gameState == gamePanel.playState){
-            gamePanel.isNPC = false;
-            gamePanel.isCat = false;
-        }
-
-        if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")&&!gamePanel.isCat){          
-            interactOBJ();
-            keyHandler.ePressed = false;   
-        }
-        
-        
-        //check tile collision
-        collisionOn = false;
-        gamePanel.collisionChecker.checkTile(this);
-
-        //check object collision
-        isInteracting = false;
-        gamePanel.collisionChecker.checkObject(this, true);
-
-        //check npc collision
-        int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
-        int catIndex = gamePanel.collisionChecker.checkKucing(this, gamePanel.cat);
-
-
-        //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
-        if ((!gamePanel.isActiveAction)&& (collisionOn == false)  && (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed)){
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
+            //     System.out.println("Cat");
+            //     System.out.println("Game state : " + gamePanel.obj[gamePanel.currentMap][targetIndex].getState());
+            //     gamePanel.setGameState(gamePanel.catState);
+            //     gamePanel.isActiveAction = false;
+            //     // keyHandler.ePressed = false;
+            // }
+            
+            // if(gamePanel.isNPC && gamePanel.npc[0].getStateNPC().equals("wife") && !naikMobil){
+                //     gamePanel.isCat = false;
+                //     gamePanel.setGameState(gamePanel.wifeState);
+                // }
+                
+                //patut diwaspadai
+                if(gamePanel.gameState == gamePanel.playState){
+                    gamePanel.isNPC = false;
+                    gamePanel.isCat = false;
+                }
+                
+                if(gamePanel.gameState == gamePanel.interactObjState && isInteracting && gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("Idle")&&!gamePanel.isCat){          
+                    interactOBJ();
+                    keyHandler.ePressed = false;   
+                }
+                
+                
+                //check tile collision
+                collisionOn = false;
+                gamePanel.collisionChecker.checkTile(this);
+                
+                //check object collision
+                isInteracting = false;
+                gamePanel.collisionChecker.checkObject(this, true);
+                
+                //check npc collision
+                int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+                int catIndex = gamePanel.collisionChecker.checkKucing(this, gamePanel.cat);
+                
+                
+                //IF COLLISION IS FALSE, THEN MOVE THE PLAYER
+                if ((!gamePanel.isActiveAction)&& (collisionOn == false)  && (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed)){
+                    switch (direction) {
+                        case "up":
+                        worldY -= speed;
+                        break;
+                        case "down":
+                        worldY += speed;
+                        break;
+                        case "left":
+                        worldX -= speed;
                     break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":   
+                    case "right":   
                     worldX += speed;
                     break;
-                default:
+                    default:
                     break;
+                }
             }
+            
+            spriteCounter++;
+            
+            if (spriteCounter > 12){
+                if (spriteNum == 1){
+                    spriteNum = 2;
+                } else if (spriteNum == 2){
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
+            
+            //fungsi
+            //interactOBJ();
+            checkIfAlive();
+            
         }
         
-        spriteCounter++;
-
-        if (spriteCounter > 12){
-            if (spriteNum == 1){
-                spriteNum = 2;
-            } else if (spriteNum == 2){
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-          }
-
-          //fungsi
-        //interactOBJ();
-
         
-    }
-
-
-    public void draw(Graphics2D g2d){
-        BufferedImage image =  down1;
+        public void draw(Graphics2D g2d){
+            BufferedImage image =  down1;
         switch (direction) {
             case "up":
                 if (spriteNum == 1 && !naikMobil){
@@ -407,16 +412,8 @@ public class Player extends Entity{
     }
 
     private void checkIfAlive() {
-        if (gamePanel.player[gamePanel.currentPlayer].getHealth() <= 0) {
-            gamePanel.playSoundEffect(20);
-            gamePanel.setGameState(gamePanel.gameOverState);
-        }
-        if (gamePanel.player[gamePanel.currentPlayer].getMood() <= 0) {
-            gamePanel.playSoundEffect(20);
-            gamePanel.setGameState(gamePanel.gameOverState);
-        }
-        if (gamePanel.player[gamePanel.currentPlayer].getHunger() <= 0) {
-            gamePanel.playSoundEffect(20);
+        if ((gamePanel.player[gamePanel.currentPlayer].getHealth() <= 0) || (gamePanel.player[gamePanel.currentPlayer].getMood() <= 0) || (gamePanel.player[gamePanel.currentPlayer].getHunger() <= 0)) {
+            gamePanel.playSoundEffect(21);
             gamePanel.setGameState(gamePanel.gameOverState);
         }
     }
@@ -593,33 +590,6 @@ public class Player extends Entity{
         }
 
         public void beliBarang(){
-        //     int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getDaganganSlotCol(), gamePanel.ui.getDaganganSlotRow());
-        // if (itemIndex < getDagangan().size()) {
-        //     SuperObject selectedItem = getDagangan().get(itemIndex);
-        //     if (selectedItem instanceof SuperObject){
-        //         if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() < gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()){
-        //             if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
-        //                 System.out.println("Jam Barang : "+gamePanel.player[gamePanel.currentPlayer].jamBarang);
-        //                     System.out.println("Masuk Barang");
-        //                     gamePanel.player[gamePanel.currentPlayer].getInventory().add(selectedItem);
-        //                     gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
-        //                     gamePanel.ui.addMessage("Barang sudah sampai!");
-        //                     gamePanel.isPassiveAction = false;
-        //                     gamePanel.setGameState(gamePanel.playState);
-        //             } else{
-        //                 gamePanel.ui.setSubState(0);
-        //                 gamePanel.setGameState(gamePanel.dialogueState);
-        //                 gamePanel.ui.setCurrentDialogue("Oopss!! Uang tidak cukup");
-        //             }
-        //         } else{
-        //             gamePanel.ui.setSubState(0);
-        //             gamePanel.setGameState(gamePanel.dialogueState);
-        //             gamePanel.ui.setCurrentDialogue("Oopss!! Penyimpanan tidak cukup");
-        //         }
-        //     }
-        // }
-        // }
-
         int itemIndex = gamePanel.ui.getItemIndexFromSlot(gamePanel.ui.getDaganganSlotCol(), gamePanel.ui.getDaganganSlotRow());
         if (itemIndex < getDagangan().size()) {
             SuperObject selectedItem = getDagangan().get(itemIndex);
@@ -637,7 +607,6 @@ public class Player extends Entity{
                         gamePanel.tempBuyObjCount[i] = randomInt;
                         gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
                         gamePanel.setGameState(gamePanel.playState);
-                        gamePanel.isPassiveAction = true;
                         for(int j = 0; j < gamePanel.tempBuyObj.length; j++){
                             System.out.println("TempBuyObj : "+gamePanel.tempBuyObj[j]);
                         }

@@ -253,12 +253,13 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
 
-                if (isPassiveAction){
-                    for(int i = 0; i < tempBuyObj.length; i++){
-                        if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
-                            tempBuyObjCount[i]--;
-                        }
+                for(int i = 0; i < tempBuyObj.length; i++){
+                    if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
+                        tempBuyObjCount[i]--;
                     }
+                }
+
+                if (isPassiveAction){
                 }
             }
 
@@ -438,9 +439,17 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        
-
     }
+
+    public void retry() {
+        player[currentPlayer].setDefaultvalues();
+        player[currentPlayer].restoreLife();
+        // assetSetter.setObject();
+        assetSetter.setNPC();
+        currentMap = 0;
+        gameState = playState;
+    }
+
     public void playerTime(){
         if(player[currentPlayer].jamTidur == 0 ){
             player[currentPlayer].interactOBJ();

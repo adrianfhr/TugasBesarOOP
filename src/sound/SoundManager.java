@@ -40,6 +40,7 @@ public class SoundManager {
             soundUrl[18] = new File("././res/sounds/upgrade.wav").toURI().toURL();
             soundUrl[19] = new File("././res/sounds/denied.wav").toURI().toURL();
             soundUrl[20] = new File("././res/sounds/dead.wav").toURI().toURL();
+            soundUrl[21] = new File("././res/sounds/gameover2.wav").toURI().toURL();
             
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block

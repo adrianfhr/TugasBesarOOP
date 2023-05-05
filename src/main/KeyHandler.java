@@ -53,9 +53,9 @@ public class KeyHandler implements KeyListener {
             checkWifeStateKeyPressed(code);
         } else if (gamePanel.getGameState() == gamePanel.catState){
             checkCatStateKeyPressed(code);
+        } else if (gamePanel.getGameState() == gamePanel.gameOverState) {
+             checkGameOverStateKeyPressed(code);
         }
-        // } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
-        //     checkGameOverStateKeyPressed(code);
 
         // } else if (gamePanel.getGameState() == gamePanel.getTradeState()) {
         //     checkTradeStateKeyPressed(code);
@@ -321,6 +321,28 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.setCommandNumber(0);
             }
 
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+    }
+
+    private void checkGameOverStateKeyPressed(int code) {
+        if (code == KeyEvent.VK_W) {
+            gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
+            gamePanel.playSoundEffect(8);
+            if (gamePanel.ui.getCommandNumber() < 0) {
+                gamePanel.ui.setCommandNumber(1);
+            }
+        }
+
+        if (code == KeyEvent.VK_S) {
+            gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
+            gamePanel.playSoundEffect(8);
+            if (gamePanel.ui.getCommandNumber() > 1) {
+                gamePanel.ui.setCommandNumber(0);
+            }
         }
 
         if (code == KeyEvent.VK_ENTER) {
