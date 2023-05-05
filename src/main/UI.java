@@ -874,8 +874,8 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Atas");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isAtas = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade + " jam");
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -892,8 +892,7 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Kanan");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isKanan = true;
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -910,8 +909,7 @@ public class UI {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
-                    gamePanel.upgradeRumah("Kiri");
-                    addMessage("Upgrade berhasil!");
+                    gamePanel.isKiri = true;
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);

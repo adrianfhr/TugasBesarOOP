@@ -101,6 +101,9 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isPassiveAction = false;
     public boolean isInputAction = false;
     public boolean isBerkunjung = false;
+    public boolean isKanan = false;
+    public boolean isKiri = false;
+    public boolean isAtas = false;
     private boolean fullScreenOn;
     
 
@@ -198,47 +201,68 @@ public class GamePanel extends JPanel implements Runnable {
                     if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
+                    if (isPassiveAction){
+                        player[currentPlayer].jamUpgrade--;
+                    }
                 } else if(gameState == masakState ){
                     player[currentPlayer].jamMemasak--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
                 }
                     
                 } else if(player[currentPlayer].getState().equals("Bekerja")){
                     player[currentPlayer].jamKerja--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
                 }
                     
                 } else if(player[currentPlayer].getState().equals("buang air")){
                     player[currentPlayer].jamMules--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
                 }
                     
                 }else if(player[currentPlayer].getState().equals("Berkunjung")){
                     player[currentPlayer].jamBerkunjung--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
                 }
                     
                 } else if(player[currentPlayer].getState().equals("Olahraga")){
                     player[currentPlayer].jamOlahraga--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
+                    }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
                 }
 
                 } else if(player[currentPlayer].getState().equals("makan")){
                     player[currentPlayer].jamMakan--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
-                    player[currentPlayer].jamTidakMules--;
+                        player[currentPlayer].jamTidakMules--;
                     }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
+                }
                 }
                 else if(player[currentPlayer].getState().equals("Ibadah")){
                     player[currentPlayer].jamIbadah--;
@@ -246,12 +270,18 @@ public class GamePanel extends JPanel implements Runnable {
                     if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
+                }
                 } else if(player[currentPlayer].getState().equals("Nonton")){
                     player[currentPlayer].jamNonton--;
                     player[currentPlayer].jamTidakTidur--;
                     if (player[currentPlayer].abisMakan){
                         player[currentPlayer].jamTidakMules--;
                     }
+                    if (isPassiveAction){
+                    player[currentPlayer].jamUpgrade--;
+                }
                 }
 
                 for(int i = 0; i < tempBuyObj.length; i++){
@@ -260,8 +290,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
 
-                if (isPassiveAction){
-                }
+                
             }
 
                 
@@ -563,6 +592,27 @@ public class GamePanel extends JPanel implements Runnable {
             // player[currentPlayer].jamBarang = beli;
             // isPassiveAction = true;
             // player[currentPlayer].beliBarang();
+        }
+
+        if(player[currentPlayer].jamUpgrade == 0){
+            if (isKanan){
+                upgradeRumah("Kanan");
+                ui.addMessage("Upgrade berhasil!");
+                isKanan = false;
+                isPassiveAction = false;
+            }
+            if (isKiri){
+                upgradeRumah("Kiri");
+                ui.addMessage("Upgrade berhasil!");
+                isKiri = false;
+                isPassiveAction = false;
+            }
+            if (isAtas){
+                upgradeRumah("Atas");
+                ui.addMessage("Upgrade berhasil!");
+                isAtas = false;
+                isPassiveAction = false;
+            }
         }
 
         checkWaktuBeliBarang();
