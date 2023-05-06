@@ -77,6 +77,14 @@ public class TileManager {
         setup(44, "044_tanaman_2", true);
         setup(45, "045_tanaman_3", true);
         setup(46, "046_trotoar", false);
+        setup(47, "047_road1", false);
+        setup(48, "048_road2", false);
+        setup(49, "049_road3", false);
+        setup(50, "050_road4", false);
+        setup(51, "051_road5", false);
+        setup(52, "052_road6", false);
+        setup(53, "053_road7", false);
+        setup(54, "054_road8", false);
     }
 
     public void setup(int index, String imagePath, boolean collision){

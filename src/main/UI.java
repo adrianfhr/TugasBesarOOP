@@ -904,6 +904,7 @@ public class UI {
             g2.drawString(">", textX + 10, textY + 30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
                     gamePanel.isAtas = true;
@@ -922,9 +923,11 @@ public class UI {
             g2.drawString(">", textX + 10, textY + 45);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
                     gamePanel.isKanan = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
@@ -939,9 +942,11 @@ public class UI {
             g2.drawString(">", textX + 10, textY + 60);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
                     gamePanel.isPassiveAction = true;
                     gamePanel.isKiri = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
                 } else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);

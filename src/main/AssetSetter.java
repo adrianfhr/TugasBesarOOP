@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import object.OBJ_Bank;
 import object.OBJ_Barbel;
 import object.OBJ_Car;
+import object.OBJ_Fountain;
 import object.OBJ_Gereja;
 import object.OBJ_Gudang;
 import object.OBJ_Hospital;
@@ -327,6 +328,15 @@ public class AssetSetter {
         gamePanel.obj[0][30].worldY = 20 * gamePanel.tileSize;
         for (int i = 15; i < 15 + gamePanel.obj[0][30].width; i++) {
             for (int j = 20; j < 20 + gamePanel.obj[0][30].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][31] = new OBJ_Fountain(gamePanel);
+        gamePanel.obj[0][31].worldX = 30 * gamePanel.tileSize;
+        gamePanel.obj[0][31].worldY = 22 * gamePanel.tileSize;
+        for (int i = 30; i < 30 + gamePanel.obj[0][31].width; i++) {
+            for (int j = 22; j < 22 + gamePanel.obj[0][31].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
