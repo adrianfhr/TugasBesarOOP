@@ -322,16 +322,18 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         //NPC
-        for(int i = 0; i< npc.length; i++) {
-            if(npc[i] != null) {
-                npc[i].draw(g2d);
+        if(currentMap == 0){
+            for(int i = 0; i< npc.length; i++) {
+                if(npc[i] != null) {
+                    npc[i].draw(g2d);
+                }
             }
-        }
-
-        //CAT
-        for (int i = 0; i < cat.length; i++) {
-            if (cat[i] != null) {
-                cat[i].draw(g2d);
+    
+            //CAT
+            for (int i = 0; i < cat.length; i++) {
+                if (cat[i] != null) {
+                    cat[i].draw(g2d);
+                }
             }
         }
 
