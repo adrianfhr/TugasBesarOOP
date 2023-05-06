@@ -266,8 +266,9 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                 
-            }
+    
                 eManager.lighting.dayCounter++;
+                }
             }
         }
     

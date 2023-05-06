@@ -164,14 +164,14 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
                 if (gamePanel.ui.getCommandNumber() < 0) {
-                    gamePanel.ui.setCommandNumber(3);
+                    gamePanel.ui.setCommandNumber(2);
                 }
                 gamePanel.playSoundEffect(8);
             }
 
             if (code == KeyEvent.VK_S) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
-                if (gamePanel.ui.getCommandNumber() > 3) {
+                if (gamePanel.ui.getCommandNumber() > 2) {
                     gamePanel.ui.setCommandNumber(0);
                 }
                 gamePanel.playSoundEffect(8);
