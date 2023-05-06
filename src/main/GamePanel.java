@@ -650,10 +650,12 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y - 1; j > y - 1 - 6; j--){
                     tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileValidation[player[currentPlayer].getId()][i][j] = false;
                     posisiX = i;
                     posisiY = j;
                 }
             }
+            
         }
 
         if(posisi.equals("Kanan")){
@@ -671,6 +673,7 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y + 1 ; j < y + 6 + 1 ; j++){
                     tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileValidation[player[currentPlayer].getId()][i][j] = false;
                     posisiX = i;
                     posisiY = j;
                 }
@@ -693,6 +696,7 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = x - 1; i > x - 6 - 1; i--){
                 for(int j = y + 1 ; j < y + 6 + 1; j++){
                     tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileValidation[player[currentPlayer].getId()][i][j] = false;
                     posisiX = i;
                     posisiY = j;
                 }
