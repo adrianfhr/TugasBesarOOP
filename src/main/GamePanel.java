@@ -427,8 +427,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void changePlayer(){
         boolean sukses = false;
+        String listNama = "";
+        for (int i = 0; i < player.length; i++) {
+            if (player[i] != null) {
+                listNama += player[i].getName() + "\n";
+            }
+        }
         while(!sukses){
-            String name = JOptionPane.showInputDialog("Masukkan nama pemain : ");
+
+            String name = JOptionPane.showInputDialog("Masukkan nama pemain : " + "\n" + listNama);
             int index = 0;
             while (player[index] != null) {
                 if (player[index].getName().equals(name)) {
@@ -592,7 +599,7 @@ public class GamePanel extends JPanel implements Runnable {
                 isAtas = false;
                 isPassiveAction = false;
             }
-            player[currentPlayer].jamUpgrade = 10;//18 * 60 *2;   
+            player[currentPlayer].jamUpgrade = 18 * 60 *2;   
         }
 
         checkWaktuBeliBarang();
@@ -710,18 +717,18 @@ public class GamePanel extends JPanel implements Runnable {
     }    
 
     public void pindahRuangan(){
-        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan");
+        
         int x, y;
-
         for(SuperObject rumah : obj[0] ){
             if(rumah instanceof OBJ_Rumah){
                 OBJ_Rumah tempRumah = (OBJ_Rumah) rumah;
-                if(tempRumah.pemilik == player[currentPlayer].getId()){
+                if(tempRumah.pemilik == player[currentPlayer].currentRumah){
+                    String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan\n" + tempRumah.getRuangan() );
                     for(int i = 0; i < tempRumah.ruangan.length; i++){
                         if(tempRumah.ruangan[i].equals(ruangan)){
                             x = tempRumah.xRuangan[i];
                             y = tempRumah.yRuangan[i];
-                            player[currentPlayer].teleport(x, y, player[currentPlayer].getId());
+                            player[currentPlayer].teleport(x, y, tempRumah.pemilik);
                             break;
                         }
                     }
@@ -756,6 +763,12 @@ public class GamePanel extends JPanel implements Runnable {
         clock += jarak;
 
         player[currentPlayer].isBerkunjungAction = true;
+    }
+
+    public void printNama(){
+        for(int i = 0; i < player.length; i++){
+            ui.addMessage(player[i].getName());
+        };
     }
 
     // public String inputUser(String s){

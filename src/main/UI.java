@@ -83,6 +83,7 @@ public class UI {
             }
             
             if(gamePanel.player[gamePanel.currentPlayer].isInteracting && gamePanel.getGameState() == gamePanel.playState){
+                g2.drawString("Push 'R' for remove", gamePanel.player[gamePanel.currentPlayer].screenX - 48, gamePanel.player[gamePanel.currentPlayer].screenY - 32 );
                 g2.drawString("Push 'E' for interact", gamePanel.player[gamePanel.currentPlayer].screenX - 48, gamePanel.player[gamePanel.currentPlayer].screenY - 16 );
             }
         }
@@ -996,6 +997,7 @@ public class UI {
                 subState = 0;
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
+                
                 gamePanel.changePlayer();
               
             }

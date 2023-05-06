@@ -31,7 +31,7 @@ public class OBJ_Rumah extends Barang{
 
         try {
             image = ImageIO.read(new File("././res/object/rumah.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,9 +52,11 @@ public class OBJ_Rumah extends Barang{
         gamePanel.player[gamePanel.currentPlayer].speed = 4;
         if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
+            gamePanel.player[gamePanel.currentPlayer].currentRumah = this.pemilik;
         }else{ 
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, this.pemilik);
             gamePanel.berkunjung(this);
+            gamePanel.player[gamePanel.currentPlayer].currentRumah = this.pemilik;
         }
         gamePanel.playSoundEffect(2);
     }
@@ -67,6 +69,16 @@ public class OBJ_Rumah extends Barang{
         ruangan[index] = namaRuangan;
         xRuangan[index] = x;
         yRuangan[index] = y;
+    }
+
+    public String getRuangan(){
+        String ruangan = "";
+        for(int i = 0; i < this.ruangan.length; i++){
+            if(this.ruangan[i] != null){
+                ruangan += (i+1) +". " + this.ruangan[i] + "\n";
+            }
+        }
+        return ruangan;
     }
 
 

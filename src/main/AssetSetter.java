@@ -52,8 +52,16 @@ public class AssetSetter {
             }
         }
 
+        gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel, 1);
+        gamePanel.obj[0][0].worldX = 41 * gamePanel.tileSize;
+        gamePanel.obj[0][0].worldY = 19 * gamePanel.tileSize;
+        for (int i = 41; i < 41 + gamePanel.obj[0][0].width; i++) {
+            for (int j = 19; j < 19 + gamePanel.obj[0][0].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
 
-        gamePanel.obj[1][1] = new OBJ_Pintu(gamePanel);
+        gamePanel.obj[1][1] = new OBJ_Pintu(gamePanel, (OBJ_Rumah) gamePanel.obj[0][0]);
         gamePanel.obj[1][1].worldX = 53 * gamePanel.tileSize;
         gamePanel.obj[1][1].worldY = 53 * gamePanel.tileSize;
         for (int i = 53; i < 53 + gamePanel.obj[1][1].width; i++) {
@@ -95,15 +103,6 @@ public class AssetSetter {
         for (int i = 50; i < 50 + gamePanel.obj[1][5].width; i++) {
             for (int j = 52; j < 52 + gamePanel.obj[1][5].height; j++) {
                 gamePanel.tileManager.mapTileValidation[1][i][j] = true;
-            }
-        }
-
-        gamePanel.obj[0][0] = new OBJ_Rumah(gamePanel, 1);
-        gamePanel.obj[0][0].worldX = 41 * gamePanel.tileSize;
-        gamePanel.obj[0][0].worldY = 19 * gamePanel.tileSize;
-        for (int i = 41; i < 41 + gamePanel.obj[0][0].width; i++) {
-            for (int j = 19; j < 19 + gamePanel.obj[0][0].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
 
@@ -310,7 +309,7 @@ public class AssetSetter {
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
                 index = tempIndex;
-                gamePanel.obj[tempRumah.pemilik][tempIndex+1] = new OBJ_Pintu(gamePanel);
+                gamePanel.obj[tempRumah.pemilik][tempIndex+1] = new OBJ_Pintu(gamePanel, tempRumah);
                 gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldX = 53 * gamePanel.tileSize;
                 gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldY = 53 * gamePanel.tileSize;
                 
@@ -324,7 +323,13 @@ public class AssetSetter {
                 index = tempIndex;
                 
                 break;
+            case "Sale":
+                gamePanel.obj[map][tempIndex] = new OBJ_Sale(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
 
+                break;
             case "Jam":
                 gamePanel.obj[map][tempIndex] = new OBJ_Jam(gamePanel);
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);

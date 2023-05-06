@@ -37,6 +37,8 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
+    public int currentRumah;
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler, String name, int id){
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -76,7 +78,7 @@ public class Player extends Entity{
         jamKerja = 30 * 2;
         jamOlahraga = 20*2;
         jamTidur = 4 * 60 * 2;
-        jamUpgrade = 10;//18 * 60 * 2;
+        jamUpgrade = 18 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
         jamMemasak = 30;  //karena berubah-ubah tergantung masakannya
@@ -177,7 +179,7 @@ public class Player extends Entity{
             gamePanel.gameState = gamePanel.interactObjState;
             
             
-            if(!gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil &&!gamePanel.isCat){
+            if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null && !gamePanel.obj[gamePanel.currentMap][targetIndex].getState().equals("idle") && isInteracting && !naikMobil &&!gamePanel.isCat){
                 state = gamePanel.obj[gamePanel.currentMap][targetIndex].getState();
                 if(state.equals("Tidur")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("Memasak")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.masakState);
