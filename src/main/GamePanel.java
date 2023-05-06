@@ -265,8 +265,8 @@ public class GamePanel extends JPanel implements Runnable {
                 if (isPassiveAction){
                     player[currentPlayer].jamUpgrade--;
                 }
-            }
                 eManager.lighting.dayCounter++;
+            }
             }
         }
     
