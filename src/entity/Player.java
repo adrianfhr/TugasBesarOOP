@@ -82,7 +82,7 @@ public class Player extends Entity{
         jamKerja = 30 * 2;
         jamOlahraga = 20*2;
         jamTidur = 4 * 60 * 2;
-        jamUpgrade = 50; //18 * 60 * 2;
+        jamUpgrade = 18 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
         jamMemasak = 30;  //karena berubah-ubah tergantung masakannya
