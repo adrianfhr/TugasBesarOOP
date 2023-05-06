@@ -111,9 +111,9 @@ public class AssetSetter {
 
         gamePanel.obj[0][1] = new OBJ_Masjid(gamePanel);
         gamePanel.obj[0][1].worldX = 30 * gamePanel.tileSize;
-        gamePanel.obj[0][1].worldY = 5 * gamePanel.tileSize;
+        gamePanel.obj[0][1].worldY = 4 * gamePanel.tileSize;
         for (int i = 30; i < 30 + gamePanel.obj[0][1].width; i++) {
-            for (int j = 5; j < 5 + gamePanel.obj[0][1].height; j++) {
+            for (int j = 4; j < 4 + gamePanel.obj[0][1].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
