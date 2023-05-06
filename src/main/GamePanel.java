@@ -250,7 +250,14 @@ public class GamePanel extends JPanel implements Runnable {
                         if (player[currentPlayer].abisMakan){
                             player[currentPlayer].jamTidakMules--;
                         }
+                    } else if(player[currentPlayer].getState().equals("duduk")){
+                        player[currentPlayer].jamDuduk--;
+                        player[currentPlayer].jamTidakTidur--;
+                        if (player[currentPlayer].abisMakan){
+                            player[currentPlayer].jamTidakMules--;
+                        }
                     }
+                    
 
                     for(int i = 0; i < tempBuyObj.length; i++){
                         if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
@@ -529,6 +536,17 @@ public class GamePanel extends JPanel implements Runnable {
             isActiveAction = false;
         }
 
+        if(player[currentPlayer].jamDuduk == 0){
+            isActiveAction = false;
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 5);
+            if (player[currentPlayer].getMood() > 100){
+                player[currentPlayer].setMood(100);
+            }
+            player[currentPlayer].jamDuduk = 20;
+            ui.addMessage("Mood + 5");
+            playSoundEffect(12);
+        }
+
         //jMASIH BINGUNG ISINYA
         if(player[currentPlayer].jamMakan == 0){
             player[currentPlayer].abisMakan = true;
@@ -538,6 +556,8 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].jamMakan = 30 * 2;
             player[currentPlayer].selectItem();
         }
+
+        
 
         if(player[currentPlayer].jamMemasak == 0){
             player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);

@@ -152,6 +152,7 @@ public class UI {
         String jamMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamMules%60));
         String jamBerkunjung = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamBerkunjung%60));
         String jamIbadah = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamIbadah/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamIbadah%60));
+        String jamDuduk = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamDuduk/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamDuduk%60));
         if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Tidur")){
             jam = jamTidur;
         }else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Memasak")){
@@ -168,7 +169,9 @@ public class UI {
              jam = jamBerkunjung ;
         } else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("Ibadah")){
             jam = jamIbadah ;
-       }
+        } else if(gamePanel.player[gamePanel.currentPlayer].getState().equals("duduk")){
+            jam = jamDuduk;
+        }
         
          
         

@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import object.OBJ_Bank;
 import object.OBJ_Barbel;
+import object.OBJ_Bench;
+import object.OBJ_BenchNPC;
 import object.OBJ_Car;
 import object.OBJ_Fountain;
 import object.OBJ_Gereja;
@@ -261,10 +263,10 @@ public class AssetSetter {
         }
 
         gamePanel.obj[0][23] = new OBJ_Parking(gamePanel);
-        gamePanel.obj[0][23].worldX = 35 * gamePanel.tileSize;
-        gamePanel.obj[0][23].worldY = 9 * gamePanel.tileSize;
-        for (int i = 35; i < 35 + gamePanel.obj[0][23].width; i++) {
-            for (int j = 9; j < 9 + gamePanel.obj[0][23].height; j++) {
+        gamePanel.obj[0][23].worldX = 32 * gamePanel.tileSize;
+        gamePanel.obj[0][23].worldY = 11 * gamePanel.tileSize;
+        for (int i = 30; i < 30 + gamePanel.obj[0][23].width; i++) {
+            for (int j = 11; j < 11 + gamePanel.obj[0][23].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
@@ -337,6 +339,24 @@ public class AssetSetter {
         gamePanel.obj[0][31].worldY = 22 * gamePanel.tileSize;
         for (int i = 30; i < 30 + gamePanel.obj[0][31].width; i++) {
             for (int j = 22; j < 22 + gamePanel.obj[0][31].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][32] = new OBJ_BenchNPC(gamePanel);
+        gamePanel.obj[0][32].worldX = 29 * gamePanel.tileSize;
+        gamePanel.obj[0][32].worldY = 8 * gamePanel.tileSize;
+        for (int i = 29; i < 29 + gamePanel.obj[0][32].width; i++) {
+            for (int j = 8; j < 8 + gamePanel.obj[0][32].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][33] = new OBJ_Bench(gamePanel);
+        gamePanel.obj[0][33].worldX = 33 * gamePanel.tileSize;
+        gamePanel.obj[0][33].worldY = 8 * gamePanel.tileSize;
+        for (int i = 33; i < 33 + gamePanel.obj[0][33].width; i++) {
+            for (int j = 8; j < 8 + gamePanel.obj[0][33].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }

@@ -24,7 +24,7 @@ public class Player extends Entity{
     private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
-    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji;
+    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji, jamDuduk;
 
 
     public boolean naikMobil;
@@ -92,6 +92,7 @@ public class Player extends Entity{
         jamIbadah = 5 * 2;
         jamNonton = 5 * 2;
         jamBarang = beli * 60;
+        jamDuduk = 20;
         countJob = 0;
         countGaji = 0;
     }
@@ -191,6 +192,7 @@ public class Player extends Entity{
                 if(state.equals("Mixue")&&!gamePanel.isCat) interactOBJ(); keyHandler.ePressed = false;
                 if(state.equals("buang air")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("Olahraga")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
+                if(state.equals("duduk")&&!gamePanel.isCat) {gamePanel.isActiveAction = true; gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;}
                 if(state.equals("makan")&&!gamePanel.isCat) gamePanel.setGameState(gamePanel.makanState);
                 if(state.equals("Ibadah")&&!gamePanel.isCat) gamePanel.isActiveAction = true;
                 
@@ -683,7 +685,9 @@ public class Player extends Entity{
                 gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Gereja ||
                 gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Masjid ||
                 gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Fountain ||
-                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hotel){
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hotel ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_BenchNPC ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Bench){
                     gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
                     gamePanel.playSoundEffect(19);
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
