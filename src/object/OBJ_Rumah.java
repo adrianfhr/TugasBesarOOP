@@ -52,11 +52,11 @@ public class OBJ_Rumah extends Barang{
         gamePanel.player[gamePanel.currentPlayer].speed = 4;
         if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
-            gamePanel.playSoundEffect(2);
         }else{ 
             gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, this.pemilik);
-            gamePanel.berkunjung();
+            gamePanel.berkunjung(this);
         }
+        gamePanel.playSoundEffect(2);
     }
 
     public void upgradeRumah(String namaRuangan, int x, int y){

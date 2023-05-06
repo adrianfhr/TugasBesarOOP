@@ -11,7 +11,7 @@ import entity.Player;
 
 public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, enterPressed, iPressed, spacePressed, rPressed;
     public int limit = 1;
     private boolean zPressed;
      
@@ -76,6 +76,10 @@ public class KeyHandler implements KeyListener {
             // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
             gamePanel.pindahRuangan();
         }
+        if(code == KeyEvent.VK_R){
+            gamePanel.player[gamePanel.currentPlayer].removeBarang();
+        }
+
     }
 
     private void checkUseBarangStateKeyPressed(int code){

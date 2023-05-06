@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int currentPlayer = 0;
 
     //SYSTEM SETTINGS
-    TileManager tileManager = new TileManager(this);
+    public TileManager tileManager = new TileManager(this);
     public KeyHandler keyHandler = new KeyHandler(this);
     Thread gameThread;
     public UI ui = new UI(this);
@@ -471,13 +471,25 @@ public class GamePanel extends JPanel implements Runnable {
 
         if(player[currentPlayer].jamKerja == 0){
             isActiveAction = false;
-            if(player[currentPlayer].getJob().equals("Badut Sulap")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 15);
-            if(player[currentPlayer].getJob().equals("Koki")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 30);
-            if(player[currentPlayer].getJob().equals("Polisi")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 35);
-            if(player[currentPlayer].getJob().equals("Programmer")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 45);
-            if(player[currentPlayer].getJob().equals("Dokter")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 50);
+            player[currentPlayer].countJob++;
+
+            if(player[currentPlayer].countGaji == 7){
+                if(player[currentPlayer].getJob().equals("Badut Sulap")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 15);
+                if(player[currentPlayer].getJob().equals("Koki")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 30);
+                if(player[currentPlayer].getJob().equals("Polisi")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 35);
+                if(player[currentPlayer].getJob().equals("Programmer")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 45);
+                if(player[currentPlayer].getJob().equals("Dokter")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 50);
+                player[currentPlayer].countGaji = 0;
+                ui.addMessage("Waktunya Gajian !!");
+            }else{
+                player[currentPlayer].countGaji++;
+                ui.addMessage("Kerja selesai");
+            }
+            
             
             player[currentPlayer].jamKerja = 30 * 2;
+            
+            
         }
 
         if(player[currentPlayer].jamMules == 0){
@@ -536,6 +548,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (player[currentPlayer].getMood() > 100){
                 player[currentPlayer].setMood(100);
             }
+            player[currentPlayer].jamBerkunjung = 30 * 2;
         }
 
         if(player[currentPlayer].jamIbadah == 0){
@@ -560,14 +573,6 @@ public class GamePanel extends JPanel implements Runnable {
             playSoundEffect(12);
         }
 
-        if(player[currentPlayer].jamBarang == 0){
-             Random random = new Random();
-            // int beli = random.nextInt(60)+1;
-            // player[currentPlayer].jamBarang = beli;
-            // isPassiveAction = true;
-            // player[currentPlayer].beliBarang();
-        }
-
         if(player[currentPlayer].jamUpgrade == 0){
             if (isKanan){
                 upgradeRumah("Kanan");
@@ -587,6 +592,7 @@ public class GamePanel extends JPanel implements Runnable {
                 isAtas = false;
                 isPassiveAction = false;
             }
+            player[currentPlayer].jamUpgrade = 10;//18 * 60 *2;   
         }
 
         checkWaktuBeliBarang();
@@ -631,18 +637,18 @@ public class GamePanel extends JPanel implements Runnable {
         if(posisi.equals("Atas")){
             while(!top){
                 y--;
-                int temp = tileManager.mapTileNump[currentMap][player[currentPlayer].worldX/tileSize][y];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][player[currentPlayer].worldX/tileSize][y];
                 top = tileManager.tile[temp].collision;
             }
             while(!side){
                 x--;
-                int temp = tileManager.mapTileNump[currentMap][x][player[currentPlayer].worldY/tileSize];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][x][player[currentPlayer].worldY/tileSize];
                 side = tileManager.tile[temp].collision;
             }
     
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y - 1; j > y - 1 - 6; j--){
-                    tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
                     posisiX = i;
                     posisiY = j;
                 }
@@ -652,18 +658,18 @@ public class GamePanel extends JPanel implements Runnable {
         if(posisi.equals("Kanan")){
             while(!top){
                 y--;
-                int temp = tileManager.mapTileNump[currentMap][player[currentPlayer].worldX/tileSize][y];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][player[currentPlayer].worldX/tileSize][y];
                 top = tileManager.tile[temp].collision;
             }
             while(!side){
                 x++;
-                int temp = tileManager.mapTileNump[currentMap][x][player[currentPlayer].worldY/tileSize];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][x][player[currentPlayer].worldY/tileSize];
                 side = tileManager.tile[temp].collision;
             }
     
             for(int i = x+1 ; i < x + 6 + 1; i++){
                 for(int j = y + 1 ; j < y + 6 + 1 ; j++){
-                    tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
                     posisiX = i;
                     posisiY = j;
                 }
@@ -673,19 +679,19 @@ public class GamePanel extends JPanel implements Runnable {
         if(posisi.equals("Kiri")){
             while(!top){
                 y--;
-                int temp = tileManager.mapTileNump[currentMap][player[currentPlayer].worldX/tileSize][y];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][player[currentPlayer].worldX/tileSize][y];
                 top = tileManager.tile[temp].collision;
             }
 
             while(!side){
                 x--;
-                int temp = tileManager.mapTileNump[currentMap][x][player[currentPlayer].worldY/tileSize];
+                int temp = tileManager.mapTileNump[player[currentPlayer].getId()][x][player[currentPlayer].worldY/tileSize];
                 side = tileManager.tile[temp].collision;
             }
     
             for(int i = x - 1; i > x - 6 - 1; i--){
                 for(int j = y + 1 ; j < y + 6 + 1; j++){
-                    tileManager.mapTileNump[currentMap][i][j] = 21; // 21 lantai rumah
+                    tileManager.mapTileNump[player[currentPlayer].getId()][i][j] = 21; // 21 lantai rumah
                     posisiX = i;
                     posisiY = j;
                 }
@@ -715,7 +721,7 @@ public class GamePanel extends JPanel implements Runnable {
                         if(tempRumah.ruangan[i].equals(ruangan)){
                             x = tempRumah.xRuangan[i];
                             y = tempRumah.yRuangan[i];
-                            player[currentPlayer].teleport(x, y, currentMap);
+                            player[currentPlayer].teleport(x, y, player[currentPlayer].getId());
                             break;
                         }
                     }
@@ -728,8 +734,41 @@ public class GamePanel extends JPanel implements Runnable {
         
     }
 
-    public void berkunjung(){
+    public void berkunjung(OBJ_Rumah o){
+        OBJ_Rumah rumah2 = null;
+        for(SuperObject rumah : obj[0] ){
+            if(rumah instanceof OBJ_Rumah){
+                OBJ_Rumah tempRumah = (OBJ_Rumah) rumah;
+                if(tempRumah.pemilik == player[currentPlayer].getId()){
+                    rumah2 = tempRumah;
+                    break;
+                }
+            }
+        }
+
+        //set waktu jarak berkunjung Akar((x2 -x1)^2 + (y2 - y1)^2)
+        int x1 = o.worldX/tileSize;
+        int y1 = o.worldY/tileSize;
+        int x2 = rumah2.worldX/tileSize;
+        int y2 = rumah2.worldY/tileSize;
+
+        int jarak = (int) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        clock += jarak;
+
         player[currentPlayer].isBerkunjungAction = true;
     }
+
+    // public String inputUser(String s){
+    //     try {
+            
+    //         String input = JOptionPane.showInputDialog(s);
+
+    //     } catch (Exception e) {
+    //         System.err.println("");
+    //     }
+
+    //     return input;
+    // }
+    
 
 }

@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -23,7 +24,7 @@ public class Player extends Entity{
     private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
-    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade;
+    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji;
 
     //naik mobil gak
     public boolean naikMobil;
@@ -72,10 +73,10 @@ public class Player extends Entity{
         int beli = random.nextInt(60)+1;
 
         //set jam kerja default
-        jamKerja = 30*2;
+        jamKerja = 30 * 2;
         jamOlahraga = 20*2;
         jamTidur = 4 * 60 * 2;
-        jamUpgrade = 18 * 60 * 2;
+        jamUpgrade = 10;//18 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
         jamMemasak = 30;  //karena berubah-ubah tergantung masakannya
@@ -85,6 +86,8 @@ public class Player extends Entity{
         jamIbadah = 5 * 2;
         jamNonton = 5 * 2;
         jamBarang = beli;
+        countJob = 0;
+        countGaji = 0;
     }
 
     public void restoreLife() {
@@ -165,9 +168,9 @@ public class Player extends Entity{
         }
 
         //remove
-        // if(keyHandler.Pressed){
+         if(keyHandler.rPressed){
            
-        // }
+        }
 
         //jika dia melakukan aksi
         if(keyHandler.ePressed || gamePanel.isActiveAction){
@@ -327,7 +330,15 @@ public class Player extends Entity{
     }
 
     public void setJob(String job){
-        this.job = job;
+        if(countJob >= 4){
+            this.job = job;
+            gamePanel.ui.addMessage("Sekarang kamu berprofesi sebagai " + job);
+            countJob = 0;
+        }else{
+            gamePanel.ui.addMessage(job + " bukan keahlianmu");
+            gamePanel.ui.addMessage("Kamu belum bisa ganti profesi");
+        }
+        
     }
 
     public String getJob(){
@@ -629,5 +640,19 @@ public class Player extends Entity{
                 }
             }
         }
+    }
+
+    public void removeBarang(){
+        if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pintu){
+            gamePanel.ui.addMessage("Pintu tidak bisa dihapus");
+        }else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
+            gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
+        }else{
+            List <SuperObject> inventory = getInventory();
+            inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);
+            gamePanel.assetSetter.removeValidMap(gamePanel.obj[gamePanel.currentMap][targetIndex], gamePanel.currentMap);
+            gamePanel.obj[gamePanel.currentMap][targetIndex] = null;
+        }
+        
     }
 }

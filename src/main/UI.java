@@ -793,9 +793,8 @@ public class UI {
                     currentDialogue = "Siap mengayomi dan melindungi\nmasyarakat!!";
                     splitAndDrawDialogue(textX, textY);
                 }else{
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah\npolisi yang layak";
-                    splitAndDrawDialogue(textX, textY);
+                    gamePanel.player[gamePanel.currentPlayer].setJob("Polisi");
+                    gamePanel.setGameState(gamePanel.playState);
                 }
             }
         }

@@ -145,112 +145,64 @@ public class AssetSetter {
         }
 
         gamePanel.obj[0][5] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][5].worldX = 47 * gamePanel.tileSize;
-        gamePanel.obj[0][5].worldY = 44 * gamePanel.tileSize;
-        for (int i = 47; i < 47 + gamePanel.obj[0][5].width; i++) {
-            for (int j = 44; j < 44 + gamePanel.obj[0][5].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][5].worldX = 48 * gamePanel.tileSize;
+        gamePanel.obj[0][5].worldY = 45 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][6] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][6].worldX = 51 * gamePanel.tileSize;
-        gamePanel.obj[0][6].worldY = 44 * gamePanel.tileSize;
-        for (int i = 51; i < 51 + gamePanel.obj[0][6].width; i++) {
-            for (int j = 44; j < 44 + gamePanel.obj[0][6].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][6].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[0][6].worldY = 45 * gamePanel.tileSize;
+       
 
         gamePanel.obj[0][7] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][7].worldX = 55 * gamePanel.tileSize;
-        gamePanel.obj[0][7].worldY = 44 * gamePanel.tileSize;
-        for (int i = 55; i < 55 + gamePanel.obj[0][7].width; i++) {
-            for (int j = 44; j < 44 + gamePanel.obj[0][7].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][7].worldX = 56 * gamePanel.tileSize;
+        gamePanel.obj[0][7].worldY = 45 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][8] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][8].worldX = 59 * gamePanel.tileSize;
-        gamePanel.obj[0][8].worldY = 44 * gamePanel.tileSize;
-        for (int i = 59; i < 59 + gamePanel.obj[0][8].width; i++) {
-            for (int j = 44; j < 44 + gamePanel.obj[0][8].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][8].worldX = 60 * gamePanel.tileSize;
+        gamePanel.obj[0][8].worldY = 45 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][9] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][9].worldX = 47 * gamePanel.tileSize;
-        gamePanel.obj[0][9].worldY = 48 * gamePanel.tileSize;
-        for (int i = 47; i < 47 + gamePanel.obj[0][5].width; i++) {
-            for (int j = 48; j < 48 + gamePanel.obj[0][5].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][9].worldX = 48 * gamePanel.tileSize;
+        gamePanel.obj[0][9].worldY = 49 * gamePanel.tileSize;
+       
 
         gamePanel.obj[0][10] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][10].worldX = 51 * gamePanel.tileSize;
-        gamePanel.obj[0][10].worldY = 48 * gamePanel.tileSize;
-        for (int i = 51; i < 51 + gamePanel.obj[0][6].width; i++) {
-            for (int j = 48; j < 48 + gamePanel.obj[0][6].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][10].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[0][10].worldY = 49 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][11] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][11].worldX = 55 * gamePanel.tileSize;
-        gamePanel.obj[0][11].worldY = 48 * gamePanel.tileSize;
-        for (int i = 55; i < 55 + gamePanel.obj[0][7].width; i++) {
-            for (int j = 48; j < 48 + gamePanel.obj[0][7].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][11].worldX = 56 * gamePanel.tileSize;
+        gamePanel.obj[0][11].worldY = 49 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][12] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][12].worldX = 59 * gamePanel.tileSize;
-        gamePanel.obj[0][12].worldY = 48 * gamePanel.tileSize;
-        for (int i = 59; i < 59 + gamePanel.obj[0][8].width; i++) {
-            for (int j = 48; j < 48 + gamePanel.obj[0][8].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][12].worldX = 60 * gamePanel.tileSize;
+        gamePanel.obj[0][12].worldY = 49 * gamePanel.tileSize;
+       
 
         gamePanel.obj[0][13] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][13].worldX = 47 * gamePanel.tileSize;
-        gamePanel.obj[0][13].worldY = 52 * gamePanel.tileSize;
-        for (int i = 47; i < 47 + gamePanel.obj[0][5].width; i++) {
-            for (int j = 52; j < 52 + gamePanel.obj[0][5].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][13].worldX = 48 * gamePanel.tileSize;
+        gamePanel.obj[0][13].worldY = 53 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][14] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][14].worldX = 51 * gamePanel.tileSize;
-        gamePanel.obj[0][14].worldY = 52 * gamePanel.tileSize;
-        for (int i = 51; i < 51 + gamePanel.obj[0][6].width; i++) {
-            for (int j = 52; j < 52 + gamePanel.obj[0][6].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][14].worldX = 52 * gamePanel.tileSize;
+        gamePanel.obj[0][14].worldY = 53 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][15] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][15].worldX = 55 * gamePanel.tileSize;
-        gamePanel.obj[0][15].worldY = 52 * gamePanel.tileSize;
-        for (int i = 55; i < 55 + gamePanel.obj[0][7].width; i++) {
-            for (int j = 52; j < 52 + gamePanel.obj[0][7].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][15].worldX = 56 * gamePanel.tileSize;
+        gamePanel.obj[0][15].worldY = 53 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][16] = new OBJ_Sale(gamePanel);
-        gamePanel.obj[0][16].worldX = 59 * gamePanel.tileSize;
-        gamePanel.obj[0][16].worldY = 52 * gamePanel.tileSize;
-        for (int i = 59; i < 59 + gamePanel.obj[0][8].width; i++) {
-            for (int j = 52; j < 52 + gamePanel.obj[0][8].height; j++) {
-                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
-            }
-        }
+        gamePanel.obj[0][16].worldX = 60 * gamePanel.tileSize;
+        gamePanel.obj[0][16].worldY = 53 * gamePanel.tileSize;
+        
 
         gamePanel.obj[0][17] = new OBJ_Gereja(gamePanel);
         gamePanel.obj[0][17].worldX = 17 * gamePanel.tileSize;
@@ -358,7 +310,6 @@ public class AssetSetter {
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
                 index = tempIndex;
-                gamePanel.player[gamePanel.currentPlayer].teleport(gamePanel.obj[map][tempIndex].worldX/gamePanel.tileSize, gamePanel.obj[map][tempIndex].worldY/gamePanel.tileSize - 1, map);
                 gamePanel.obj[tempRumah.pemilik][tempIndex+1] = new OBJ_Pintu(gamePanel);
                 gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldX = 53 * gamePanel.tileSize;
                 gamePanel.obj[tempRumah.pemilik][tempIndex+1].worldY = 53 * gamePanel.tileSize;
@@ -456,6 +407,14 @@ public class AssetSetter {
         gamePanel.cat[1] = new NPC_Cat(gamePanel);
         gamePanel.cat[1].worldX = gamePanel.tileSize*35;
         gamePanel.cat[1].worldY = gamePanel.tileSize*35;
+    }
+
+    public void removeValidMap(SuperObject o, int map){
+        for (int i = o.worldX/ gamePanel.tileSize; i < o.worldX/ gamePanel.tileSize + o.width; i++) {
+            for (int j = o.worldY/ gamePanel.tileSize; j < o.worldY/ gamePanel.tileSize + o.height; j++) {
+                gamePanel.tileManager.mapTileValidation[map][i][j] = false;
+            }
+        }
     }
 
     public boolean setValidMap(SuperObject o, int map) {
