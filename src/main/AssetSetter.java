@@ -572,6 +572,7 @@ public class AssetSetter {
             if(setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
                 gamePanel.setGameState(gamePanel.playState);
                 gamePanel.keyHandler.enterPressed = false;
+                gamePanel.ui.addMessage("Barang berhasil diletakkan!");
             }//else if(!setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
             //     gamePanel.player[gamePanel.currentPlayer].getInventory().add(gamePanel.obj[gamePanel.currentMap][index]);
             //     gamePanel.obj[gamePanel.currentMap][index] = null;
