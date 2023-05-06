@@ -19,10 +19,10 @@ public class OBJ_KomporGas extends Barang {
         this.width = 2;
         setName("Kompor Gas");
         
-        setDescription("[" + getName() + "]\nUntuk memasak.\n\nHarga : " + getPrice());
         setStateOBJ("Memasak");
         setPrice(100);
         setMenu();
+        setDescription("[" + getName() + "]\nUntuk memasak.\n\nHarga : " + getPrice());
 
         try{
             image = ImageIO.read(new File("././res/object/kompor_gas.png"));

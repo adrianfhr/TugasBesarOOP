@@ -19,10 +19,10 @@ public class OBJ_KomporListrik extends Barang {
         this.width = 1;
         stateObject = "Memasak";
         setName("Kompor Listrik");
-        setDescription("[" + getName() + "]\nSama aja kayak kompor gas,\ntapi pake listrik.\n(Orang mampu only)");
         setStateOBJ("Memasak");
         setMenu();
         setPrice(200);
+        setDescription("[" + getName() + "]\nSama aja kayak kompor gas,\ntapi pake listrik.\n(Orang mampu only)");
 
         try{
             image = ImageIO.read(new File("././res/object/kompor_listrik.png"));

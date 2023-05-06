@@ -18,8 +18,8 @@ public class OBJ_Toilet extends Barang{
         this.width = 1;
         setName("Toilet");
         setStateOBJ("buang air");
-        setDescription("[" + getName() + "]\nSelamat menikmati.\n\nHarga : " + getPrice());
         setPrice(50);
+        setDescription("[" + getName() + "]\nSelamat menikmati.\n\nHarga : " + getPrice());
 
         try{
             image = ImageIO.read(new File("././res/object/toilet.png"));
