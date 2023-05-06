@@ -190,6 +190,7 @@ public class UI {
                 gamePanel.isInputAction = true;
                 gamePanel.playMusic(0);
                 String input = JOptionPane.showInputDialog(null, "Masukkan nama Sim:");
+                if(input == null) input = "Player 1";
                 gamePanel.player[gamePanel.currentPlayer].setName(input);
                 gamePanel.isInputAction = false;
                 break;
