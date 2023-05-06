@@ -266,16 +266,7 @@ public class GamePanel extends JPanel implements Runnable {
                     player[currentPlayer].jamUpgrade--;
                 }
             }
-
-                
                 eManager.lighting.dayCounter++;
-
-                for(int i = 0; i < tempBuyObj.length; i++){
-                    if (tempBuyObjCount[i] != 999){
-                        System.out.println("temp OBJ : " + tempBuyObj[i]);
-                        System.out.println("temp OBJ Count : " + tempBuyObjCount[i]);
-                    }
-                }
             }
         }
     
@@ -415,7 +406,7 @@ public class GamePanel extends JPanel implements Runnable {
         while (player[index] != null) {
             index++;
             if (index == player.length) {
-                System.out.println("Array penuh, tidak bisa menambahkan pemain baru!");
+                ui.addMessage("Array penuh, tidak bisa menambahkan pemain baru!");
                 return;
             }
         }
@@ -445,7 +436,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
                 index++;
                 if (index == player.length) {
-                    System.out.println("Pemain tidak ditemukan!");
+                    ui.addMessage("Pemain tidak ditemukan!");
                     return;
                 }
             }
@@ -617,7 +608,6 @@ public class GamePanel extends JPanel implements Runnable {
     public synchronized void checkWaktuBeliBarang(){
         for(int i = 0; i < tempBuyObj.length;i++){
             if(tempBuyObjCount[i] == 0){
-                System.out.println("MASUKK ADD");
                 addInventory(tempBuyObj[i]);
                 tempBuyObj[i] = null;
                 tempBuyObjCount[i] = 999 ;
@@ -774,18 +764,4 @@ public class GamePanel extends JPanel implements Runnable {
             ui.addMessage(player[i].getName());
         };
     }
-
-    // public String inputUser(String s){
-    //     try {
-            
-    //         String input = JOptionPane.showInputDialog(s);
-
-    //     } catch (Exception e) {
-    //         System.err.println("");
-    //     }
-
-    //     return input;
-    // }
-    
-
 }
