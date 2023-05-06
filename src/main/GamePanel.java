@@ -761,6 +761,13 @@ public class GamePanel extends JPanel implements Runnable {
 
         int jarak = (int) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         clock += jarak;
+        player[currentPlayer].jamTidakTidur -= jarak;
+        if(player[currentPlayer].abisMakan){
+            player[currentPlayer].jamTidakMules -= jarak;
+        }
+        if(isPassiveAction){
+            player[currentPlayer].jamUpgrade -= jarak;
+        }
 
         player[currentPlayer].isBerkunjungAction = true;
     }
