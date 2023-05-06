@@ -38,7 +38,9 @@ public class OBJ_Fountain extends Barang{
     }
 
     public void interact(Player player ){
-            System.out.println("Berkunjung");
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Permintaaanmu akan dikabulkan\napabila kamu melempar\nkoin ke fountain.");
+        gamePanel.playSoundEffect(26);
     }
 
 
