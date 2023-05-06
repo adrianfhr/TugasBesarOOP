@@ -676,14 +676,25 @@ public class Player extends Entity{
             if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null){
                 if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pintu){
                     gamePanel.ui.addMessage("Pintu tidak bisa dihapus");
-                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
+                    gamePanel.playSoundEffect(19);
+                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Bank ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Restaurant ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Gereja ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Masjid ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Fountain ||
+                gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hotel){
                     gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
+                    gamePanel.playSoundEffect(19);
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
                     gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
+                    gamePanel.playSoundEffect(19);
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pengemis){
                     gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
+                    gamePanel.playSoundEffect(19);
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Fountain){
                     gamePanel.ui.addMessage("Fountain tidak bisa dihapus");
+                    gamePanel.playSoundEffect(19);
                 }
             else{
                     List <SuperObject> inventory = getInventory();
@@ -695,6 +706,7 @@ public class Player extends Entity{
             }
         }else{
             gamePanel.ui.addMessage("Tidak ada objek yang bisa dihapus");
+            gamePanel.playSoundEffect(19);
         }
     }
 }
