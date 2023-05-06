@@ -143,6 +143,7 @@ public class CollisionChecker {
                         }
                         break;
                     default:
+                        entity.targetIndex = 999;
                         break;
                 }
                 
@@ -218,6 +219,7 @@ public class CollisionChecker {
                         }
                         break;
                     default:
+                    entity.targetIndex = 999;
                         break;
                 }
                 
@@ -292,6 +294,7 @@ public class CollisionChecker {
                         }
                         break;
                     default:
+                    entity.targetIndex = 999;
                         break;
                 }
                 
