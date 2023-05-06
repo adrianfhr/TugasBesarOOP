@@ -1,6 +1,5 @@
 package object;
 
-import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,17 +8,17 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Hospital extends SuperObject{
+public class OBJ_Hospital extends Barang{
     GamePanel gamePanel;
+    int pemilik;
 
     public OBJ_Hospital(GamePanel gamePanel){
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.height = 2;
-        this.width = 2;
+        this.height = 4;
+        this.width = 5;
         setName("Hospital");
-        setStateOBJ("Hospital");
-        
+
         try {
             image = ImageIO.read(new File("././res/object/hospital.png"));
             utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
@@ -28,14 +27,14 @@ public class OBJ_Hospital extends SuperObject{
         }
 
         this.collision = true;
-        setsolidArea();
+        setsolidArea();     
     }
 
     public void setsolidArea(){
         solidArea.x = worldX;
         solidArea.y = worldY;
-        solidArea.width = gamePanel.tileSize * width *2;
-        solidArea.height = gamePanel.tileSize * height*2;
+        solidArea.width = gamePanel.tileSize * width;
+        solidArea.height = gamePanel.tileSize * height;
     }
 
     public void interact(Player player ){
@@ -44,21 +43,5 @@ public class OBJ_Hospital extends SuperObject{
         gamePanel.playSoundEffect(27);
     }
 
-    public void draw(Graphics2D g2d, GamePanel gamePanel){
-
-        int screenX = worldX - gamePanel.player[gamePanel.currentPlayer].worldX + gamePanel.player[gamePanel.currentPlayer].screenX;; 
-        int screenY = worldY - gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY;
-            
-        // cut processing hanya menggambar saat dibutuhkan
-        if(worldX + gamePanel.tileSize > gamePanel.player[gamePanel.currentPlayer].worldX - gamePanel.player[gamePanel.currentPlayer].screenX && 
-                        worldX - gamePanel.tileSize < gamePanel.player[gamePanel.currentPlayer].worldX + gamePanel.player[gamePanel.currentPlayer].screenX && 
-                        worldY + gamePanel.tileSize > gamePanel.player[gamePanel.currentPlayer].worldY - gamePanel.player[gamePanel.currentPlayer].screenY &&
-                        worldY - gamePanel.tileSize < gamePanel.player[gamePanel.currentPlayer].worldY + gamePanel.player[gamePanel.currentPlayer].screenY){
-                
-                //g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-                g2d.drawImage(image, screenX, screenY, gamePanel.tileSize * width * 2, gamePanel.tileSize * height * 2, null);
-            }
-        
-    }
 
 }
