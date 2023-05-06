@@ -344,6 +344,25 @@ public class Player extends Entity{
             this.job = job;
             gamePanel.ui.addMessage("Sekarang kamu berprofesi sebagai " + job);
             countJob = 0;
+            switch (job) {
+                case "Polisi":
+                    setMoney(getMoney() - (35/2));
+                    break;
+                case "Badut Sulap":
+                    setMoney(getMoney() - (15/2));
+                    break;
+                case "Koki":
+                    setMoney(getMoney() - (30/2));
+                    break;
+                case "Programmer":
+                    setMoney(getMoney() - (45/2));
+                    break;
+                case "Dokter":
+                    setMoney(getMoney() - (50/2));
+                    break;
+                default:
+                    break;
+            }
         }else{
             gamePanel.ui.addMessage(job + " bukan keahlianmu");
             gamePanel.ui.addMessage("Kamu belum bisa ganti profesi");

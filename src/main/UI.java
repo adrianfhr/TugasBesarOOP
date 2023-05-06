@@ -791,9 +791,8 @@ public class UI {
                 currentDialogue = "Hari hari jadi badut :((";
                 splitAndDrawDialogue(textX, textY);
                }else{
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "Maaf anda bukanlah\nbadut yang layak";
-                splitAndDrawDialogue(textX, textY);
+                gamePanel.player[gamePanel.currentPlayer].setJob("Badut Sulap");
+                    gamePanel.setGameState(gamePanel.playState);
                }
             }
         }
@@ -811,9 +810,8 @@ public class UI {
                     currentDialogue = "Hope Gordon Ramsay won't\nkill me this time...";
                     splitAndDrawDialogue(textX, textY);
                    }else{
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah koki yang layak";
-                    splitAndDrawDialogue(textX, textY);
+                    gamePanel.player[gamePanel.currentPlayer].setJob("Koki");
+                    gamePanel.setGameState(gamePanel.playState);
                    }
             }
         }
@@ -850,9 +848,8 @@ public class UI {
                     currentDialogue = "Not sure if I am a good\nprogrammer or good at googling...";
                     splitAndDrawDialogue(textX, textY);
                 }else{
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah\nprogrammer yang layak";
-                    splitAndDrawDialogue(textX, textY);
+                    gamePanel.player[gamePanel.currentPlayer].setJob("Programmer");
+                    gamePanel.setGameState(gamePanel.playState);
                 } 
             }
         }
@@ -870,9 +867,8 @@ public class UI {
                     currentDialogue = "Kami sudah berusaha semaksimal\nmungkin...";
                 splitAndDrawDialogue(textX, textY);
                 }else{
-                    gamePanel.setGameState(gamePanel.dialogueState);
-                    currentDialogue = "Maaf anda bukanlah\ndokter yang layak";
-                    splitAndDrawDialogue(textX, textY);
+                    gamePanel.player[gamePanel.currentPlayer].setJob("Dokter");
+                    gamePanel.setGameState(gamePanel.playState);
                 } 
                 
             }
