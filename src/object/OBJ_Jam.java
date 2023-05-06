@@ -40,8 +40,6 @@ public class OBJ_Jam extends Barang{
 
     @Override
     public void interact(Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'interact'");
     }
 
 }
