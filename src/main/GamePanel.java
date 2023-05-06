@@ -642,7 +642,7 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < tempBuyObj.length;i++){
             for(int j = 0; j < tempBuyObj[i].length;j++){
                 if(tempBuyObj[i][j] != null){
-                    if(tempBuyObjCount[i][j] == 0){
+                    if(tempBuyObjCount[i][j] <= 0){
                         addInventory(tempBuyObj[i][j], i);
                         tempBuyObj[i][j] = null;
                         tempBuyObjCount[i][j] = 999 ;
@@ -809,6 +809,14 @@ public class GamePanel extends JPanel implements Runnable {
             if(player[i] != null){
                 if(player[i].isUpgradeRumah){
                     player[i].jamUpgrade -= jarak;
+                }
+            }
+        }
+
+        for(int i = 0; i < tempBuyObj.length; i++){
+            for(int j = 0; j < tempBuyObj[i].length; j++){
+                if (tempBuyObj[i][j] != null && tempBuyObjCount[i][j] != 999 && tempBuyObjCount[i][j] > 0){
+                    tempBuyObjCount[i][j] -= jarak;
                 }
             }
         }
