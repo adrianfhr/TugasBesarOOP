@@ -1133,6 +1133,7 @@ public class UI {
                 subState = 0;
                 gamePanel.setGameState(gamePanel.dialogueState);
                 currentDialogue = "Hi! you look good today!";
+                gamePanel.playSoundEffect(26);
             }
         }
         y += gamePanel.tileSize;
@@ -1171,6 +1172,7 @@ public class UI {
                 subState = 0;
                 gamePanel.setGameState(gamePanel.dialogueState);
                 currentDialogue = "See u later!";
+                gamePanel.playSoundEffect(27);
             }
         }
 

@@ -15,7 +15,7 @@ public class OBJ_Whiskas extends BahanMakanan{
         setName("Whiskas");
         setPrice(10);
         setKekenyanganValue(5);
-        setDescription("[" + getName() + "]\nMakanan kucing! jangan dimakan!\n\nHarga : " + getPrice());
+        setDescription("[" + getName() + "]\nMakanan kucing.\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/whiskas.png"));

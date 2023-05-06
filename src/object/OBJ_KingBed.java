@@ -16,8 +16,9 @@ public class OBJ_KingBed extends Barang{
         this.gamePanel = gamePanel;
         this.height = 5;
         this.width = 2;
-        setName(" King Bed");
+        setName("King Bed");
         setPrice(150);
+        setDescription("[" + getName() + "]\nTempat tidur para raja.\n\nHarga : " + getPrice());
         
         try {
             image = ImageIO.read(new File("././res/object/king_bed.png"));

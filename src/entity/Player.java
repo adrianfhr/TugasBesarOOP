@@ -682,8 +682,10 @@ public class Player extends Entity{
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
                     gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
                 } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pengemis){
-                gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
-            }
+                    gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
+                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Fountain){
+                    gamePanel.ui.addMessage("Fountain tidak bisa dihapus");
+                }
             else{
                     List <SuperObject> inventory = getInventory();
                     inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);

@@ -38,12 +38,9 @@ public class OBJ_Hotel extends Barang{
     }
 
     public void interact(Player player ){
-        if(pemilik == gamePanel.player[gamePanel.currentPlayer].getId() ){
-            gamePanel.player[gamePanel.currentPlayer].teleport(50, 50, gamePanel.player[gamePanel.currentPlayer].getId());
-            gamePanel.playSoundEffect(2);
-        }else{ 
-            System.out.println("Berkunjung");
-        }
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Masih tutup...");
+        gamePanel.playSoundEffect(27);
     }
 
 

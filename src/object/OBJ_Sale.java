@@ -37,10 +37,10 @@ public class OBJ_Sale extends Barang{
         solidArea.height = gamePanel.tileSize * height;
     }
 
-    @Override
-    public void interact(Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'interact'");
+    public void interact(Player player ){
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Tanah ini dijual...");
+        gamePanel.playSoundEffect(27);
     }
 
 }

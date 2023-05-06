@@ -18,6 +18,7 @@ public class OBJ_QueenBed extends Barang{
         this.width = 1;
         setName("Queen Bed");
         setPrice(100);
+        setDescription("[" + getName() + "]\nTempat tidur para ratu.\n\nHarga : " + getPrice());
         
         try {
             image = ImageIO.read(new File("././res/object/queen_bed.png"));

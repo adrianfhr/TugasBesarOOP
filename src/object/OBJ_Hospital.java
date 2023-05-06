@@ -38,8 +38,10 @@ public class OBJ_Hospital extends SuperObject{
         solidArea.height = gamePanel.tileSize * height*2;
     }
 
-    public void interact(Player player){
-        gamePanel.player[gamePanel.currentPlayer].setMood(gamePanel.player[gamePanel.currentPlayer].getMood() + 5);
+    public void interact(Player player ){
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Masih tutup...");
+        gamePanel.playSoundEffect(27);
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel){

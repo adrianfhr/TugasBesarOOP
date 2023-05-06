@@ -18,6 +18,7 @@ public class OBJ_Jam extends Barang{
         this.width = 1;
         setName("Jam");
         setPrice(10);
+        setDescription("[" + getName() + "]\nPenunjuk waktu.\n\nHarga : " + getPrice());
         
         try {
             image = ImageIO.read(new File("././res/object/jam.png"));

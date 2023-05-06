@@ -38,7 +38,9 @@ public class OBJ_Bank extends Barang{
     }
 
     public void interact(Player player ){
-            System.out.println("Berkunjung");
+        gamePanel.setGameState(gamePanel.dialogueState);
+        gamePanel.ui.setCurrentDialogue("Masih tutup...");
+        gamePanel.playSoundEffect(27);
     }
 
 
