@@ -15,7 +15,7 @@ public class OBJ_KomporListrik extends Barang {
         super(gamePanel);
         this.gamePanel = gamePanel;
         this.height = 1;
-        this.width = 2;
+        this.width = 1;
         stateObject = "Memasak";
         setName("Kompor Listrik");
         setDescription("[" + getName() + "]\nSama aja kayak kompor gas,\ntapi pake listrik.\n(Orang mampu only)");

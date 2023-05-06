@@ -20,7 +20,7 @@ import main.UtilityTool;
 public class Player extends Entity{
     //player attributes
     private String name, job;
-    private String state;
+    private String state, death;
     private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
@@ -72,7 +72,8 @@ public class Player extends Entity{
         startPekerjaan();
 
         Random random = new Random();
-        int beli = random.nextInt(60)+1;
+        int beli = random.nextInt(5)+1;
+        
 
         //set jam kerja default
         jamKerja = 30 * 2;
@@ -87,7 +88,7 @@ public class Player extends Entity{
         jamTidakMules = 4 * 60 * 2;
         jamIbadah = 5 * 2;
         jamNonton = 5 * 2;
-        jamBarang = beli;
+        jamBarang = beli * 60;
         countJob = 0;
         countGaji = 0;
     }
@@ -375,6 +376,14 @@ public class Player extends Entity{
         this.hunger = hunger;
     }
 
+    public void setDeath(String death){
+        this.death = death;
+    }
+
+    public String getDeath(){
+        return death;
+    }
+
     public int getHunger(){
         return hunger;
     }
@@ -432,7 +441,16 @@ public class Player extends Entity{
     }
 
     private void checkIfAlive() {
-        if ((gamePanel.player[gamePanel.currentPlayer].getHealth() <= 0) || (gamePanel.player[gamePanel.currentPlayer].getMood() <= 0) || (gamePanel.player[gamePanel.currentPlayer].getHunger() <= 0)) {
+        if ((gamePanel.player[gamePanel.currentPlayer].getHealth() <= 0)) {
+            gamePanel.playSoundEffect(21);
+            setDeath("Sakit");
+            gamePanel.setGameState(gamePanel.gameOverState);
+        } else if (gamePanel.player[gamePanel.currentPlayer].getMood() <= 0){
+            setDeath("Depresi");
+            gamePanel.playSoundEffect(21);
+            gamePanel.setGameState(gamePanel.gameOverState);
+        } else if (gamePanel.player[gamePanel.currentPlayer].getHunger() <= 0){
+            setDeath("Kelaparan");
             gamePanel.playSoundEffect(21);
             gamePanel.setGameState(gamePanel.gameOverState);
         }
@@ -617,14 +635,15 @@ public class Player extends Entity{
                 if (gamePanel.player[gamePanel.currentPlayer].getInventory().size() < gamePanel.player[gamePanel.currentPlayer].getMaxInventorySize()){
                     if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= ((SuperObject) selectedItem).getPrice()) {
                         Random random = new Random();
-                        int randomInt = random.nextInt(60)+1;
-                        gamePanel.ui.addMessage("Jam Barang : "+ randomInt);
+                        int randomInt = random.nextInt(5)+1;
+                        int arrivedTime = randomInt * 60;
+                        gamePanel.ui.addMessage("Waktu pengiriman : "+ arrivedTime + " menit.");
                         int i = 0;
                         while(gamePanel.tempBuyObj[i] != null){
                             i++;
                         }
                         gamePanel.tempBuyObj[i] = selectedItem;
-                        gamePanel.tempBuyObjCount[i] = randomInt;
+                        gamePanel.tempBuyObjCount[i] = arrivedTime;
                         gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
                         gamePanel.setGameState(gamePanel.playState);
                         for(int j = 0; j < gamePanel.tempBuyObj.length; j++){
@@ -647,13 +666,16 @@ public class Player extends Entity{
     public void removeBarang(){
         if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pintu){
             gamePanel.ui.addMessage("Pintu tidak bisa dihapus");
-        }else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
+        } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
             gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
-        }else{
+        } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
+            gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
+        } else{
             List <SuperObject> inventory = getInventory();
             inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);
             gamePanel.assetSetter.removeValidMap(gamePanel.obj[gamePanel.currentMap][targetIndex], gamePanel.currentMap);
             gamePanel.obj[gamePanel.currentMap][targetIndex] = null;
+            gamePanel.playSoundEffect(22);
         }
         
     }

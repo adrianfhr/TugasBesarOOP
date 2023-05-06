@@ -68,14 +68,14 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
-        if(code == KeyEvent.VK_M){
-            // String x = JOptionPane.showInputDialog("Masukkan X: ");
-            // String y = JOptionPane.showInputDialog("Masukkan Y: ");
-            // int intX = Integer.parseInt(x);
-            // int intY = Integer.parseInt(y); 
-            // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
-            gamePanel.pindahRuangan();
-        }
+        // if(code == KeyEvent.VK_M){
+        //     // String x = JOptionPane.showInputDialog("Masukkan X: ");
+        //     // String y = JOptionPane.showInputDialog("Masukkan Y: ");
+        //     // int intX = Integer.parseInt(x);
+        //     // int intY = Integer.parseInt(y); 
+        //     // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
+        //     gamePanel.pindahRuangan();
+        // }
         if(code == KeyEvent.VK_R){
             gamePanel.player[gamePanel.currentPlayer].removeBarang();
         }
@@ -400,6 +400,7 @@ public class KeyHandler implements KeyListener {
             enterPressed = false;
             limit = 1;
         }
+        
 
         
     }
@@ -504,7 +505,7 @@ public class KeyHandler implements KeyListener {
         int maxCommandNumber;
 
         switch (gamePanel.ui.getSubState()) {
-            case 0 -> maxCommandNumber = 7;
+            case 0 -> maxCommandNumber = 6;
             case 2 -> maxCommandNumber = 5;
             case 3 -> maxCommandNumber = 3;
             default -> maxCommandNumber = 6;

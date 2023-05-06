@@ -547,6 +547,7 @@ public class GamePanel extends JPanel implements Runnable {
             player[currentPlayer].jamMemasak = 30;
             gameState = playState;
             ui.addMessage("Makanan sudah jadi!");
+            playSoundEffect(24);
         }
 
         if(player[currentPlayer].jamBerkunjung == 0){
@@ -626,7 +627,7 @@ public class GamePanel extends JPanel implements Runnable {
         List<SuperObject> inventory = player[currentPlayer].getInventory();
         inventory.add(o);
        ui.addMessage("Barang "+ o.getName() + " sudah sampai");
-
+        playSoundEffect(23);
     }
 
     public void upgradeRumah(String posisi){

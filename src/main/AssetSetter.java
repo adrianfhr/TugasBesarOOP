@@ -394,6 +394,20 @@ public class AssetSetter {
                 index = tempIndex;
                 break;
 
+            case "Car":
+                gamePanel.obj[map][tempIndex] = new OBJ_Car(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
+                break;
+
+            case "Parking":
+                gamePanel.obj[map][tempIndex] = new OBJ_Parking(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
+                break;
+
             default:
                 break;
         }
