@@ -1360,12 +1360,18 @@ public class UI {
         textY += gamePanel.tileSize / 3;
         g2.drawString("Pause", textX + gamePanel.tileSize / 3 * 2, textY + 105);
         g2.drawString("P", textX + gamePanel.tileSize / 3 * 18, textY + 105);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Remove Object", textX + gamePanel.tileSize / 3 * 2, textY + 120);
+        g2.drawString("R", textX + gamePanel.tileSize / 3 * 18, textY + 120);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Actions", textX + gamePanel.tileSize / 3 * 2, textY + 135);
+        g2.drawString("SPACE", textX + gamePanel.tileSize / 3 * 16, textY + 135);
 
         // BACK
         textX = frameX + gamePanel.tileSize / 3;
         textY = frameY + gamePanel.tileSize / 3 * 9;
-        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 120);
-        g2.drawString(">", textX + 10, textY + 120);
+        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 150);
+        g2.drawString(">", textX + 10, textY + 150);
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             subState = 0;
             commandNumber = 3;
