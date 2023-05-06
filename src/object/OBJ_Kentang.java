@@ -12,9 +12,9 @@ public class OBJ_Kentang extends BahanMakanan{
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Kentang");
-        setDescription("[" + getName() + "]\nPengganti nasi.");
         setPrice(3);
         setKekenyanganValue(4);
+        setDescription("[" + getName() + "]\nPengganti nasi.\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/kentang.png"));

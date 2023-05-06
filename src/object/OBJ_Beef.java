@@ -13,9 +13,9 @@ public class OBJ_Beef extends BahanMakanan{
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Beef");
-        setDescription("[" + getName() + "]\nPotongan daging sapi segar.");
         setPrice(12);
         setKekenyanganValue(15);
+        setDescription("[" + getName() + "]\nPotongan daging sapi segar.\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/beef.png"));

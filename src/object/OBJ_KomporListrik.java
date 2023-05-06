@@ -25,6 +25,7 @@ public class OBJ_KomporListrik extends Barang {
 
         try{
             image = ImageIO.read(new File("././res/object/kompor_listrik.png"));
+            image_orang = ImageIO.read(new File("././res/object/masaklistrik.png"));
             setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         }
         catch (IOException e){

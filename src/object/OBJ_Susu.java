@@ -12,9 +12,9 @@ public class OBJ_Susu extends BahanMakanan {
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Susu");
-        setDescription("[" + getName() + "]\nDari sapi, bukan yang lain.");
         setPrice(2);
         setKekenyanganValue(1);
+        setDescription("[" + getName() + "]\nDari sapi, bukan yang lain.\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/susu.png"));

@@ -522,6 +522,7 @@ public class Player extends Entity{
                     if(hasAyam && hasNasi){
                         jamMemasak = (int) (16*1.5);
                         gamePanel.isActiveAction = true;
+                        gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Ayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
@@ -538,6 +539,7 @@ public class Player extends Entity{
                     if(hasBeef && hasKentang){
                         jamMemasak = (int) (22*1.5);
                         gamePanel.isActiveAction = true;
+                        gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
@@ -553,6 +555,7 @@ public class Player extends Entity{
                     if(hasNasi && hasKentang && hasWortel && hasBeef){
                         jamMemasak = (int) (30*1.5);
                         gamePanel.isActiveAction = true;
+                        gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");
@@ -570,6 +573,7 @@ public class Player extends Entity{
                     if(hasSusu && hasKacang){
                         jamMemasak = (int) (5*1.5);
                         gamePanel.isActiveAction = true;
+                        gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Susu");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kacang");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
@@ -585,6 +589,7 @@ public class Player extends Entity{
                     if(hasBayam && hasWortel){
                         jamMemasak = (int) (5*1.5);
                         gamePanel.isActiveAction = true;
+                        gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = true;
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Bayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");  
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
@@ -670,7 +675,10 @@ public class Player extends Entity{
             gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
         } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
             gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
-        } else{
+        } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pengemis){
+            gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
+        }
+        else{
             List <SuperObject> inventory = getInventory();
             inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);
             gamePanel.assetSetter.removeValidMap(gamePanel.obj[gamePanel.currentMap][targetIndex], gamePanel.currentMap);

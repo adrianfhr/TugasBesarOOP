@@ -13,9 +13,9 @@ public class OBJ_Whiskas extends BahanMakanan{
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Whiskas");
-        setDescription("[" + getName() + "]\nMakanan kucing! jangan dimakan!");
         setPrice(10);
         setKekenyanganValue(5);
+        setDescription("[" + getName() + "]\nMakanan kucing! jangan dimakan!\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/whiskas.png"));

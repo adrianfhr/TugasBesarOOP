@@ -12,9 +12,9 @@ public class OBJ_Kacang extends BahanMakanan {
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Kacang");
-        setDescription("[" + getName() + "]\nMakanan pokok.");
         setPrice(2);
         setKekenyanganValue(2);
+        setDescription("[" + getName() + "]\nMakanan pokok.\n\nHarga : " + getPrice());
         
         try {
             image = ImageIO.read(new File("././res/object/kacang.png"));

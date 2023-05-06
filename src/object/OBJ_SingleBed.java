@@ -16,13 +16,14 @@ public class OBJ_SingleBed extends Barang{
         this.gamePanel = gamePanel;
         this.height = 4;
         this.width = 1;
-        setDescription("Untuk tidur dan ditiduri");
+        setDescription("[Single Bed]\nUntuk tidur dan ditiduri");
         setStateOBJ("Tidur");
         setName("Single Bed");
         setPrice(50);
         
         try {
             image = ImageIO.read(new File("././res/object/single_bed.png"));
+            image_orang = ImageIO.read(new File("././res/object/tidur2.png"));
             setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();

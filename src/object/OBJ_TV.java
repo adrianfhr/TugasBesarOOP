@@ -24,6 +24,7 @@ public class OBJ_TV extends Barang{
         
         try {
             image = ImageIO.read(new File("././res/object/tv.png"));
+            image_orang = ImageIO.read(new File("././res/object/tv2.png"));
             setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
