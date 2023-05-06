@@ -345,7 +345,7 @@ public class Player extends Entity{
             this.job = job;
             gamePanel.ui.addMessage("Sekarang kamu berprofesi sebagai " + job);
             countJob = 0;
-            jamGantiKerja = 24 * 60 * 60;
+            jamGantiKerja = 24 * 60;
             switch (job) {
                 case "Polisi":
                     setMoney(getMoney() - (35/2));
