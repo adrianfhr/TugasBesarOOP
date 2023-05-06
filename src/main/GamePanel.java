@@ -583,7 +583,7 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i = 0; i < player.length; i++){
             if(player[i] != null){
                 if(player[i].isUpgradeRumah){
-                    if(player[i].jamUpgrade == 0){
+                    if(player[i].jamUpgrade <= 0){
                         ui.addMessage("Player : " + player[i].getName() + " berhasil upgrade rumah!");
                         if (player[i].isKanan){
                             upgradeRumah("Kanan", player[i].getId());
