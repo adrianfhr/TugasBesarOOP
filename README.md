@@ -23,8 +23,6 @@ Pastikan Anda telah memasang JDK pada komputer Anda. Jika belum, Anda dapat meng
 
 Pastikan juga bahwa direktori proyek Anda memiliki struktur direktori dan file seperti yang ditunjukkan di bawah ini:
 
-css
-Copy code
 TugasBesarOOP/
 ├── src/
 │   └── main/
