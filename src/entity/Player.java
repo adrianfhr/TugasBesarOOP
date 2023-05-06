@@ -474,6 +474,7 @@ public class Player extends Entity{
             } else {
                 gamePanel.ui.addMessage("Kamu gabisa makan ini!");
                 gamePanel.setGameState(gamePanel.playState);
+                gamePanel.playSoundEffect(19);
             }
         }
     }
@@ -491,10 +492,12 @@ public class Player extends Entity{
             } else if (selectedItem instanceof BahanMakanan) {
                 if (gamePanel.getGameState() != gamePanel.makanState){
                     gamePanel.ui.addMessage("Makan harus di meja makan!");
+                    gamePanel.playSoundEffect(19);
                 }
             } else if (selectedItem instanceof Makanan) {
                 if (gamePanel.getGameState() != gamePanel.makanState){
                     gamePanel.ui.addMessage("Makan harus di meja makan!");
+                    gamePanel.playSoundEffect(19);
                 }
             }
         }
@@ -529,10 +532,12 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Ayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Nasi");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiAyam(gamePanel));
+                        gamePanel.playSoundEffect(12);
                     }else{
                         gamePanel.isActiveAction = false;
                         gamePanel.setGameState(gamePanel.playState);
                         gamePanel.ui.addMessage("Bahan anda tidak cukup");
+                        gamePanel.playSoundEffect(19);
     
 
                         
@@ -546,11 +551,13 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kentang");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_Bistik(gamePanel));
+                        gamePanel.playSoundEffect(12);
                         break;
                     }else{
                         gamePanel.isActiveAction = false;
                         gamePanel.setGameState(gamePanel.playState);
                         gamePanel.ui.addMessage("Bahan anda tidak cukup");
+                        gamePanel.playSoundEffect(19);
                 
                     }
                     break;
@@ -564,11 +571,12 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Beef");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_NasiKari(gamePanel));
-                        
+                        gamePanel.playSoundEffect(12);
                     }else{
                         gamePanel.isActiveAction = false;
                         gamePanel.setGameState(gamePanel.playState);
                         gamePanel.ui.addMessage("Bahan anda tidak cukup");
+                        gamePanel.playSoundEffect(19);
                 
                     }
                     break;
@@ -580,11 +588,12 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Susu");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Kacang");
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_SusuKacang(gamePanel));
-                        
+                        gamePanel.playSoundEffect(12);
                     }else{
                         gamePanel.isActiveAction = false;
                         gamePanel.setGameState(gamePanel.playState);
                         gamePanel.ui.addMessage("Bahan anda tidak cukup");
+                        gamePanel.playSoundEffect(19);
                 
                     }
                     break;
@@ -596,11 +605,12 @@ public class Player extends Entity{
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Bayam");
                         gamePanel.player[gamePanel.currentPlayer].useInventory("Wortel");  
                         gamePanel.player[gamePanel.currentPlayer].getInventory().add(new OBJ_TumisSayur(gamePanel));
-                        
+                        gamePanel.playSoundEffect(12);
                     }else{
                         gamePanel.isActiveAction = false;
                         gamePanel.setGameState(gamePanel.playState);
                         gamePanel.ui.addMessage("Bahan anda tidak cukup");
+                        gamePanel.playSoundEffect(19);
                 
                     }
                     break;
