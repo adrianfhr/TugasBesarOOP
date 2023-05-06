@@ -670,8 +670,18 @@ public class GamePanel extends JPanel implements Runnable {
         int y = player[currentPlayer].worldY/tileSize;
         int posisiX = 48, posisiY = 48;
 
+        String nama = "";
+        for(int i = 0; i < player.length; i++){
+            if(player[i] != null){
+                if(player[i].getId() == indexPlayer){
+                    nama = player[i].getName();
+                    break;
+                }
+            }
+        }
+
         isInputAction = true;
-        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan rumah " + player[indexPlayer].getName() + " : ");
+        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan rumah " + nama + " : ");
         isInputAction = false;
 
         if(posisi.equals("Atas")){
