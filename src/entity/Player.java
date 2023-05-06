@@ -199,7 +199,7 @@ public class Player extends Entity{
                 keyHandler.ePressed = false;
             }
         } else{
-            if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null) gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = false;
+            if(targetIndex < gamePanel.obj[gamePanel.currentMap].length && gamePanel.obj[gamePanel.currentMap][targetIndex] != null) gamePanel.obj[gamePanel.currentMap][targetIndex].isActiveActionOBJ = false;
             gamePanel.gameState = gamePanel.playState;
             this.state = "idle";
             
@@ -277,6 +277,10 @@ public class Player extends Entity{
             //fungsi
             //interactOBJ();
             checkIfAlive();
+
+            if(!isInteracting){
+                targetIndex = 999;
+            }
             
         }
         
@@ -669,24 +673,27 @@ public class Player extends Entity{
     }
 
     public void removeBarang(){
-        if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null){
-            if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pintu){
-                gamePanel.ui.addMessage("Pintu tidak bisa dihapus");
-            } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
-                gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
-            } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
-                gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
-            } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pengemis){
-            gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
-        }
-        else{
-                List <SuperObject> inventory = getInventory();
-                inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);
-                gamePanel.assetSetter.removeValidMap(gamePanel.obj[gamePanel.currentMap][targetIndex], gamePanel.currentMap);
-                gamePanel.obj[gamePanel.currentMap][targetIndex] = null;
-                gamePanel.playSoundEffect(22);
+        if(targetIndex < gamePanel.obj[gamePanel.currentMap].length){
+            if(gamePanel.obj[gamePanel.currentMap][targetIndex] != null){
+                if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pintu){
+                    gamePanel.ui.addMessage("Pintu tidak bisa dihapus");
+                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Hospital){
+                    gamePanel.ui.addMessage("Bangunan tidak bisa dihapus");
+                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Mixue){
+                    gamePanel.ui.addMessage("Mixu tidak bisa dihapus");
+                } else if(gamePanel.obj[gamePanel.currentMap][targetIndex] instanceof OBJ_Pengemis){
+                gamePanel.ui.addMessage("Pengemis tidak bisa dihapus");
             }
+            else{
+                    List <SuperObject> inventory = getInventory();
+                    inventory.add(gamePanel.obj[gamePanel.currentMap][targetIndex]);
+                    gamePanel.assetSetter.removeValidMap(gamePanel.obj[gamePanel.currentMap][targetIndex], gamePanel.currentMap);
+                    gamePanel.obj[gamePanel.currentMap][targetIndex] = null;
+                    gamePanel.playSoundEffect(22);
+                }
+            }
+        }else{
+            gamePanel.ui.addMessage("Tidak ada objek yang bisa dihapus");
         }
-        
     }
 }
