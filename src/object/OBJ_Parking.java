@@ -40,10 +40,11 @@ public class OBJ_Parking extends Barang{
         if (gamePanel.player[gamePanel.currentPlayer].naikMobil){
             gamePanel.player[gamePanel.currentPlayer].naikMobil = false;
             gamePanel.player[gamePanel.currentPlayer].speed = 4;
-
+            gamePanel.playSoundEffect(25);
         } else {
             gamePanel.player[gamePanel.currentPlayer].speed = 10;
             gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
+            gamePanel.playSoundEffect(16);
         }
         gamePanel.player[gamePanel.currentPlayer].direction = "up";
     }

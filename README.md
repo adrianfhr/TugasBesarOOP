@@ -1,19 +1,49 @@
-## Getting Started
+## TUGAS BESAR KELOMPOK 3
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+ANGGOTA :
+18221002 Adrian Fahri Affandi
+18221011 Farchan Martha Adji Chandra 
+18221012 Harits Afiq Nugroho     
+18221014 Raden Sjora Okalani
+18221019 Anindita Putri Paramarta 
+18221031 Anjani Ibrahim        
 
-## Folder Structure
+## Struktur Folder
 
-The workspace contains two folders by default, where:
+Ruang kerja berisi dua folder secara default, di mana:
 
-- `res`: the folder to maintein resources (map, graphics, etc)
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- `res`: folder untuk memelihara sumber daya (peta, grafik, dll)
+- `src`: folder untuk memelihara sumber
+- `lib`: folder untuk memelihara dependensi
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Sementara itu, file output yang dikompilasi akan dihasilkan di folder `bin` secara default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Persiapan
+Pastikan Anda telah memasang JDK pada komputer Anda. Jika belum, Anda dapat mengunduhnya dari situs resmi Oracle.
 
-## Dependency Management
+Pastikan juga bahwa direktori proyek Anda memiliki struktur direktori dan file seperti yang ditunjukkan di bawah ini:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+css
+Copy code
+TugasBesarOOP/
+├── src/
+│   └── main/
+│       └── Main.java
+└── run.sh
+
+Pada struktur direktori di atas, direktori src/ berisi file sumber proyek, dan file run.sh adalah shell script yang akan digunakan untuk mengkompilasi dan menjalankan proyek.
+
+Pastikan juga bahwa path ke direktori proyek dan path ke JDK telah diperbarui pada script run.sh dengan path yang benar pada komputer Anda.
+
+## Menjalankan Script
+Untuk menjalankan script run.sh, ikuti langkah-langkah berikut:
+
+Buka terminal dan navigasikan ke direktori proyek yang sesuai.
+Berikan izin eksekusi pada script dengan perintah chmod +x run.sh.
+Jalankan script dengan perintah ./run.sh.
+
+Setelah menjalankan script, proyek Anda akan dikompilasi dan dijalankan dengan JDK. Jika terdapat kesalahan pada kompilasi atau saat menjalankan proyek, pesan kesalahan akan ditampilkan pada terminal.
+
+
+
+

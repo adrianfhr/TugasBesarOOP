@@ -34,8 +34,11 @@ public class BahanMakanan extends SuperObject{
             gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
         } else if (getName().equals("Whiskas")){
             gamePanel.ui.addMessage("Makanan kucing! jangan dimakan!");
-        } else {
+        } else if (gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue() >= 100){
+            gamePanel.player[gamePanel.currentPlayer].setHunger(100);
             gamePanel.ui.addMessage("Kamu sudah kenyang!!");
+            gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
+            gamePanel.playSoundEffect(12);
         }
     }
 

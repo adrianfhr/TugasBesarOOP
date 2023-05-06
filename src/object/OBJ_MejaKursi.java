@@ -19,6 +19,7 @@ public class OBJ_MejaKursi extends Barang {
         setName("Meja Kursi");
         setStateOBJ("makan");
         setPrice(50);
+        setDescription("[" + getName() + "]\nMeja dan kursi untuk makan.\n\nHarga : " + getPrice());
 
         try{
             image = ImageIO.read(new File("././res/object/mejakursi.png"));

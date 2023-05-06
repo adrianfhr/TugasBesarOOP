@@ -25,8 +25,11 @@ public class Makanan extends SuperObject{
             gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
             gamePanel.playSoundEffect(12);
             gamePanel.ui.addMessage("Hunger + " + getKekenyanganValue());
-        } else {
+        } else if (gamePanel.player[gamePanel.currentPlayer].getHunger() + getKekenyanganValue() >= 100){
+            gamePanel.player[gamePanel.currentPlayer].setHunger(100);
             gamePanel.ui.addMessage("Kamu sudah kenyang!!");
+            gamePanel.player[gamePanel.currentPlayer].getInventory().remove(this);
+            gamePanel.playSoundEffect(12);
         }
     }
 }

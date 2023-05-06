@@ -102,7 +102,7 @@ public class CollisionChecker {
                                 entity.targetIndex = i;
                                 entity.isInteracting = true;
                             } 
-                         ;
+                         
                         }
                         break;
                     case "down":

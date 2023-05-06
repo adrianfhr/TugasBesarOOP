@@ -16,10 +16,10 @@ public class OBJ_Barbel extends Barang{
         this.gamePanel = gamePanel;
         this.height = 1;
         this.width = 1;
-        setDescription("Supaya kekar seperti saya");
         setStateOBJ("Olahraga");
         setName("Barbel");
         setPrice(50);
+        setDescription("["+ getName() +"]\n"+"Supaya kekar seperti saya.\n\nHarga : " + getPrice());
         
         try {
             image = ImageIO.read(new File("././res/object/barbel.png"));

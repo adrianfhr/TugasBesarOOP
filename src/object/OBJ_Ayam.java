@@ -13,9 +13,9 @@ public class OBJ_Ayam extends BahanMakanan{
         super(gamePanel);
         this.gamePanel = gamePanel;
         setName("Ayam");
-        setDescription("[" + getName() + "]\nPotongan ayam segar.");
         setPrice(10);
         setKekenyanganValue(8);
+        setDescription("[" + getName() + "]\nPotongan ayam segar.\n\nHarga : " + getPrice());
 
         try {
             image = ImageIO.read(new File("././res/object/ayam.png"));

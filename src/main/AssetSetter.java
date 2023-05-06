@@ -4,8 +4,10 @@ import entity.NPC_Cat;
 import entity.NPC_Wife;
 import javax.swing.JOptionPane;
 
+import object.OBJ_Bank;
 import object.OBJ_Barbel;
 import object.OBJ_Car;
+import object.OBJ_Fountain;
 import object.OBJ_Gereja;
 import object.OBJ_Gudang;
 import object.OBJ_Hospital;
@@ -21,6 +23,7 @@ import object.OBJ_Parking;
 import object.OBJ_Pengemis;
 import object.OBJ_Pintu;
 import object.OBJ_QueenBed;
+import object.OBJ_Restaurant;
 import object.OBJ_Rumah;
 import object.OBJ_Sale;
 import object.OBJ_SingleBed;
@@ -108,9 +111,9 @@ public class AssetSetter {
 
         gamePanel.obj[0][1] = new OBJ_Masjid(gamePanel);
         gamePanel.obj[0][1].worldX = 30 * gamePanel.tileSize;
-        gamePanel.obj[0][1].worldY = 5 * gamePanel.tileSize;
+        gamePanel.obj[0][1].worldY = 4 * gamePanel.tileSize;
         for (int i = 30; i < 30 + gamePanel.obj[0][1].width; i++) {
-            for (int j = 5; j < 5 + gamePanel.obj[0][1].height; j++) {
+            for (int j = 4; j < 4 + gamePanel.obj[0][1].height; j++) {
                 gamePanel.tileManager.mapTileValidation[0][i][j] = true;
             }
         }
@@ -284,6 +287,60 @@ public class AssetSetter {
             }
         }
 
+        gamePanel.obj[0][26] = new OBJ_Restaurant(gamePanel);
+        gamePanel.obj[0][26].worldX = 11 * gamePanel.tileSize;
+        gamePanel.obj[0][26].worldY = 20 * gamePanel.tileSize;
+        for (int i = 11; i < 11 + gamePanel.obj[0][26].width; i++) {
+            for (int j = 20; j < 20 + gamePanel.obj[0][26].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][27] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][27].worldX = 18 * gamePanel.tileSize;
+        gamePanel.obj[0][27].worldY = 18 * gamePanel.tileSize;
+        for (int i = 18; i < 18 + gamePanel.obj[0][27].width; i++) {
+            for (int j = 18; j < 18 + gamePanel.obj[0][27].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][28] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][28].worldX = 46 * gamePanel.tileSize;
+        gamePanel.obj[0][28].worldY = 42 * gamePanel.tileSize;
+        for (int i = 46; i < 46 + gamePanel.obj[0][28].width; i++) {
+            for (int j = 42; j < 42 + gamePanel.obj[0][28].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][29] = new OBJ_Parking(gamePanel);
+        gamePanel.obj[0][29].worldX = 10 * gamePanel.tileSize;
+        gamePanel.obj[0][29].worldY = 48 * gamePanel.tileSize;
+        for (int i = 10; i < 10 + gamePanel.obj[0][29].width; i++) {
+            for (int j = 48; j < 48 + gamePanel.obj[0][29].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][30] = new OBJ_Bank(gamePanel);
+        gamePanel.obj[0][30].worldX = 15 * gamePanel.tileSize;
+        gamePanel.obj[0][30].worldY = 20 * gamePanel.tileSize;
+        for (int i = 15; i < 15 + gamePanel.obj[0][30].width; i++) {
+            for (int j = 20; j < 20 + gamePanel.obj[0][30].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
+        gamePanel.obj[0][31] = new OBJ_Fountain(gamePanel);
+        gamePanel.obj[0][31].worldX = 30 * gamePanel.tileSize;
+        gamePanel.obj[0][31].worldY = 22 * gamePanel.tileSize;
+        for (int i = 30; i < 30 + gamePanel.obj[0][31].width; i++) {
+            for (int j = 22; j < 22 + gamePanel.obj[0][31].height; j++) {
+                gamePanel.tileManager.mapTileValidation[0][i][j] = true;
+            }
+        }
+
     }
 
     public void makeOBJ(String objek, int map, int player){
@@ -389,6 +446,20 @@ public class AssetSetter {
 
             case "Barbel":
                 gamePanel.obj[map][tempIndex] = new OBJ_Barbel(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
+                break;
+
+            case "Car":
+                gamePanel.obj[map][tempIndex] = new OBJ_Car(gamePanel);
+                gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
+                gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
+                index = tempIndex;
+                break;
+
+            case "Parking":
+                gamePanel.obj[map][tempIndex] = new OBJ_Parking(gamePanel);
                 gamePanel.obj[map][tempIndex].worldX = (((int)(gamePanel.player[gamePanel.currentPlayer].worldX/gamePanel.tileSize)) * gamePanel.tileSize);
                 gamePanel.obj[map][tempIndex].worldY = (((int)(gamePanel.player[gamePanel.currentPlayer].worldY/gamePanel.tileSize)) * gamePanel.tileSize);
                 index = tempIndex;
@@ -501,6 +572,7 @@ public class AssetSetter {
             if(setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
                 gamePanel.setGameState(gamePanel.playState);
                 gamePanel.keyHandler.enterPressed = false;
+                gamePanel.ui.addMessage("Barang berhasil diletakkan!");
             }//else if(!setValidMap(gamePanel.obj[gamePanel.currentMap][index], gamePanel.currentMap)){
             //     gamePanel.player[gamePanel.currentPlayer].getInventory().add(gamePanel.obj[gamePanel.currentMap][index]);
             //     gamePanel.obj[gamePanel.currentMap][index] = null;

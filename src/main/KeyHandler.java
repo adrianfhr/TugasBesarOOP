@@ -68,14 +68,14 @@ public class KeyHandler implements KeyListener {
         checkMovementKeys(code);
         checkGameStateKeys(code);
         checkInteractionKeys(code);
-        if(code == KeyEvent.VK_M){
-            // String x = JOptionPane.showInputDialog("Masukkan X: ");
-            // String y = JOptionPane.showInputDialog("Masukkan Y: ");
-            // int intX = Integer.parseInt(x);
-            // int intY = Integer.parseInt(y); 
-            // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
-            gamePanel.pindahRuangan();
-        }
+        // if(code == KeyEvent.VK_M){
+        //     // String x = JOptionPane.showInputDialog("Masukkan X: ");
+        //     // String y = JOptionPane.showInputDialog("Masukkan Y: ");
+        //     // int intX = Integer.parseInt(x);
+        //     // int intY = Integer.parseInt(y); 
+        //     // gamePanel.player[gamePanel.currentPlayer].teleport(intX,intY, 1);
+        //     gamePanel.pindahRuangan();
+        // }
         if(code == KeyEvent.VK_R){
             gamePanel.player[gamePanel.currentPlayer].removeBarang();
         }
@@ -87,7 +87,6 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
             limit = 0;
             gamePanel.playSoundEffect(2);
-            gamePanel.ui.addMessage("Barang berhasil diletakkan!");
         } else if(code == KeyEvent.VK_W && limit == 1){
             upPressed = true;
             limit = 0;
@@ -165,14 +164,14 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() - 1);
                 if (gamePanel.ui.getCommandNumber() < 0) {
-                    gamePanel.ui.setCommandNumber(3);
+                    gamePanel.ui.setCommandNumber(2);
                 }
                 gamePanel.playSoundEffect(8);
             }
 
             if (code == KeyEvent.VK_S) {
                 gamePanel.ui.setCommandNumber(gamePanel.ui.getCommandNumber() + 1);
-                if (gamePanel.ui.getCommandNumber() > 3) {
+                if (gamePanel.ui.getCommandNumber() > 2) {
                     gamePanel.ui.setCommandNumber(0);
                 }
                 gamePanel.playSoundEffect(8);
@@ -400,6 +399,7 @@ public class KeyHandler implements KeyListener {
             enterPressed = false;
             limit = 1;
         }
+        
 
         
     }
@@ -504,7 +504,7 @@ public class KeyHandler implements KeyListener {
         int maxCommandNumber;
 
         switch (gamePanel.ui.getSubState()) {
-            case 0 -> maxCommandNumber = 7;
+            case 0 -> maxCommandNumber = 6;
             case 2 -> maxCommandNumber = 5;
             case 3 -> maxCommandNumber = 3;
             default -> maxCommandNumber = 6;

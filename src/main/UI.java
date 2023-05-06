@@ -190,6 +190,7 @@ public class UI {
                 gamePanel.isInputAction = true;
                 gamePanel.playMusic(0);
                 String input = JOptionPane.showInputDialog(null, "Masukkan nama Sim:");
+                if(input == null) input = "Player 1";
                 gamePanel.player[gamePanel.currentPlayer].setName(input);
                 gamePanel.isInputAction = false;
                 break;
@@ -519,7 +520,7 @@ public class UI {
         int frameX = gamePanel.tileSize / 3 * 2;
         int frameY = gamePanel.tileSize / 3;
         int frameWidth = gamePanel.tileSize / 3 * 10;
-        int frameHeight = (int) (gamePanel.tileSize / 3 * 14);
+        int frameHeight = (int) (gamePanel.tileSize / 3 * 15);
 
         drawSubWindowPlayerStat(frameX, frameY, frameWidth, frameHeight);
 
@@ -538,8 +539,6 @@ public class UI {
     }
 
     public void drawText(int textX, int textY, int lineHeight){
-        String waktuMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakMules%60));
-        String waktuTidur = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur%60));
         g2.drawString("Name", textX, textY);
         textY += lineHeight;
         g2.drawString("Job", textX, textY);
@@ -552,15 +551,20 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Money", textX, textY);
         textY += lineHeight + 15;
-        g2.drawString("Harus Tidur : " + waktuTidur, textX, textY);
+        g2.drawString("Harus Tidur", textX, textY);
         textY += lineHeight;
-        g2.drawString("Harus Poop : " + waktuMules, textX, textY);
+        g2.drawString("Harus Poop", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Renovasi", textX, textY);
         textY += lineHeight;
     }
 
     private void drawValues(int textY, int lineHeight, int tailX) {
         int textX;
         String value;
+        String waktuMules = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakMules/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakMules%60));
+        String waktuTidur = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur/60)%24, (gamePanel.player[gamePanel.currentPlayer].jamTidakTidur%60));
+        String waktuUpgrade = String.format("%02d:%02d", (gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60), (gamePanel.player[gamePanel.currentPlayer].jamUpgrade%60));
 
         value = String.valueOf(gamePanel.player[gamePanel.currentPlayer].getName());
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
@@ -588,6 +592,21 @@ public class UI {
         textY += lineHeight;
 
         value = String.valueOf(gamePanel.player[gamePanel.currentPlayer].getMoney());
+        textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight + 15;
+
+        value = String.valueOf(waktuTidur);
+        textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(waktuMules);
+        textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(waktuUpgrade);
         textX = UtilityTool.getXForAlightToRightOfText(value, tailX, gamePanel, g2);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -630,6 +649,20 @@ public class UI {
         g2.setColor(Color.black);
         textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
         textY = gamePanel.tileSize * 4;
+        g2.drawString(text, textX, textY);
+
+        // Text
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, textX - 4, textY - 4);
+
+
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30f));
+        text = "Anda mati karena " + gamePanel.player[gamePanel.currentPlayer].getDeath() + ".";
+
+        // Shadow
+        g2.setColor(Color.black);
+        textX = UtilityTool.getXForCenterOfText(text, gamePanel, g2);
+        textY = gamePanel.tileSize * 5;
         g2.drawString(text, textX, textY);
 
         // Text
@@ -871,12 +904,19 @@ public class UI {
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isAtas = true;
-                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade + " jam");
-                } else{
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isAtas = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
+                    addMessage("Money - 1500");
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    addMessage("Anda sedang melakukan upgrade");
+                    addMessage("Silakan tunggu selesai!");
+                    gamePanel.playSoundEffect(19);
+                }
+                else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
                 }
@@ -889,11 +929,19 @@ public class UI {
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isKanan = true;
-                } else{
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isKanan = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
+                    addMessage("Money - 1500");
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    addMessage("Anda sedang melakukan upgrade");
+                    addMessage("Silakan tunggu selesai!");
+                    gamePanel.playSoundEffect(19);
+                }
+                else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
                 }
@@ -906,11 +954,19 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isKiri = true;
-                } else{
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isKiri = true;
+                    addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
+                    addMessage("Money - 1500");
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
+                    addMessage("Anda sedang melakukan upgrade");
+                    addMessage("Silakan tunggu selesai!");
+                    gamePanel.playSoundEffect(19);
+                }
+                else{
                     addMessage("Uang anda tidak cukup");
                     gamePanel.playSoundEffect(19);
                 }
@@ -1005,29 +1061,21 @@ public class UI {
 
         // PUNYA ISTRI
         textY += gamePanel.tileSize / 2;
-        g2.drawString("Punya Istri", textX + 30, textY + 105);
+        g2.drawString("Pindah Ruangan", textX + 30, textY + 105);
         if (commandNumber == 5) {
             g2.drawString(">", textX + 10, textY + 105);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
                 commandNumber = 0;
-            }
-        }
-
-        // PUNYA ISTRI
-        textY += gamePanel.tileSize / 2;
-        g2.drawString("Berkunjung", textX + 30, textY + 120);
-        if (commandNumber == 6) {
-            g2.drawString(">", textX + 10, textY + 120);
-            if (gamePanel.getKeyHandler().isEnterPressed()) {
-                commandNumber = 0;
-
+                gamePanel.setGameState(gamePanel.playState);
+                gamePanel.pindahRuangan();
             }
         }
 
         // BACK
         textY += gamePanel.tileSize / 3 * 2;
         g2.drawString("Back", textX + 30, textY + 135);
-        if (commandNumber == 7) {
+        if (commandNumber == 6) {
             g2.drawString(">", textX + 10, textY + 135);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 gamePanel.setGameState(gamePanel.playState);
@@ -1066,6 +1114,60 @@ public class UI {
     }
 
     private void interactWifeSelect() {
+        gamePanel.player[gamePanel.currentPlayer].interactWithNPC(commandNumber);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+        // DRAW WINDOW
+        int x = gamePanel.tileSize * 5;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.tileSize * 3;
+        int height = (int) (gamePanel.tileSize * 3);
+        drawSubWindow(x, y, width, height);
+
+        // DRAW TEXT
+        x += gamePanel.tileSize;
+        y += gamePanel.tileSize;
+        g2.drawString("Talk", x-20, y-10);
+        if (commandNumber == 0) {
+            g2.drawString(">", x - 30, y-10);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "Hi! you look good today!";
+                gamePanel.playSoundEffect(26);
+            }
+        }
+        y += gamePanel.tileSize;
+        g2.drawString("Woohoo", x-20, y-30);
+        if (commandNumber == 1) {
+            g2.drawString(">", x - 30, y-30);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                if (gamePanel.currentMap == 0){
+                    currentDialogue = "Ahh.. Jangan dong...";
+                    gamePanel.playSoundEffect(15);
+                } else if (gamePanel.currentMap == 1){
+                    currentDialogue = "Yes, Daddy!";
+                }
+            }
+        }
+
+        y += gamePanel.tileSize;
+        g2.drawString("Leave", x-20, y-30);
+        if (commandNumber == 2) {
+            g2.drawString(">", x - 30, y-30);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNumber = 0;
+                subState = 0;
+                gamePanel.setGameState(gamePanel.dialogueState);
+                currentDialogue = "See u later!";
+                gamePanel.playSoundEffect(27);
+            }
+        }
+
+    }
+
+    private void interactObjSelect() {
         gamePanel.player[gamePanel.currentPlayer].interactWithNPC(commandNumber);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
         // DRAW WINDOW
@@ -1121,11 +1223,9 @@ public class UI {
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 commandNumber = 0;
                 subState = 0;
-                gamePanel.setGameState(gamePanel.dialogueState);
-                currentDialogue = "See u later!";
+                gamePanel.setGameState(gamePanel.playState);
             }
         }
-
     }
 
     private void drawInteractCatScreen() {
@@ -1249,12 +1349,18 @@ public class UI {
         textY += gamePanel.tileSize / 3;
         g2.drawString("Pause", textX + gamePanel.tileSize / 3 * 2, textY + 105);
         g2.drawString("P", textX + gamePanel.tileSize / 3 * 18, textY + 105);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Remove Object", textX + gamePanel.tileSize / 3 * 2, textY + 120);
+        g2.drawString("R", textX + gamePanel.tileSize / 3 * 18, textY + 120);
+        textY += gamePanel.tileSize / 3;
+        g2.drawString("Actions", textX + gamePanel.tileSize / 3 * 2, textY + 135);
+        g2.drawString("SPACE", textX + gamePanel.tileSize / 3 * 16, textY + 135);
 
         // BACK
         textX = frameX + gamePanel.tileSize / 3;
         textY = frameY + gamePanel.tileSize / 3 * 9;
-        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 120);
-        g2.drawString(">", textX + 10, textY + 120);
+        g2.drawString("Back", textX + gamePanel.tileSize / 3 * 2, textY + 150);
+        g2.drawString(">", textX + 10, textY + 150);
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             subState = 0;
             commandNumber = 3;

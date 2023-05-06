@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 
-public class OBJ_Car extends SuperObject{
+public class OBJ_Car extends Barang{
     GamePanel gamePanel;
 
     public OBJ_Car(GamePanel gamePanel){
@@ -20,7 +20,7 @@ public class OBJ_Car extends SuperObject{
         
         try {
             image = ImageIO.read(new File("././res/object/garage.png"));
-            utilityTool.scaleImage(image, gamePanel.tileSize, gamePanel.tileSize);
+            setImage1(utilityTool.scaleImage(image, gamePanel.tileSize * 2/3, gamePanel.tileSize * 2/3));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class OBJ_Car extends SuperObject{
         if (gamePanel.player[gamePanel.currentPlayer].naikMobil){
             gamePanel.player[gamePanel.currentPlayer].naikMobil = false;
             gamePanel.player[gamePanel.currentPlayer].speed = 4;
-
+            gamePanel.playSoundEffect(25);
         } else {
             gamePanel.player[gamePanel.currentPlayer].speed = 10;
             gamePanel.player[gamePanel.currentPlayer].naikMobil = true;
