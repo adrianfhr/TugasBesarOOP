@@ -198,8 +198,6 @@ public class Player extends Entity{
                 
             }else if (gamePanel.isCat){
                 gamePanel.setGameState(gamePanel.catState);
-                System.out.println("Cat");
-                System.out.println("Game state : " + gamePanel.obj[gamePanel.currentMap][targetIndex].getState());
                 gamePanel.isActiveAction = false;
                 keyHandler.ePressed = false;
             }
@@ -649,16 +647,14 @@ public class Player extends Entity{
                         int arrivedTime = randomInt * 60;
                         gamePanel.ui.addMessage("Waktu pengiriman : "+ arrivedTime + " menit.");
                         int i = 0;
-                        while(gamePanel.tempBuyObj[i] != null){
+                        while(gamePanel.tempBuyObj[gamePanel.currentPlayer][i] != null){
                             i++;
                         }
-                        gamePanel.tempBuyObj[i] = selectedItem;
-                        gamePanel.tempBuyObjCount[i] = arrivedTime;
+                        gamePanel.tempBuyObj[gamePanel.currentPlayer][i] = selectedItem;
+                        gamePanel.tempBuyObjCount[gamePanel.currentPlayer][i] = arrivedTime;
                         gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - ((SuperObject) selectedItem).getPrice());
                         gamePanel.setGameState(gamePanel.playState);
-                        for(int j = 0; j < gamePanel.tempBuyObj.length; j++){
-                            System.out.println("TempBuyObj : "+gamePanel.tempBuyObj[j]);
-                        }
+                        
                     } else{
                         gamePanel.ui.setSubState(0);
                         gamePanel.setGameState(gamePanel.dialogueState);

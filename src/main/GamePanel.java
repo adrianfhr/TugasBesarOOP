@@ -73,8 +73,8 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject obj[][] = new SuperObject[maxMap][100];
     public NPC_Wife npc[] = new NPC_Wife[10];
     public NPC_Cat cat[] = new NPC_Cat[10];
-    public SuperObject tempBuyObj[] = new SuperObject[10]; 
-    public int tempBuyObjCount[] = new int[10];
+    public SuperObject tempBuyObj[][] = new SuperObject[maxMap][10]; 
+    public int tempBuyObjCount[][] = new int[maxMap][10];
 
     //state
     public int gameState = 0;
@@ -126,8 +126,10 @@ public class GamePanel extends JPanel implements Runnable {
          eManager.setup();
          eManager.lighting.dayCounter = clock;
          gps2d = (Graphics2D) tempScreen.getGraphics();
-         for(int i = 0; i < tempBuyObjCount.length; i++){
-             tempBuyObjCount[i] = 999;
+         for(int j = 0; j < tempBuyObjCount.length;j++){
+                for(int i = 0; i < tempBuyObjCount[j].length; i++){
+                    tempBuyObjCount[j][i] = 999;
+                }
          }
         if (fullScreenOn) {
             setFullScreen();
@@ -258,12 +260,14 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                     
-
                     for(int i = 0; i < tempBuyObj.length; i++){
-                        if (tempBuyObj[i] != null && tempBuyObjCount[i] != 999 && tempBuyObjCount[i] > 0){
-                            tempBuyObjCount[i]--;
+                        for(int j = 0; j < tempBuyObj[i].length; j++){
+                            if (tempBuyObj[i][j] != null && tempBuyObjCount[i][j] != 999 && tempBuyObjCount[i][j] > 0){
+                                tempBuyObjCount[i][j]--;
+                            }
                         }
                     }
+                    
 
                     for(int i = 0; i < player.length; i++){
                         if(player[i] != null){
@@ -636,19 +640,25 @@ public class GamePanel extends JPanel implements Runnable {
 
     public synchronized void checkWaktuBeliBarang(){
         for(int i = 0; i < tempBuyObj.length;i++){
-            if(tempBuyObjCount[i] == 0){
-                addInventory(tempBuyObj[i]);
-                tempBuyObj[i] = null;
-                tempBuyObjCount[i] = 999 ;
+            for(int j = 0; j < tempBuyObj[i].length;j++){
+                if(tempBuyObj[i][j] != null){
+                    if(tempBuyObjCount[i][j] == 0){
+                        addInventory(tempBuyObj[i][j], i);
+                        tempBuyObj[i][j] = null;
+                        tempBuyObjCount[i][j] = 999 ;
+                    }
+                }
             }
+            
+                
         }
     }
 
-    public void addInventory(SuperObject o){
+    public void addInventory(SuperObject o, int indexPlayer){
         
-        List<SuperObject> inventory = player[currentPlayer].getInventory();
+        List<SuperObject> inventory = player[indexPlayer].getInventory();
         inventory.add(o);
-       ui.addMessage("Barang "+ o.getName() + " sudah sampai");
+        ui.addMessage("Barang "+ o.getName() +" milik " + player[indexPlayer].getName() + " sudah sampai");
         playSoundEffect(23);
     }
 
@@ -661,7 +671,7 @@ public class GamePanel extends JPanel implements Runnable {
         int posisiX = 48, posisiY = 48;
 
         isInputAction = true;
-        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan rumah " + player[currentPlayer].getName() + " : ");
+        String ruangan = JOptionPane.showInputDialog("Masukkan nama ruangan rumah " + player[indexPlayer].getName() + " : ");
         isInputAction = false;
 
         if(posisi.equals("Atas")){
