@@ -479,6 +479,8 @@ public class GamePanel extends JPanel implements Runnable {
         if(player[currentPlayer].jamKerja == 0){
             isActiveAction = false;
             player[currentPlayer].countJob++;
+            player[currentPlayer].setMood(player[currentPlayer].getMood() - 10);
+            player[currentPlayer]. setHunger(player[currentPlayer].getHunger() - 10);
 
             if(player[currentPlayer].countGaji == 7){
                 if(player[currentPlayer].getJob().equals("Badut Sulap")) player[currentPlayer].setMoney(player[currentPlayer].getMoney() + 15);
@@ -542,6 +544,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if(player[currentPlayer].jamMemasak == 0){
+            player[currentPlayer].setMood(player[currentPlayer].getMood() + 10);
             player[currentPlayer].interactOBJ();
             isActiveAction = false;
             player[currentPlayer].jamMemasak = 30;
