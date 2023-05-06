@@ -24,7 +24,7 @@ public class Player extends Entity{
     private int id, mood, health, hunger, money ;
 
     //tidur, kerja, makan
-    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji, jamDuduk;
+    public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji, jamDuduk, jamGantiKerja;
 
 
     public boolean naikMobil;
@@ -95,6 +95,7 @@ public class Player extends Entity{
         jamDuduk = 20;
         countJob = 0;
         countGaji = 0;
+        jamGantiKerja = 0;
     }
 
     public void restoreLife() {
@@ -344,6 +345,7 @@ public class Player extends Entity{
             this.job = job;
             gamePanel.ui.addMessage("Sekarang kamu berprofesi sebagai " + job);
             countJob = 0;
+            jamGantiKerja = 24 * 60 * 60;
             switch (job) {
                 case "Polisi":
                     setMoney(getMoney() - (35/2));

@@ -190,6 +190,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             if(deltaClock >= 1 && (player[currentPlayer].isBerkunjungAction || isActiveAction)){
+
+                    
                 
                     clock++;
                     deltaClock--;
@@ -275,6 +277,10 @@ public class GamePanel extends JPanel implements Runnable {
                                 player[i].jamUpgrade--;
                             }
                         }
+                    }
+
+                    if(player[currentPlayer].jamGantiKerja != 0){
+                        player[currentPlayer].jamGantiKerja--;
                     }
                 
     
@@ -829,6 +835,9 @@ public class GamePanel extends JPanel implements Runnable {
                     tempBuyObjCount[i][j] -= jarak;
                 }
             }
+        }
+        if(player[currentPlayer].jamGantiKerja > 0){
+            player[currentPlayer].jamGantiKerja -= jarak;
         }
 
         player[currentPlayer].isBerkunjungAction = true;
