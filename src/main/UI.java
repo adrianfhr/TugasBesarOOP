@@ -1120,7 +1120,7 @@ public class UI {
         int x = gamePanel.tileSize * 5;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.tileSize * 3;
-        int height = (int) (gamePanel.tileSize * 3.5);
+        int height = (int) (gamePanel.tileSize * 3);
         drawSubWindow(x, y, width, height);
 
         // DRAW TEXT
@@ -1153,20 +1153,9 @@ public class UI {
         }
 
         y += gamePanel.tileSize;
-        g2.drawString("Suruh pulang", x-20, y-50);
+        g2.drawString("Leave", x-20, y-30);
         if (commandNumber == 2) {
-            g2.drawString(">", x - 30, y-50);
-            if (gamePanel.getKeyHandler().isEnterPressed()) {
-                commandNumber = 0;
-                subState = 0;
-                gamePanel.npc[0].teleportNPC(48, 48, 0);
-            }
-        }
-
-        y += gamePanel.tileSize;
-        g2.drawString("Leave", x-20, y-55);
-        if (commandNumber == 3) {
-            g2.drawString(">", x - 30, y-55);
+            g2.drawString(">", x - 30, y-30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 commandNumber = 0;
                 subState = 0;
