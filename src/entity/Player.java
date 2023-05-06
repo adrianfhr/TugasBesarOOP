@@ -71,7 +71,7 @@ public class Player extends Entity{
         this.mood = 80;
         this.health = 80;
         this.hunger = 80;
-        this.money = 10000;
+        this.money = 100;
         startPekerjaan();
 
         Random random = new Random();
@@ -441,10 +441,6 @@ public class Player extends Entity{
 
     public void setItems(){
         getInventory().clear();
-        getInventory().add(new OBJ_MejaKursi(gamePanel));
-        getInventory().add(new OBJ_Nasi(gamePanel));
-        getInventory().add(new OBJ_Kentang(gamePanel));
-        getInventory().add(new OBJ_Beef(gamePanel));
     }
 
     private void checkIfAlive() {
