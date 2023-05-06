@@ -26,10 +26,13 @@ public class Player extends Entity{
     //tidur, kerja, makan
     public int jamTidur, jamTidakTidur, jamKerja, jamMules, jamTidakMules, jamOlahraga, jamMakan, jamMemasak, jamBerkunjung, jamBarang, jamIbadah, jamNonton, jamUpgrade, countJob, countGaji;
 
-    //naik mobil gak
+
     public boolean naikMobil;
     public boolean abisMakan;
-    public boolean isBerkunjungAction = false;
+    public boolean isBerkunjungAction = false, isUpgradeRumah = false;
+    public boolean isKanan = false;
+    public boolean isKiri = false;
+    public boolean isAtas = false;
 
     //player game system
     GamePanel gamePanel;
@@ -79,7 +82,7 @@ public class Player extends Entity{
         jamKerja = 30 * 2;
         jamOlahraga = 20*2;
         jamTidur = 4 * 60 * 2;
-        jamUpgrade = 18 * 60 * 2;
+        jamUpgrade = 50; //18 * 60 * 2;
         jamTidakTidur = 10 * 60 * 2;
         jamMakan = 30 * 2;
         jamMemasak = 30;  //karena berubah-ubah tergantung masakannya

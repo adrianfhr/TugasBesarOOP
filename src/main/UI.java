@@ -904,14 +904,14 @@ public class UI {
         if (commandNumber == 0) {
             g2.drawString(">", textX + 10, textY + 30);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.isPassiveAction){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isAtas = true;
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isAtas = true;
                     addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
                     addMessage("Money - 1500");
-                } else if (gamePanel.isPassiveAction){
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     addMessage("Anda sedang melakukan upgrade");
                     addMessage("Silakan tunggu selesai!");
                     gamePanel.playSoundEffect(19);
@@ -929,14 +929,14 @@ public class UI {
         if (commandNumber == 1) {
             g2.drawString(">", textX + 10, textY + 45);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.isPassiveAction){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isKanan = true;
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isKanan = true;
                     addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
                     addMessage("Money - 1500");
-                } else if (gamePanel.isPassiveAction){
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     addMessage("Anda sedang melakukan upgrade");
                     addMessage("Silakan tunggu selesai!");
                     gamePanel.playSoundEffect(19);
@@ -954,14 +954,14 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", textX + 10, textY + 60);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
-                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.isPassiveAction){
+                if (gamePanel.player[gamePanel.currentPlayer].getMoney() >= 1500 && !gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     gamePanel.player[gamePanel.currentPlayer].setMoney(gamePanel.player[gamePanel.currentPlayer].getMoney() - 1500);
                     gamePanel.playSoundEffect(18);
-                    gamePanel.isPassiveAction = true;
-                    gamePanel.isKiri = true;
+                    gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah = true;
+                    gamePanel.player[gamePanel.currentPlayer].isKiri = true;
                     addMessage("Silahkan tunggu " + gamePanel.player[gamePanel.currentPlayer].jamUpgrade/60 + " jam");
                     addMessage("Money - 1500");
-                } else if (gamePanel.isPassiveAction){
+                } else if (gamePanel.player[gamePanel.currentPlayer].isUpgradeRumah){
                     addMessage("Anda sedang melakukan upgrade");
                     addMessage("Silakan tunggu selesai!");
                     gamePanel.playSoundEffect(19);
